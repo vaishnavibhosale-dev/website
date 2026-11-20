@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vaishnavi Bhosale</title>
+<meta name="description" content="Vaishnavi Bhosale — personal website. Coming soon.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f1ea;
+    --ink: #1f1a17;
+    --muted: #6b625b;
+    --accent: #c4572f;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  .blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: .45;
+    z-index: 0;
+    animation: drift 18s ease-in-out infinite alternate;
+  }
+  .blob.one { width: 420px; height: 420px; background: #f0b38f; top: -120px; right: -100px; }
+  .blob.two { width: 360px; height: 360px; background: #e7cfa8; bottom: -120px; left: -80px; animation-delay: -6s; }
+  @keyframes drift { to { transform: translate(40px, 30px) scale(1.08); } }
+  @media (prefers-reduced-motion: reduce) { .blob { animation: none; } }
+
+  main {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8vh 8vw;
+    max-width: 1100px;
+  }
+  .tag {
+    font-size: .8rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+  }
+  .tag::before {
+    content: "";
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 0 rgba(196,87,47,.5);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    70% { box-shadow: 0 0 0 10px rgba(196,87,47,0); }
+    100% { box-shadow: 0 0 0 0 rgba(196,87,47,0); }
+  }
+  h1 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(3rem, 10vw, 7.5rem);
+    line-height: .95;
+    letter-spacing: -.02em;
+  }
+  h1 span { display: block; font-weight: 400; font-style: italic; color: var(--muted); }
+  p.lede {
+    margin-top: 2rem;
+    max-width: 34rem;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+  footer {
+    position: relative;
+    z-index: 1;
+    padding: 2rem 8vw;
+    font-size: .85rem;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border-top: 1px solid rgba(31,26,23,.1);
+  }
+</style>
+</head>
+<body>
+  <div class="blob one"></div>
+  <div class="blob two"></div>
+  <main>
+    <div class="tag">Something new is on the way</div>
+    <h1>Vaishnavi<span>Bhosale</span></h1>
+    <p class="lede">Hello, and welcome. This little corner of the internet is being set up. Check back soon.</p>
+  </main>
+  <footer>
+    <span>vaishnavibhosale.com</span>
+    <span>© <script>document.write(new Date().getFullYear())</script></span>
+  </footer>
+</body>
+</html>
