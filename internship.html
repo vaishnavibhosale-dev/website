@@ -195,6 +195,14 @@ blockquote footer{font:400 15px var(--body);color:var(--mut);margin-top:14px}
 
 
 
+
+/* collections + turning point */
+.moodfig{margin:30px 0 0}.moodfig img{width:100%;border-radius:8px;box-shadow:0 18px 44px rgba(0,0,0,.12)}
+.moodfig figcaption,.flatfig figcaption{font-size:14px;color:var(--mut);margin-top:10px}
+.flatfig{margin:40px auto 0;max-width:760px}.flatfig img{width:100%;border-radius:8px;background:#fff;padding:10px;box-shadow:0 14px 34px rgba(0,0,0,.1)}
+.turn{background:var(--acc);color:#fff;padding:clamp(70px,9vw,130px) max(5vw,16px)}
+.turn h2{font-size:clamp(40px,6vw,80px);font-stretch:62%;font-weight:900;max-width:16ch}
+.turn p{max-width:58ch;margin-top:18px;font-size:19px;color:#e6ecff}
 /* look explorer */
 .lchips{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
 .lchips button{min-height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--ink);background:transparent;font-size:14px}
@@ -326,19 +334,44 @@ blockquote footer{font:400 15px var(--body);color:var(--mut);margin-top:14px}
  </div>
 </section>
 
+<!-- collection one: white shirt -->
+<section class="sec">
+ <div class="wrap">
+  <div class="kick"><b></b>Collection one</div>
+  <div class="cathd">
+   <h2>The white shirt collection</h2>
+   <p class="lede">The collection that got me the internship. It's built on “The Butterfly Effect”: a minor change can alter everything around it, so one small detail changes the whole shirt. Blanco asked me to keep developing it.</p>
+  </div>
+  <figure class="moodfig"><img class="z" src="img/in/mood.webp" alt="The Butterfly Effect moodboard: grid notes, spirals, a butterfly and a Pantone strip"><figcaption>Moodboard · The Butterfly Effect</figcaption></figure>
+ </div>
+</section>
+
+<!-- line-up rail -->
+<section class="rail" id="rail">
+ <div class="stick">
+  <div class="hd"><div><div class="kick"><b></b>Collection one · the white shirt collection</div><h2>From sketch to line-up</h2></div><p class="mut" style="max-width:40ch">Scroll to move along the rail. Tap any drawing to see it full size.</p></div>
+  <div class="track" id="track">
+   <figure><img class="z" src="img/in/lineup.webp" alt="Line-up of initial white shirt sketches"><figcaption><b>Initial sketches</b>the full line</figcaption></figure>
+   <figure><img class="z" src="img/in/det1.webp" alt="Shirt sketches with cut-and-sew, fabric manipulation and box pleat details"><figcaption><b>Details</b>cut-and-sew, fabric manipulation, box pleats</figcaption></figure>
+   <figure><img class="z" src="img/in/det2.webp" alt="Further shirt detail sketches"><figcaption><b>Details</b>embroidery placement and trims</figcaption></figure>
+  </div>
+  <div class="prog"><i id="prog"></i></div>
+ </div>
+</section>
+
 <!-- research desk -->
 <section class="sec">
  <div class="wrap">
-  <div class="kick"><b></b>Research → design</div>
+  <div class="kick"><b></b>Testing it against the order books</div>
   <h2>Three to four years of order books</h2>
   <div class="desk">
    <div>
-    <p class="lede">My internship began with a white shirt collection. I read through Blanco's order books and the custom requests that kept returning became the brief.</p>
+    <p class="lede">Before taking the collection further, I went through three to four years of Blanco's order books and custom preferences to see what customers actually ask for.</p>
     <div class="steps">
      <div><i></i><b>Observe</b><span>Order books</span><em>Recurring requests across three to four years.</em></div>
      <div><i></i><b>Notice</b><span>Customer preferences</span><em>Details that return often enough to guide choices.</em></div>
-     <div><i></i><b>Apply</b><span>White shirt collection</span><em>Research turned into a design direction.</em></div>
-     <div><i></i><b>Iterate</b><span>Design iterations</span><em>My own development work.</em></div>
+     <div><i></i><b>Test</b><span>White shirt collection</span><em>Checked against what customers really order.</em></div>
+     <div><i></i><b>Rethink</b><span>Not viable for the market</span><em>The collection needed a new direction.</em></div>
     </div>
    </div>
    <figure class="paper" style="margin:0;max-width:360px;justify-self:center"><img class="z" src="img/in/order.webp" alt="A Blanco order sheet with measurements and a hand-drawn shirt"></figure>
@@ -371,42 +404,40 @@ blockquote footer{font:400 15px var(--body);color:var(--mut);margin-top:14px}
  </div>
 </section>
 
-<!-- moodboard + motif scatter -->
-<section class="sec">
+<!-- turning point -->
+<section class="turn">
  <div class="wrap">
-  <div class="kick"><b></b>Concept</div>
-  <h2>The Butterfly Effect</h2>
-  <p class="lede" style="margin-top:14px">How a minor change can drastically alter everything around it: a small detail changes the whole shirt. The brand's own lettering became a motif, and the motif became buttons and embroidery.</p>
-  <div class="scat" id="scat">
-   <figure data-d="18" style="left:0;top:2%;width:54%"><img class="z" src="img/in/mood.webp" alt="The Butterfly Effect moodboard"><figcaption>Moodboard: grid notes, spirals, butterfly and a Pantone strip</figcaption></figure>
-   <figure data-d="34" style="left:60%;top:0;width:38%"><img class="z" src="img/in/motif.webp" alt="Blanco-inspired b motif developing into a fish-like form"><figcaption>Blanco-inspired motif: the “b” evolves</figcaption></figure>
-   <figure data-d="26" style="left:4%;top:46%;width:40%"><img class="z" src="img/in/buttons.webp" alt="Brass and horn buttons"><figcaption>Button selection</figcaption></figure>
-   <figure data-d="40" style="left:50%;top:40%;width:46%"><img class="z" src="img/in/refboard.webp" alt="Reference board of menswear looks and fabrics"><figcaption>Fabric and reference board</figcaption></figure>
-  </div>
+  <div class="kick" style="color:#cfd9ff"><b style="background:#fff"></b>The turning point</div>
+  <h2>A motif for Blanco, made with its founder</h2>
+  <p>The research showed my white shirt collection wasn't viable for Blanco's market. Together with the founder, Pranav Bhagwat, we decided to develop a motif for the brand instead, inspired by the koi and its serenity.</p>
  </div>
 </section>
 
-<!-- line-up rail -->
-<section class="rail" id="rail">
- <div class="stick">
-  <div class="hd"><div><div class="kick"><b></b>The white shirt collection</div><h2>From sketch to line-up</h2></div><p class="mut" style="max-width:40ch">Scroll to move along the rail. Tap any drawing to see it full size.</p></div>
-  <div class="track" id="track">
-   <figure><img class="z" src="img/in/lineup.webp" alt="Line-up of initial white shirt sketches"><figcaption><b>Initial sketches</b>the full line</figcaption></figure>
-   <figure><img class="z" src="img/in/det1.webp" alt="Shirt sketches with cut-and-sew, fabric manipulation and box pleat details"><figcaption><b>Details</b>cut-and-sew, fabric manipulation, box pleats</figcaption></figure>
-   <figure><img class="z" src="img/in/det2.webp" alt="Further shirt detail sketches"><figcaption><b>Details</b>embroidery placement and trims</figcaption></figure>
-   <figure><img class="z" src="img/in/flats.webp" alt="Technical flats of shirts in a grid"><figcaption><b>Technical flats</b>for the tailors</figcaption></figure>
+<!-- collection two: koi motif -->
+<section class="sec">
+ <div class="wrap">
+  <div class="kick"><b></b>Collection two · the koi motif</div>
+  <div class="cathd">
+   <h2>From the Blanco “b” to a koi</h2>
+   <p class="lede">The motif board, the button design and the references Pranav and I agreed on, before the koi became a collection.</p>
   </div>
-  <div class="prog"><i id="prog"></i></div>
+  <div class="scat" id="scat">
+   <figure data-d="18" style="left:0;top:2%;width:40%"><img class="z" src="img/in/logo.webp" alt="The Blanco wordmark"><figcaption>Motif board: the Blanco wordmark as the starting point</figcaption></figure>
+   <figure data-d="34" style="left:46%;top:0;width:52%"><img class="z" src="img/in/motif.webp" alt="The Blanco b motif developing into a koi"><figcaption>The “b” evolves into a koi</figcaption></figure>
+   <figure data-d="26" style="left:2%;top:44%;width:42%"><img class="z" src="img/in/buttons.webp" alt="Button designs"><figcaption>Button design</figcaption></figure>
+   <figure data-d="40" style="left:52%;top:53%;width:46%"><img class="z" src="img/in/refboard.webp" alt="Reference board of menswear looks and fabrics"><figcaption>References agreed with Pranav</figcaption></figure>
+  </div>
+  <figure class="flatfig"><img class="z" src="img/in/flats.webp" alt="Technical flats of shirts in a grid"><figcaption><b>Technical flats</b> for the tailors</figcaption></figure>
  </div>
 </section>
 
 <!-- look explorer -->
 <section class="sec" id="looks">
  <div class="wrap">
-  <div class="kick"><b></b>The collection</div>
+  <div class="kick"><b></b>Collection two · the koi collection</div>
   <div class="cathd">
    <h2>Eleven shirts, look by look</h2>
-   <p class="lede">The white shirt collection in full: classics, creative and casual. Pick a look from the rail, hover the photo to inspect the work up close, and open any detail.</p>
+   <p class="lede">The final koi collection, garment by garment: classics, creative and casual. Pick a look from the rail, hover the photo to inspect the work up close, and open any detail.</p>
   </div>
   <div class="lchips" role="tablist" aria-label="Filter looks"></div>
   <div class="rail2" id="lrail" role="listbox" aria-label="Looks"></div>
