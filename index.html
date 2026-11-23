@@ -368,19 +368,19 @@ footer p{color:var(--mut);margin:12px 0 0}
   <div class="s" data-d="20" style="left:26%;top:67%;width:25%"><div class="tc2"><q>What might future societies choose to celebrate, protect, remember and believe in?</q></div></div>
   <div class="s" data-d="25" style="left:54%;top:72%;width:22%"><div class="tc2" style="font-size:15px">Three case studies, then a critique: symbolism, materials, function, sustainability and cultural responsibility, and a personal design direction.</div></div>
  </div>
- <div class="sub3"><h3>Jewellery in 3D</h3><p>A hair comb, a ring and a pair of drop earrings modelled in 3D, drawn from Casa Batlló and the Art Nouveau period. Drag to turn a piece, scroll or pinch to zoom.</p></div>
+ <div class="sub3"><h3>Jewellery in 3D</h3><p>A hair pin, a ring and a pair of drop earrings modelled in 3D, drawn from Casa Batlló and the Art Nouveau period. Drag to turn a piece, scroll or pinch to zoom.</p></div>
  <div class="jw">
   <div class="panel l"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="gl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9fdcb1"/><stop offset=".6" stop-color="#c8ecd2"/><stop offset="1" stop-color="#e9d79a"/></linearGradient></defs><path d="M0 0H72C58 22 100 34 100 50S58 78 72 100H0Z" fill="url(#gl)"/></svg>
    <h3>Casa Batlló</h3><p>Gaudí's house in Barcelona: bone-like columns, a scaled roof and a facade that moves like water. The ring takes its curves.</p></div>
   <div class="jwc">
    <div class="tabs" role="tablist">
-    <button class="on" data-m="comb" role="tab">Ginkgo hair comb</button><button data-m="ring" role="tab">Casa Batlló ring</button><button data-m="ear" role="tab">Drop earrings</button>
+    <button class="on" data-m="comb" role="tab">Ginkgo hair pin</button><button data-m="ring" role="tab">Casa Batlló ring</button><button data-m="ear" role="tab">Drop earrings</button>
    </div>
    <div class="view c" data-l="Media" id="view"><div class="msg" id="vmsg">Loading model…</div></div>
    <div class="jwf"><span id="vinfo">110 × 68 mm</span><span class="fin" id="fin"><button style="background:#d4af6a" data-f="gold" class="on" aria-label="Gold finish"></button><button style="background:#d9d9de" data-f="silver" aria-label="Silver finish"></button><button style="background:#f1ece2" data-f="resin" aria-label="Ivory resin finish"></button></span></div>
   </div>
   <div class="panel r"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="gr" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b9adf2"/><stop offset=".6" stop-color="#dcd5fb"/><stop offset="1" stop-color="#f5c6d3"/></linearGradient></defs><path d="M100 0H28C42 22 0 34 0 50S42 78 28 100H100Z" fill="url(#gr)"/></svg>
-   <h3>Art Nouveau</h3><p>Around 1890–1910: whiplash lines and ornament taken from plants. The comb is built on the ginkgo leaf.</p></div>
+   <h3>Art Nouveau</h3><p>Around 1890–1910: whiplash lines and ornament taken from plants. The hair pin is built on the ginkgo leaf.</p></div>
  </div>
 </section>
 
@@ -657,7 +657,7 @@ $$('.c',scat).forEach((c,j)=>c.style.setProperty('--p',PAST[j%6]));
 
 /* 3D jewellery */
 const view=$('#view'),vmsg=$('#vmsg'),vinfo=$('#vinfo');
-const MODELS={comb:{f:'models/comb.json',info:'Ginkgo hair comb · 110 × 68 mm',rx:0},ring:{f:'models/ring.json',info:'Casa Batlló ring · Indian size 9.5 · 15.8 mm inner diameter',rx:-Math.PI/2},ear:{f:'models/earring.json',info:'Drop earrings · 16 inserts in six colours · 95 × 25 mm',rx:0,multi:1}};
+const MODELS={comb:{f:'models/comb.json',info:'Ginkgo hair pin · 110 × 68 mm',rx:0},ring:{f:'models/ring.json',info:'Casa Batlló ring · Indian size 9.5 · 15.8 mm inner diameter',rx:-Math.PI/2},ear:{f:'models/earrings.json',info:'Drop earrings, pair · 16 inserts each in six colours · 95 × 25 mm',rx:0,multi:1}};
 const FIN={gold:{color:0xd4af6a,metalness:1,roughness:.26,clearcoat:0},silver:{color:0xdcdce2,metalness:1,roughness:.2,clearcoat:0},resin:{color:0xf1ece2,metalness:0,roughness:.35,clearcoat:1}};
 let R3=null,cur='comb',fin='gold';
 function init3D(){

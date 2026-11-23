@@ -166,6 +166,31 @@ body.nav .drawer{transform:none}body.nav .scrim{opacity:1;pointer-events:auto}
 .parts span i{width:12px;height:12px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
 .refs{font-size:14px;color:var(--mut)}
 .refs li{margin:6px 0}
+/* worn: scroll try-on */
+.worn{background:#0b0b0b;color:#eee;padding:0}
+.wtrack{position:relative;height:420vh}
+.wsticky{position:sticky;top:0;height:100svh;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(20px,4vw,64px);align-items:center;padding:clamp(70px,9vh,110px) clamp(20px,5vw,72px) clamp(20px,4vh,48px);max-width:1440px;margin:0 auto}
+.worn .kick{color:#bbb}.worn .kick b{background:var(--gold)}
+.worn h2{color:#fff}
+.wsteps{list-style:none;margin:26px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+.wsteps li{display:grid;grid-template-columns:36px 1fr;gap:12px;padding:12px 0;border-top:1px solid #2a2a2a;opacity:.4;transition:opacity .4s}
+.wsteps li.on{opacity:1}
+.wsteps li i{font-style:normal;font-family:var(--disp);font-stretch:70%;font-weight:900;font-size:24px;color:var(--gold)}
+.wsteps b{display:block;font-size:17px;color:#fff}
+.wsteps span{font-size:14px;color:#aaa}
+.wbar{height:3px;background:#2a2a2a;border-radius:3px;margin-top:18px;overflow:hidden}.wbar i{display:block;height:100%;width:0;background:var(--gold)}
+.wstage{position:relative;height:min(76svh,820px);width:100%;display:grid;place-items:center}
+.wl{position:absolute;inset:0;display:grid;place-items:center;opacity:0;transition:opacity .45s}
+.wl.on{opacity:1}
+.wbox{position:relative;height:100%;max-width:100%;border-radius:14px;overflow:hidden;background:radial-gradient(90% 70% at 50% 40%,#2a2a2a,#0b0b0b)}
+.wbox .ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;clip-path:circle(0% at 50% 50%)}
+.wbox .pc{position:absolute;left:50%;top:50%;height:70%;width:auto;transform:translate(-50%,-50%);filter:drop-shadow(0 18px 30px rgba(0,0,0,.55));will-change:left,top,height,transform}
+.wbox .pc.inserted{filter:none;-webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - var(--mk,0%)),transparent calc(100% - var(--mk,0%) + 8%));mask-image:linear-gradient(to bottom,#000 calc(100% - var(--mk,0%)),transparent calc(100% - var(--mk,0%) + 8%))}
+.wbox .lab{position:absolute;left:14px;bottom:14px;font-size:12px;color:#ddd;background:rgba(0,0,0,.5);padding:6px 10px;border-radius:999px;opacity:0;transition:opacity .4s}
+.wbox .lab.on{opacity:1}
+.wnote{font-size:12px;color:#888;margin-top:14px}
+@media(max-width:900px){.wsticky{grid-template-columns:minmax(0,1fr);align-content:start;padding-top:76px;gap:12px}.wsteps{flex-direction:row;margin-top:10px}.wsteps li{grid-template-columns:1fr;padding:8px 0;flex:1}.wsteps span{display:none}.worn h2{font-size:clamp(26px,7vw,36px)}.wsticky .lede{display:none}.wstage{height:min(60svh,640px)}.wnote{display:none}}
+@media(prefers-reduced-motion:reduce){.wtrack{height:auto}.wsticky{position:relative;height:auto;grid-template-columns:minmax(0,1fr)}.wstage{height:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.wl{position:relative;opacity:1}.wbox{height:auto;width:100%}.wbox .ph{position:relative;clip-path:none}}
 @media(max-width:900px){.hero,.hd2,.cases,.ref,.j3{grid-template-columns:minmax(0,1fr)}.hero .ph{max-width:460px;width:100%;margin:0 auto}.lens{grid-template-columns:repeat(2,minmax(0,1fr))}.wgrid{grid-template-columns:minmax(0,1fr)}.stage3{min-height:460px}}
 @media(max-width:600px){.hero h1{font-size:clamp(50px,15vw,86px)}.lens,.crow{grid-template-columns:minmax(0,1fr)}.venn button{font-size:12px;padding:14%}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
@@ -206,7 +231,7 @@ body.nav .drawer{transform:none}body.nav .scrim{opacity:1;pointer-events:auto}
 </header>
 
 <nav class="jump" id="jump" aria-label="Sections">
- <a href="#define">Definition</a><a href="#cases">Case studies</a><a href="#world">World-builder</a><a href="#critique">Critique</a><a href="#mine">My perspective</a><a href="#jewellery">Jewellery in 3D</a><a href="#refs">References</a>
+ <a href="#define">Definition</a><a href="#cases">Case studies</a><a href="#world">World-builder</a><a href="#critique">Critique</a><a href="#mine">My perspective</a><a href="#jewellery">Jewellery in 3D</a><a href="#worn">Worn</a><a href="#refs">References</a>
 </nav>
 
 <section class="sec" id="define">
@@ -290,13 +315,34 @@ body.nav .drawer{transform:none}body.nav .scrim{opacity:1;pointer-events:auto}
 
 <section class="sec" id="jewellery">
  <div class="wrap">
-  <div class="hd2"><div><div class="kick"><b></b>Jewellery in 3D</div><h2>Three pieces, modelled to print</h2></div><p class="lede">A hair comb, a ring and a pair of drop earrings, drawn from Casa Batlló and the Art Nouveau period. Drag to turn a piece, scroll or pinch to zoom.</p></div>
+  <div class="hd2"><div><div class="kick"><b></b>Jewellery in 3D</div><h2>Three pieces, modelled to print</h2></div><p class="lede">A hair pin, a ring and a pair of drop earrings, drawn from Casa Batlló and the Art Nouveau period. Drag to turn a piece, scroll or pinch to zoom.</p></div>
   <div class="j3">
    <div class="stage3" id="stage3"><div class="msg" id="smsg">Loading 3D viewer…</div><div class="tl" id="tl"></div><span class="tip">Drag to rotate · scroll to zoom</span></div>
    <div>
     <div class="jtabs" id="jtabs" role="tablist" aria-label="Pieces"></div>
     <div class="jd" id="jd"></div>
    </div>
+  </div>
+ </div>
+</section>
+
+
+<section class="sec worn" id="worn" aria-label="How each piece looks when worn">
+ <div class="wtrack" id="wtrack">
+  <div class="wsticky">
+   <div>
+    <div class="kick"><b></b>Worn</div>
+    <h2>From model to body</h2>
+    <p class="lede" style="color:#bbb;margin-top:12px">Keep scrolling: each piece leaves the screen and settles where it is worn, on a hand, an ear and in the hair.</p>
+    <ol class="wsteps" id="wsteps">
+     <li class="on"><i>01</i><div><b>Casa Batlló ring</b><span>On the hand: the scaled roof sits across the finger.</span></div></li>
+     <li><i>02</i><div><b>Drop earrings</b><span>From the lobe to the jaw: 95 mm of gold and colour.</span></div></li>
+     <li><i>03</i><div><b>Ginkgo hair pin</b><span>Set into a low bun, the ginkgo fan above the hair.</span></div></li>
+    </ol>
+    <div class="wbar"><i id="wbar"></i></div>
+    <p class="wnote">Worn photographs are AI-generated visualisations (ring) and concept frames turned black and white, with my 3D renders placed on them.</p>
+   </div>
+   <div class="wstage" id="wstage"></div>
   </div>
  </div>
 </section>
@@ -381,17 +427,36 @@ function wb(i){const w=WB[i];$$('#wtabs button').forEach(b=>b.setAttribute('aria
  $('#wgrid').innerHTML=w[3].map(([a,b,c])=>`<div><small>${a}</small><b>${b}</b><p>${c}</p></div>`).join('')}
 $$('#wtabs button').forEach(b=>b.onclick=()=>wb(+b.dataset.i));wb(0);
 
+
+/* worn: scroll-driven try-on */
+const WN=[{ph:'worn-ring.webp',ar:1400/1735,pc:'ring.webp',par:718/711,to:[57.2,54.7,8.5,-8],fade:1,lab:'AI-generated visualisation · ring in gold'},
+ {ph:'worn-ear.webp',ar:880/1040,pc:'ear1.webp',par:325/1290,to:[48.6,61.5,33,4],lab:'Concept frame in black and white · 3D render of my earring'},
+ {ph:'worn-pin.webp',ar:1040/1200,pc:'pin2.webp',par:698/1130,to:[46,36,29,-35],mk:1,lab:'Concept frame in black and white · 3D render of my hair pin'}];
+const wst=$('#wstage');
+wst.innerHTML=WN.map((w,i)=>`<div class="wl${i?'':' on'}"><div class="wbox" style="aspect-ratio:${w.ar}"><img class="ph" src="img/cut/${w.ph}" alt="" loading="lazy"><img class="pc${w.mk?' inserted':''}" src="img/cut/${w.pc}" alt="" loading="lazy"><span class="lab">${w.lab}</span></div></div>`).join('');
+const WL=$$('.wl',wst),ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2,lerp=(a,b,t)=>a+(b-a)*t,cl=t=>Math.max(0,Math.min(1,t));
+function wset(i,p){const w=WN[i],L=WL[i],ph=$('.ph',L),pc=$('.pc',L),lab=$('.lab',L);const t=ease(cl((p-.18)/.55));
+ const [x,y,h,r]=w.to;pc.style.left=lerp(50,x,t)+'%';pc.style.top=lerp(50,y,t)+'%';pc.style.height=lerp(w.par<.5?78:62,h,t)+'%';pc.style.transform=`translate(-50%,-50%) rotate(${lerp(0,r,t)}deg)`;
+ ph.style.clipPath=`circle(${(t*150).toFixed(1)}% at ${x}% ${y}%)`;
+ if(w.fade)pc.style.opacity=1-cl((p-.72)/.15);
+ if(w.mk)pc.style.setProperty('--mk',(cl((p-.6)/.2)*38).toFixed(1)+'%');
+ lab.classList.toggle('on',p>.75)}
+function wscroll(){const tr=$('#wtrack'),r=tr.getBoundingClientRect(),span=tr.offsetHeight-innerHeight;const g=cl(-r.top/span)*WN.length*.999;const i=Math.floor(g),p=g-i;
+ WL.forEach((L,k)=>L.classList.toggle('on',k===i));$$('#wsteps li').forEach((li,k)=>li.classList.toggle('on',k===i));$('#wbar').style.width=(g/WN.length*100)+'%';
+ WN.forEach((_,k)=>wset(k,k<i?1:k>i?0:p))}
+if(RM){WN.forEach((_,k)=>wset(k,1));WL.forEach(L=>L.classList.add('on'))}else{addEventListener('scroll',()=>requestAnimationFrame(wscroll),{passive:true});addEventListener('resize',wscroll);wscroll()}
+
 /* 3D jewellery */
-const J={comb:{t:'Ginkgo hair comb',f:'models/comb.json',k:'Art Nouveau',sz:'110 × 68 mm',rx:0,d:'Built on the ginkgo leaf, a favourite plant of Art Nouveau (around 1890–1910): whiplash lines and ornament taken from nature.',fin:1},
+const J={comb:{t:'Ginkgo hair pin',f:'models/comb.json',k:'Art Nouveau',sz:'110 × 68 mm',rx:0,d:'Built on the ginkgo leaf, a favourite plant of Art Nouveau (around 1890–1910): whiplash lines and ornament taken from nature.',fin:1},
  ring:{t:'Casa Batlló ring',f:'models/ring.json',k:'Casa Batlló',sz:'Indian size 9.5 · 15.8 mm inner diameter',rx:-Math.PI/2,d:'Gaudí\'s house in Barcelona: bone-like columns, a scaled roof and a facade that moves like water. The band takes its curves.',fin:1},
- ear:{t:'Drop earrings',f:'models/earring.json',k:'Casa Batlló · Art Nouveau',sz:'95 × 25 mm per earring',rx:0,d:'A gold frame of curving ribs, like the facade\'s window frames, set with 16 inserts in six colours that recall Casa Batlló\'s mosaic of glass and ceramic discs. Printed as separate parts: gold frames in FDM or resin, coloured inserts, and butterfly backs on a stud post.',multi:1}};
+ ear:{t:'Drop earrings, pair',f:'models/earrings.json',k:'Casa Batlló · Art Nouveau',sz:'Pair · 95 × 25 mm each',rx:0,d:'A gold frame of curving ribs, like the facade\'s window frames, each set with 16 inserts in six colours that recall Casa Batlló\'s mosaic of glass and ceramic discs. Printed as separate parts: gold frames in FDM or resin, coloured inserts, and butterfly backs on a stud post.',multi:1}};
 const FINS={gold:[0xd4af6a,1,.26,0,'Gold','#d4af6a'],silver:[0xdcdce2,1,.2,0,'Silver','#d9d9de'],resin:[0xf1ece2,0,.35,1,'Ivory resin','#f1ece2']};
 const PARTS=[['Blue','#3E6FB0','1 stud'],['Ivory','#DCD8C8','5'],['Peach','#C9A07A','4'],['Lavender','#B4B1CC','1'],['Pearl white','#E4E4E0','1'],['Sage','#9EAE96','2 + centre dot']];
 let cur='ear',fin='gold',exploded=false,R=null;
 $('#jtabs').innerHTML=Object.entries(J).map(([k,v])=>`<button class="jt" role="tab" aria-selected="false" data-k="${k}"><b>${v.t}</b><i>${v.k}</i><small>${v.sz}</small></button>`).join('');
 function info(){const v=J[cur];let h=`<h4>${v.t}</h4><p>${v.d}</p>`;
  if(v.fin)h+=`<div class="fin">${Object.entries(FINS).map(([k,f])=>`<button data-f="${k}" aria-pressed="${k===fin}"><i style="background:${f[5]}"></i>${f[4]}</button>`).join('')}</div>`;
- if(v.multi)h+=`<p style="margin-top:12px"><b>Inserts per earring</b></p><div class="parts">${PARTS.map(p=>`<span><i style="background:${p[1]}"></i>${p[0]} · ${p[2]}</span>`).join('')}</div>`;
+ if(v.multi)h+=`<p style="margin-top:12px"><b>Inserts per earring (the pair doubles these)</b></p><div class="parts">${PARTS.map(p=>`<span><i style="background:${p[1]}"></i>${p[0]} · ${p[2]}</span>`).join('')}</div>`;
  $('#jd').innerHTML=h;$$('#jd .fin button').forEach(b=>b.onclick=()=>{fin=b.dataset.f;$$('#jd .fin button').forEach(x=>x.setAttribute('aria-pressed',x===b));setFin()});
  $('#tl').innerHTML=v.multi?`<button id="xpl" aria-pressed="${exploded}">${exploded?'Assemble':'Explode parts'}</button>`:'';
  if(v.multi)$('#xpl').onclick=()=>{exploded=!exploded;$('#xpl').setAttribute('aria-pressed',exploded);$('#xpl').textContent=exploded?'Assemble':'Explode parts'}}
