@@ -343,6 +343,23 @@ body.nav .drawer{transform:none}body.nav .scrim{opacity:1;pointer-events:auto}
 .opps{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .opps span{border:1px solid var(--ink);border-radius:999px;padding:7px 13px;font-size:14px}
 .note{margin-top:22px;font-size:13px;color:var(--mut);max-width:80ch}
+.dz{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);gap:clamp(20px,3vw,44px);margin-top:clamp(40px,5vw,64px);align-items:start}
+.dz .fig{position:sticky;top:120px;border-radius:16px;overflow:hidden;background:#F6EEDC;box-shadow:0 18px 40px rgba(0,0,0,.08)}
+.dz .fig img{width:100%;height:auto;transition:opacity .3s}
+.dz .fig p{position:absolute;left:14px;right:14px;bottom:12px;margin:0;font-size:13px;background:rgba(255,255,255,.88);padding:8px 12px;border-radius:10px}
+.gm{background:var(--card);border-radius:14px;padding:18px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:18px;align-items:start}
+.gm+.gm{margin-top:14px}
+.gm .fl svg{width:100%;height:auto;display:block}
+.gm .fl .mk{transition:opacity .2s}
+.gm .fl.hl .mk{opacity:.25}.gm .fl.hl .mk.on{opacity:1}
+.gm h4{margin:0 0 4px;font-family:var(--disp);font-stretch:75%;font-weight:800;font-size:22px}
+.gm .meta{font-size:13px;color:var(--mut);margin-bottom:10px}
+.gm ol{margin:0;padding:0;list-style:none;counter-reset:n}
+.gm li{counter-increment:n;display:grid;grid-template-columns:24px 1fr;gap:8px;font-size:14px;line-height:1.4;padding:6px 4px;border-radius:8px;cursor:default}
+.gm li::before{content:counter(n);width:20px;height:20px;border-radius:50%;background:var(--ink);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center;margin-top:1px}
+.gm li:hover,.gm li:focus{background:var(--soft);outline:none}
+.dzh{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-top:clamp(56px,7vw,96px)}
+@media(max-width:900px){.dz{grid-template-columns:minmax(0,1fr)}.dz .fig{position:relative;top:0;max-width:440px;width:100%;margin:0 auto}.gm{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:900px){.sunhero,.mood,.looks{grid-template-columns:minmax(0,1fr)}.tiers4{grid-template-columns:repeat(2,minmax(0,1fr))}.board{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.stat4{grid-template-columns:repeat(2,minmax(0,1fr))}.dist button{grid-template-columns:110px minmax(0,1fr);font-size:13px}.srow,.sax{grid-template-columns:78px minmax(0,1fr)}.srow{font-size:13px}.big3{grid-template-columns:minmax(0,1fr)}.lk{grid-template-columns:minmax(0,1fr)}.lk .plus{text-align:center;line-height:.6}.skus{grid-template-columns:repeat(2,minmax(0,1fr))}.sku{min-height:140px;padding:12px}.sku h4{font-size:14px}}
 @media(max-width:900px){
@@ -618,6 +635,8 @@ body.nav .drawer{transform:none}body.nav .scrim{opacity:1;pointer-events:auto}
    </div>
    <div><div class="lk" id="lk"></div><div class="ltot" id="ltot"></div><p class="lwhy" id="lwhy"></p></div>
   </div>
+  <div class="dzh"><div><div class="kick"><b></b>Garment design</div><h2>Designed for The Sun Returns</h2></div><p class="lede" style="max-width:52ch">The pieces behind each look, drawn as an illustration and as flats. Use the look buttons above to switch. Hover a note to find it on the drawing.</p></div>
+  <div class="dz"><figure class="fig" style="margin:0"><img class="z" id="dzimg" alt=""><p id="dzc"></p></figure><div id="dzg"></div></div>
   <div class="board">
    <img class="z" src="img/sp/board1.webp" alt="Chartreuse sari with a bow-tied blouse and pearl strands">
    <img class="z" src="img/sp/board2.webp" alt="Blush floral sari with a halter blouse, seen from the back">
@@ -936,7 +955,34 @@ $('#ltabs').innerHTML=LK.map((l,i)=>`<button role="tab" data-i="${i}" aria-selec
 function look(i){const [n,a,b,w]=LK[i];$$('#ltabs button').forEach(t=>t.setAttribute('aria-selected',+t.dataset.i===i));
  $('#lk').innerHTML=card(by[a],'div')+'<span class="plus" aria-hidden="true">+</span>'+card(by[b],'div');
  const A=by[a],B=by[b];$('#ltot').innerHTML=`<span>Look ${i+1} · ${n}</span><b>${A.p&&B.p?rs(A.p+B.p):rs(B.p)+' +'}</b>`;
- $('#lwhy').textContent=w+(A.p?'':` ${A.id} has no price in the plan, so only the ${B.id} add-on is counted.`);store.set('look',i)}
+ $('#lwhy').textContent=w+(A.p?'':` ${A.id} has no price in the plan, so only the ${B.id} add-on is counted.`);store.set('look',i);if(typeof design==='function')design(i)}
+
+// garment designs
+const DZ=[
+ {c:'The signature: dawn light on ivory, with the collection\'s birds and botanicals woven in blush.',g:{
+  S01:['Ivory Chanderi body with blush extra-weft botanical buttis: a leaf sprig with a bud.','Woven sun-ray border: blush ground with small zari suns.','Pallu with a bird on a branch in blush extra-weft, as nature rises with the sun.','Running blouse piece in plain ivory.','A gold sun woven into the pallu corner, the collection signature.'],
+  B01:['Boat neck finished with blush piping.','Elbow-length sleeves with piped hems, light for summer.','Front darts for a clean, classic fit.','Deep U back with blush tie cords ending in small gold sun tassels.']}},
+ {c:'Midday ease: two light ivory layers with sage leaves, for everyday summer heat.',g:{
+  K01:['Front-open straight kurta worn as a light layer, edges piped in sage.','Tone-on-tone ivory leaf embroidery, visible up close.','Three-quarter sleeves with sage leaf-sprig cuffs.','Sage leaf-sprig band at the hem.','Side slits for movement.','In-seam pockets.'],
+  B03:['Scoop neck with sage piping.','Scalloped hem that echoes petals.','Short side slits.','Cut-in armholes piped in sage, cool and minimal.']}},
+ {c:'Daywear in sunlight yellow: sage sprigs, small flowers, and a striped stole that ends in suns.',g:{
+  D02:['V-neck with sage piping.','Puff sleeves gathered into sage cuffs.','Sage waistband with long ties.','In-seam pockets.','A-line midi in soft-yellow cotton-silk with sage sprigs and small flowers. The plan leaves the colourway open; this proposes soft yellow and sage from the palette.'],
+  A01:['Ivory cotton with sage stripes of varying widths.','A gold sun woven at each end.','Knotted sage fringe.']}},
+ {c:'Festive dusk: blush and ivory kalis that swing open like rays, under a sheer dupatta.',g:{
+  O01:['Cropped blush blouse with a sweetheart neck edged in gold.','Gold-piped hem.','Kalidar skirt in alternating blush and ivory panels; the ivory panels carry tiny sun buttis.','Sun-band border at the hem.','Drawstring with gold sun latkans.','Deep blush waistband.'],
+  A02:['Sheer organza shading from blush to ivory.','Scalloped petal edging along both long sides.','Scattered appliqué petals, as if falling.']}},
+ {c:'The statement: petals falling across sheer organza, held by a deep-pink sun-ray blouse.',g:{
+  S08:['Ivory organza with pink appliqué petals.','Petal-appliqué border.','A deep-pink appliqué sun on the pallu.','Blouse piece.','Petals gather more densely toward the pallu, like petals collecting in light.'],
+  B04:['Sweetheart neckline edged with ivory piping.','Front panel pleated into sun rays that radiate from the waist.','Ivory-piped hem.','Back: centre closure with gold hooks and light boning for structure.']}}];
+const svgC={};
+async function getSvg(id){if(svgC[id])return svgC[id];try{const r=await fetch(`img/sp/d/${id}.svg`);svgC[id]=await r.text()}catch(e){svgC[id]=`<img src="img/sp/d/${id}.svg" alt="">`}return svgC[id]}
+async function design(i){const d=DZ[i],im=$('#dzimg');im.style.opacity=.2;
+ setTimeout(()=>{im.src=`img/sp/d/look${i+1}.svg`;im.alt=`Illustration of Look ${i+1}: ${LK[i][0]}`;im.onload=()=>im.style.opacity=1},RM?0:150);
+ $('#dzc').textContent=d.c;const box=$('#dzg');box.innerHTML='';
+ for(const id of Object.keys(d.g)){const x=by[id];const el=document.createElement('article');el.className='gm';
+  el.innerHTML=`<div class="fl" aria-hidden="true"></div><div><h4>${x.id} · ${x.n}</h4><div class="meta">${x.f}${x.c.length?' · '+x.c.join(' / '):''} · ${rs(x.p)}</div><ol>${d.g[id].map((t,n)=>`<li tabindex="0" data-n="${n+1}">${t}</li>`).join('')}</ol></div>`;
+  box.appendChild(el);el.querySelector('.fl').innerHTML=await getSvg(id);
+  const fl=el.querySelector('.fl');el.querySelectorAll('li').forEach(li=>{const on=()=>{fl.classList.add('hl');fl.querySelectorAll('.mk').forEach(m=>m.classList.toggle('on',m.dataset.n===li.dataset.n))},off=()=>fl.classList.remove('hl');li.onmouseenter=li.onfocus=on;li.onmouseleave=li.onblur=off})}}
 $$('#ltabs button').forEach(t=>t.onclick=()=>look(+t.dataset.i));look(Math.min(4,+(store.get('look')||0)));
 // count-up
 const bs=$$('.big3 b');new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting&&!RM){bs.forEach(b=>{const n=+b.dataset.n,t0=performance.now();const f=t=>{const k=Math.min(1,(t-t0)/900);b.textContent=Math.round(n*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)};requestAnimationFrame(f)});o.disconnect()}}),{threshold:.5}).observe($('.big3'));
