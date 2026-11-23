@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fashion styling &amp; photography — Vaishnavi Bhosale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: an editorial walk-through: from Gaudí's rooms, to the direction, to the photographs.
+   COLOUR: the shoot palette (chocolate, bronze, ochre, champagne, ivory, moss, teal, indigo) on the portfolio's off-white paper.
+   LAYOUT: same portfolio system as the other project pages. */
+:root{color-scheme:light;--bg:#F2F1EC;--ink:#141414;--mut:#66655f;--line:#dcdad2;--card:#fff;--soft:#e8e6df;--acc:#17677A;--mango:#B07D46;--choc:#48281A;--bronze:#70432C;--ochre:#A87542;--champ:#C69B69;--ivory:#D9C6A4;--moss:#75806A;--teal:#17677A;--indigo:#292C70;--disp:"Archivo",Impact,sans-serif;--body:"Inter Tight",system-ui,sans-serif}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:120px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--body);overflow-x:clip;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+h1,h2,h3{font-family:var(--disp);font-weight:800;font-stretch:72%;line-height:1;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:clamp(36px,5.4vw,68px)}
+h3{font-size:clamp(22px,2.4vw,30px);font-stretch:80%;font-weight:700}
+p{margin:0}
+.wrap{max-width:1240px;margin:0 auto}
+.sec{padding:clamp(64px,8vw,120px) max(5vw,16px)}
+.alt{background:var(--card)}
+.kick{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--mut);margin-bottom:14px}
+.kick b{width:10px;height:10px;border-radius:3px;background:var(--acc)}
+.lede{font-size:18px;max-width:58ch}
+.mut{color:var(--mut)}
+.z{cursor:zoom-in}
+.hd2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 48px;align-items:end;margin-bottom:32px}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--ink);background:transparent;font-size:15px;text-decoration:none}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pills button{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--ink);background:transparent;font-size:14px}
+.pills button[aria-selected=true]{background:var(--acc);border-color:var(--acc);color:#fff}
+
+/* top + drawer */
+.top{position:fixed;inset:14px 16px auto;display:flex;justify-content:space-between;align-items:center;z-index:50;pointer-events:none}
+.top>*{pointer-events:auto}
+.mb{display:flex;align-items:center;gap:10px;height:44px;padding:0 16px 0 12px;border-radius:999px;border:0;background:var(--ink);color:#fff;font-size:14px}
+.mb svg{width:18px;height:18px}
+.home{font-size:14px;text-decoration:none;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(8px);padding:10px 14px;border-radius:999px}
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:60;opacity:0;pointer-events:none;transition:.3s}
+.drawer{position:fixed;left:0;top:0;bottom:0;width:min(380px,88vw);background:var(--ink);color:#f2f1ec;z-index:61;transform:translateX(-102%);transition:transform .35s cubic-bezier(.2,.8,.2,1);padding:24px;display:flex;flex-direction:column;gap:6px;overflow-y:auto}
+body.nav .drawer{transform:none}body.nav .scrim{opacity:1;pointer-events:auto}
+.drawer .x{align-self:flex-end;width:44px;height:44px;border-radius:50%;border:0;background:#2a2a2a;color:#fff;font-size:22px}
+.drawer small{color:#9c9a93;font-size:13px;margin:14px 0 4px}
+.drawer a{text-decoration:none;display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:14px 0;border-top:1px solid #2c2c2c;font-family:var(--disp);font-stretch:72%;font-weight:800;font-size:28px;line-height:1.05}
+.drawer a span{font:400 13px var(--body);color:#9c9a93;white-space:nowrap}
+.drawer a.on{color:#E2B77E}
+.jump{position:sticky;top:64px;z-index:40;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);display:flex;gap:4px;overflow-x:auto;padding:8px max(5vw,16px);scrollbar-width:none;margin-top:-1px}
+.jump a{flex:none;text-decoration:none;font-size:14px;padding:9px 13px;border-radius:999px;color:var(--mut)}
+.jump a.on{background:var(--ink);color:#fff}
+@media(min-width:901px){.jump{top:0;padding-top:16px;padding-bottom:12px;padding-left:170px;padding-right:140px}}
+
+/* hero */
+.hero{min-height:92svh;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center;padding-top:96px}
+.hero h1{font-size:clamp(52px,7vw,104px);font-stretch:62%;font-weight:900;line-height:.86}
+.hero .ph{position:relative;aspect-ratio:4/5;border-radius:220px 220px 10px 10px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.18)}
+.hero .ph img{width:100%;height:100%;object-fit:cover}
+.q{margin-top:26px;padding:20px 22px;border-left:4px solid var(--mango);background:var(--card);border-radius:0 12px 12px 0;font-family:var(--disp);font-stretch:80%;font-weight:600;font-size:clamp(20px,2vw,25px);line-height:1.2}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 24px;margin:26px 0 0}
+.facts div{border-top:2px solid var(--ink);padding-top:8px;font-size:15px}
+.facts dt{font-size:13px;color:var(--mut)}.facts dd{margin:2px 0 0;font-weight:500}
+.geo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.geo>div{background:var(--card);border-radius:14px;padding:22px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chips span{border:1px solid var(--ink);border-radius:999px;padding:7px 13px;font-size:14px}
+
+.src summary{cursor:pointer;font-weight:600;min-height:44px;display:flex;align-items:center}
+.src li{margin:6px 0;font-size:14px;color:#3d3c38;overflow-wrap:anywhere}
+.src summary{cursor:pointer;font-weight:600;min-height:44px;display:flex;align-items:center}
+.src li{margin:6px 0;font-size:14px;color:#3d3c38;overflow-wrap:anywhere}
+.next{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-top:56px;padding-top:28px;border-top:2px solid var(--ink)}
+.next a{font-family:var(--disp);font-stretch:70%;font-weight:900;font-size:clamp(32px,5vw,60px);text-decoration:none;line-height:1}
+.credit{font-size:13px;color:var(--mut);margin-top:12px}
+
+#lb{position:fixed;inset:0;z-index:80;background:rgba(12,12,12,.94);display:none;align-items:center;justify-content:center;padding:60px 16px 30px}
+#lb.open{display:flex}
+#lb img{max-width:min(1400px,100%);max-height:calc(100svh - 100px);object-fit:contain;border-radius:4px;background:#fff}
+#lb button{position:absolute;top:14px;right:16px;width:44px;height:44px;border-radius:50%;border:0;background:#f2f1ec;color:#111;font-size:22px}
+
+
+/* styling page */
+.hero .ph{border-radius:48% 52% 10px 10px / 34% 36% 10px 10px}
+.hero .ph::after{content:"";position:absolute;inset:0;border:10px solid #7a4a2a;border-radius:inherit;mix-blend-mode:multiply;opacity:.35;pointer-events:none}
+.q{border-left-color:var(--bronze)}
+.tr4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.tr{position:relative;border:0;padding:0;background:none;text-align:left;aspect-ratio:3/4;perspective:1200px}
+.tr .in{position:absolute;inset:0;transition:transform .7s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d}
+.tr[aria-pressed=true] .in{transform:rotateY(180deg)}
+.tr .f,.tr .b{position:absolute;inset:0;backface-visibility:hidden;border-radius:120px 120px 14px 14px;overflow:hidden}
+.tr .f img{width:100%;height:100%;object-fit:cover}
+.tr .f span{position:absolute;left:12px;right:12px;bottom:12px;background:rgba(255,255,255,.92);border-radius:10px;padding:10px 12px;font-size:14px}
+.tr .f span b{display:block;font-family:var(--disp);font-stretch:75%;font-size:20px}
+.tr .b{transform:rotateY(180deg);background:var(--choc);color:#f3e9da;padding:56px 18px 18px;display:flex;flex-direction:column;gap:10px}
+.tr .b small{color:var(--champ);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.tr .b b{font-family:var(--disp);font-stretch:72%;font-weight:800;font-size:clamp(22px,2.2vw,30px);line-height:1.02}
+.tr .b p{font-size:14px;color:#e5d6c0}
+.hint{font-size:13px;color:var(--mut);margin-top:12px}
+.dir{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(20px,3vw,44px);align-items:start;margin-top:20px}
+.dir .sl{border-radius:12px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.12);background:#fff}
+.dir .sl img{width:100%;transition:opacity .25s}
+.dir h3{margin-bottom:10px}
+.dir ul{margin:14px 0 0;padding:0;list-style:none}
+.dir li{padding:10px 0;border-top:1px solid var(--line);font-size:15px;display:grid;grid-template-columns:22px 1fr;gap:8px}
+.dir li::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--bronze);margin-top:6px}
+.pal{display:flex;height:140px;border-radius:14px;overflow:hidden;margin-top:28px;box-shadow:0 10px 26px rgba(0,0,0,.1)}
+.pal button{flex:1;border:0;padding:12px;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;font-size:13px;transition:flex .4s cubic-bezier(.2,.8,.2,1);text-align:left;color:#fff}
+.pal button:hover,.pal button:focus-visible,.pal button[aria-pressed=true]{flex:2.4}
+.pal button.lt{color:var(--ink)}
+.pal b{font-family:var(--disp);font-stretch:75%;font-size:18px}
+.stories{transition:background .8s;color:#f4ede2;background:#2b1a11}
+.stories .kick{color:#d9c7ad}.stories .kick b{background:var(--champ)}
+.stories .lede{color:#e9dccb}
+.stabs{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 22px}
+.stabs button{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;font-size:14px}
+.stabs button[aria-selected=true]{background:#fff;color:#1b120c;border-color:#fff}
+.stage{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:clamp(18px,3vw,40px);align-items:start}
+.stage .main{position:relative;border-radius:14px;overflow:hidden;background:rgba(0,0,0,.25);display:grid;place-items:center;max-height:78svh}
+.stage .main img{max-height:78svh;width:auto;max-width:100%;transition:opacity .3s}
+.stage .main .cnt{position:absolute;left:12px;top:12px;background:rgba(0,0,0,.55);padding:6px 10px;border-radius:999px;font-size:12px}
+.stage .main .ar{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.9);color:#111;font-size:18px}
+.stage .main .ar.p{left:12px}.stage .main .ar.n{right:12px}
+.stage h3{color:#fff}
+.stage .desc{margin-top:10px;color:#e9dccb;font-size:16px}
+.sthumbs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:18px}
+.sthumbs button{border:0;padding:0;border-radius:8px;overflow:hidden;opacity:.55;transition:opacity .2s;background:none;aspect-ratio:4/5}
+.sthumbs button img{width:100%;height:100%;object-fit:cover}
+.sthumbs button[aria-current=true]{opacity:1;box-shadow:0 0 0 2px #fff}
+.sthumbs button:hover{opacity:1}
+.look{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:start}
+.hs{position:relative;border-radius:14px;overflow:hidden}
+.hs img{width:100%}
+.hs .pt{position:absolute;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;border:2px solid #fff;background:rgba(23,103,122,.85);color:#fff;font-weight:700;font-size:13px;display:grid;place-items:center;box-shadow:0 4px 12px rgba(0,0,0,.3);transition:transform .2s}
+.hs .pt:hover,.hs .pt[aria-pressed=true]{transform:scale(1.2);background:var(--bronze)}
+.hs .pt[aria-pressed=true]::after{content:"";position:absolute;inset:-8px;border-radius:50%;border:2px solid #fff;animation:ping 1.6s infinite}
+@keyframes ping{from{opacity:1;transform:scale(.8)}to{opacity:0;transform:scale(1.5)}}
+.dl{margin:0;padding:0;list-style:none}
+.dl li{border-top:1px solid var(--line)}
+.dl button{width:100%;text-align:left;border:0;background:none;padding:14px 4px;display:grid;grid-template-columns:30px 1fr;gap:10px;font-size:15px}
+.dl button i{font-style:normal;width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;font-size:12px;font-weight:700;display:grid;place-items:center}
+.dl button b{display:block;font-size:16px}
+.dl button span{display:none;color:var(--mut);margin-top:4px}
+.dl button[aria-pressed=true]{background:var(--card)}.dl button[aria-pressed=true] span{display:block}.dl button[aria-pressed=true] i{background:var(--bronze)}
+.cdrow{display:flex;gap:10px;overflow-x:auto;padding:4px 2px 14px;scroll-snap-type:x proximity}
+.cdrow img{flex:none;width:240px;aspect-ratio:16/9;object-fit:cover;border-radius:8px;box-shadow:0 6px 16px rgba(0,0,0,.1);scroll-snap-align:start}
+@media(max-width:900px){.hero,.hd2,.dir,.stage,.look{grid-template-columns:minmax(0,1fr)}.hero .ph{max-width:460px;width:100%;margin:0 auto}.tr4{grid-template-columns:repeat(2,minmax(0,1fr))}.pal{height:auto;flex-direction:column}.pal button{min-height:52px;flex-direction:row;justify-content:space-between;align-items:center}.pal button:hover,.pal button[aria-pressed=true]{flex:1}}
+@media(max-width:600px){.hero h1{font-size:clamp(50px,16vw,86px)}.tr4{grid-template-columns:minmax(0,1fr)}.tr{aspect-ratio:4/5}.cdrow img{width:200px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<div class="top">
+ <button class="mb" id="menu" aria-expanded="false" aria-controls="drawer"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 5h14M2 9h14M2 13h14"/></svg>Projects</button>
+ <a class="home" href="index.html">← All work</a>
+</div>
+<div class="scrim" id="scrim"></div>
+<nav class="drawer" id="drawer" aria-label="Projects">
+ <button class="x" id="close" aria-label="Close menu">×</button>
+ <small>Vaishnavi Bhosale · Portfolio</small>
+ <a href="index.html">Home <span>All work</span></a>
+ <a href="internship.html">Summer internship <span>Blanco</span></a>
+ <a href="index.html#research">Fashion design research <span>Soon</span></a>
+ <a href="styling.html" class="on" aria-current="page">Styling &amp; photography <span>Living Architecture</span></a>
+ <a href="brand.html">Brand management <span>Raw Mango</span></a>
+ <a href="index.html#cutting">Cutting-edge fashion <span>Future Ritualism</span></a>
+</nav>
+
+<header class="sec hero wrap">
+ <div>
+  <div class="kick"><b></b>Fashion styling &amp; photography</div>
+  <h1>The Living Architecture</h1>
+  <p class="q">A fashion editorial inspired by the interiors of Casa Batlló: a woman who seems to have emerged from within its walls.</p>
+  <dl class="facts">
+   <div><dt>Format</dt><dd>Fashion editorial shoot</dd></div>
+   <div><dt>Inspiration</dt><dd>Antoni Gaudí's Casa Batlló, Barcelona</dd></div>
+   <div><dt>Direction</dt><dd>Photography, accessories, hair, make-up, styling, set</dd></div>
+   <div><dt>Final images</dt><dd>13 photographs across four lighting stories</dd></div>
+  </dl>
+ </div>
+ <figure class="ph" style="margin:0"><img src="img/st/f02.webp" alt="Model in a chocolate corset with shell cups and scalloped skirt, posed beside a stained-glass window"></figure>
+</header>
+
+<nav class="jump" id="jump" aria-label="Sections">
+ <a href="#concept">Concept</a><a href="#direction">Direction</a><a href="#palette">Palette</a><a href="#shoot">The shoot</a><a href="#garment">The garment</a><a href="#rawmango">Raw Mango direction</a>
+</nav>
+
+<section class="sec" id="concept">
+ <div class="wrap">
+  <div class="hd2"><div><div class="kick"><b></b>Concept</div><h2>From Gaudí's walls to a garment</h2></div><p class="lede">Gaudí's interiors blur architecture and nature. The editorial explores the relationship between the body and organic architecture, and translates four qualities of the house into clothes. Turn each card to see how.</p></div>
+  <div class="tr4" id="tr4"></div>
+  <p class="hint">Select a card to turn it.</p>
+ </div>
+</section>
+
+<section class="sec alt" id="direction">
+ <div class="wrap">
+  <div class="hd2"><div><div class="kick"><b></b>Creative direction</div><h2>Six briefs for one picture</h2></div><p class="lede">Before the shoot, every department got its own reference board. Pick a brief to see the board and what it asks for.</p></div>
+  <div class="pills" id="dtabs" role="tablist" aria-label="Briefs"></div>
+  <div class="dir"><div class="sl"><img class="z" id="dimg" alt=""></div><div><h3 id="dh"></h3><p class="mut" id="dp"></p><ul id="dl"></ul></div></div>
+ </div>
+</section>
+
+<section class="sec" id="palette">
+ <div class="wrap">
+  <div class="hd2"><div><div class="kick"><b></b>Space design &amp; palette</div><h2>Eight colours, from wood to water</h2></div><p class="lede">The set moves from the warm wood, plaster and bronze of the house to the teal and indigo of its stained glass. The same order runs down the skirt, from ochre at the waist to indigo at the hem.</p></div>
+  <div class="pal" id="pal" role="group" aria-label="Shoot palette"></div>
+  <p class="hint" id="palnote" aria-live="polite">Select a colour to read where it appears.</p>
+ </div>
+</section>
+
+<section class="sec stories" id="shoot">
+ <div class="wrap">
+  <div class="kick"><b></b>The shoot</div>
+  <h2 style="color:#fff">Four lighting stories</h2>
+  <p class="lede" style="margin-top:14px">One garment, four rooms of light: from sunlight through stained glass to deep water. Use the arrows, swipe, or the keyboard arrow keys.</p>
+  <div class="stabs" id="stabs" role="tablist" aria-label="Lighting stories"></div>
+  <div class="stage">
+   <div class="main" id="smain"><img class="z" id="simg" alt=""><span class="cnt" id="scnt"></span><button class="ar p" id="sprev" aria-label="Previous photograph">←</button><button class="ar n" id="snext" aria-label="Next photograph">→</button></div>
+   <div><h3 id="sh"></h3><p class="desc" id="sd"></p><div class="sthumbs" id="sth"></div></div>
+  </div>
+ </div>
+</section>
+
+<section class="sec" id="garment">
+ <div class="wrap">
+  <div class="hd2"><div><div class="kick"><b></b>The garment</div><h2>Read the look, piece by piece</h2></div><p class="lede">Select a numbered point on the photograph, or an item in the list.</p></div>
+  <div class="look">
+   <div class="hs" id="hs"><img class="z" src="img/st/f01.webp" alt="Full look in the stained-glass room: chocolate shell-cup corset, scalloped skirt shading from ochre to indigo, drop earrings and a sculpted updo"></div>
+   <ul class="dl" id="hsl"></ul>
+  </div>
+ </div>
+</section>
+
+<section class="sec alt" id="rawmango">
+ <div class="wrap">
+  <div class="hd2"><div><div class="kick"><b></b>Also in this module</div><h2>Raw Mango: a creative direction</h2></div><p class="lede">A creative direction for Sanjay Garg's textile label: its essence and Creator archetype, visual codes, storytelling, a customer persona and an identity board, closed with an honest critique. Select a slide to open it.</p></div>
+  <div class="cdrow" id="cdrow"></div>
+ </div>
+</section>
+
+<section class="sec" id="sources" style="padding-top:0">
+ <div class="wrap">
+  <p class="credit" style="margin-top:56px">Casa Batlló interiors and the reference images on the direction boards belong to their photographers and appear here as academic moodboard references.</p>
+  <div class="next"><span class="mut">Next project</span><a href="brand.html">Fashion brand management →</a></div>
+ </div>
+</section>
+
+<div id="lb" role="dialog" aria-modal="true" aria-label="Image viewer"><button aria-label="Close">×</button><img alt=""></div>
+
+<script>
+{
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const store={get(k){try{return JSON.parse(localStorage.getItem('vb:'+k))}catch(e){return null}},set(k,v){try{localStorage.setItem('vb:'+k,JSON.stringify(v))}catch(e){}}};
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* drawer + lightbox */
+const setNav=o=>{document.body.classList.toggle('nav',o);$('#menu').setAttribute('aria-expanded',o);if(o)$('#close').focus()};
+$('#menu').onclick=()=>setNav(true);$('#close').onclick=()=>setNav(false);$('#scrim').onclick=()=>setNav(false);
+const lb=$('#lb'),lbi=$('img',lb);
+const openLB=(src,alt)=>{lbi.src=src;lbi.alt=alt||'';lb.classList.add('open');$('button',lb).focus()};
+document.addEventListener('click',e=>{const z=e.target.closest('img.z');if(z)openLB(z.src,z.alt)});
+$('button',lb).onclick=()=>lb.classList.remove('open');lb.onclick=e=>{if(e.target===lb)lb.classList.remove('open')};
+addEventListener('keydown',e=>{if(e.key==='Escape'){lb.classList.remove('open');setNav(false)}});
+
+/* section jump bar */
+const jl=$$('#jump a');
+const jIO=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){jl.forEach(a=>{const on=a.getAttribute('href')==='#'+en.target.id;a.classList.toggle('on',on);if(on){const j=$('#jump');j.scrollTo({left:a.offsetLeft-j.clientWidth/2+a.offsetWidth/2,behavior:'auto'})}})}}),{rootMargin:'-40% 0px -55% 0px'});
+jl.forEach(a=>{const t=$(a.getAttribute('href'));if(t)jIO.observe(t)});
+
+
+/* concept translation cards */
+const TR=[['ref2','Stained glass','Light scattered like underwater reflections','Layered, scalloped surfaces','Overlapping scallops catch light the way the glass discs do, and the set uses dappled light across skin and floor.'],
+['ref1','Flowing walls','Plaster that curves like a natural formation','Sculptural silhouettes','A wavy corset neckline and a skirt that moves in curved tiers, with no straight edge anywhere.'],
+['ref3','Bones, shells, scales','Details that read as living structures','Shell cups and scale tiers','Pleated shell cups on the bodice and a skirt built like overlapping scales.'],
+['ref4','Wood, ceramic, colour','Warm materials and deep blue light','Earthy colour and contrasting texture','Chocolate suede against satin, ochre and moss turning to teal and indigo, edged in beaded trim.']];
+$('#tr4').innerHTML=TR.map(([im,a,b,c,d],i)=>`<button class="tr" aria-pressed="false" aria-label="${a}: select to see the garment translation"><span class="in"><span class="f"><img src="img/st/${im}.webp" alt="" loading="lazy"><span><b>${a}</b>${b}</span></span><span class="b"><small>In the garment</small><b>${c}</b><p>${d}</p></span></span></button>`).join('');
+$$('.tr').forEach(t=>t.onclick=()=>t.setAttribute('aria-pressed',t.getAttribute('aria-pressed')!=='true'));
+
+/* direction boards */
+const DR=[['Photography',2,'Painterly, warm-toned portraits where the model is framed by architecture.',['Low, warm light and deep shadow, like an oil painting','Poses that lean into stairs, columns and doorways','The body treated as part of the room, not in front of it','Full-length frames that show the whole silhouette']],
+['Accessory',3,'Gold and brass with stones and beads, chosen to echo Gaudí\'s metalwork and glass.',['Layered gold chains with green and amber stones','Hammered brass teardrop earrings with a pearl centre','A sculptural gold cuff','Long beaded fringe earrings in green and gold']],
+['Hair',4,'Sculpted, polished shapes that feel carved, softened with loose tendrils.',['High chignons and sculpted updos','A sleek curl set at the temple','Soft face-framing strands','Volume at the crown, never flat']],
+['Make-up',5,'Luminous skin with a mineral, shell-like shimmer.',['Glossy, dewy skin that catches light','Pearl and gem details at the eyes','Graphic white liner and icy shimmer lids','A warm flush on cheeks and lips']],
+['Styling',6,'Couture references for silhouette, structure and drape.',['Corsetry and sculpted bodices','Volume and structure through the skirt','Drapery that pools on the floor','Strong, statuesque poses']],
+['Space design',7,'Rooms of Casa Batlló as the set brief, with a painted backdrop for studio frames.',['The curved stair and organic wood of the house','Stained-glass windows as the light source','A hand-painted bronze canvas backdrop for studio frames','The eight-colour palette below']]];
+$('#dtabs').innerHTML=DR.map((d,i)=>`<button role="tab" aria-selected="false" data-i="${i}">${d[0]}</button>`).join('');
+function dir(i){const d=DR[i];$$('#dtabs button').forEach(b=>b.setAttribute('aria-selected',+b.dataset.i===i));const im=$('#dimg');im.style.opacity=.2;im.onload=()=>im.style.opacity=1;im.src=`img/sl-${String(d[1]).padStart(2,'0')}.webp`;im.alt=`${d[0]} reference board`;$('#dh').textContent=d[0];$('#dp').textContent=d[2];$('#dl').innerHTML=d[3].map(t=>`<li>${t}</li>`).join('');store.set('stdir',i)}
+$$('#dtabs button').forEach(b=>b.onclick=()=>dir(+b.dataset.i));dir(Math.min(5,+(store.get('stdir')||0)));
+
+/* palette */
+const PAL=[['Chocolate','#48281A','The corset bodice and the shadows of the bronze studio.'],['Burnished bronze','#70432C','Beaded trim, jewellery metal and the painted backdrop.'],['Ochre','#A87542','The pleated shell cups and the first skirt tier.'],['Champagne','#C69B69','Sunlit plaster walls and the fan-pleated panel.'],['Ivory','#D9C6A4','The curved walls, the shell lamp and the pedestal.'],['Moss','#75806A','The green scallops at the hip.'],['Teal','#17677A','Satin tiers below the hip and the underwater set.'],['Indigo','#292C70','The deepest hem tier and the blue-light story.']];
+$('#pal').innerHTML=PAL.map(([n,h],i)=>`<button style="background:${h}" class="${i>=3&&i<=4?'lt':''}" aria-pressed="false" data-i="${i}"><b>${n}</b><span>${h}</span></button>`).join('');
+$$('#pal button').forEach(b=>b.onclick=()=>{const i=+b.dataset.i;$$('#pal button').forEach(x=>x.setAttribute('aria-pressed',x===b));$('#palnote').innerHTML=`<b>${PAL[i][0]}</b> · ${PAL[i][2]}`});
+
+/* lighting stories */
+const SS=[['Stained-glass light',['f01','f02','f03'],'#3a2416','Sun through stained glass throws coloured light across curved plaster. The model leans into the window as if she grew out of the wall.'],
+['The interior',['f04','f05'],'#33201a','The stair and its carved banister: the body follows the curve of the architecture.'],
+['Bronze studio',['f06','f07','f08','f09'],'#22160e','A hand-painted bronze backdrop and a single warm source: the look reads like an old master portrait.'],
+['Underwater light',['f10'],'#0f3a44','Teal walls and rippling caustic light: the scales of the skirt move from earth into water, paired with a satin look.'],
+['Blue light',['f11','f12','f13'],'#0b1a3a','A glowing blue disc and wet floor: the indigo hem takes over, and the shells look as if they belong to the sea.']];
+let si=0,sj=0;const st=store.get('ststory');if(st){si=Math.min(SS.length-1,st[0]||0);sj=st[1]||0}
+$('#stabs').innerHTML=SS.map((s,i)=>`<button role="tab" aria-selected="false" data-i="${i}">${s[0]}</button>`).join('');
+function story(i,j=0){si=i;const s=SS[i];sj=(j+s[1].length)%s[1].length;$('#shoot').style.background=s[2];$$('#stabs button').forEach(b=>b.setAttribute('aria-selected',+b.dataset.i===i));
+ const im=$('#simg');im.style.opacity=.15;im.onload=()=>im.style.opacity=1;im.src=`img/st/${s[1][sj]}.webp`;im.alt=`${s[0]}: photograph ${sj+1} of ${s[1].length}`;
+ $('#scnt').textContent=`${sj+1} / ${s[1].length}`;$('#sh').textContent=s[0];$('#sd').textContent=s[3];
+ $('#sth').innerHTML=s[1].map((f,k)=>`<button aria-current="${k===sj}" aria-label="Show photograph ${k+1}"><img src="img/st/${f}.webp" alt="" loading="lazy"></button>`).join('');
+ $$('#sth button').forEach((b,k)=>b.onclick=()=>story(si,k));const multi=s[1].length>1;$('#sprev').hidden=$('#snext').hidden=!multi;store.set('ststory',[si,sj])}
+$$('#stabs button').forEach(b=>b.onclick=()=>story(+b.dataset.i));
+const step=d=>{const s=SS[si];if(sj+d>=s[1].length)story((si+1)%SS.length,0);else if(sj+d<0){const p=(si-1+SS.length)%SS.length;story(p,SS[p][1].length-1)}else story(si,sj+d)};
+$('#sprev').onclick=()=>step(-1);$('#snext').onclick=()=>step(1);
+let x0=null;$('#smain').addEventListener('pointerdown',e=>x0=e.clientX);$('#smain').addEventListener('pointerup',e=>{if(x0==null)return;const dx=e.clientX-x0;x0=null;if(Math.abs(dx)>40)step(dx<0?1:-1)});
+addEventListener('keydown',e=>{if(lb.classList.contains('open')||!['ArrowLeft','ArrowRight'].includes(e.key))return;const r=$('#shoot').getBoundingClientRect();if(r.top<innerHeight*.5&&r.bottom>innerHeight*.5){e.preventDefault();step(e.key==='ArrowRight'?1:-1)}});
+story(si,sj);
+
+/* garment hotspots */
+const HS=[[45,20,'Sculpted updo','A high, polished bun with loose strands at the face, from the hair brief.'],
+[45,36,'Drop earrings','Long beaded drops in bronze and amber, from the accessory brief.'],
+[47,43,'Wave neckline','The corset top edge curves like Casa Batlló\'s walls: no straight line.'],
+[42,53,'Shell cups','Pleated ochre satin cups set into chocolate suede: the shells and bones of the house.'],
+[53,63,'Fan-pleated panel','A champagne panel pleated like a shell, framed by moss and bronze.'],
+[64,74,'Beaded trim','Bronze bead fringe edges every scallop and moves with the body.'],
+[60,88,'Scale tiers','Scalloped tiers shade from ochre and moss through teal to indigo, like light sinking into water.'],
+[7,48,'Stained-glass set','The window throws coloured light that the satin catches.']];
+$('#hs').insertAdjacentHTML('beforeend',HS.map((h,i)=>`<button class="pt" style="left:${h[0]}%;top:${h[1]}%" aria-pressed="false" data-i="${i}" aria-label="${h[2]}">${i+1}</button>`).join(''));
+$('#hsl').innerHTML=HS.map((h,i)=>`<li><button aria-pressed="false" data-i="${i}"><i>${i+1}</i><div><b>${h[2]}</b><span>${h[3]}</span></div></button></li>`).join('');
+const pick=i=>{$$('#hs .pt,#hsl button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.i===i))};
+$$('#hs .pt,#hsl button').forEach(b=>b.onclick=e=>{e.stopPropagation();pick(+b.dataset.i)});pick(3);
+
+/* Raw Mango creative direction slides */
+const CD=['Raw Mango: creative direction','Brand overview','Brand essence','Brand personality: the Creator','Design aesthetic','Visual codes','Storytelling','Customer persona','Brand identity board','Critical analysis','Sources and image credits','Thank you'];
+$('#cdrow').innerHTML=CD.map((t,i)=>`<img class="z" loading="lazy" src="img/cd-${String(i+1).padStart(2,'0')}.webp" alt="Slide ${i+1}: ${t}">`).join('');
+}
+</script>
+</body>
+</html>
