@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cutting-edge fashion — Vaishnavi Bhosale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: a research paper made walkable: define, look, critique, then build.
+   COLOUR: night blue and ceremonial gold over the portfolio's off-white paper.
+   LAYOUT: same portfolio system as the other project pages. */
+:root{color-scheme:light;--bg:#F2F1EC;--ink:#141414;--mut:#66655f;--line:#dcdad2;--card:#fff;--soft:#e8e6df;--acc:#2B3FA8;--mango:#C9A24A;--night:#0D1030;--sky:#5C7DFF;--gold:#C9A24A;--disp:"Archivo",Impact,sans-serif;--body:"Inter Tight",system-ui,sans-serif}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:120px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--body);overflow-x:clip;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+h1,h2,h3{font-family:var(--disp);font-weight:800;font-stretch:72%;line-height:1;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:clamp(36px,5.4vw,68px)}
+h3{font-size:clamp(22px,2.4vw,30px);font-stretch:80%;font-weight:700}
+p{margin:0}
+.wrap{max-width:1240px;margin:0 auto}
+.sec{padding:clamp(64px,8vw,120px) max(5vw,16px)}
+.alt{background:var(--card)}
+.kick{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--mut);margin-bottom:14px}
+.kick b{width:10px;height:10px;border-radius:3px;background:var(--acc)}
+.lede{font-size:18px;max-width:58ch}
+.mut{color:var(--mut)}
+.z{cursor:zoom-in}
+.hd2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 48px;align-items:end;margin-bottom:32px}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--ink);background:transparent;font-size:15px;text-decoration:none}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pills button{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--ink);background:transparent;font-size:14px}
+.pills button[aria-selected=true]{background:var(--acc);border-color:var(--acc);color:#fff}
+
+/* top + drawer */
+.top{position:fixed;inset:14px 16px auto;display:flex;justify-content:space-between;align-items:center;z-index:50;pointer-events:none}
+.top>*{pointer-events:auto}
+.mb{display:flex;align-items:center;gap:10px;height:44px;padding:0 16px 0 12px;border-radius:999px;border:0;background:var(--ink);color:#fff;font-size:14px}
+.mb svg{width:18px;height:18px}
+.home{font-size:14px;text-decoration:none;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(8px);padding:10px 14px;border-radius:999px}
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:60;opacity:0;pointer-events:none;transition:.3s}
+.drawer{position:fixed;left:0;top:0;bottom:0;width:min(380px,88vw);background:var(--ink);color:#f2f1ec;z-index:61;transform:translateX(-102%);transition:transform .35s cubic-bezier(.2,.8,.2,1);padding:24px;display:flex;flex-direction:column;gap:6px;overflow-y:auto}
+body.nav .drawer{transform:none}body.nav .scrim{opacity:1;pointer-events:auto}
+.drawer .x{align-self:flex-end;width:44px;height:44px;border-radius:50%;border:0;background:#2a2a2a;color:#fff;font-size:22px}
+.drawer small{color:#9c9a93;font-size:13px;margin:14px 0 4px}
+.drawer a{text-decoration:none;display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:14px 0;border-top:1px solid #2c2c2c;font-family:var(--disp);font-stretch:72%;font-weight:800;font-size:28px;line-height:1.05}
+.drawer a span{font:400 13px var(--body);color:#9c9a93;white-space:nowrap}
+.drawer a.on{color:#9fb0ff}
+.jump{position:sticky;top:64px;z-index:40;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);display:flex;gap:4px;overflow-x:auto;padding:8px max(5vw,16px);scrollbar-width:none;margin-top:-1px}
+.jump a{flex:none;text-decoration:none;font-size:14px;padding:9px 13px;border-radius:999px;color:var(--mut)}
+.jump a.on{background:var(--ink);color:#fff}
+@media(min-width:901px){.jump{top:0;padding-top:16px;padding-bottom:12px;padding-left:170px;padding-right:140px}}
+
+/* hero */
+.hero{min-height:92svh;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center;padding-top:96px}
+.hero h1{font-size:clamp(52px,7vw,104px);font-stretch:62%;font-weight:900;line-height:.86}
+.hero .ph{position:relative;aspect-ratio:4/5;border-radius:220px 220px 10px 10px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.18)}
+.hero .ph img{width:100%;height:100%;object-fit:cover}
+.q{margin-top:26px;padding:20px 22px;border-left:4px solid var(--mango);background:var(--card);border-radius:0 12px 12px 0;font-family:var(--disp);font-stretch:80%;font-weight:600;font-size:clamp(20px,2vw,25px);line-height:1.2}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 24px;margin:26px 0 0}
+.facts div{border-top:2px solid var(--ink);padding-top:8px;font-size:15px}
+.facts dt{font-size:13px;color:var(--mut)}.facts dd{margin:2px 0 0;font-weight:500}
+.geo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.geo>div{background:var(--card);border-radius:14px;padding:22px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chips span{border:1px solid var(--ink);border-radius:999px;padding:7px 13px;font-size:14px}
+
+.src summary{cursor:pointer;font-weight:600;min-height:44px;display:flex;align-items:center}
+.src li{margin:6px 0;font-size:14px;color:#3d3c38;overflow-wrap:anywhere}
+.src summary{cursor:pointer;font-weight:600;min-height:44px;display:flex;align-items:center}
+.src li{margin:6px 0;font-size:14px;color:#3d3c38;overflow-wrap:anywhere}
+.next{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-top:56px;padding-top:28px;border-top:2px solid var(--ink)}
+.next a{font-family:var(--disp);font-stretch:70%;font-weight:900;font-size:clamp(32px,5vw,60px);text-decoration:none;line-height:1}
+.credit{font-size:13px;color:var(--mut);margin-top:12px}
+
+#lb{position:fixed;inset:0;z-index:80;background:rgba(12,12,12,.94);display:none;align-items:center;justify-content:center;padding:60px 16px 30px}
+#lb.open{display:flex}
+#lb img{max-width:min(1400px,100%);max-height:calc(100svh - 100px);object-fit:contain;border-radius:4px;background:#fff}
+#lb button{position:absolute;top:14px;right:16px;width:44px;height:44px;border-radius:50%;border:0;background:#f2f1ec;color:#111;font-size:22px}
+
+
+
+/* cutting-edge page */
+.hero .ph{border-radius:50% 50% 14px 14px / 30% 30% 14px 14px;background:var(--night)}
+.kws{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.kws span{border:1px solid var(--ink);border-radius:999px;padding:7px 13px;font-size:14px}
+.venn{position:relative;width:100%;max-width:560px;aspect-ratio:1.1;margin:0 auto}
+.venn button{position:absolute;width:56%;aspect-ratio:1;border-radius:50%;border:2px solid var(--acc);background:rgba(43,63,168,.08);display:grid;place-items:center;text-align:center;padding:16%;font-size:15px;line-height:1.25;transition:background .3s,transform .3s;mix-blend-mode:multiply}
+.venn button:hover,.venn button[aria-pressed=true]{background:rgba(43,63,168,.22);transform:scale(1.03)}
+.venn .a{left:0;top:0}.venn .b{right:0;top:0}.venn .c{left:22%;bottom:0}
+.venn .core{position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);background:var(--night);color:#fff;border-radius:999px;padding:8px 14px;font-size:13px;font-weight:600;pointer-events:none;white-space:nowrap}
+.vread{background:var(--card);border-radius:14px;padding:20px;min-height:140px}
+.vread small{display:block;font-size:12px;color:var(--acc);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.cases{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(20px,4vw,56px);align-items:start;margin-top:10px}
+.cimg{position:relative;border-radius:16px;overflow:hidden;background:var(--night);aspect-ratio:3/4;display:grid;place-items:center}
+.cimg img{width:100%;height:100%;object-fit:cover;transition:opacity .35s,filter .9s}
+.cimg.uv img{filter:none}
+.cimg.dim img{filter:grayscale(1) brightness(1.35) contrast(.7) opacity(.55)}
+.cimg .uvb{position:absolute;bottom:14px;left:14px;border:0;border-radius:999px;min-height:42px;padding:0 16px;background:#fff;color:#111;font-size:14px;font-weight:600}
+.cimg .uvb[aria-pressed=true]{background:#7a5cff;color:#fff;box-shadow:0 0 24px #7a5cff}
+.cimg .cap{position:absolute;right:12px;top:12px;background:rgba(0,0,0,.55);color:#fff;border-radius:999px;padding:6px 10px;font-size:12px}
+.cimg .alt2{position:absolute;right:12px;bottom:14px;display:flex;gap:6px}
+.cimg .alt2 button{width:48px;height:60px;border-radius:8px;overflow:hidden;border:2px solid transparent;padding:0;opacity:.7}
+.cimg .alt2 button[aria-pressed=true]{border-color:#fff;opacity:1}
+.cimg .alt2 img{width:100%;height:100%;object-fit:cover}
+.crow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}
+.crow div{background:var(--card);border-radius:12px;padding:14px;font-size:15px}
+.crow small{display:block;font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.crow .w{grid-column:1/-1;border-left:4px solid var(--acc)}
+.caveat{margin-top:12px;font-size:13px;color:var(--mut)}
+.wb{background:var(--night);color:#e9ecff}
+.wb .kick{color:#b9c3ff}.wb .kick b{background:var(--gold)}.wb h2{color:#fff}.wb .lede{color:#cfd5ff}
+.wb .pills button{border-color:rgba(255,255,255,.5);color:#fff}.wb .pills button[aria-selected=true]{background:#fff;color:var(--night)}
+.wgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px}
+.wgrid div{border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:18px;min-height:150px;transition:background .4s}
+.wgrid small{display:block;font-size:12px;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.wgrid b{font-family:var(--disp);font-stretch:72%;font-weight:800;font-size:26px;line-height:1.05;display:block}
+.wgrid p{font-size:14px;color:#cfd5ff;margin-top:8px}
+.orb{width:100%;max-width:260px;aspect-ratio:1;margin:0 auto;border-radius:50%;transition:background .8s,box-shadow .8s}
+.lens{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.lens details{background:var(--card);border-radius:14px;padding:0;overflow:hidden}
+.lens summary{list-style:none;cursor:pointer;padding:18px;display:flex;flex-direction:column;gap:8px;min-height:150px}
+.lens summary::-webkit-details-marker{display:none}
+.lens summary i{font-style:normal;font-size:12px;color:var(--acc);font-weight:700}
+.lens summary b{font-family:var(--disp);font-stretch:75%;font-weight:800;font-size:24px;line-height:1.05}
+.lens summary span{font-size:13px;color:var(--mut);margin-top:auto}
+.lens details[open] summary span{display:none}
+.lens details p{padding:0 18px 18px;font-size:15px}
+.lens details[open]{background:var(--acc);color:#fff}.lens details[open] summary i{color:#fff}.lens details[open] p{color:#e8ebff}
+.ref{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:start}
+.steps{counter-reset:s;margin:0;padding:0;list-style:none}
+.steps li{counter-increment:s;display:grid;grid-template-columns:40px 1fr;gap:12px;padding:14px 0;border-top:1px solid var(--line);font-size:15px}
+.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--disp);font-stretch:70%;font-weight:900;font-size:24px;color:var(--acc)}
+.risk{background:var(--card);border-radius:14px;padding:20px;margin-top:14px;border-left:4px solid #c2412f}
+.risk small{display:block;font-size:12px;color:#c2412f;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.big-q{font-family:var(--disp);font-stretch:70%;font-weight:800;font-size:clamp(32px,4.4vw,60px);line-height:1.02;max-width:20ch}
+/* 3D */
+.j3{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(18px,3vw,40px);align-items:stretch}
+.stage3{position:relative;border-radius:18px;overflow:hidden;background:radial-gradient(120% 90% at 50% 30%,#232a66 0%,#0d1030 70%);min-height:560px}
+.stage3 canvas{display:block;width:100%!important;height:100%!important;position:absolute;inset:0;touch-action:none}
+.stage3 .msg{position:absolute;inset:0;display:grid;place-items:center;color:#cfd5ff;font-size:14px;pointer-events:none}
+.stage3 .tip{position:absolute;left:14px;bottom:14px;color:#cfd5ff;font-size:12px;background:rgba(0,0,0,.35);padding:6px 10px;border-radius:999px}
+.stage3 .tl{position:absolute;right:14px;top:14px;display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.stage3 .tl button{border:0;border-radius:999px;min-height:40px;padding:0 14px;background:rgba(255,255,255,.92);color:#111;font-size:13px}
+.stage3 .tl button[aria-pressed=true]{background:var(--gold);color:#111}
+.jtabs{display:flex;flex-direction:column;gap:10px}
+.jt{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px;text-align:left;display:grid;grid-template-columns:1fr auto;gap:6px 12px;align-items:start}
+.jt b{font-family:var(--disp);font-stretch:75%;font-weight:800;font-size:22px}
+.jt small{grid-column:1/-1;color:var(--mut);font-size:13px}
+.jt[aria-selected=true]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.jt i{font-style:normal;font-size:12px;color:var(--mut)}
+.jd{background:var(--card);border-radius:14px;padding:18px;margin-top:4px}
+.jd h4{margin:0 0 6px;font-size:16px}
+.jd p{font-size:14px}
+.fin{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.fin button{border:1px solid var(--line);background:var(--bg);border-radius:999px;min-height:38px;padding:0 12px 0 8px;display:flex;align-items:center;gap:8px;font-size:13px}
+.fin button i{width:20px;height:20px;border-radius:50%}
+.fin button[aria-pressed=true]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.parts{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.parts span{display:flex;align-items:center;gap:6px;font-size:13px;background:var(--bg);border-radius:999px;padding:5px 10px}
+.parts span i{width:12px;height:12px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
+.refs{font-size:14px;color:var(--mut)}
+.refs li{margin:6px 0}
+@media(max-width:900px){.hero,.hd2,.cases,.ref,.j3{grid-template-columns:minmax(0,1fr)}.hero .ph{max-width:460px;width:100%;margin:0 auto}.lens{grid-template-columns:repeat(2,minmax(0,1fr))}.wgrid{grid-template-columns:minmax(0,1fr)}.stage3{min-height:460px}}
+@media(max-width:600px){.hero h1{font-size:clamp(50px,15vw,86px)}.lens,.crow{grid-template-columns:minmax(0,1fr)}.venn button{font-size:12px;padding:14%}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<div class="top">
+ <button class="mb" id="menu" aria-expanded="false" aria-controls="drawer"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 5h14M2 9h14M2 13h14"/></svg>Projects</button>
+ <a class="home" href="index.html">← All work</a>
+</div>
+<div class="scrim" id="scrim"></div>
+<nav class="drawer" id="drawer" aria-label="Projects">
+ <button class="x" id="close" aria-label="Close menu">×</button>
+ <small>Vaishnavi Bhosale · Portfolio</small>
+ <a href="index.html">Home <span>All work</span></a>
+ <a href="internship.html">Summer internship <span>Blanco</span></a>
+ <a href="index.html#research">Fashion design research <span>Soon</span></a>
+ <a href="styling.html">Styling &amp; photography <span>Living Architecture</span></a>
+ <a href="brand.html">Brand management <span>Raw Mango</span></a>
+ <a href="cutting.html" class="on" aria-current="page">Cutting-edge fashion <span>Future Ritualism</span></a>
+</nav>
+
+<header class="sec hero wrap">
+ <div>
+  <div class="kick"><b></b>Cutting-edge fashion</div>
+  <h1>Future Ritualism</h1>
+  <p class="q">Ceremonial clothing for imagined societies: how might people who don't exist yet dress their beliefs, hierarchies and ceremonies?</p>
+  <div class="kws"><span>Symbolic ornament</span><span>Futuristic regalia</span><span>Dramatic ritual dressing</span></div>
+  <dl class="facts">
+   <div><dt>Format</dt><dd>Research paper · 1,498 words</dd></div>
+   <div><dt>Case studies</dt><dd>Iris van Herpen, Anrealage, Yuima Nakazato</dd></div>
+   <div><dt>Critique</dt><dd>Symbolism, materials, sustainability, cultural responsibility</dd></div>
+   <div><dt>Also</dt><dd>Three jewellery pieces modelled in 3D</dd></div>
+  </dl>
+ </div>
+ <figure class="ph" style="margin:0"><img class="z" src="img/fr-1.webp" alt="Blue sculptural couture gown covered in spheres, from Iris van Herpen's Earthrise"></figure>
+</header>
+
+<nav class="jump" id="jump" aria-label="Sections">
+ <a href="#define">Definition</a><a href="#cases">Case studies</a><a href="#world">World-builder</a><a href="#critique">Critique</a><a href="#mine">My perspective</a><a href="#jewellery">Jewellery in 3D</a><a href="#refs">References</a>
+</nav>
+
+<section class="sec" id="define">
+ <div class="wrap">
+  <div class="hd2"><div><div class="kick"><b></b>Definition</div><h2>Ritual dress, for a society that doesn't exist yet</h2></div><p class="lede">Unlike science-fiction costume, the clothing has to carry a coherent cultural story. It is best treated as a proposed design framework, not an established movement.</p></div>
+  <div class="cases" style="align-items:center">
+   <div class="venn" id="venn">
+    <button class="a" data-i="0" aria-pressed="true">Historical ceremonial dress</button>
+    <button class="b" data-i="1" aria-pressed="false">Speculative world-building</button>
+    <button class="c" data-i="2" aria-pressed="false">Experimental fashion technology</button>
+    <span class="core">Future Ritualism</span>
+   </div>
+   <div>
+    <div class="vread" id="vread" aria-live="polite"></div>
+    <p class="lede" style="margin-top:20px">Clothing has always meant more than protection. Coronation robes, wedding attire, religious vestments and ritual ornaments turn the body into a visible expression of values. Fashion can be read as material culture: a garment's meaning depends on how it is designed, presented and worn (Crane and Bovone, 2006).</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="sec alt" id="cases">
+ <div class="wrap">
+  <div class="hd2"><div><div class="kick"><b></b>Research &amp; industry examples</div><h2>Three collections, read as regalia</h2></div><p class="lede">None of these was made as ritual dress. Each is a speculative reading of how its ideas could serve one.</p></div>
+  <div class="pills" id="ctabs" role="tablist" aria-label="Case studies"></div>
+  <div class="cases">
+   <div class="cimg" id="cimg"><img class="z" id="cim" alt=""><span class="cap" id="ccap"></span></div>
+   <div>
+    <h3 id="ch" style="font-size:clamp(28px,3vw,40px)"></h3>
+    <p class="mut" id="cmeta" style="margin-top:4px"></p>
+    <div class="crow" id="crow"></div>
+    <p class="caveat" id="cav"></p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="sec wb" id="world">
+ <div class="wrap">
+  <div class="hd2"><div><div class="kick"><b></b>Design principle</div><h2>Every visual decision serves the society's beliefs</h2></div><p class="lede">World-building gives a designer a reason to connect form, ornament and material to purpose. Choose what an imagined society holds sacred.</p></div>
+  <div class="pills" id="wtabs" role="tablist" aria-label="Imagined societies"></div>
+  <div class="cases" style="margin-top:6px;align-items:center">
+   <div class="orb" id="orb" aria-hidden="true"></div>
+   <div class="wgrid" id="wgrid" style="margin-top:0"></div>
+  </div>
+ </div>
+</section>
+
+<section class="sec" id="critique">
+ <div class="wrap">
+  <div class="hd2"><div><div class="kick"><b></b>Critical analysis</div><h2>Four lenses on the direction</h2></div><p class="lede">Technical novelty does not automatically create meaningful design. Open each lens.</p></div>
+  <div class="lens">
+   <details><summary><i>3.1</i><b>Symbolic communication</b><span>Open +</span></summary><p>Each visual decision should belong to the imagined society's system of meaning. Symbolism needs research and coherence: sacred motifs are not interchangeable decoration, and studying existing traditions is different from inventing new symbolic systems.</p></details>
+   <details><summary><i>3.2</i><b>Materials, technology, function</b><span>Open +</span></summary><p>3D printing, digital textiles, photochromic surfaces and sculptural construction widen what ceremonial dress can be. But electronics need batteries and maintenance, rigid structures restrict movement, and embellishment adds weight, cost and end-of-life complexity. Garments still have to walk, dance and stand for hours.</p></details>
+   <details><summary><i>3.3</i><b>Consumers &amp; sustainability</b><span>Open +</span></summary><p>Couture, performance costume, film and immersive exhibitions are the natural homes, but the principles can reach modular accessories, transformable clothing and detachable ornaments. Sustainability must be judged across production, use, repair and disposal: durable, repairable, reusable and easy to take apart.</p></details>
+   <details><summary><i>3.4</i><b>Cultural responsibility</b><span>Open +</span></summary><p>Borrowing sacred motifs without understanding them reduces living traditions to decoration. Research, attribution and consultation are essential. A speculative society should develop its own coherent symbolism rather than combine recognisable cultural references.</p></details>
+  </div>
+ </div>
+</section>
+
+<section class="sec alt" id="mine">
+ <div class="wrap">
+  <div class="hd2"><div><div class="kick"><b></b>My perspective</div><h2>Fashion as a tool for building worlds</h2></div><p class="lede">I would design for a civilisation that sees humans as temporary participants in a larger cosmic ecosystem: spine-like structures, shell-inspired surfaces and translucent elements that evoke water or celestial movement, with detachable ornaments marking different ceremonies.</p></div>
+  <div class="ref">
+   <div>
+    <h3>How I would work</h3>
+    <ol class="steps">
+     <li>Define the society: beliefs, environment, social structure and its most important ceremonies.</li>
+     <li>Build a visual code for colour, silhouette, ornament and material.</li>
+     <li>Experiment with sculpted textiles, recovered materials and lightweight fabricated components.</li>
+     <li>Prioritise movement, repair and reconfiguration; use technology only where it serves the symbol or the function.</li>
+    </ol>
+   </div>
+   <div>
+    <div class="risk"><small>The weakness</small>Futuristic fashion can look impressive without a convincing concept. Metallic surfaces, exaggerated headpieces and dramatic silhouettes suggest science fiction, but they don't create a ritual system. Without a clear link between form and narrative, it becomes costume without context.</div>
+    <div class="risk" style="border-left-color:var(--acc)"><small style="color:var(--acc)">The concern</small>Elaborate one-off garments create waste. Detachable components, reusable ornaments and repairable structures allow visual complexity without making every ceremonial object new.</div>
+   </div>
+  </div>
+  <p class="big-q" style="margin-top:clamp(48px,6vw,80px)">“What might future societies choose to celebrate, protect, remember and believe in?”</p>
+ </div>
+</section>
+
+<section class="sec" id="jewellery">
+ <div class="wrap">
+  <div class="hd2"><div><div class="kick"><b></b>Jewellery in 3D</div><h2>Three pieces, modelled to print</h2></div><p class="lede">A hair comb, a ring and a pair of drop earrings, drawn from Casa Batlló and the Art Nouveau period. Drag to turn a piece, scroll or pinch to zoom.</p></div>
+  <div class="j3">
+   <div class="stage3" id="stage3"><div class="msg" id="smsg">Loading 3D viewer…</div><div class="tl" id="tl"></div><span class="tip">Drag to rotate · scroll to zoom</span></div>
+   <div>
+    <div class="jtabs" id="jtabs" role="tablist" aria-label="Pieces"></div>
+    <div class="jd" id="jd"></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="sec alt" id="refs">
+ <div class="wrap">
+  <div class="hd2"><div><div class="kick"><b></b>Conclusion</div><h2>Imagination, with coherence</h2></div><p class="lede">Earthrise, Invisible and SILENT are not a formal Future Ritualism movement, but they are credible starting points. The direction's potential depends on uniting imaginative aesthetics with coherent symbolism, practical construction, cultural awareness and responsible material choices.</p></div>
+  <details class="src" style="margin-top:28px"><summary>References</summary>
+   <ul class="refs">
+    <li>Anrealage (2023). Spring/Summer 2024: Invisible. Official collection presentation and press release.</li>
+    <li>Crane, D. and Bovone, L. (2006). ‘Approaches to material culture: The sociology of fashion and clothing’, Poetics, 34(6), pp. 319–333. doi:10.1016/j.poetic.2006.10.002.</li>
+    <li>Epson (2026). The future of fashion co-created with YUIMA NAKAZATO: Paris Haute Couture Fashion Week Spring/Summer 2026.</li>
+    <li>Fédération de la Haute Couture et de la Mode (2023). Anrealage: Womenswear Spring/Summer 2024.</li>
+    <li>Iris van Herpen (2021). Earthrise: Haute Couture collection.</li>
+    <li>Vogue (2021). Iris van Herpen Fall 2021 Couture Collection. Vogue Runway, 5 July.</li>
+    <li>Yuima Nakazato (2026). Couture Spring/Summer 2026: SILENT.</li>
+   </ul>
+  </details>
+  <p class="credit">Collection images belong to Iris van Herpen, Anrealage and Yuima Nakazato and appear as research references.</p>
+  <div class="next"><span class="mut">That's every project</span><a href="index.html">Back to all work →</a></div>
+ </div>
+</section>
+
+<div id="lb" role="dialog" aria-modal="true" aria-label="Image viewer"><button aria-label="Close">×</button><img alt=""></div>
+
+<script src="js/three.min.js"></script>
+<script src="js/OrbitControls.js"></script>
+<script src="js/RoomEnvironment.js"></script>
+<script>
+{
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const store={get(k){try{return JSON.parse(localStorage.getItem('vb:'+k))}catch(e){return null}},set(k,v){try{localStorage.setItem('vb:'+k,JSON.stringify(v))}catch(e){}}};
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* drawer + lightbox */
+const setNav=o=>{document.body.classList.toggle('nav',o);$('#menu').setAttribute('aria-expanded',o);if(o)$('#close').focus()};
+$('#menu').onclick=()=>setNav(true);$('#close').onclick=()=>setNav(false);$('#scrim').onclick=()=>setNav(false);
+const lb=$('#lb'),lbi=$('img',lb);
+const openLB=(src,alt)=>{lbi.src=src;lbi.alt=alt||'';lb.classList.add('open');$('button',lb).focus()};
+document.addEventListener('click',e=>{const z=e.target.closest('img.z');if(z)openLB(z.src,z.alt)});
+$('button',lb).onclick=()=>lb.classList.remove('open');lb.onclick=e=>{if(e.target===lb)lb.classList.remove('open')};
+addEventListener('keydown',e=>{if(e.key==='Escape'){lb.classList.remove('open');setNav(false)}});
+
+/* section jump bar */
+const jl=$$('#jump a');
+const jIO=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){jl.forEach(a=>{const on=a.getAttribute('href')==='#'+en.target.id;a.classList.toggle('on',on);if(on){const j=$('#jump');j.scrollTo({left:a.offsetLeft-j.clientWidth/2+a.offsetWidth/2,behavior:'auto'})}})}}),{rootMargin:'-40% 0px -55% 0px'});
+jl.forEach(a=>{const t=$(a.getAttribute('href'));if(t)jIO.observe(t)});
+
+
+
+/* definition venn */
+const VN=[['Historical ceremonial dress','Shows how clothing communicates identity: status, belief, belonging and transitions between stages of life.'],
+['Speculative world-building','Lets designers imagine alternative social structures and the beliefs behind them.'],
+['Experimental fashion technology','Gives the techniques to turn concepts into physical form: sculptural construction, new materials, responsive surfaces.']];
+function vn(i){$$('#venn button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.i===i));$('#vread').innerHTML=`<small>Source ${i+1} of 3</small><h3>${VN[i][0]}</h3><p style="margin-top:6px">${VN[i][1]}</p>`}
+$$('#venn button').forEach(b=>{b.onclick=b.onmouseenter=b.onfocus=()=>vn(+b.dataset.i)});vn(0);
+
+/* case studies */
+const CS=[{t:'Earthrise',d:'Iris van Herpen · Haute Couture, July 2021',im:['fr-1','fr-2'],cap:['Cosmic regalia','Movement and transcendence'],
+ r:[['What','Couture that sees the planet as an interconnected living system, from a cosmic perspective.'],['How','A garment for skydiver Domitille Kiger: thousands of blue spheres in colour gradients, like Earth seen from space, revealed in an aerial performance.'],['For Future Ritualism','Spherical ornament evokes celestial bodies; movement suggests transformation and transcendence: ceremony for planetary interconnectedness.']],cv:'A speculative reading: the collection was not presented as the dress of a fictional civilisation.'},
+ {t:'Invisible',d:'Anrealage · Kunihiko Morinaga · Spring/Summer 2024',im:['fr-3'],cap:['Transformative surfaces'],uv:1,
+ r:[['What','Clothing, perception and technology: garments that change with light.'],['How','Photochromic PVC that shifts from transparent to colourful under ultraviolet light, and metamerism, where colour changes under different light sources.'],['For Future Ritualism','Ornament becomes interactive: a garment could reveal a hidden pattern during a ceremony, or mark participants at different stages of an event.']],cv:'Not a ritual-fashion project; its relevance is the documented experiment with light and perception. Try the UV switch on the image.'},
+ {t:'SILENT',d:'Yuima Nakazato · Spring/Summer 2026',im:['fr-4'],cap:['Organic regalia'],
+ r:[['What','Ancient cedars, river-smoothed stones and slow landscapes of Yakushima Island.'],['How','Digitally printed textiles with hand-made ceramic components; recovered textile and transparent ink printed on silk organza to reduce fraying, so printing shapes construction.'],['For Future Ritualism','Materials can carry narratives: tree rings and weathered surfaces for a society that holds geological time sacred; recovered textiles as a vow to conserve resources.']],cv:'A speculative reading of material processes, not a ritual collection.'}];
+let ci=0,cj=0;
+$('#ctabs').innerHTML=CS.map((c,i)=>`<button role="tab" aria-selected="false" data-i="${i}">${c.t}</button>`).join('');
+function cs(i,j=0){ci=i;cj=j;const c=CS[i];$$('#ctabs button').forEach(b=>b.setAttribute('aria-selected',+b.dataset.i===i));
+ const box=$('#cimg'),im=$('#cim');im.style.opacity=.2;im.onload=()=>im.style.opacity=1;im.src=`img/${c.im[j]}.webp`;im.alt=`${c.t}: ${c.cap[j]}`;$('#ccap').textContent=c.cap[j];
+ $$('.uvb,.alt2',box).forEach(e=>e.remove());box.classList.toggle('dim',!!c.uv);
+ if(c.uv){box.insertAdjacentHTML('beforeend','<button class="uvb" aria-pressed="false">☀ UV light off</button>');const u=$('.uvb',box);u.onclick=e=>{e.stopPropagation();const on=u.getAttribute('aria-pressed')!=='true';u.setAttribute('aria-pressed',on);u.textContent=on?'☀ UV light on':'☀ UV light off';box.classList.toggle('dim',!on)}}
+ if(c.im.length>1){box.insertAdjacentHTML('beforeend',`<div class="alt2">${c.im.map((f,k)=>`<button aria-pressed="${k===j}" aria-label="Show ${c.cap[k]}"><img src="img/${f}.webp" alt=""></button>`).join('')}</div>`);$$('.alt2 button',box).forEach((b,k)=>b.onclick=e=>{e.stopPropagation();cs(ci,k)})}
+ $('#ch').textContent=c.t;$('#cmeta').textContent=c.d;$('#crow').innerHTML=c.r.map(([a,b],k)=>`<div class="${k===2?'w':''}"><small>${a}</small>${b}</div>`).join('');$('#cav').textContent=c.cv;store.set('frcase',i)}
+$$('#ctabs button').forEach(b=>b.onclick=()=>cs(+b.dataset.i));cs(Math.min(2,+(store.get('frcase')||0)));
+
+/* world-builder */
+const WB=[['Celestial observation','radial-gradient(circle at 35% 35%,#fff7d6 0 6%,#e6c46b 7% 22%,#3a4bb8 23% 52%,#0d1030 53%)','0 0 80px #5c7dff',[['Form','Concentric shapes','Rings and orbits that echo the sky the society watches.'],['Surface','Reflective','Mirror-like finishes that catch and return light.'],['Material','Light-catching','Metallic and glassy components; spheres as in Earthrise.']]],
+['Ecological preservation','radial-gradient(circle at 40% 40%,#e9f2d0 0 10%,#9fb77c 11% 35%,#4e6b45 36% 60%,#1f2b1c 61%)','0 0 80px #9fb77c',[['Form','Biomorphic silhouettes','Shapes grown rather than built: bark, stone and root.'],['Surface','Weathered','Tree rings and erosion as ornament, as in SILENT.'],['Material','Reclaimed','Recovered textiles as a visible vow to conserve.']]],
+['Technological advancement','conic-gradient(from 90deg,#7a5cff,#2bd4ff,#ff5cc8,#7a5cff)','0 0 80px #7a5cff',[['Form','Precise, modular','Parts that click, detach and reconfigure for each rite.'],['Surface','Responsive','Photochromic and colour-shifting, as in Invisible.'],['Material','Engineered','Fabricated components, used only where they carry meaning.']]]];
+$('#wtabs').innerHTML=WB.map((w,i)=>`<button role="tab" aria-selected="false" data-i="${i}">${w[0]}</button>`).join('');
+function wb(i){const w=WB[i];$$('#wtabs button').forEach(b=>b.setAttribute('aria-selected',+b.dataset.i===i));$('#orb').style.background=w[1];$('#orb').style.boxShadow=w[2];
+ $('#wgrid').innerHTML=w[3].map(([a,b,c])=>`<div><small>${a}</small><b>${b}</b><p>${c}</p></div>`).join('')}
+$$('#wtabs button').forEach(b=>b.onclick=()=>wb(+b.dataset.i));wb(0);
+
+/* 3D jewellery */
+const J={comb:{t:'Ginkgo hair comb',f:'models/comb.json',k:'Art Nouveau',sz:'110 × 68 mm',rx:0,d:'Built on the ginkgo leaf, a favourite plant of Art Nouveau (around 1890–1910): whiplash lines and ornament taken from nature.',fin:1},
+ ring:{t:'Casa Batlló ring',f:'models/ring.json',k:'Casa Batlló',sz:'Indian size 9.5 · 15.8 mm inner diameter',rx:-Math.PI/2,d:'Gaudí\'s house in Barcelona: bone-like columns, a scaled roof and a facade that moves like water. The band takes its curves.',fin:1},
+ ear:{t:'Drop earrings',f:'models/earring.json',k:'Casa Batlló · Art Nouveau',sz:'95 × 25 mm per earring',rx:0,d:'A gold frame of curving ribs, like the facade\'s window frames, set with 16 inserts in six colours that recall Casa Batlló\'s mosaic of glass and ceramic discs. Printed as separate parts: gold frames in FDM or resin, coloured inserts, and butterfly backs on a stud post.',multi:1}};
+const FINS={gold:[0xd4af6a,1,.26,0,'Gold','#d4af6a'],silver:[0xdcdce2,1,.2,0,'Silver','#d9d9de'],resin:[0xf1ece2,0,.35,1,'Ivory resin','#f1ece2']};
+const PARTS=[['Blue','#3E6FB0','1 stud'],['Ivory','#DCD8C8','5'],['Peach','#C9A07A','4'],['Lavender','#B4B1CC','1'],['Pearl white','#E4E4E0','1'],['Sage','#9EAE96','2 + centre dot']];
+let cur='ear',fin='gold',exploded=false,R=null;
+$('#jtabs').innerHTML=Object.entries(J).map(([k,v])=>`<button class="jt" role="tab" aria-selected="false" data-k="${k}"><b>${v.t}</b><i>${v.k}</i><small>${v.sz}</small></button>`).join('');
+function info(){const v=J[cur];let h=`<h4>${v.t}</h4><p>${v.d}</p>`;
+ if(v.fin)h+=`<div class="fin">${Object.entries(FINS).map(([k,f])=>`<button data-f="${k}" aria-pressed="${k===fin}"><i style="background:${f[5]}"></i>${f[4]}</button>`).join('')}</div>`;
+ if(v.multi)h+=`<p style="margin-top:12px"><b>Inserts per earring</b></p><div class="parts">${PARTS.map(p=>`<span><i style="background:${p[1]}"></i>${p[0]} · ${p[2]}</span>`).join('')}</div>`;
+ $('#jd').innerHTML=h;$$('#jd .fin button').forEach(b=>b.onclick=()=>{fin=b.dataset.f;$$('#jd .fin button').forEach(x=>x.setAttribute('aria-pressed',x===b));setFin()});
+ $('#tl').innerHTML=v.multi?`<button id="xpl" aria-pressed="${exploded}">${exploded?'Assemble':'Explode parts'}</button>`:'';
+ if(v.multi)$('#xpl').onclick=()=>{exploded=!exploded;$('#xpl').setAttribute('aria-pressed',exploded);$('#xpl').textContent=exploded?'Assemble':'Explode parts'}}
+const b64=s=>{const t=atob(s),u=new Uint8Array(t.length);for(let i=0;i<t.length;i++)u[i]=t.charCodeAt(i);return u.buffer};
+function geo(j){const q=new Uint16Array(b64(j.pos)),idx=new Uint32Array(b64(j.idx)),pos=new Float32Array(q.length);for(let i=0;i<q.length;i++){const a=i%3;pos[i]=j.min[a]+q[i]*j.scale[a]}
+ let g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(pos,3));g.setIndex(new THREE.BufferAttribute(idx,1));g=g.toNonIndexed();g.computeVertexNormals();return g}
+function init(){if(R)return R;const st=$('#stage3');if(typeof THREE==='undefined'){$('#smsg').textContent='The 3D viewer could not load.';return null}
+ try{const ren=new THREE.WebGLRenderer({antialias:true,alpha:true});ren.setPixelRatio(Math.min(devicePixelRatio,2));ren.outputEncoding=THREE.sRGBEncoding;ren.toneMapping=THREE.ACESFilmicToneMapping;st.prepend(ren.domElement);
+  const sc=new THREE.Scene(),pm=new THREE.PMREMGenerator(ren);sc.environment=pm.fromScene(new THREE.RoomEnvironment(),0.04).texture;
+  const cam=new THREE.PerspectiveCamera(32,1,.1,5000),ctl=new THREE.OrbitControls(cam,ren.domElement);ctl.enableDamping=true;ctl.autoRotate=!RM;ctl.autoRotateSpeed=1.4;ctl.enablePan=false;
+  const gold=new THREE.MeshPhysicalMaterial({color:0xd4af6a,metalness:1,roughness:.26}),grp=new THREE.Group();sc.add(grp);
+  const size=()=>{const w=st.clientWidth,h=st.clientHeight;ren.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()};new ResizeObserver(size).observe(st);size();
+  let run=false;const loop=()=>{if(!run)return;ctl.update();grp.children.forEach(m=>{if(m.userData.dz!==undefined){const t=exploded?m.userData.dz:0;m.position.z+=(t+m.userData.z0-m.position.z)*.12}});ren.render(sc,cam);requestAnimationFrame(loop)};
+  new IntersectionObserver(([e])=>{const w=run;run=e.isIntersecting;if(run&&!w)loop()}).observe(st);
+  R={ren,sc,cam,ctl,gold,grp,cache:{}};return R}catch(e){$('#smsg').textContent='3D needs WebGL, which this browser has turned off.';return null}}
+function setFin(){if(!R)return;const F=FINS[fin];R.gold.color.setHex(F[0]);R.gold.metalness=F[1];R.gold.roughness=F[2];R.gold.clearcoat=F[3];R.gold.needsUpdate=true}
+function frame(obj){const box=new THREE.Box3().setFromObject(obj),sph=box.getBoundingSphere(new THREE.Sphere());obj.position.sub(sph.center);obj.children.forEach(m=>{if(m.userData.dz!==undefined)m.userData.z0=m.position.z});
+ const d=sph.radius/Math.sin(THREE.MathUtils.degToRad(R.cam.fov/2))*1.05;R.cam.position.set(0,sph.radius*.15,d);R.cam.near=d/100;R.cam.far=d*10;R.cam.updateProjectionMatrix();R.ctl.target.set(0,0,0);R.ctl.minDistance=d*.3;R.ctl.maxDistance=d*2.5;R.ctl.update()}
+function show(k){cur=k;$$('.jt').forEach(b=>b.setAttribute('aria-selected',b.dataset.k===k));info();store.set('frj',k);const r=init();if(!r)return;
+ r.grp.clear();r.grp.position.set(0,0,0);r.grp.rotation.set(0,0,0);setFin();
+ const place=data=>{if(cur!==k)return;$('#smsg').textContent='';const v=J[k];
+  if(v.multi){data.forEach(p=>{const mat=p.c?new THREE.MeshStandardMaterial({color:new THREE.Color(p.c).convertSRGBToLinear(),metalness:0,roughness:.5,envMapIntensity:.55}):r.gold;const m=new THREE.Mesh(p.g,mat);if(p.c){m.userData.dz=10}r.grp.add(m)})}
+  else{const m=new THREE.Mesh(data,r.gold);m.rotation.x=v.rx;r.grp.add(m)}
+  frame(r.grp)};
+ if(r.cache[k])return place(r.cache[k]);$('#smsg').textContent='Loading model…';
+ fetch(J[k].f).then(x=>{if(!x.ok)throw 0;return x.json()}).then(j=>{const d=J[k].multi?j.parts.map(p=>({c:p.c,g:geo(p)})):geo(j);r.cache[k]=d;place(d)}).catch(()=>{if(cur===k)$('#smsg').textContent='The model could not be loaded.'})}
+$$('.jt').forEach(b=>b.onclick=()=>show(b.dataset.k));
+const sv=store.get('frj');new IntersectionObserver(([e],o)=>{if(e.isIntersecting){o.disconnect();show(J[sv]?sv:'ear')}},{rootMargin:'400px'}).observe($('#stage3'));
+}
+</script>
+</body>
+</html>
