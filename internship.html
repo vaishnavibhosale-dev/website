@@ -91,8 +91,9 @@ body.nav .drawer{transform:none}body.nav .scrim{opacity:1;pointer-events:auto}
 .shirt{position:relative;max-width:460px;margin:0 auto;width:100%}
 .shirt svg{width:100%;height:auto}
 .hs{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;border:0;background:transparent;display:grid;place-items:center}
-.hs::before{content:"";width:18px;height:18px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 6px rgba(30,91,255,.18);transition:.2s}
-.hs.on::before{width:24px;height:24px;box-shadow:0 0 0 10px rgba(30,91,255,.22)}
+.hs::before{content:"";width:16px;height:16px;border-radius:50%;background:#b4b3ad;box-shadow:0 0 0 6px rgba(120,119,113,.16);transition:.25s}
+.hs:hover::before{background:#8f8e88}
+.hs.on::before{width:24px;height:24px;background:var(--acc);box-shadow:0 0 0 10px rgba(30,91,255,.22)}
 .dlist{display:flex;flex-direction:column;gap:2px}
 .dlist button{display:flex;justify-content:space-between;align-items:center;gap:12px;text-align:left;border:0;border-top:1px solid var(--line);background:none;padding:16px 4px;min-height:56px;font-family:var(--disp);font-stretch:75%;font-weight:700;font-size:clamp(22px,2.6vw,32px);line-height:1.05;color:var(--mut)}
 .dlist button.on{color:var(--ink)}
