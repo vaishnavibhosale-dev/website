@@ -520,7 +520,7 @@ addEventListener('keydown',e=>{if(e.key==='Escape'){lb.classList.remove('open');
 
 /* section jump bar */
 const jl=$$('#jump a');
-const jIO=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){jl.forEach(a=>{const on=a.getAttribute('href')==='#'+en.target.id;a.classList.toggle('on',on);if(on)a.scrollIntoView({block:'nearest',inline:'center'})})}}),{rootMargin:'-40% 0px -55% 0px'});
+const jIO=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){jl.forEach(a=>{const on=a.getAttribute('href')==='#'+en.target.id;a.classList.toggle('on',on);if(on){const j=$('#jump');j.scrollTo({left:a.offsetLeft-j.clientWidth/2+a.offsetWidth/2,behavior:'auto'})}})}}),{rootMargin:'-40% 0px -55% 0px'});
 jl.forEach(a=>{const t=$(a.getAttribute('href'));if(t)jIO.observe(t)});
 
 /* collection panels */
