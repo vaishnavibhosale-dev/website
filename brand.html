@@ -261,6 +261,90 @@ body.nav .drawer{transform:none}body.nav .scrim{opacity:1;pointer-events:auto}
 #lb img{max-width:min(1400px,100%);max-height:calc(100svh - 100px);object-fit:contain;border-radius:4px;background:#fff}
 #lb button{position:absolute;top:14px;right:16px;width:44px;height:44px;border-radius:50%;border:0;background:#f2f1ec;color:#111;font-size:22px}
 
+/* assortment plan */
+.sun{background:#F6EEDC;overflow-x:clip}
+.sunhero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:center}
+.sunart{position:relative;aspect-ratio:1;max-width:520px;width:100%;margin:0 auto}
+.sunart .s{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;animation:spin 90s linear infinite}
+.sunart .b{position:absolute;left:50%;bottom:-4%;width:42%;transform:translateX(-50%);filter:drop-shadow(0 14px 18px rgba(0,0,0,.18))}
+@keyframes spin{to{transform:rotate(360deg)}}
+.sunhero h2{font-size:clamp(48px,7vw,96px);font-stretch:62%;font-weight:900;line-height:.86}
+.stat4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:28px}
+.stat4 div{border-top:2px solid var(--ink);padding-top:8px;font-size:13px;color:var(--mut)}
+.stat4 b{display:block;font-family:var(--disp);font-stretch:70%;font-weight:900;font-size:clamp(26px,3vw,40px);color:var(--ink);line-height:1}
+.mood{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:clamp(20px,3vw,40px);margin-top:clamp(48px,6vw,80px);align-items:start}
+.mood img{border-radius:12px;box-shadow:0 18px 40px rgba(0,0,0,.12)}
+.sw{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:12px 0 22px}
+.sw button{border:0;padding:0;background:none;text-align:left;font-size:13px}
+.sw button i{display:block;aspect-ratio:3/2;border-radius:8px;margin-bottom:6px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08);transition:transform .2s}
+.sw button:hover i,.sw button[aria-pressed=true] i{transform:translateY(-3px)}
+.sw button[aria-pressed=true] i{box-shadow:inset 0 0 0 1px rgba(0,0,0,.1),0 0 0 3px var(--ink)}
+.mlab{font-size:13px;color:var(--mut);margin-top:6px}
+.dist{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.dist button{display:grid;grid-template-columns:180px minmax(0,1fr);gap:14px;align-items:center;border:0;background:none;padding:4px 0;text-align:left;font-size:15px}
+.dist .tr{height:36px;position:relative}
+.dist .br{position:absolute;left:0;top:0;bottom:0;border-radius:6px;background:var(--mango);display:flex;align-items:center;justify-content:flex-end;padding:0 10px;font-weight:600;color:#1b1406;transition:width .8s cubic-bezier(.2,.8,.2,1),background .2s;width:0}
+.dist button:hover .br{background:#d89512}
+.dist button[aria-pressed=true] .br{background:var(--acc);color:#fff}
+.dist button[aria-pressed=true]{font-weight:600}
+.fbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:26px 0 14px}
+.fbar .lbl{font-size:13px;color:var(--mut);margin-right:4px}
+.fbar button{min-height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--ink);background:transparent;font-size:14px}
+.fbar button[aria-pressed=true]{background:var(--ink);color:#fff}
+.sum{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:14px;margin-bottom:14px;color:var(--mut)}
+.sum b{color:var(--ink)}
+.skus{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.sku{border:0;text-align:left;background:var(--card);border-radius:12px;padding:14px 14px 12px;display:flex;flex-direction:column;gap:6px;box-shadow:0 1px 0 var(--line);transition:transform .25s,opacity .25s,box-shadow .25s;min-height:150px}
+.sku:hover{transform:translateY(-3px);box-shadow:0 12px 24px rgba(0,0,0,.08)}
+.sku.off{display:none}
+.sku .id{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--mut)}
+.sku .id b{font-family:var(--disp);font-stretch:75%;font-size:20px;color:var(--ink)}
+.sku h4{margin:0;font-size:16px;line-height:1.2;font-weight:600}
+.sku .cw{display:flex;gap:4px;align-items:center;font-size:12px;color:var(--mut)}
+.sku .cw i{width:14px;height:14px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)}
+.sku .pr{margin-top:auto;display:flex;flex-wrap:wrap;gap:2px 8px;justify-content:space-between;align-items:baseline;font-size:13px}
+.sku .pr b{font-size:17px}
+.rt{display:inline-block;font-size:11px;border-radius:999px;padding:3px 8px;background:var(--soft);color:var(--ink)}
+.rt.core{background:#dce9df}.rt.seasonal{background:#f6e7b5}.rt.fashion{background:#e3dcf5}.rt.statement{background:#f3cbd6}.rt.occasion{background:#f4d9c4}.rt.accessible{background:#d7e8f3}
+.tiers4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:8px}
+.t4{border:0;padding:0;background:none;text-align:left}
+.t4 .ph{aspect-ratio:3/4;border-radius:12px;overflow:hidden;background:#ddd;transition:transform .35s}
+.t4 .ph img{width:100%;height:100%;object-fit:cover}
+.t4 small{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin-top:12px}
+.t4 b{display:block;font-family:var(--disp);font-stretch:75%;font-size:24px;line-height:1.05;margin-top:2px}
+.t4 span{display:block;font-size:14px;color:var(--mut);margin-top:4px}
+.t4[aria-pressed=true] .ph{transform:translateY(-8px);box-shadow:0 0 0 3px var(--acc)}
+.strip{margin-top:40px;background:var(--card);border-radius:14px;padding:20px 22px}
+.srow{display:grid;grid-template-columns:120px minmax(0,1fr);gap:12px;align-items:center;height:46px;border-top:1px solid var(--line)}
+.srow:first-of-type{border-top:0}
+.srow .ln{position:relative;height:100%}
+.pd{position:absolute;top:50%;width:30px;height:30px;margin:-15px 0 0 -15px;border:0;background:none;padding:0;display:grid;place-items:center}
+.pd i{width:14px;height:14px;border-radius:50%;border:1px solid rgba(0,0,0,.28);background:var(--acc);box-shadow:0 0 0 3px var(--card);transition:transform .2s,opacity .2s}
+.pd.dim i{opacity:.18}
+.pd:hover i,.pd.on i{transform:scale(1.5)}
+.sax{display:grid;grid-template-columns:120px minmax(0,1fr);gap:12px;font-size:12px;color:var(--mut);margin-top:6px}
+.sax div{position:relative;height:16px}.sax span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+.sread{margin-top:14px;min-height:24px;font-size:15px}
+.looks{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:clamp(20px,4vw,56px);align-items:start}
+.lk{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:12px;align-items:center;margin-top:20px}
+.lk .plus{font-family:var(--disp);font-size:40px;font-weight:900;color:var(--mango)}
+.lk .sku{min-height:170px;cursor:default}.lk .sku:hover{transform:none;box-shadow:0 1px 0 var(--line)}
+.ltot{margin-top:16px;display:flex;justify-content:space-between;align-items:baseline;border-top:2px solid var(--ink);padding-top:10px}
+.ltot b{font-family:var(--disp);font-stretch:70%;font-weight:900;font-size:clamp(30px,3.4vw,44px)}
+.lwhy{margin-top:12px;font-size:16px}
+.board{display:grid;grid-template-columns:1fr 1.3fr 1.6fr .9fr;gap:12px;margin-top:clamp(48px,6vw,80px);align-items:end}
+.board img{width:100%;border-radius:10px;object-fit:cover;transition:transform .4s}
+.board img:hover{transform:translateY(-6px) rotate(-.6deg)}
+.board .dp{background:transparent;filter:drop-shadow(0 18px 18px rgba(0,0,0,.18));align-self:start;animation:sway 6s ease-in-out infinite;transform-origin:50% 0}
+@keyframes sway{50%{transform:rotate(2.5deg)}}
+.big3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:30px}
+.big3 div{background:var(--card);border-radius:14px;padding:22px}
+.big3 b{display:block;font-family:var(--disp);font-weight:900;font-stretch:62%;font-size:clamp(70px,9vw,128px);line-height:.85;color:var(--acc)}
+.opps{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.opps span{border:1px solid var(--ink);border-radius:999px;padding:7px 13px;font-size:14px}
+.note{margin-top:22px;font-size:13px;color:var(--mut);max-width:80ch}
+@media(max-width:900px){.sunhero,.mood,.looks{grid-template-columns:minmax(0,1fr)}.tiers4{grid-template-columns:repeat(2,minmax(0,1fr))}.board{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.stat4{grid-template-columns:repeat(2,minmax(0,1fr))}.dist button{grid-template-columns:110px minmax(0,1fr);font-size:13px}.srow,.sax{grid-template-columns:78px minmax(0,1fr)}.srow{font-size:13px}.big3{grid-template-columns:minmax(0,1fr)}.lk{grid-template-columns:minmax(0,1fr)}.lk .plus{text-align:center;line-height:.6}.skus{grid-template-columns:repeat(2,minmax(0,1fr))}.sku{min-height:140px;padding:12px}.sku h4{font-size:14px}}
 @media(max-width:900px){
  .hero,.hd2,.styles,.sari,.tiers,.stores,.mq,.camp,.bnote,.geo{grid-template-columns:minmax(0,1fr)}
  .hero .ph{max-width:460px;width:100%;margin:0 auto}
@@ -322,7 +406,7 @@ body.nav .drawer{transform:none}body.nav .scrim{opacity:1;pointer-events:auto}
 </header>
 
 <nav class="jump" id="jump" aria-label="Sections">
- <a href="#overview">Overview</a><a href="#collections">Collections</a><a href="#calendar">Calendar</a><a href="#products">Products &amp; price</a><a href="#retail">Retail</a><a href="#digital">Website</a><a href="#craft">Craft</a><a href="#findings">Findings</a><a href="#campaign">Campaign</a>
+ <a href="#overview">Overview</a><a href="#collections">Collections</a><a href="#calendar">Calendar</a><a href="#products">Products &amp; price</a><a href="#retail">Retail</a><a href="#digital">Website</a><a href="#craft">Craft</a><a href="#findings">Findings</a><a href="#campaign">Campaign</a><a href="#assortment">Assortment plan</a><a href="#plan">Planning sheet</a><a href="#tiers">Price tiers</a><a href="#looks">Looks</a>
 </nav>
 
 <!-- overview -->
@@ -474,12 +558,90 @@ body.nav .drawer{transform:none}body.nav .scrim{opacity:1;pointer-events:auto}
  </div>
 </section>
 
+<!-- assortment plan -->
+<section class="sec sun" id="assortment">
+ <div class="wrap">
+  <div class="sunhero">
+   <div>
+    <div class="kick"><b></b>Summer 2026 merchandise assortment plan</div>
+    <h2>The Sun Returns</h2>
+    <p class="lede" style="margin-top:18px">A proposed summer range for Raw Mango. The sun returns and the natural world rises with it: florals, birds and plants catch the light. The plan turns that idea into a 30-style assortment, built on breathable handloom textiles, lightness and movement.</p>
+    <div class="stat4"><div><b>30</b>proposed styles</div><div><b>6</b>categories</div><div><b>₹7.8k–1.5L</b>indicative price span</div><div><b>5</b>coordinated looks</div></div>
+   </div>
+   <div class="sunart"><img class="s" src="img/sp/sun.webp" alt="" aria-hidden="true"><img class="b" src="img/sp/bot.webp" alt="" aria-hidden="true"></div>
+  </div>
+
+  <div class="mood">
+   <div><img class="z" src="img/sp/mood.webp" alt="The Sun Returns moodboard: warm light, botanical references, handloom textures, flowing silhouettes and a colour palette"><p class="mlab">Moodboard. Warm summer light, Indian botanical references, airy fabrics and close-ups of handloom texture.</p></div>
+   <div>
+    <h3>Palette</h3>
+    <p class="mut" style="font-size:14px;margin-top:6px">Pick a colour to see which styles carry it.</p>
+    <div class="sw" id="sw"></div>
+    <h3>Mood</h3>
+    <div class="chips"><span>Breathable</span><span>Tactile</span><span>Organic</span><span>Considered</span><span>Contemporary</span><span>Craft-led</span></div>
+    <h3 style="margin-top:22px">Motifs &amp; materials</h3>
+    <div class="chips"><span>Birds</span><span>Florals</span><span>Botanical</span><span>Sun</span></div>
+    <p style="margin-top:12px;font-size:15px">Chanderi, Venkatagiri cotton, cotton-silk blends, organza, silk satin and tissue, worked with extra-weft, tone-on-tone embroidery and appliqué.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="sec" id="plan">
+ <div class="wrap">
+  <div class="hd2"><div><div class="kick"><b></b>Style distribution &amp; planning sheet</div><h2>Thirty styles, each with a job</h2></div><p class="lede">Saris anchor the range. Select a category, a merchandise role or a colour to filter the planning sheet, then sort by price.</p></div>
+  <div class="dist" id="dist"></div>
+  <div class="fbar" id="roles"><span class="lbl">Role</span></div>
+  <div class="fbar" style="margin-top:0"><span class="lbl">Sort</span><button id="srt" aria-pressed="false">Price: low to high</button><button id="clr">Clear filters</button></div>
+  <div class="sum" id="sum" aria-live="polite"></div>
+  <div class="skus" id="skus"></div>
+  <p class="note">Dresses D01–D03 appear in the merchandise plan but have no planning-sheet row, so they carry no price. Kurtas come in S–L with a custom option; odhanis are free size.</p>
+ </div>
+</section>
+
+<section class="sec alt" id="tiers">
+ <div class="wrap">
+  <div class="hd2"><div><div class="kick"><b></b>Pricing strategy</div><h2>Four steps, one premium position</h2></div><p class="lede">A stepped structure gives customers a range of ways to buy in while the brand stays premium. Pick a tier to light up its styles on the price map.</p></div>
+  <div class="tiers4" id="t4"></div>
+  <div class="strip" id="strip"><div id="srows"></div><div class="sax" id="sax"><i></i><div></div></div><p class="sread" id="sread" aria-live="polite">Hover or tap a dot to read a style.</p></div>
+ </div>
+</section>
+
+<section class="sec" id="looks">
+ <div class="wrap">
+  <div class="looks">
+   <div>
+    <div class="kick"><b></b>Coordinated looks</div>
+    <h2>Pairs that make the range easier to buy</h2>
+    <p class="lede" style="margin:14px 0 20px">Each look pairs a hero piece with a second style, so customers build a complete outfit instead of buying one piece.</p>
+    <div class="pills" id="ltabs" role="tablist" aria-label="Looks"></div>
+   </div>
+   <div><div class="lk" id="lk"></div><div class="ltot" id="ltot"></div><p class="lwhy" id="lwhy"></p></div>
+  </div>
+  <div class="board">
+   <img class="z" src="img/sp/board1.webp" alt="Chartreuse sari with a bow-tied blouse and pearl strands">
+   <img class="z" src="img/sp/board2.webp" alt="Blush floral sari with a halter blouse, seen from the back">
+   <img class="z" src="img/sp/board3.webp" alt="Green and yellow striped organza lehenga in motion">
+   <img class="dp" src="img/sp/dup.webp" alt="Sheer lime dupatta on a hanger">
+  </div>
+  <p class="mlab">Visual collection assortment board.</p>
+
+  <div class="hd2" style="margin-top:clamp(64px,8vw,110px)"><div><div class="kick"><b></b>Conclusion</div><h2>A textile-led range, planned with purpose</h2></div><p class="lede">Saris stay the recognisable base; modern separates and occasionwear extend the textile story; seasonal lightness and statement pieces add newness. The mix builds brand consistency, choice and cross-selling without mass-market product logic.</p></div>
+  <div class="big3"><div><b data-n="30">30</b>styles across six categories</div><div><b data-n="10">10</b>saris form the core of the range</div><div><b data-n="5">5</b>coordinated looks drive cross-selling</div></div>
+  <h3 style="margin-top:34px">Commercial opportunities</h3>
+  <div class="opps"><span>Sari + blouse + stole</span><span>Dress + stole styling</span><span>Lehenga + dupatta</span><span>Coordinated sets</span><span>Colourway choice</span><span>Signature high-value pieces</span></div>
+  <p class="note">Prices are an academic proposal, informed by Raw Mango's premium positioning and examples observed on its website. They are not the brand's official price architecture. Fabric assignments per style are illustrative.</p>
+ </div>
+</section>
+
 <!-- sources -->
 <section class="sec" id="sources" style="padding-top:0">
  <div class="wrap">
   <details class="src" style="margin-top:64px"><summary>Research sources</summary><ul>
    <li>Architectural Digest India (2019, Sept 13). Raw Mango's newly opened store in Delhi is as enigmatic as the brand.</li>
    <li>Fashion Design Council of India (n.d.). Sanjay Garg.</li>
+   <li>London Fashion Week (n.d.). Raw Mango. londonfashionweek.co.uk.</li>
+   <li>Raw Mango (n.d.). Summer 2026 collection. rawmango.com/collections/summer-2026.</li>
    <li>Indulge Express (2026, May 22). Sanjay Garg explores the future of summer luxury through Indian cotton and handwoven textiles.</li>
    <li>Laisram, R. (2022, June 18). Raw Mango now finally has a store in Chennai! Indulge Express.</li>
    <li>Raw Mango (n.d.). Campaigns; Raw Mango; Saaras. rawmango.com, retrieved October 16, 2026.</li>
@@ -674,6 +836,111 @@ function storyTick(t){if(!run)return;if(!st)st=t;const p=Math.min(1,(t-st)/2600)
 new IntersectionObserver(([e])=>{const was=run;run=e.isIntersecting&&!RM;if(run&&!was){st=0;requestAnimationFrame(storyTick)}}).observe($('.phone'));
 if(RM)bars.forEach(b=>b.style.width='100%');
 
+
+/* assortment plan */
+{
+const CO={ivory:'#EEE6D3',blush:'#E8B8AC',green:'#5E8A4A',natural:'#D8C9AC',indigo:'#2F3E6E','pale gold':'#D9C27F','soft pink':'#EBBBC6','muted green':'#8EA182','soft yellow':'#EED67C',pink:'#E39AB0',sage:'#A7B897','deep pink':'#B5305F',gold:'#C9A03A','leaf green':'#4F8A3A','deep green':'#24543A'};
+const PAL=[['Natural / ivory',['ivory','natural']],['Blush',['blush','soft pink','pink']],['Sage / leaf green',['sage','green','leaf green','muted green','deep green']],['Indigo',['indigo']],['Soft yellow',['soft yellow','pale gold','gold']],['Deep pink',['deep pink']]];
+const PC=['#EEE6D3','#E8B8AC','#8FAA7C','#2F3E6E','#EED67C','#B5305F'];
+const CAT={S:'Saris',K:'Kurtas',B:'Blouses & shirts',D:'Dresses',O:'Lehengas & occasionwear',A:'Stoles & dupattas'};
+const SC={S:'Sari',K:'Kurta',B:'Blouse / shirt',D:'Dress',O:'Occasionwear',A:'Stole / dupatta'};
+const RL={core:'Core',seasonal:'Seasonal',fashion:'Fashion-forward',statement:'Statement',occasion:'Occasion',accessible:'Accessible entry'};
+// id, name, colourway, fabric, price, roles
+const K=[
+['S01','Signature botanical sari','ivory/blush','Chanderi',59800,'core'],
+['S02','Woven-motif sari','green/natural','Venkatagiri cotton',49800,'core'],
+['S03','Minimal solid-border sari','indigo/ivory','Cotton-silk',39800,'core'],
+['S04','Sheer statement sari','blush/pale gold','Organza',79800,'statement'],
+['S05','Botanical sari','natural/soft pink','Chanderi',69800,'core'],
+['S06','Geometric sari','indigo/muted green','Cotton-silk',49800,'core'],
+['S07','Lightweight summer sari','soft yellow/ivory','Cotton',29800,'seasonal'],
+['S08','Appliqué sari','ivory/pink','Organza',89800,'fashion'],
+['S09','Textured sari','natural/sage','Chanderi',59800,'core'],
+['S10','Statement sari','deep pink/ivory','Cotton-silk',99800,'statement'],
+['K01','Straight summer kurta','ivory/sage','Cotton',24800,'seasonal'],
+['K02','Woven-motif kurta','indigo/natural','Venkatagiri cotton',34800,'core'],
+['K03','Long summer kurta','soft yellow/ivory','Cotton-silk',29800,'seasonal'],
+['K04','Tonal embroidered kurta','blush/ivory','Chanderi',39800,'fashion'],
+['K05','Occasion kurta','deep green/natural','Silk-cotton blend',49800,'statement'],
+['B01','Classic blouse','ivory/blush','Cotton-silk',12800,'accessible'],
+['B02','Woven-border blouse','indigo/natural','Chanderi',16800,'core'],
+['B03','Minimal sleeveless top','ivory/sage','Cotton',9800,'seasonal accessible'],
+['B04','Structured blouse','deep pink/ivory','Silk satin',24800,'statement'],
+['B05','Relaxed shirt','natural/indigo','Cotton',19800,'seasonal'],
+['D01','Cotton day dress','','Cotton',0,'seasonal'],
+['D02','Botanical dress','','Cotton-silk',0,'fashion'],
+['D03','Overlay dress','','Organza',0,'statement'],
+['O01','Lightweight lehenga set','blush/ivory','Cotton-silk',89800,'occasion seasonal'],
+['O02','Woven statement lehenga','deep pink/natural','Chanderi',119800,'statement'],
+['O03','Tonal festive set','leaf green/ivory','Silk-cotton blend',99800,'occasion'],
+['O04','Embellished occasion set','deep pink/gold','Tissue',149800,'statement'],
+['A01','Lightweight stole','ivory/sage','Cotton',7800,'accessible'],
+['A02','Sheer dupatta','blush/ivory','Organza',12800,'accessible'],
+['A03','Woven dupatta','indigo/natural','Chanderi',18800,'core']
+].map(([id,n,c,f,p,r])=>({id,n,c:c?c.split('/'):[],f,p,r:r.split(' '),k:id[0]}));
+const by=Object.fromEntries(K.map(x=>[x.id,x]));
+const rs=p=>p?'₹'+p.toLocaleString('en-IN'):'Price not set';
+const card=(x,tag='button')=>`<${tag} class="sku" data-id="${x.id}"><span class="id"><b>${x.id}</b>${x.r.map(r=>`<span class="rt ${r}">${RL[r]}</span>`).join(' ')}</span><h4>${x.n}</h4><span class="cw">${x.c.map(c=>`<i style="background:${CO[c]}" title="${c}"></i>`).join('')}${x.c.length?x.c.join(' / '):'Colourway open'}</span><span class="cw">${x.f}</span><span class="pr"><span class="mut">${SC[x.k]}</span><b>${rs(x.p)}</b></span></${tag}>`;
+
+const F=Object.assign({cat:null,role:null,col:null,sort:false},store.get('asf')||{});
+const sk=$('#skus');sk.innerHTML=K.map(x=>card(x)).join('');
+$$('.sku',sk).forEach(b=>b.onclick=()=>{const x=by[b.dataset.id];pickDot(x.id,true);$('#tiers').scrollIntoView({behavior:RM?'auto':'smooth'})});
+// category bars
+const cnt={};K.forEach(x=>cnt[x.k]=(cnt[x.k]||0)+1);
+$('#dist').innerHTML=Object.keys(CAT).map(k=>`<button data-k="${k}" aria-pressed="false"><span>${CAT[k]}</span><span class="tr"><span class="br" data-w="${cnt[k]/30*100}">${cnt[k]}</span></span></button>`).join('')+`<button disabled style="cursor:default"><span><b>Total</b></span><span class="tr"><span class="br" data-w="100" style="background:var(--ink);color:#fff">30 styles</span></span></button>`;
+$$('#dist .br').forEach(b=>b.style.width=RM?`max(${b.dataset.w}%,44px)`:'0');
+new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){$$('#dist .br').forEach((b,i)=>setTimeout(()=>b.style.width=`max(${b.dataset.w}%,44px)`,RM?0:i*70));o.disconnect()}}),{threshold:.3}).observe($('#dist'));
+$$('#dist button[data-k]').forEach(b=>b.onclick=()=>{F.cat=F.cat===b.dataset.k?null:b.dataset.k;apply()});
+// roles
+$('#roles').insertAdjacentHTML('beforeend',Object.entries(RL).map(([k,v])=>`<button data-r="${k}" aria-pressed="false"><span class="rt ${k}" style="margin-right:6px;padding:2px 6px">&nbsp;</span>${v}</button>`).join(''));
+$$('#roles button').forEach(b=>b.onclick=()=>{F.role=F.role===b.dataset.r?null:b.dataset.r;apply()});
+// palette
+$('#sw').innerHTML=PAL.map(([n],i)=>`<button data-i="${i}" aria-pressed="false"><i style="background:${PC[i]}"></i>${n}</button>`).join('');
+$$('#sw button').forEach(b=>b.onclick=()=>{F.col=F.col===+b.dataset.i?null:+b.dataset.i;apply();$('#plan').scrollIntoView({behavior:RM?'auto':'smooth'})});
+$('#srt').onclick=()=>{F.sort=!F.sort;apply()};
+$('#clr').onclick=()=>{F.cat=F.role=F.col=null;F.sort=false;apply()};
+const ok=x=>(!F.cat||x.k===F.cat)&&(!F.role||x.r.includes(F.role))&&(F.col==null||x.c.some(c=>PAL[F.col][1].includes(c)));
+function apply(){
+ const vis=K.filter(ok);
+ $$('.sku',sk).forEach(b=>b.classList.toggle('off',!ok(by[b.dataset.id])));
+ const order=F.sort?[...K].sort((a,b)=>(a.p||1e9)-(b.p||1e9)):K;order.forEach(x=>sk.appendChild($(`.sku[data-id="${x.id}"]`,sk)));
+ $$('#dist button[data-k]').forEach(b=>b.setAttribute('aria-pressed',F.cat===b.dataset.k));
+ $$('#roles button').forEach(b=>b.setAttribute('aria-pressed',F.role===b.dataset.r));
+ $$('#sw button').forEach(b=>b.setAttribute('aria-pressed',F.col===+b.dataset.i));
+ $('#srt').setAttribute('aria-pressed',F.sort);
+ const pr=vis.filter(x=>x.p).map(x=>x.p);
+ $('#sum').innerHTML=`<span><b>${vis.length}</b> of 30 styles</span>`+(pr.length?`<span>From <b>${rs(Math.min(...pr))}</b> to <b>${rs(Math.max(...pr))}</b></span>`:'')+([F.cat&&CAT[F.cat],F.role&&RL[F.role],F.col!=null&&PAL[F.col][0]].filter(Boolean).map(t=>`<span>· ${t}</span>`).join(''));
+ store.set('asf',F);
+}
+apply();
+
+// tiers + price map
+const T=[['Tier 1 · Entry','Selected blouses and stoles','tier1','Striped sheer stole held open',x=>x.r.includes('accessible')],
+['Tier 2 · Core','Kurtas, simpler saris','tier2','Model in a striped blue and green sari',x=>x.k==='K'&&!x.r.includes('statement')&&!x.r.includes('fashion')||x.k==='S'&&x.p<=49800],
+['Tier 3 · Premium','Chanderi and organza saris, embroidered pieces, elaborate dresses','tier3','Model in a printed yellow sari among leaves',x=>x.k==='S'&&x.p>49800&&!x.r.includes('statement')||x.id==='K04'||x.k==='D'&&x.id!=='D01'],
+['Tier 4 · Statement','Lehengas and occasionwear with complex material or design','tier4','Pink and gold pleated lehenga with a sheer drape',x=>x.k==='O'||x.r.includes('statement')]];
+$('#t4').innerHTML=T.map(([a,b,im,alt],i)=>`<button class="t4" data-i="${i}" aria-pressed="false"><div class="ph"><img src="img/sp/${im}.webp" alt="${alt}" loading="lazy"></div><small>${a}</small><b>${a.split('· ')[1]}</b><span>${b}</span></button>`).join('');
+const lo=Math.log(7000),hi=Math.log(160000),px=p=>(Math.log(p)-lo)/(hi-lo)*100;
+$('#srows').innerHTML=['S','K','B','O','A'].map(k=>`<div class="srow"><span>${CAT[k].split(' &')[0]}</span><div class="ln">${K.filter(x=>x.k===k).map(x=>`<button class="pd" data-id="${x.id}" style="left:${px(x.p)}%" aria-label="${x.id} ${x.n}, ${rs(x.p)}"><i style="background:${x.c.length?CO[x.c[0]]:'#999'};box-shadow:0 0 0 2px var(--card),0 0 0 3px ${x.c[1]?CO[x.c[1]]:'#999'}"></i></button>`).join('')}</div></div>`).join('');
+$('#sax div').innerHTML=[7800,15000,30000,60000,100000,149800].map(p=>`<span style="left:${px(p)}%">${p>=100000?'₹'+(p/100000).toFixed(p%100000?2:0).replace(/0$/,'')+'L':'₹'+p/1000+'k'}</span>`).join('');
+let tier=null;
+function pickDot(id,scroll){$$('.pd').forEach(d=>d.classList.toggle('on',d.dataset.id===id));const x=by[id];if(!x)return;$('#sread').innerHTML=`<b>${x.id} · ${x.n}</b> — ${x.f}, ${x.c.join(' / ')||'colourway open'} · <b>${rs(x.p)}</b> · ${x.r.map(r=>RL[r]).join(', ')}`}
+$$('.pd').forEach(d=>{d.onmouseenter=d.onfocus=d.onclick=()=>pickDot(d.dataset.id)});
+$$('.t4').forEach(b=>b.onclick=()=>{const i=+b.dataset.i;tier=tier===i?null:i;$$('.t4').forEach(c=>c.setAttribute('aria-pressed',+c.dataset.i===tier));
+ $$('.pd').forEach(d=>d.classList.toggle('dim',tier!=null&&!T[tier][4](by[d.dataset.id])));
+ const n=tier==null?0:K.filter(x=>x.p&&T[tier][4](x)).length;$('#sread').innerHTML=tier==null?'Hover or tap a dot to read a style.':`<b>${T[tier][0]}</b>: ${n} priced styles highlighted. Tier groupings follow the deck's category descriptions.`});
+
+// looks
+const LK=[['Signature sari','S01','B01','Pairing creates a complete look and encourages blouse variation.'],['Everyday summer','K01','B03','Light, versatile warm-weather dressing.'],['Contemporary daywear','D02','A01','Dress plus stole adds styling variation and an add-on sale.'],['Occasion','O01','A02','Lehenga set and coordinating dupatta create a complete festive look.'],['Statement textile','S08','B04','Experimental appliqué sari and structured blouse build a distinctive look.']];
+$('#ltabs').innerHTML=LK.map((l,i)=>`<button role="tab" data-i="${i}" aria-selected="false">Look ${i+1}</button>`).join('');
+function look(i){const [n,a,b,w]=LK[i];$$('#ltabs button').forEach(t=>t.setAttribute('aria-selected',+t.dataset.i===i));
+ $('#lk').innerHTML=card(by[a],'div')+'<span class="plus" aria-hidden="true">+</span>'+card(by[b],'div');
+ const A=by[a],B=by[b];$('#ltot').innerHTML=`<span>Look ${i+1} · ${n}</span><b>${A.p&&B.p?rs(A.p+B.p):rs(B.p)+' +'}</b>`;
+ $('#lwhy').textContent=w+(A.p?'':` ${A.id} has no price in the plan, so only the ${B.id} add-on is counted.`);store.set('look',i)}
+$$('#ltabs button').forEach(t=>t.onclick=()=>look(+t.dataset.i));look(Math.min(4,+(store.get('look')||0)));
+// count-up
+const bs=$$('.big3 b');new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting&&!RM){bs.forEach(b=>{const n=+b.dataset.n,t0=performance.now();const f=t=>{const k=Math.min(1,(t-t0)/900);b.textContent=Math.round(n*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)};requestAnimationFrame(f)});o.disconnect()}}),{threshold:.5}).observe($('.big3'));
+}
 
 }
 </script>

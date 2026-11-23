@@ -74,7 +74,7 @@ body.sketch .c img{opacity:0}
 .hero h1{font-size:clamp(46px,9vw,128px);font-stretch:66%}
 .hero .sub{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 40px;align-items:end}
 .hero .sub p{margin:0;max-width:46ch;font-size:17px}
-.tunnel{position:relative;perspective:900px;min-height:280px;margin:clamp(16px,3vw,36px) calc(-1*max(5vw,16px))}
+.tunnel{position:relative;overflow-x:clip;perspective:900px;min-height:280px;margin:clamp(16px,3vw,36px) calc(-1*max(5vw,16px))}
 .tunnel .c{position:absolute;left:0;top:0;border-radius:6px;will-change:transform;box-shadow:0 6px 20px rgba(0,0,0,.08)}
 .chap{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;max-width:1240px;margin:0 auto;width:100%}
 .chap a{text-decoration:none;border-top:2px solid var(--ink);padding-top:10px;font-size:14px;line-height:1.3}
@@ -122,6 +122,23 @@ body.sketch .c img{opacity:0}
 .sub3 p{margin:0;max-width:60ch}
 .diag{isolation:isolate;position:relative;height:clamp(400px,46vw,600px);max-width:1400px;margin:0 auto;touch-action:pan-y;user-select:none;cursor:grab;overflow:hidden}
 .diag .c{position:absolute;left:0;top:0;aspect-ratio:16/9;border-radius:6px;box-shadow:0 14px 34px rgba(0,0,0,.16);cursor:pointer;will-change:transform}
+.pv{max-width:1240px;width:100%;min-width:0;margin:0 auto}
+.pvst{position:relative;aspect-ratio:16/9;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 18px 44px rgba(0,0,0,.14);touch-action:pan-y;user-select:none;cursor:zoom-in}
+.pvst img{width:100%;height:100%;object-fit:contain;display:block;transition:opacity .25s,transform .35s}
+.pvst img.out{opacity:0;transform:translateX(var(--dx,0))}
+.pvn{position:absolute;left:14px;top:12px;font:600 12px/1 'Inter Tight',sans-serif;background:rgba(20,20,20,.72);color:#fff;padding:6px 9px;border-radius:99px}
+.pvst .rb{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.9)}
+.pvp{left:12px}.pvx{right:12px}
+.pvbar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin:14px 0 10px}
+.pvbar .cap{margin:0;text-align:left}
+.pvbar .btn{white-space:nowrap;flex:none}
+.pvth{contain:inline-size;display:flex;gap:10px;overflow-x:auto;padding:4px 2px 12px;scroll-snap-type:x proximity}
+.pvth button{flex:0 0 auto;width:132px;padding:0;border:2px solid transparent;border-radius:5px;overflow:hidden;background:#fff;opacity:.6;transition:opacity .2s,border-color .2s;scroll-snap-align:center}
+.pvth button img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+.pvth button[aria-current=true]{opacity:1;border-color:var(--ink,#111)}
+.pvth button:hover{opacity:1}
+@media (max-width:700px){.pvth button{width:96px}.pvst .rb{display:none}}
+@media (prefers-reduced-motion:reduce){.pvst img{transition:none}}
 .story{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;max-width:1240px;margin:0 auto;perspective:1000px}
 .story button{padding:0;border:0;background:none;text-align:left}
 .story .c{aspect-ratio:16/9;transition:transform .35s;box-shadow:0 6px 20px rgba(0,0,0,.08)}
@@ -296,7 +313,7 @@ footer p{color:var(--mut);margin:12px 0 0}
 <section class="sec" id="brand">
  <div class="head">
   <div><div class="kick"><b></b>Fashion brand management</div><h2>Raw Mango as a commercial system</h2></div>
-  <p class="lede">How does Raw Mango turn its creative identity into a collection calendar, a product hierarchy, a retail experience and a production system? Two outputs: a collection-cycle and merchandising study, and a pre-sale Instagram campaign.</p>
+  <p class="lede">How does Raw Mango turn its creative identity into a collection calendar, a product hierarchy, a retail experience and a production system? Three outputs: a collection-cycle and merchandising study, a pre-sale Instagram campaign, and a Summer 2026 merchandise assortment plan.</p>
   <a class="btn fill" href="brand.html" style="margin-top:16px;grid-column:2;justify-self:start">Open the full project →</a>
  </div>
 
@@ -312,6 +329,14 @@ footer p{color:var(--mut);margin:12px 0 0}
   <div><b>Explore the Sale</b>Call to action</div>
   <div><b>Instagram Story</b>Medium, pre-event stage</div>
   <div><b>25–45 years</b>Design-conscious shoppers</div>
+ </div>
+
+ <div class="sub3"><h3>Summer 2026 assortment plan: The Sun Returns</h3><p>A 30-style merchandise assortment for Raw Mango's summer: collection concept and moodboard, category split, a planning sheet for every style, a four-tier price structure from ₹7,800 to ₹1,49,800, and five coordinated looks.</p></div>
+ <div class="pv" id="pv">
+  <div class="pvst" aria-label="Assortment plan slides. Swipe, or use the arrows."><img id="pvimg" alt="" draggable="false"><span class="pvn" id="pvn"></span>
+   <button class="rb pvp" id="pvp" aria-label="Previous slide">←</button><button class="rb pvx" id="pvx" aria-label="Next slide">→</button></div>
+  <div class="pvbar"><div class="cap" id="pvcap" aria-live="polite"></div><button class="btn" id="pvo">Full screen</button></div>
+  <div class="pvth" id="pvth"></div>
  </div>
 
 </section>
@@ -426,6 +451,7 @@ const D={
  si:{name:'Summer internship',t:['Summer internship review: Blanco Bespoke','Month one: inside bespoke','The white shirt collection','The white shirt collection: flats','The white shirt collection: details','The white shirt collection: line-up','From research to design','Details customers ask for','Brand motif mapping','Blanco-inspired motif','Button selection','Fabric and reference board','Technical flats','Shirt detail studies','Quick sketches, clear communication','Craftsmanship made visible: learning from karigars','Understanding the bespoke workflow','Thaan, stock and resourceful material use','Store layout','Store layout: fabric walls','Month one reflection','Part II: retail, merchandising and operations','Month two: from product to retail','Building the garment catalogues','Visual merchandising shapes the product story','Visual merchandising in store','Digital store communication','Casualwear stock arrival','Creating a recognisable stock system','From datasheet to shop floor','Stock datasheet','Datasheet at work','Retail operations and styling shoot','Styling shoot','Festive campaign','Offer letter','Letter of recommendation','Certificate of internship','Final reflection']},
  cd:{name:'Raw Mango creative direction',t:['Raw Mango: creative direction','Brand overview: handloom, reread as contemporary luxury','Brand essence: tradition that keeps evolving','Brand personality: the Creator','Design aesthetic: silhouette, colour, material','Visual codes: motif, logo, image-making','Storytelling: clothes placed inside a culture','Customer persona: she wears taste, not logos','Brand identity board','Critical analysis: strong identity, honest tensions','Sources and image credits','Thank you']},
  cc:{name:'Collection cycles & merchandising',t:['Collection cycles & merchandising strategies','Brand overview and research approach','From identity to commercial system','How Raw Mango structures its collections','Collection frequency and launch patterns','Style counts by launch','Product categories and price ranges','Price architecture','Why the sari remains strategically important','Product hierarchy','Retail design: Lodhi Colony, New Delhi','Retail design: Chennai','Store locations analysis','Product displays and grouping','Mannequin styling','Digital merchandising: the website','Website: home page','Website: product grid','Website: product detail page','Website: footer','Crafts: Chanderi, Ikat, Mashru','Crafts: Sooti, Varanasi brocade, tie and dye','Key observations','Research sources','Thank you']},
+ sp:{name:'Summer 2026 assortment plan',t:['Summer 2026 merchandise assortment plan','Brand overview: Raw Mango','Collection overview: The Sun Returns','Moodboard: colour, material, motif','Style distribution: 30 proposed styles','Merchandise roles in the assortment','Planning sheet: saris','Planning sheet: kurtas and blouses','Planning sheet: occasionwear and odhanis','Pricing strategy: four tiers','Visual collection assortment board','Coordinated looks and merchandising justification','Colour, material and pricing range','Commercial opportunities and summary','Conclusion: 30 styles, 10 saris, 5 looks']},
  pp:{name:'Promotional poster',t:['Promotional poster: Raw Mango','Campaign theme and concept','Why this campaign','Instagram Story ad: Annual Online Sale','Thank you']}
 };
 const src=(k,i,th)=>`img/${k}-${th?'t':''}${String(i+1).padStart(2,'0')}.webp`;
@@ -566,6 +592,21 @@ function diagLayout(S,W,H){
 const diag=carousel($('#diag'),'cc',diagLayout,$('#diagcap'),()=>110,true);
 $('#dp').onclick=()=>diag.step(-1);$('#dn').onclick=()=>diag.step(1);
 $('#dopen').onclick=()=>openLB('cc',diag.idx());
+
+
+/* assortment plan deck viewer */
+(function(){const store={get:k=>{try{return localStorage.getItem('vb:'+k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem('vb:'+k,v)}catch(e){}}};const k='sp',n=D[k].t.length,img=$('#pvimg'),th=$('#pvth');let i=+(store.get('sp')||0)||0;if(i>=n)i=0;
+ D[k].t.forEach((t,j)=>{const b=document.createElement('button');b.setAttribute('aria-label',`Slide ${j+1}: ${t}`);b.innerHTML=`<img src="${src(k,j,1)}" alt="" loading="lazy">`;b.onclick=()=>go(j);th.appendChild(b)});
+ function go(j,first){j=(j+n)%n;const d=j>i?1:-1;const set=()=>{img.src=src(k,j);img.alt=D[k].t[j];img.classList.remove('out')};
+  if(first||RM){set()}else{img.style.setProperty('--dx',(d*-24)+'px');img.classList.add('out');setTimeout(set,180)}
+  i=j;store.set('sp',j);$('#pvn').textContent=`${j+1} / ${n}`;$('#pvcap').innerHTML=`<b>${D[k].t[j]}</b>`;
+  th.querySelectorAll('button').forEach((b,x)=>b.setAttribute('aria-current',x===j));const b=th.children[j];th.scrollTo({left:b.offsetLeft-th.clientWidth/2+b.offsetWidth/2,behavior:first||RM?'auto':'smooth'});
+  [1,-1].forEach(s=>{const im=new Image();im.src=src(k,(j+s+n)%n)})}
+ $('#pvp').onclick=e=>{e.stopPropagation();go(i-1)};$('#pvx').onclick=e=>{e.stopPropagation();go(i+1)};$('#pvo').onclick=()=>openLB(k,i);
+ const st=$('.pvst');let x0=null,moved=false;st.addEventListener('pointerdown',e=>{x0=e.clientX;moved=false});
+ st.addEventListener('pointerup',e=>{if(x0==null)return;const dx=e.clientX-x0;x0=null;if(Math.abs(dx)>40){moved=true;go(i+(dx<0?1:-1))}});
+ st.addEventListener('click',e=>{if(!moved&&!e.target.closest('button'))openLB(k,i)});
+ KB.push({el:st,prev:()=>go(i-1),next:()=>go(i+1)});go(i,true)})();
 
 /* room (styling) */
 let si=0;const sn=D.cd.t.length;
