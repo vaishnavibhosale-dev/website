@@ -148,12 +148,20 @@ body.nav .drawer{transform:none}body.nav .scrim{opacity:1;pointer-events:auto}
 
 /* retail */
 .stores{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:start}
-.sgal{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:10px;height:clamp(380px,46vw,560px)}
-.sgal img{width:100%;height:100%;object-fit:cover;border-radius:10px}
-.sgal img:first-child{grid-row:span 2}
-.cities{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
-.cities span{font-size:14px;padding:7px 12px;border-radius:999px;background:var(--soft)}
-.cities span.on{background:var(--acc);color:#fff}
+.sgal{display:flex;flex-direction:column;gap:10px}
+.smain{position:relative;aspect-ratio:4/3;border-radius:12px;overflow:hidden;background:#e4e1da;touch-action:pan-y}
+.smain img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .4s}
+.snav{position:absolute;top:50%;translate:0 -50%;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.9);font-size:18px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+.snav.p{left:12px}.snav.n{right:12px}
+.scount{position:absolute;left:12px;bottom:12px;background:rgba(20,20,20,.75);color:#fff;border-radius:999px;padding:5px 11px;font-size:12px}
+.scredit{position:absolute;right:12px;bottom:12px;background:rgba(255,255,255,.85);border-radius:999px;padding:4px 10px;font-size:11px}
+.sthumbs{display:flex;gap:8px;overflow-x:auto;padding:2px;scrollbar-width:thin}
+.sthumbs button{flex:none;width:92px;aspect-ratio:4/3;border:2px solid transparent;border-radius:8px;overflow:hidden;padding:0;background:#e4e1da}
+.sthumbs button.on{border-color:var(--acc)}
+.sthumbs img{width:100%;height:100%;object-fit:cover}
+.addr{margin-top:20px;display:flex;flex-direction:column;gap:12px}
+.addr div{border-top:1px solid var(--line);padding-top:10px;font-size:15px}
+.addr b{display:block;font-family:var(--disp);font-stretch:78%;font-size:19px}
 .grp{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:36px}
 .gc{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:3/4;background:#222;color:#fff}
 .gc img{width:100%;height:100%;object-fit:cover;transition:transform .6s,filter .4s}
@@ -402,9 +410,8 @@ body.nav .drawer{transform:none}body.nav .scrim{opacity:1;pointer-events:auto}
   <div class="stores">
    <div class="sgal" id="sgal"></div>
    <div><h3 id="stitle"></h3><p class="lede" id="stext" style="margin-top:10px;font-size:16px"></p>
-    <div class="kick" style="margin-top:28px"><b></b>Store locations</div>
-    <div class="cities" id="cities"></div>
-    <p class="mut" style="margin-top:14px;font-size:15px">Across cities the stores share one philosophy: local architecture, contemporary minimal interiors, custom furniture and uncluttered displays that keep the textiles in focus.</p>
+    <div class="addr" id="saddr"></div>
+    <p class="mut" style="margin-top:18px;font-size:15px">Across cities the stores share one philosophy: local architecture, contemporary minimal interiors, custom furniture and uncluttered displays that keep the textiles in focus.</p>
    </div>
   </div>
   <h3 style="margin-top:72px">Product displays and grouping</h3>
@@ -492,7 +499,7 @@ body.nav .drawer{transform:none}body.nav .scrim{opacity:1;pointer-events:auto}
    <li>Vogue India (2022, June 24). Raw Mango drops anchor in Chennai.</li>
    <li>Vogue (2026, Feb 23). India's most directional luxury label just made its London Fashion Week debut.</li>
   </ul></details>
-  <p class="credit">Photographs of Raw Mango products, stores and website belong to Raw Mango and the publications above, and appear here for academic research.</p>
+  <p class="credit">Photographs of Raw Mango products, stores and website belong to Raw Mango and the publications above, and appear here for academic research. Store photographs marked “Photo: Raw Mango” load from rawmango.com.</p>
   <div class="next"><span class="mut">Next project</span><a href="index.html#cutting">Cutting-edge fashion →</a></div>
  </div>
 </section>
@@ -599,14 +606,31 @@ function pickTier(i){$$('#pyr button').forEach((b,j)=>b.setAttribute('aria-press
 $('#pyr').addEventListener('click',e=>{const b=e.target.closest('button');if(b)pickTier(+b.dataset.i)});pickTier(0);
 
 /* stores */
-const SR=[{n:'Lodhi Colony, New Delhi',k:'New Delhi',imgs:['lodhi1','lodhi2','lodhi3'],t:'Old residential architecture with modern, minimal interiors. Custom furniture, display platforms, a sculptural staircase and a large metal table give the space character, while simple colours and uncluttered displays keep the focus on the handwoven garments: a calm, gallery-like shopping experience.'},
- {n:'Chennai',k:'Chennai',imgs:['chennai1','chennai2','chennai3'],t:'An old residential bungalow combining Tamil architectural details with Art Deco elements and modern design. Original floors, wooden doors and window grills are kept; carved ceilings, antique objects and custom cupboards add character. Across two floors, separate rooms hold different collections, displayed like pieces of art.'}];
+const RMI=f=>'https://rawmango.com/cdn/shop/files/'+f+'?width=1200';
+const SR=[
+ {n:'New Delhi',own:['lodhi1','lodhi2','lodhi3'],web:['D-1.png','M-4.png','D-3.png','D-4.png'],t:'Lodhi Colony pairs old residential architecture with modern, minimal interiors. Custom furniture, display platforms, a sculptural staircase and a large metal table give the space character, while simple colours and uncluttered displays keep the focus on the handwoven garments: a calm, gallery-like shopping experience.',a:[['Lodhi','31, Lodhi Colony Market, New Delhi 110003'],['Chhatarpur','Angoori Badi, Farm 2, Road AA, Ansal Villas, Satbadi, Chhatarpur, New Delhi 110074']]},
+ {n:'Chennai',own:['chennai1','chennai2','chennai3'],web:['C-1.png','C-2.png','C-3.png','C-4_fc9acf33-4959-4c29-b732-0d490f8d7469.png'],t:'An old residential bungalow combining Tamil architectural details with Art Deco elements and modern design. Original floors, wooden doors and window grills are kept; carved ceilings, antique objects and custom cupboards add character. Across two floors, separate rooms hold different collections, displayed like pieces of art.',a:[['Teynampet','Malligai, No. 2/15 Cenotaph 1st Lane, Ganapathy Colony Main Road, Teynampet, Chennai 600018']]},
+ {n:'Mumbai',own:[],web:['M-1.png','M-2.png','M-3.png'],t:'',a:[['Colaba','1, Reay House, BEST Marg, Colaba, Mumbai 400001']]},
+ {n:'Bengaluru',own:[],web:['B-1.png','B-2.png','B-3.png','B-4.png'],t:'',a:[['Lavelle Road','5 & 6, Walton Road, Bengaluru 560001']]},
+ {n:'Hyderabad',own:[],web:['1683034483_919352.jpg','Screenshot_2023-05-25_at_7.39.00_PM.png','Screenshot_2023-05-25_at_7.41.02_PM.png','Screenshot_2023-05-25_at_7.41.12_PM.png'],t:'',a:[['Banjara Hills','6-3-250/1, Road Number 1, Ahmed Nagar, Banjara Hills, Hyderabad 500034']]},
+ {n:'Kolkata',own:[],web:['1-1.jpg','9_2.jpg','6-1.jpg'],t:'',a:[['Ballygunge','36B, Pankaj Mullick Sarani, Kolkata 700019']]}];
 $('#stabs').innerHTML=SR.map((s,i)=>`<button role="tab" data-i="${i}">${s.n}</button>`).join('');
-$('#cities').innerHTML=['Bengaluru','Chennai','Hyderabad','Kolkata','Mumbai','New Delhi'].map(c=>`<span data-c="${c}">${c}</span>`).join('');
-function pickStore(i){const s=SR[i];$$('#stabs button').forEach((b,j)=>b.setAttribute('aria-selected',j===i));
- $('#sgal').innerHTML=s.imgs.map(n=>`<img class="z" src="img/rm/${n}.webp" alt="${esc(s.n)} store">`).join('');
- $('#stitle').textContent=s.n;$('#stext').textContent=s.t;$$('#cities span').forEach(c=>c.classList.toggle('on',c.dataset.c===s.k))}
-$('#stabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b)pickStore(+b.dataset.i)});pickStore(0);
+let sIdx=0,pIdx=0;
+const photos=s=>s.own.map(n=>({src:'img/rm/'+n+'.webp',web:0})).concat(s.web.map(f=>({src:RMI(f),web:1})));
+function drawPhoto(){const s=SR[sIdx],ph=photos(s),p=ph[pIdx];
+ $('#smimg').src=p.src;$('#smimg').alt=s.n+' store, photo '+(pIdx+1);$('#scount').textContent=(pIdx+1)+' / '+ph.length;$('#scred').textContent=p.web?'Photo: Raw Mango':'From my research';
+ $$('#sthumbs button').forEach((b,j)=>b.classList.toggle('on',j===pIdx));const t=$$('#sthumbs button')[pIdx];if(t){const r=$('#sthumbs');r.scrollTo({left:t.offsetLeft-r.clientWidth/2+46,behavior:'auto'})}}
+function stepPhoto(d){const n=photos(SR[sIdx]).length;pIdx=(pIdx+d+n)%n;drawPhoto()}
+function pickStore(i){sIdx=i;pIdx=0;const s=SR[i];store.set('store',{i});$$('#stabs button').forEach((b,j)=>b.setAttribute('aria-selected',j===i));
+ $('#sgal').innerHTML=`<div class="smain" id="smain"><img class="z" id="smimg" alt=""><button class="snav p" aria-label="Previous photo">←</button><button class="snav n" aria-label="Next photo">→</button><span class="scount" id="scount"></span><span class="scredit" id="scred"></span></div><div class="sthumbs" id="sthumbs">${photos(s).map((p,j)=>`<button aria-label="Photo ${j+1}"><img src="${p.src}" alt="" loading="lazy"></button>`).join('')}</div>`;
+ $('.snav.p').onclick=()=>stepPhoto(-1);$('.snav.n').onclick=()=>stepPhoto(1);
+ $$('#sthumbs button').forEach((b,j)=>b.onclick=()=>{pIdx=j;drawPhoto()});
+ let sx=null;const m=$('#smain');m.addEventListener('pointerdown',e=>sx=e.clientX);m.addEventListener('pointerup',e=>{if(sx!==null&&Math.abs(e.clientX-sx)>40)stepPhoto(e.clientX<sx?1:-1);sx=null});
+ $('#stitle').textContent=s.n;$('#stext').textContent=s.t||'Photographs from Raw Mango’s own store pages. All stores are open 11 am – 7 pm, every day.';
+ $('#saddr').innerHTML=s.a.map(x=>`<div><b>${esc(x[0])}</b>${esc(x[1])}</div>`).join('');drawPhoto()}
+$('#stabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b)pickStore(+b.dataset.i)});
+addEventListener('keydown',e=>{if((e.key!=='ArrowLeft'&&e.key!=='ArrowRight')||$('#lb').classList.contains('open'))return;const r=$('#sgal').getBoundingClientRect();if(r.top>innerHeight*.6||r.bottom<innerHeight*.3)return;e.preventDefault();stepPhoto(e.key==='ArrowRight'?1:-1)});
+pickStore(Math.min(SR.length-1,(store.get('store')||{}).i||0));
 const MQ=[['Drape','How the sari falls and where the border sits, since the border is often the main brand signature.',20,52],['Coordination','How blouse, sari and jewellery mix and match, and how different garments come together.',47,46],['Silhouette','How the garment’s volume, folds and proportions appear when worn.',78,52]];
 $('#mqlist').innerHTML=MQ.map((m,i)=>`<button data-i="${i}"><b>${m[0]}</b><span>${esc(m[1])}</span></button>`).join('');
 $('#mqph').insertAdjacentHTML('beforeend',MQ.map((m,i)=>`<button class="hs" data-i="${i}" style="left:${m[2]}%;top:${m[3]}%" aria-label="${m[0]}"><span></span></button>`).join(''));
