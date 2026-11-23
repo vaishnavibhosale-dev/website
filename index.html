@@ -56,6 +56,7 @@ h3{font-family:var(--disp);font-stretch:80%;font-weight:700;font-size:clamp(22px
 .btn.fill{background:var(--acc);border-color:var(--acc);color:#fff}
 .ctrls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin-top:18px}
 .rb{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card);display:grid;place-items:center;font-size:18px}
+.khint{text-align:center;font-size:13px;color:var(--mut);margin:12px 0 0}
 .cap{text-align:center;max-width:720px;margin:14px auto 0;min-height:52px}
 .cap small{display:block;color:var(--mut);font-size:13px}
 .cap strong{font-family:var(--disp);font-stretch:80%;font-size:clamp(20px,2.3vw,26px);font-weight:700;line-height:1.15}
@@ -257,6 +258,7 @@ footer p{color:var(--mut);margin:12px 0 0}
   <div class="parts"><button class="btn" data-go="0">Part I · Bespoke</button><button class="btn" data-go="21">Part II · Retail</button><button class="btn" id="ropen">Open slide</button><a class="btn fill" href="internship.html">Open the full project →</a></div>
   <button class="rb" id="rn" aria-label="Next slide">→</button>
  </div>
+ <p class="khint">Swipe or drag the arc, or use the ← → keys</p>
 </section>
 
 <!-- RESEARCH: placeholder wireframe -->
@@ -475,21 +477,44 @@ tunIO.observe(tun);requestAnimationFrame(drawTunnel);
 addEventListener('resize',()=>{if(RM)drawTunnel(0)});
 
 /* generic carousel engine for ring + diagonal */
-function carousel(el,k,layout,capEl,dragDiv){
+/* keyboard: arrow keys move whichever slider is most in view */
+const KB=[];
+function kbTarget(){let best=null,bv=0.45;KB.forEach(o=>{const r=o.el.getBoundingClientRect(),vis=Math.max(0,Math.min(r.bottom,innerHeight)-Math.max(r.top,0))/Math.min(r.height,innerHeight);if(vis>bv){bv=vis;best=o}});return best}
+addEventListener('keydown',e=>{
+ if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight')return;
+ if(document.querySelector('.ov.open')||/INPUT|TEXTAREA|SELECT/.test(document.activeElement?.tagName||''))return;
+ const o=kbTarget();if(!o)return;e.preventDefault();(e.key==='ArrowRight'?o.next:o.prev)();
+});
+
+/* carousel engine: follows the finger 1:1, glides on release with momentum, eases between slides */
+function carousel(el,k,layout,capEl,dragDiv,bounded){
  const n=D[k].t.length,cards=D[k].t.map((_,i)=>{const c=card(k,i,i);el.appendChild(c);return c});
- const S={act:0,cur:0,raf:0,n,cards};
- const render=()=>{layout(S,el.clientWidth,el.clientHeight);};
- const tick=()=>{S.cur+=(S.act-S.cur)*(RM?1:0.14);if(Math.abs(S.act-S.cur)<0.001)S.cur=S.act;render();S.raf=S.cur!==S.act?requestAnimationFrame(tick):0};
- S.go=a=>{S.act=a;const i=((Math.round(a)%n)+n)%n;capEl.innerHTML=`<small>${i+1} / ${n}</small><strong>${D[k].t[i]}</strong>`;if(!S.raf)S.raf=requestAnimationFrame(tick)};
+ const S={act:0,cur:0,anim:0,n,cards};
+ const render=()=>layout(S,el.clientWidth,el.clientHeight);
+ const lim=(a,soft)=>bounded?Math.max(soft?-0.4:0,Math.min(soft?n-0.6:n-1,a)):a;
  S.idx=()=>((Math.round(S.act)%n)+n)%n;
- let px=null,start=0,moved=false;
- el.addEventListener('pointerdown',e=>{px=e.clientX;start=S.act;moved=false;el.setPointerCapture(e.pointerId);el.style.cursor='grabbing'});
- el.addEventListener('pointermove',e=>{if(px===null)return;const dx=e.clientX-px;if(Math.abs(dx)>5)moved=true;if(moved)S.go(start-dx/dragDiv())});
- el.addEventListener('pointerup',e=>{el.style.cursor='';if(px===null)return;px=null;
-  if(moved){S.go(Math.round(S.act));return}
-  const t=document.elementFromPoint(e.clientX,e.clientY)?.closest('.c');const i=cards.indexOf(t);if(i<0)return;
-  if(i===S.idx())openLB(k,i);else S.go(S.act+wrapI(i-S.act,n));});
+ const cap=()=>{const i=S.idx();capEl.innerHTML=`<small>${i+1} / ${n}</small><strong>${D[k].t[i]}</strong>`};
+ S.set=a=>{cancelAnimationFrame(S.anim);S.act=S.cur=lim(a,true);cap();render()};
+ S.go=a=>{a=lim(Math.round(a));S.act=a;cap();cancelAnimationFrame(S.anim);
+  const from=S.cur,dist=Math.abs(a-from);if(RM||dist<0.001){S.cur=a;render();return}
+  const dur=Math.min(950,340+dist*140),t0=performance.now();
+  const stepF=t=>{const p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,3);S.cur=from+(a-from)*e;render();if(p<1)S.anim=requestAnimationFrame(stepF)};
+  S.anim=requestAnimationFrame(stepF)};
+ S.step=d=>S.go(Math.round(S.act)+d);
+ let px=null,start=0,moved=false,lx=0,lt=0,v=0;
+ el.addEventListener('pointerdown',e=>{px=lx=e.clientX;lt=e.timeStamp;v=0;start=S.cur;moved=false;el.setPointerCapture(e.pointerId);el.style.cursor='grabbing'});
+ el.addEventListener('pointermove',e=>{if(px===null)return;const dx=e.clientX-px;if(Math.abs(dx)>5)moved=true;if(!moved)return;
+  S.set(start-dx/dragDiv());const dt=e.timeStamp-lt;if(dt>0){const iv=-(e.clientX-lx)/dragDiv()/dt;v=v*0.5+iv*0.5}lx=e.clientX;lt=e.timeStamp});
+ const release=(e,tap)=>{el.style.cursor='';if(px===null)return;px=null;
+  if(moved){if(e.timeStamp-lt>90)v=0;const base=Math.round(S.cur);let t=Math.round(S.cur+v*280);t=Math.max(base-4,Math.min(base+4,t));S.go(t);return}
+  if(!tap)return;
+  const c=document.elementFromPoint(e.clientX,e.clientY)?.closest('.c');const i=cards.indexOf(c);if(i<0)return;
+  if(i===S.idx())openLB(k,i);else S.go(bounded?i:S.act+wrapI(i-S.act,n))};
+ el.addEventListener('pointerup',e=>release(e,true));el.addEventListener('pointercancel',e=>release(e,false));
+ /* trackpad two-finger swipe */
+ el.addEventListener('wheel',e=>{if(Math.abs(e.deltaX)<=Math.abs(e.deltaY))return;e.preventDefault();S.set(S.cur+e.deltaX/(dragDiv()*1.4));clearTimeout(S.wt);S.wt=setTimeout(()=>S.go(Math.round(S.cur)),130)},{passive:false});
  new ResizeObserver(render).observe(el);
+ KB.push({el,prev:()=>S.step(-1),next:()=>S.step(1)});
  S.go(0);return S;
 }
 
@@ -519,7 +544,7 @@ function ringLayout(S,W,H){
  ringNum.innerHTML=`${String(i+1).padStart(2,'0')}<span>of ${n} slides</span>`;
 }
 const ring=carousel($('#ring'),'si',ringLayout,$('#ringcap'),()=>innerWidth<700?90:140);
-$('#rp').onclick=()=>ring.go(Math.round(ring.act)-1);$('#rn').onclick=()=>ring.go(Math.round(ring.act)+1);
+$('#rp').onclick=()=>ring.step(-1);$('#rn').onclick=()=>ring.step(1);
 $('#ropen').onclick=()=>openLB('si',ring.idx());
 $$('[data-go]').forEach(b=>b.onclick=()=>{const t=+b.dataset.go;ring.go(ring.act+wrapI(t-ring.act,ring.n))});
 
@@ -537,12 +562,9 @@ function diagLayout(S,W,H){
   c.style.transform=`translate(${x-w/2}px,${y-h/2}px) rotate(${rot}deg)`;
  });
 }
-const diag=carousel($('#diag'),'cc',diagLayout,$('#diagcap'),()=>110);
-const clampGo=(S,a)=>S.go(Math.max(0,Math.min(S.n-1,a)));
-$('#dp').onclick=()=>clampGo(diag,Math.round(diag.act)-1);$('#dn').onclick=()=>clampGo(diag,Math.round(diag.act)+1);
-$('#dopen').onclick=()=>openLB('cc',Math.max(0,Math.min(24,Math.round(diag.act))));
-const dGo=diag.go;diag.go=a=>dGo(Math.max(-0.4,Math.min(diag.n-0.6,a)));
-$('#diag').addEventListener('pointerup',()=>{if(diag.act<0||diag.act>diag.n-1)clampGo(diag,Math.round(diag.act))});
+const diag=carousel($('#diag'),'cc',diagLayout,$('#diagcap'),()=>110,true);
+$('#dp').onclick=()=>diag.step(-1);$('#dn').onclick=()=>diag.step(1);
+$('#dopen').onclick=()=>openLB('cc',diag.idx());
 
 /* room (styling) */
 let si=0;const sn=D.cd.t.length;
@@ -560,6 +582,7 @@ $('#sopen').onclick=$('#rfront').onclick=()=>openLB('cd',si);
 $('#rfront').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openLB('cd',si)}};
 let rx=null;$('#room').addEventListener('pointerdown',e=>rx=e.clientX);$('#room').addEventListener('pointerup',e=>{if(rx!==null&&Math.abs(e.clientX-rx)>40)setRoom(si+(e.clientX<rx?1:-1));rx=null});
 setRoom(0);
+KB.push({el:$('#room'),prev:()=>setRoom(si-1),next:()=>setRoom(si+1)});
 
 /* promo story row */
 const st=$('#story');D.pp.t.forEach((t,i)=>{const b=document.createElement('button');b.appendChild(card('pp',i,i+2));b.insertAdjacentHTML('beforeend',`<small>${t}</small>`);b.onclick=()=>openLB('pp',i);st.appendChild(b)});
