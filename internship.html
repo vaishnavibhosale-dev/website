@@ -203,6 +203,32 @@ blockquote footer{font:400 15px var(--body);color:var(--mut);margin-top:14px}
 .turn{background:var(--acc);color:#fff;padding:clamp(70px,9vw,130px) max(5vw,16px)}
 .turn h2{font-size:clamp(40px,6vw,80px);font-stretch:62%;font-weight:900;max-width:16ch}
 .turn p{max-width:58ch;margin-top:18px;font-size:19px;color:#e6ecff}
+
+/* store layout */
+.wall{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:clamp(18px,3vw,40px);margin-top:20px;align-items:start}
+.wph{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:4/3;background:#2b2420}
+.wzoom{position:absolute;inset:0;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.wzoom img{width:100%;height:100%;object-fit:cover}
+.pin{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border:0;background:transparent;display:grid;place-items:center;padding:0}
+.pin span{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#e7e5df;color:#141414;font:600 12px var(--body);box-shadow:0 0 0 5px rgba(255,255,255,.28);transition:.25s}
+.pin.on span{background:var(--acc);color:#fff;box-shadow:0 0 0 9px rgba(30,91,255,.35);transform:scale(1.15)}
+.wlist{display:flex;flex-direction:column}
+.wlist button{display:grid;grid-template-columns:28px 1fr auto;gap:12px;align-items:baseline;text-align:left;border:0;border-top:1px solid var(--line);background:none;padding:14px 4px;min-height:56px}
+.wlist button i{font-style:normal;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#e7e5df;font-size:12px;font-weight:600}
+.wlist button b{font-family:var(--disp);font-stretch:78%;font-weight:700;font-size:21px;line-height:1.1}
+.wlist button small{display:block;font-size:13px;color:var(--mut);font-weight:400;margin-top:3px;font-family:var(--body)}
+.wlist button em{font-style:normal;font-weight:600;white-space:nowrap}
+.wlist button.on i{background:var(--acc);color:#fff}
+.ladder{margin-top:20px;display:flex;flex-direction:column;gap:8px}
+.lad{display:grid;grid-template-columns:minmax(120px,220px) 1fr;gap:14px;align-items:center;font-size:14px}
+.lad .tr{position:relative;height:26px;background:#e7e5df;border-radius:6px;margin-right:62px}
+.lad .br{position:absolute;top:0;bottom:0;border-radius:6px;background:var(--ink)}
+.lad .br.rg{background:repeating-linear-gradient(90deg,var(--ink) 0 6px,#444 6px 8px)}
+.lad .v{position:absolute;top:50%;translate:0 -50%;font-weight:600;white-space:nowrap;font-size:13px}
+.axis{display:grid;grid-template-columns:minmax(120px,220px) 1fr;gap:14px;font-size:12px;color:var(--mut)}
+.axis>div{margin-right:62px}
+@media(max-width:900px){.wall{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){.lad,.axis{grid-template-columns:minmax(0,1fr)}.axis span:first-child{display:none}}
 /* look explorer */
 .lchips{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
 .lchips button{min-height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--ink);background:transparent;font-size:14px}
@@ -488,9 +514,26 @@ blockquote footer{font:400 15px var(--body);color:var(--mut);margin-top:14px}
    <figure><img class="z" src="img/in/p040.webp" alt="Stock spreadsheet open on a computer"><b>Stock movement</b><p>Incoming, outgoing and used stock is entered with reference numbers.</p></figure>
    <figure><img class="z" src="img/in/p041.webp" alt="Scrap fabrics on a work table"><b>Resourceful reuse</b><p>Scraps become piping and under-collar details.</p></figure>
   </div>
-  <h3 style="margin-top:64px">The store, wall by wall</h3>
-  <p class="mut" style="margin-top:6px">Where everything sits, and how clients move through it.</p>
-  <div class="tunnel" id="tunnel" aria-hidden="true"></div>
+  <div class="tunnel" id="tunnel" aria-hidden="true" style="margin-top:72px"></div>
+ </div>
+</section>
+
+<!-- store layout -->
+<section class="sec" id="store">
+ <div class="wrap">
+  <div class="kick"><b></b>Material awareness · store layout</div>
+  <div class="cathd">
+   <h2>Where everything sits, and what it costs</h2>
+   <p class="lede">Understanding where everything in the store is placed, and how that shapes conversations with clients. Pick a wall, then a label, to see it on the shelf.</p>
+  </div>
+  <div class="ctabs" id="wtabs" role="tablist" aria-label="Store walls"></div>
+  <div class="wall">
+   <div class="wph" id="wph"><div class="wzoom" id="wzoom"><img id="wimg" alt=""><div id="wpins"></div></div><button class="lback" id="wreset" hidden>Show the whole wall</button></div>
+   <div class="wlist" id="wlist"></div>
+  </div>
+  <h3 style="margin-top:64px">Starting prices across the store</h3>
+  <p class="mut" style="margin-top:6px">From my notes on the shelves.</p>
+  <div class="ladder" id="ladder"></div>
  </div>
 </section>
 
@@ -765,6 +808,53 @@ addEventListener('keydown',e=>{if((e.key!=='ArrowLeft'&&e.key!=='ArrowRight')||$
  const r=$('#looks').getBoundingClientRect();if(r.top>innerHeight*.5||r.bottom<innerHeight*.5)return;e.preventDefault();step(e.key==='ArrowRight'?1:-1)});
 new ResizeObserver(layoutFan).observe(fan);
 show(cur,0);
+}
+
+
+/* store layout explorer */
+{
+const W=[
+ {t:'Trousers & German textiles',img:'img/in/p042.webp',items:[
+  {n:'Fabric brands',d:'Anecdote (India), Roger Laviale (New York), Huddersfield (England), Alumo (97% cotton)',p:'',x:49,y:13},
+  {n:'Trousers',d:'Top shelf, left',p:'7.5k',x:22,y:30},
+  {n:'German textiles',d:'Top shelf, right',p:'7–15k',x:69,y:30},
+  {n:'Printed fabrics',d:'Lower shelf, left',p:'5k',x:23,y:70},
+  {n:'Lower shelf fabrics',d:'Beside the lounge',p:'7.5k',x:78,y:76}]},
+ {t:'Chinos, bundis & suiting',img:'img/in/p043.webp',items:[
+  {n:'Chinos',d:'Left rack, top',p:'',x:11,y:40},
+  {n:'Bundi',d:'Left rack, lower',p:'',x:12,y:68},
+  {n:'Old stock for winters',d:'Inside the blue cabinet',p:'',x:45,y:66},
+  {n:'Suiting',d:'Right rack',p:'35k',x:86,y:80}]},
+ {t:'Shirting',img:'img/in/p044.webp',items:[
+  {n:'Shirt fabrics',d:'Top shelf',p:'',x:40,y:30},
+  {n:'Printed shirts',d:'Lower shelf · 5k on sale, regular 6k',p:'5–6k',x:42,y:75}]},
+ {t:'German fabrics, Alumo & Shiro',img:'img/in/p045.webp',items:[
+  {n:'German fabrics',d:'Top shelf',p:'7.5k',x:36,y:30},
+  {n:'Alumo',d:'From Switzerland · lower shelf',p:'18k',x:25,y:73},
+  {n:'Shiro',d:'Stacked on the right',p:'8k',x:62,y:62}]}
+];
+const tabs=$('#wtabs'),img=$('#wimg'),pins=$('#wpins'),list=$('#wlist'),zoom=$('#wzoom'),reset=$('#wreset');
+let w=Math.min(W.length-1,(store.get('wall')||{}).w||0),sel=-1;
+tabs.innerHTML=W.map((x,i)=>`<button role="tab" data-i="${i}">Wall ${i+1} · ${x.t}</button>`).join('');
+function focus(i){sel=i;const it=W[w].items[i];
+ $$('.pin',pins).forEach((p,j)=>p.classList.toggle('on',j===i));$$('button',list).forEach((b,j)=>{b.classList.toggle('on',j===i);b.setAttribute('aria-pressed',j===i)});
+ if(i<0){zoom.style.transform='';reset.hidden=true;return}
+ const S=1.7,tx=Math.max(-(S-1)*100,Math.min(0,(50-it.x*S))),ty=Math.max(-(S-1)*100,Math.min(0,(50-it.y*S)));
+ zoom.style.transformOrigin='0 0';zoom.style.transform=`translate(${tx}%,${ty}%) scale(${S})`;reset.hidden=false}
+function showWall(i){w=i;store.set('wall',{w:i});const x=W[i];
+ $$('button',tabs).forEach((b,j)=>b.setAttribute('aria-selected',j===i));
+ img.src=x.img;img.alt='Store wall: '+x.t;
+ pins.innerHTML=x.items.map((it,j)=>`<button class="pin" style="left:${it.x}%;top:${it.y}%" aria-label="${it.n}"><span>${j+1}</span></button>`).join('');
+ list.innerHTML=x.items.map((it,j)=>`<button><i>${j+1}</i><span><b>${it.n}</b><small>${it.d}</small></span><em>${it.p?'from ₹'+it.p:''}</em></button>`).join('');
+ $$('.pin',pins).forEach((p,j)=>p.onclick=()=>focus(sel===j?-1:j));$$('button',list).forEach((b,j)=>b.onclick=()=>focus(sel===j?-1:j));
+ focus(-1)}
+tabs.addEventListener('click',e=>{const b=e.target.closest('button');if(b)showWall(+b.dataset.i)});
+reset.onclick=()=>focus(-1);
+showWall(w);
+/* price ladder */
+const P=[['Printed fabrics',5],['Printed shirts',5,6],['Trousers',7.5],['German fabrics',7.5],['German textiles',7,15],['Shiro',8],['Alumo',18],['Suiting',35]],M=36;
+$('#ladder').innerHTML=P.map(([n,a,b])=>`<div class="lad"><span>${n}</span><div class="tr"><div class="br" style="left:0;width:${a/M*100}%"></div>${b?`<div class="br rg" style="left:${a/M*100}%;width:${(b-a)/M*100}%;opacity:.45"></div>`:''}<span class="v" style="left:calc(${(b||a)/M*100}% + 8px)">₹${b?a+'–'+b:a}k</span></div></div>`).join('')+
+ `<div class="axis"><span></span><div style="position:relative;height:16px">${[0,10,20,30].map(v=>`<span style="position:absolute;left:${v/M*100}%;translate:${v?'-50%':'0'} 0">₹${v}${v?'k':''}</span>`).join('')}</div></div>`;
 }
 
 /* continue where you left off */
