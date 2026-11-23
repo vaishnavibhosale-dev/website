@@ -261,6 +261,59 @@ body.nav .drawer{transform:none}body.nav .scrim{opacity:1;pointer-events:auto}
 #lb img{max-width:min(1400px,100%);max-height:calc(100svh - 100px);object-fit:contain;border-radius:4px;background:#fff}
 #lb button{position:absolute;top:14px;right:16px;width:44px;height:44px;border-radius:50%;border:0;background:#f2f1ec;color:#111;font-size:22px}
 
+/* identity (creative direction) */
+.ess{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.ess div{background:var(--bg);border-radius:14px;padding:22px}
+.ess small{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--acc);margin-bottom:8px}
+.ess p{font-size:15px}
+.dna{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-top:36px}
+.dna button{border:0;border-radius:14px;padding:18px 14px 16px;text-align:left;background:var(--bg);min-height:150px;display:flex;flex-direction:column;justify-content:space-between;transition:background .3s,color .3s,transform .3s}
+.dna button b{font-family:var(--disp);font-stretch:68%;font-weight:900;font-size:clamp(24px,2.6vw,36px);line-height:.95}
+.dna button span{font-size:13px;color:var(--mut)}
+.dna button i{font-style:normal;font-size:12px;color:var(--mut)}
+.dna button[aria-pressed=true]{background:var(--acc);color:#fff;transform:translateY(-4px)}.dna button[aria-pressed=true] span,.dna button[aria-pressed=true] i{color:#d8eadf}
+.arch{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(20px,4vw,56px);align-items:center;margin-top:clamp(56px,7vw,96px)}
+.arch .ph{border-radius:200px 200px 12px 12px;overflow:hidden;aspect-ratio:3/4;max-width:420px}
+.arch .ph img{width:100%;height:100%;object-fit:cover}
+.arch .big{font-family:var(--disp);font-stretch:62%;font-weight:900;font-size:clamp(64px,9vw,128px);line-height:.85;color:var(--acc)}
+.traits{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+.traits span{border-radius:999px;background:var(--mango);color:#1b1406;padding:7px 13px;font-size:14px}
+.room2{margin-top:18px;padding:18px 20px;border-left:4px solid var(--mango);background:var(--bg);border-radius:0 12px 12px 0;font-size:16px}
+.codes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.code{border:0;padding:0;background:var(--card);border-radius:14px;overflow:hidden;text-align:left;display:flex;flex-direction:column;box-shadow:0 1px 0 var(--line)}
+.code .im{aspect-ratio:4/3;overflow:hidden;background:var(--soft)}
+.code .im img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.code:hover .im img{transform:scale(1.04)}
+.code .t{padding:16px 16px 18px}
+.code small{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em}
+.code h4{margin:4px 0 8px;font-family:var(--disp);font-stretch:75%;font-weight:800;font-size:24px}
+.code .ob{font-size:14px}
+.code .me{font-size:14px;margin-top:10px;padding-top:10px;border-top:1px solid var(--line);color:var(--acc);display:none}
+.code[aria-expanded=true] .me{display:block}
+.code .more{font-size:13px;color:var(--mut);margin-top:10px}
+.code[aria-expanded=true] .more{display:none}
+.camps{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(20px,4vw,56px);align-items:start;margin-top:clamp(56px,7vw,96px)}
+.camps .ph{border-radius:14px;overflow:hidden;aspect-ratio:4/5;background:var(--soft)}
+.camps .ph img{width:100%;height:100%;object-fit:cover;transition:opacity .3s}
+.cg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}
+.cg div{background:var(--card);border-radius:12px;padding:14px}
+.cg small{display:block;font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em}
+.pers{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:clamp(20px,4vw,48px);background:var(--card);border-radius:18px;padding:clamp(18px,3vw,32px);margin-top:clamp(56px,7vw,96px);align-items:start}
+.pers .ph{border-radius:14px;overflow:hidden;aspect-ratio:4/5}
+.pers .ph img{width:100%;height:100%;object-fit:cover}
+.pers dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 22px;margin:18px 0 0}
+.pers dt{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em}.pers dd{margin:2px 0 0;font-size:15px}
+.isnot{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:clamp(56px,7vw,96px)}
+.isnot>div{border-radius:14px;padding:22px}
+.isnot .is{background:var(--acc);color:#fff}.isnot .not{background:var(--card);border:1px dashed var(--line)}
+.isnot small{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;opacity:.8}
+.isnot p{font-family:var(--disp);font-stretch:80%;font-weight:600;font-size:clamp(20px,2vw,26px);line-height:1.2}
+.sw2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px}
+.sw2 div{background:var(--card);border-radius:14px;padding:20px}
+.sw2 small{display:block;font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.final{margin-top:14px;padding:24px;border-radius:14px;background:var(--ink);color:#f2f1ec;font-size:17px;line-height:1.55}
+.final small{display:block;color:var(--mango);font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+@media(max-width:900px){.ess,.codes{grid-template-columns:minmax(0,1fr)}.dna{grid-template-columns:repeat(2,minmax(0,1fr))}.arch,.camps,.pers,.isnot,.sw2{grid-template-columns:minmax(0,1fr)}.arch .ph{margin:0 auto;width:100%}}
 /* assortment plan */
 .sun{background:#F6EEDC;overflow-x:clip}
 .sunhero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:center}
@@ -439,7 +492,7 @@ body.nav .drawer{transform:none}body.nav .scrim{opacity:1;pointer-events:auto}
 </header>
 
 <nav class="jump" id="jump" aria-label="Sections">
- <a href="#overview">Overview</a><a href="#collections">Collections</a><a href="#calendar">Calendar</a><a href="#products">Products &amp; price</a><a href="#retail">Retail</a><a href="#digital">Website</a><a href="#craft">Craft</a><a href="#findings">Findings</a><a href="#campaign">Campaign</a><a href="#assortment">Assortment plan</a><a href="#plan">Planning sheet</a><a href="#tiers">Price tiers</a><a href="#looks">Looks</a>
+ <a href="#overview">Overview</a><a href="#identity">Identity</a><a href="#codes">Visual codes</a><a href="#collections">Collections</a><a href="#calendar">Calendar</a><a href="#products">Products &amp; price</a><a href="#retail">Retail</a><a href="#digital">Website</a><a href="#craft">Craft</a><a href="#findings">Findings</a><a href="#campaign">Campaign</a><a href="#assortment">Assortment plan</a><a href="#plan">Planning sheet</a><a href="#tiers">Price tiers</a><a href="#looks">Looks</a>
 </nav>
 
 <!-- overview -->
@@ -450,6 +503,76 @@ body.nav .drawer{transform:none}body.nav .scrim{opacity:1;pointer-events:auto}
    <div><h3>Weaving relationships</h3><div class="chips"><span>Rajasthan</span><span>Madhya Pradesh</span><span>West Bengal</span><span>Andhra Pradesh</span><span>Varanasi</span></div></div>
    <div><h3>Retail presence</h3><p class="mut" style="margin-top:6px">Physical stores in Indian metro cities, plus direct-to-consumer e-commerce.</p><div class="chips"><span>Bengaluru</span><span>Chennai</span><span>Hyderabad</span><span>Kolkata</span><span>Mumbai</span><span>New Delhi</span><span>Online store</span></div></div>
   </div>
+ </div>
+</section>
+
+<!-- identity: creative direction -->
+<section class="sec alt" id="identity">
+ <div class="wrap">
+  <div class="hd2"><div><div class="kick"><b></b>Creative direction · brand identity</div><h2>Tradition that keeps evolving</h2></div><p class="lede">Before the commercial system, the identity it serves. Heritage here is a living design resource, not a fixed archive.</p></div>
+  <div class="ess">
+   <div><small>Vision</small><p>Keep Indian textile traditions relevant by making them an evolving, internationally recognised part of contemporary design.</p></div>
+   <div><small>Mission and purpose</small><p>Create contemporary fashion through considered handloom, colour and construction, linking craft, design and culture. Prove that Indian textile traditions hold cultural and commercial value in luxury.</p></div>
+   <div><small>Values and promise</small><p>Respect for craft, creative experimentation, design-led restraint, cultural continuity, individual expression. The promise: distinctive textile design that makes heritage feel considered, personal and current.</p></div>
+  </div>
+  <div class="dna" id="dna" role="group" aria-label="Brand DNA keywords"></div>
+  <div class="arch">
+   <div class="ph"><img class="z" src="img/rm/id-pers.webp" alt="A model in a bright pink sari beside a sculptural column"></div>
+   <div>
+    <div class="kick"><b></b>Brand personality</div>
+    <div class="big">The Creator</div>
+    <p class="lede" style="margin-top:14px">Confident, curious, never loud. Value lies in design authorship: turning textile knowledge into a new aesthetic, not only preserving it. A secondary Sage invites us to rethink what Indian luxury can mean.</p>
+    <div class="traits"><span>Experimentative</span><span>Assured</span><span>Chromatic</span><span>Craft-conscious</span><span>Culturally curious</span><span>Restrained</span><span>Playful</span></div>
+    <p class="room2"><b>If it entered a room</b>, it would arrive in an unexpected colour combination, notice the textiles before the status symbols, and impress without announcing itself.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="sec" id="codes">
+ <div class="wrap">
+  <div class="hd2"><div><div class="kick"><b></b>Design aesthetic &amp; visual codes</div><h2>Six codes, read before any logo</h2></div><p class="lede">What you see, and what it means. Select a code to read its meaning.</p></div>
+  <div class="codes" id="codegrid"></div>
+
+  <div class="camps">
+   <div class="ph"><img class="z" id="idcimg" alt=""></div>
+   <div>
+    <div class="kick"><b></b>Storytelling</div>
+    <h2>Clothes placed inside a culture</h2>
+    <p class="lede" style="margin:14px 0 18px">A familiar Indian textile that feels unexpected. Three campaigns show how the brand builds a world around the product.</p>
+    <div class="pills" id="idtabs" role="tablist" aria-label="Campaigns"></div>
+    <div class="cg" id="idcg"></div>
+   </div>
+  </div>
+
+  <div class="pers">
+   <div class="ph"><img class="z" src="img/rm/id-ana.webp" alt="Persona image for Ananya Mehta: a woman in a yellow sari in a colonnade"></div>
+   <div>
+    <div class="kick"><b></b>Customer persona</div>
+    <h2>She wears taste, not logos</h2>
+    <p class="lede" style="margin-top:12px"><b>Ananya Mehta, 34, creative director.</b> Metro city, travels for work, loves galleries and objects with stories. Buys selectively, one distinctive sari for key events.</p>
+    <dl>
+     <div><dt>Age and gender</dt><dd>28–55; mainly women, open to anyone drawn to textile-led clothing</dd></div>
+     <div><dt>Geography</dt><dd>Mumbai, Delhi, Bengaluru, Hyderabad, Chennai, Kolkata; international buyers</dd></div>
+     <div><dt>Spending power</dt><dd>Affluent; sari listings from about ₹11,800 to ₹5 lakh+</dd></div>
+     <div><dt>Interests</dt><dd>Art, architecture, travel, galleries, textiles, heritage</dd></div>
+     <div><dt>Attitude</dt><dd>Values design authorship; sceptical of logo-heavy luxury</dd></div>
+     <div><dt>Also buys</dt><dd>Good Earth, Indian designer labels, design-led luxury</dd></div>
+     <div><dt>Seeks</dt><dd>A strong colour or material idea with cultural resonance</dd></div>
+     <div><dt>Emotional need</dt><dd>To express taste and individuality, not display wealth</dd></div>
+    </dl>
+   </div>
+  </div>
+
+  <div class="isnot">
+   <div class="is"><small>This brand is</small><p>A textile-led luxury design house that reinterprets Indian craft through colour, material experiment and cultural storytelling.</p></div>
+   <div class="not"><small>This brand is not</small><p>Merely traditional ethnicwear, a logo-driven luxury house, or a brand whose value rests on surface embellishment.</p></div>
+  </div>
+  <div class="sw2">
+   <div><small>Biggest strength</small>The philosophy runs from garment to campaigns, research and retail: a coherent brand world. Its strongest code: handwoven textile, distinctive colour and a contemporary design intervention.</div>
+   <div><small>Potential weakness</small>Value relies on textile and cultural literacy, and varied collections must still read as one house.</div>
+  </div>
+  <p class="final"><small>Final statement</small>The identity of Raw Mango can be defined as contemporary Indian luxury rooted in textile craft. Through distinctive colour, handloom innovation and cultural storytelling, the brand challenges conventional ethnicwear aesthetics. Its strongest asset is a recognisable design philosophy that connects material knowledge, cultural continuity and individual expression across every collection.</p>
  </div>
 </section>
 
@@ -711,6 +834,27 @@ addEventListener('keydown',e=>{if(e.key==='Escape'){lb.classList.remove('open');
 const jl=$$('#jump a');
 const jIO=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){jl.forEach(a=>{const on=a.getAttribute('href')==='#'+en.target.id;a.classList.toggle('on',on);if(on){const j=$('#jump');j.scrollTo({left:a.offsetLeft-j.clientWidth/2+a.offsetWidth/2,behavior:'auto'})}})}}),{rootMargin:'-40% 0px -55% 0px'});
 jl.forEach(a=>{const t=$(a.getAttribute('href'));if(t)jIO.observe(t)});
+
+
+/* identity: DNA, codes, campaigns */
+const DNA=[['Handloom','the making','The foundation: luxury lives in the weave.'],['Contemporary','tradition read through today','Heritage reread for now, not preserved as it was.'],['Chromatic','colour as a signature','Colour is recognised before any logo.'],['Cultural','craft, memory, history','Clothes carry the culture they come from.'],['Restrained','value through design','Quiet confidence: cloth and colour speak, not logos.']];
+$('#dna').innerHTML=DNA.map((d,i)=>`<button aria-pressed="${i===0}" data-i="${i}"><i>0${i+1}</i><div><b>${d[0]}</b><br><span>${d[1]}</span></div></button>`).join('');
+$$('#dna button').forEach(b=>b.onclick=()=>{$$('#dna button').forEach(x=>x.setAttribute('aria-pressed',x===b));b.querySelector('span').textContent=b.getAttribute('aria-pressed')==='true'?DNA[+b.dataset.i][2]:DNA[+b.dataset.i][1];$$('#dna button').forEach(x=>{if(x!==b)x.querySelector('span').textContent=DNA[+x.dataset.i][1]})});
+const CO=[['Silhouette','sil','The sari is the hero: border, fall and drape shape the form, alongside kurtas, lehengas and jackets.','The textile sets the silhouette, so the body becomes a display for the weave.'],
+['Colour','col','Lime with pink, rani pink with red, yellow with indigo, plus quiet ivories and neutrals.','Colour is a signature recognised before any logo: a recurring approach, not one fixed palette.'],
+['Material and texture','mat','Handloom Chanderi, Banarasi brocade, Mashru and zari borders.','Luxury is read through weave and making, not surface decoration.'],
+['Motif and detail','mot','Figurative brocade (Monkey Business), chikankari (Cloud People) and bandhej.','The technique stays traditional while the imagery is new, which gives the brand authorship.'],
+['Typography and logo','logo','An understated name and wordmark; product and textile lead the imagery.','Recognition is spread across textile, colour and campaign, not the logo alone.'],
+['Image and styling','img','Narrative campaigns, unusual casting, architectural and heritage settings (e.g. Once upon a river).','Photography builds a cultural world around the product, not just a product shot.']];
+$('#codegrid').innerHTML=CO.map((c,i)=>`<button class="code" aria-expanded="false"><span class="im"><img src="img/rm/id-${c[1]}.webp" alt="" loading="lazy"></span><span class="t"><small>Code 0${i+1}</small><h4>${c[0]}</h4><p class="ob">${c[2]}</p><p class="me"><b>Meaning:</b> ${c[3]}</p><p class="more">Select to read the meaning +</p></span></button>`).join('');
+$$('.code').forEach(b=>b.onclick=()=>b.setAttribute('aria-expanded',b.getAttribute('aria-expanded')!=='true'));
+const CA=[['Heer · 2018','heer','Shared pre-Partition Punjab histories and bridal festivities, staged like family wedding portraits.','Colour and textile as hero, architecture as context.','Intimacy, belonging.','Clothes feel culturally situated, not just decorative.'],
+['Monkey Business · 2016','mb','Traditional brocade opened to playful figurative imagery.','Heritage weave, a distinctive motif, textile as narrator.','Curiosity, delight.','Heritage as a platform for original design.'],
+['Point of Origin · 2023','poo','Design tied to textile and place of origin.','Material and context over styling.','Discovery, connection to place.','A brand about more than surface appearance.']];
+$('#idtabs').innerHTML=CA.map((c,i)=>`<button role="tab" aria-selected="false" data-i="${i}">${c[0]}</button>`).join('');
+function camp(i){const c=CA[i];$$('#idtabs button').forEach(b=>b.setAttribute('aria-selected',+b.dataset.i===i));const im=$('#idcimg');im.style.opacity=.2;im.onload=()=>im.style.opacity=1;im.src=`img/rm/id-${c[1]}.webp`;im.alt=`${c[0]} campaign image`;
+ $('#idcg').innerHTML=[['Story',c[2]],['Codes',c[3]],['Emotion',c[4]],['Positioning',c[5]]].map(([a,b])=>`<div><small>${a}</small>${b}</div>`).join('')}
+$$('#idtabs button').forEach(b=>b.onclick=()=>camp(+b.dataset.i));camp(0);
 
 /* collection panels */
 const C=[

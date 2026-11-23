@@ -180,14 +180,15 @@ body.nav .drawer{transform:none}body.nav .scrim{opacity:1;pointer-events:auto}
    <div><dt>Format</dt><dd>Fashion editorial shoot</dd></div>
    <div><dt>Inspiration</dt><dd>Antoni Gaudí's Casa Batlló, Barcelona</dd></div>
    <div><dt>Direction</dt><dd>Photography, accessories, hair, make-up, styling, set</dd></div>
-   <div><dt>Final images</dt><dd>13 photographs across four lighting stories</dd></div>
+   <div><dt>Final images</dt><dd>13 photographs across five lighting stories</dd></div>
   </dl>
+  <p class="mut" style="margin-top:20px;font-size:15px">An extension of my fashion design research project on Casa Batlló, assessed as a separate module.</p>
  </div>
  <figure class="ph" style="margin:0"><img src="img/st/f02.webp" alt="Model in a chocolate corset with shell cups and scalloped skirt, posed beside a stained-glass window"></figure>
 </header>
 
 <nav class="jump" id="jump" aria-label="Sections">
- <a href="#concept">Concept</a><a href="#direction">Direction</a><a href="#palette">Palette</a><a href="#shoot">The shoot</a><a href="#garment">The garment</a><a href="#rawmango">Raw Mango direction</a>
+ <a href="#concept">Concept</a><a href="#direction">Direction</a><a href="#palette">Palette</a><a href="#shoot">The shoot</a><a href="#garment">The garment</a>
 </nav>
 
 <section class="sec" id="concept">
@@ -217,8 +218,8 @@ body.nav .drawer{transform:none}body.nav .scrim{opacity:1;pointer-events:auto}
 <section class="sec stories" id="shoot">
  <div class="wrap">
   <div class="kick"><b></b>The shoot</div>
-  <h2 style="color:#fff">Four lighting stories</h2>
-  <p class="lede" style="margin-top:14px">One garment, four rooms of light: from sunlight through stained glass to deep water. Use the arrows, swipe, or the keyboard arrow keys.</p>
+  <h2 style="color:#fff">Five lighting stories</h2>
+  <p class="lede" style="margin-top:14px">One garment, five rooms of light: from sunlight through stained glass to deep water. Use the arrows, swipe, or the keyboard arrow keys.</p>
   <div class="stabs" id="stabs" role="tablist" aria-label="Lighting stories"></div>
   <div class="stage">
    <div class="main" id="smain"><img class="z" id="simg" alt=""><span class="cnt" id="scnt"></span><button class="ar p" id="sprev" aria-label="Previous photograph">←</button><button class="ar n" id="snext" aria-label="Next photograph">→</button></div>
@@ -234,13 +235,6 @@ body.nav .drawer{transform:none}body.nav .scrim{opacity:1;pointer-events:auto}
    <div class="hs" id="hs"><img class="z" src="img/st/f01.webp" alt="Full look in the stained-glass room: chocolate shell-cup corset, scalloped skirt shading from ochre to indigo, drop earrings and a sculpted updo"></div>
    <ul class="dl" id="hsl"></ul>
   </div>
- </div>
-</section>
-
-<section class="sec alt" id="rawmango">
- <div class="wrap">
-  <div class="hd2"><div><div class="kick"><b></b>Also in this module</div><h2>Raw Mango: a creative direction</h2></div><p class="lede">A creative direction for Sanjay Garg's textile label: its essence and Creator archetype, visual codes, storytelling, a customer persona and an identity board, closed with an honest critique. Select a slide to open it.</p></div>
-  <div class="cdrow" id="cdrow"></div>
  </div>
 </section>
 
@@ -333,9 +327,6 @@ $('#hsl').innerHTML=HS.map((h,i)=>`<li><button aria-pressed="false" data-i="${i}
 const pick=i=>{$$('#hs .pt,#hsl button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.i===i))};
 $$('#hs .pt,#hsl button').forEach(b=>b.onclick=e=>{e.stopPropagation();pick(+b.dataset.i)});pick(3);
 
-/* Raw Mango creative direction slides */
-const CD=['Raw Mango: creative direction','Brand overview','Brand essence','Brand personality: the Creator','Design aesthetic','Visual codes','Storytelling','Customer persona','Brand identity board','Critical analysis','Sources and image credits','Thank you'];
-$('#cdrow').innerHTML=CD.map((t,i)=>`<img class="z" loading="lazy" src="img/cd-${String(i+1).padStart(2,'0')}.webp" alt="Slide ${i+1}: ${t}">`).join('');
 }
 </script>
 </body>
