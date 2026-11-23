@@ -351,9 +351,13 @@ body.nav .drawer{transform:none}body.nav .scrim{opacity:1;pointer-events:auto}
 .dz .fig .vt button{border:0;background:none;border-radius:999px;padding:7px 12px;font-size:13px;min-height:34px}
 .dz .fig .vt button[aria-pressed=true]{background:var(--ink);color:#fff}
 .dz .fig .vt button:disabled{opacity:.4;cursor:not-allowed}
+.dz .fig .vf{position:absolute;top:12px;right:12px;z-index:2;border:0;border-radius:999px;background:var(--ink);color:#fff;font-size:13px;min-height:42px;padding:0 16px;box-shadow:0 6px 16px rgba(0,0,0,.18)}
+.dz .fig .vf[hidden]{display:none}
+.shoot .fr{border:0;padding:0;background:none;border-radius:10px;cursor:pointer;outline-offset:3px}
+.shoot .fr[aria-pressed=true] img{box-shadow:0 0 0 3px var(--acc);transform:translateY(-4px)}
 .shoot{margin-top:18px}
 .shoot .row{display:grid;grid-template-columns:repeat(var(--n,4),minmax(0,1fr));gap:10px}
-.shoot .row img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:10px;background:var(--soft);transition:transform .35s}
+.shoot .row img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:10px;background:var(--soft);transition:transform .35s}
 .shoot .row img:hover{transform:translateY(-4px)}
 .shoot .ai{font-size:12px;color:var(--mut);margin-top:8px}
 .shoot .pend{background:var(--card);border:1px dashed var(--line);border-radius:12px;padding:16px;font-size:14px;color:var(--mut)}
@@ -648,7 +652,7 @@ body.nav .drawer{transform:none}body.nav .scrim{opacity:1;pointer-events:auto}
    <div><div class="lk" id="lk"></div><div class="ltot" id="ltot"></div><p class="lwhy" id="lwhy"></p></div>
   </div>
   <div class="dzh"><div><div class="kick"><b></b>Garment design</div><h2>Designed for The Sun Returns</h2></div><p class="lede" style="max-width:52ch">The pieces behind each look, drawn as an illustration and as flats. Use the look buttons above to switch. Hover a note to find it on the drawing.</p></div>
-  <div class="dz"><figure class="fig" style="margin:0"><div class="vt" role="group" aria-label="View"><button id="vS" aria-pressed="true">Sketch</button><button id="vP" aria-pressed="false">Final garment</button></div><img class="z" id="dzimg" alt=""><p id="dzc"></p></figure><div><div id="dzg"></div><div class="shoot" id="shoot"></div></div></div>
+  <div class="dz"><figure class="fig" style="margin:0"><div class="vt" role="group" aria-label="View"><button id="vS" aria-pressed="true">Sketch</button><button id="vP" aria-pressed="false">Final garment</button></div><button class="vf" id="vF" hidden>↩ Full look</button><img class="z" id="dzimg" alt=""><p id="dzc"></p></figure><div><div id="dzg"></div><div class="shoot" id="shoot"></div></div></div>
   <div class="board">
    <img class="z" src="img/sp/board1.webp" alt="Chartreuse sari with a bow-tied blouse and pearl strands">
    <img class="z" src="img/sp/board2.webp" alt="Blush floral sari with a halter blouse, seen from the back">
@@ -990,14 +994,19 @@ const svgC={};
 async function getSvg(id){if(svgC[id])return svgC[id];try{const r=await fetch(`img/sp/d/${id}.svg`);svgC[id]=await r.text()}catch(e){svgC[id]=`<img src="img/sp/d/${id}.svg" alt="">`}return svgC[id]}
 
 // photoshoot frames (AI-generated concept photography of the designs)
-const SHN={1:4,2:5,3:4,4:5,5:4},SH=Object.keys(SHN).map(Number);let view=store.get('dzview')||'s';
+const SHN={1:4,2:5,3:4,4:5,5:4},SH=Object.keys(SHN).map(Number);let view=store.get('dzview')||'s',frame=1;
 function shootRow(i){const el=$('#shoot');if(!SH.includes(i+1)){el.innerHTML=`<p class="pend">Photoshoot frames for Look ${i+1} are being added.</p>`;return}
- el.innerHTML=`<h4 style="font-family:var(--disp);font-stretch:75%;font-weight:800;font-size:22px;margin:4px 0 10px">The final garment · Look ${i+1}</h4><div class="row" style="--n:${SHN[i+1]}">${Array.from({length:SHN[i+1]},(_,k)=>k+1).map(n=>`<img class="z" loading="lazy" src="img/sp/shoot/look${i+1}-${n}.webp" alt="Look ${i+1}, ${LK[i][0]}: concept photoshoot frame ${n}">`).join('')}</div><p class="ai">AI-generated concept photography of these designs, made from the sketches. Not Raw Mango imagery.</p>`}
-function figView(i){const has=SH.includes(i+1);$('#vP').disabled=!has;const v=has?view:'s';$('#vS').setAttribute('aria-pressed',v==='s');$('#vP').setAttribute('aria-pressed',v==='p');
- const im=$('#dzimg');im.src=v==='p'?`img/sp/shoot/look${i+1}-1.webp`:`img/sp/d/look${i+1}.svg`;im.alt=(v==='p'?'Concept photoshoot of ':'Illustration of ')+`Look ${i+1}: ${LK[i][0]}`}
-$('#vS').onclick=()=>{view='s';store.set('dzview','s');figView(curLook)};$('#vP').onclick=()=>{view='p';store.set('dzview','p');figView(curLook)};
+ el.innerHTML=`<h4 style="font-family:var(--disp);font-stretch:75%;font-weight:800;font-size:22px;margin:4px 0 10px">The final garment · Look ${i+1}</h4><div class="row" style="--n:${SHN[i+1]}">${Array.from({length:SHN[i+1]},(_,k)=>k+1).map(n=>`<button class="fr" data-n="${n}" aria-pressed="false" aria-label="Show frame ${n} of Look ${i+1} in the large view"><img loading="lazy" src="img/sp/shoot/look${i+1}-${n}.webp" alt="Look ${i+1}, ${LK[i][0]}: concept photoshoot frame ${n}"></button>`).join('')}</div><p class="ai">AI-generated concept photography of these designs, made from the sketches. Not Raw Mango imagery. Select a frame to see it large.</p>`;
+ $$('#shoot .fr').forEach(b=>b.onclick=()=>{view='p';frame=+b.dataset.n;figView(i);if(innerWidth<901)$('.dz .fig').scrollIntoView({behavior:RM?'auto':'smooth',block:'start'})});marks()}
+function marks(){$$('#shoot .fr').forEach(b=>b.setAttribute('aria-pressed',view==='p'&&+b.dataset.n===frame))}
+function figView(i){const has=SH.includes(i+1);$('#vP').disabled=!has;const v=has?view:'s';if(!has)frame=1;$('#vS').setAttribute('aria-pressed',v==='s');$('#vP').setAttribute('aria-pressed',v==='p');
+ const im=$('#dzimg'),f=v==='p'?frame:1;im.style.opacity=.2;im.onload=()=>im.style.opacity=1;
+ im.src=v==='p'?`img/sp/shoot/look${i+1}-${f}.webp`:`img/sp/d/look${i+1}.svg`;im.alt=(v==='p'?`Concept photoshoot of Look ${i+1}${f>1?`, frame ${f}`:''}`:`Illustration of Look ${i+1}`)+`: ${LK[i][0]}`;
+ $('#vF').hidden=!(v==='p'&&f>1);$('#dzc').hidden=v==='p'&&f>1;marks()}
+$('#vS').onclick=()=>{view='s';store.set('dzview','s');figView(curLook)};$('#vP').onclick=()=>{view='p';frame=1;store.set('dzview','p');figView(curLook)};
+$('#vF').onclick=()=>{frame=1;figView(curLook)};
 let curLook=0;
-async function design(i){curLook=i;const d=DZ[i],im=$('#dzimg');im.style.opacity=.2;im.onload=()=>im.style.opacity=1;
+async function design(i){curLook=i;frame=1;const d=DZ[i],im=$('#dzimg');im.style.opacity=.2;im.onload=()=>im.style.opacity=1;
  setTimeout(()=>figView(i),RM?0:150);shootRow(i);
  $('#dzc').textContent=d.c;const box=$('#dzg');box.innerHTML='';
  for(const id of Object.keys(d.g)){const x=by[id];const el=document.createElement('article');el.className='gm';
