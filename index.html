@@ -1,117 +1,627 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vaishnavi Bhosale</title>
-<meta name="description" content="Vaishnavi Bhosale — personal website. Coming soon.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vaishnavi Bhosale — Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #f6f1ea;
-    --ink: #1f1a17;
-    --muted: #6b625b;
-    --accent: #c4572f;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { height: 100%; }
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: 'Inter', system-ui, sans-serif;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-  .blob {
-    position: fixed;
-    border-radius: 50%;
-    filter: blur(60px);
-    opacity: .45;
-    z-index: 0;
-    animation: drift 18s ease-in-out infinite alternate;
-  }
-  .blob.one { width: 420px; height: 420px; background: #f0b38f; top: -120px; right: -100px; }
-  .blob.two { width: 360px; height: 360px; background: #e7cfa8; bottom: -120px; left: -80px; animation-delay: -6s; }
-  @keyframes drift { to { transform: translate(40px, 30px) scale(1.08); } }
-  @media (prefers-reduced-motion: reduce) { .blob { animation: none; } }
+/* VOICE: a design student's jury wall — confident, editorial, playful in motion, quiet in text.
+   IDEA: the reel's six "boring section killers" — tunnel, ring, scatter, room, curved panels, diagonal stack — each one holds a chapter.
+   PICTURE: the student's own slides, bent into those 3D layouts; jewellery as live 3D models.
+   COLOUR and TYPE: off-white paper, ink black; one reel accent per chapter (cobalt, pastel, signal red, Raw Mango green, hot pink). Archivo condensed + Inter Tight.
+   LAYOUT: full-bleed chapters, floating dark pill nav bottom-left, tiny corner labels; a "sketch" switch flips every card back to its wireframe. */
+:root{color-scheme:light dark;
+ --bg:light-dark(#F2F1EC,#121211);--ink:light-dark(#141414,#EDECE7);--mut:light-dark(#66655f,#a3a29c);
+ --line:light-dark(#dcdad2,#2d2d2b);--card:light-dark(#ffffff,#1d1d1c);--soft:light-dark(#e8e6df,#1a1a19);
+ --blue:#1E5BFF;--red:#E8392B;--green:light-dark(#1F6B45,#4cb07c);--pink:#FF3E9A;--acc:var(--ink);
+ --disp:"Archivo",Impact,"Arial Narrow",sans-serif;--body:"Inter Tight",system-ui,sans-serif}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--body);overflow-x:clip;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
 
-  main {
-    position: relative;
-    z-index: 1;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 8vh 8vw;
-    max-width: 1100px;
-  }
-  .tag {
-    font-size: .8rem;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 500;
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: .6rem;
-  }
-  .tag::before {
-    content: "";
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 0 0 rgba(196,87,47,.5);
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    70% { box-shadow: 0 0 0 10px rgba(196,87,47,0); }
-    100% { box-shadow: 0 0 0 0 rgba(196,87,47,0); }
-  }
-  h1 {
-    font-family: 'Fraunces', Georgia, serif;
-    font-weight: 600;
-    font-size: clamp(3rem, 10vw, 7.5rem);
-    line-height: .95;
-    letter-spacing: -.02em;
-  }
-  h1 span { display: block; font-weight: 400; font-style: italic; color: var(--muted); }
-  p.lede {
-    margin-top: 2rem;
-    max-width: 34rem;
-    font-size: 1.15rem;
-    line-height: 1.6;
-    color: var(--muted);
-  }
-  footer {
-    position: relative;
-    z-index: 1;
-    padding: 2rem 8vw;
-    font-size: .85rem;
-    color: var(--muted);
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
-    border-top: 1px solid rgba(31,26,23,.1);
-  }
+/* chrome */
+.top{position:fixed;inset:14px 16px auto 16px;display:flex;justify-content:space-between;align-items:center;z-index:40;pointer-events:none;font-size:13px}
+.top>*{pointer-events:auto}
+.tag{background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(8px);padding:6px 10px;border-radius:8px}
+.sq{width:44px;height:44px;border-radius:10px;border:0;background:var(--ink);color:var(--bg);display:grid;place-items:center}
+.sq svg{width:18px;height:18px}
+.pill{position:fixed;left:16px;bottom:16px;z-index:40;display:flex;align-items:center;gap:2px;background:#111;color:#f2f1ec;border-radius:999px;padding:5px;box-shadow:0 10px 30px rgba(0,0,0,.25);max-width:calc(100vw - 32px);overflow-x:auto;scrollbar-width:none}
+.pill a{flex:none;text-decoration:none;font-size:13px;padding:10px 12px;border-radius:999px;color:#bdbcb6;white-space:nowrap}
+.pill a.on{color:#fff;background:#2a2a2a}
+.sw{flex:none;display:flex;align-items:center;gap:8px;border:0;background:#f2f1ec;color:#111;border-radius:999px;padding:6px 8px 6px 12px;margin-left:6px;font-size:13px;min-height:36px}
+.sw i{width:30px;height:18px;border-radius:9px;background:#c9c7bf;position:relative;transition:.25s}
+.sw i::before{content:"";position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:#fff;transition:.25s}
+.sw[aria-pressed=true] i{background:#111}.sw[aria-pressed=true] i::before{left:14px}
+
+/* sections */
+.sec{position:relative;padding:clamp(72px,9vw,120px) max(5vw,16px) clamp(56px,7vw,96px)}
+.head{max-width:1240px;margin:0 auto clamp(24px,4vw,44px);display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:16px 48px;align-items:end}
+.kick{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--mut);margin-bottom:12px}
+.kick b{width:10px;height:10px;border-radius:3px;background:var(--acc)}
+h1,h2{font-family:var(--disp);font-weight:800;font-stretch:72%;line-height:1.02;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:clamp(34px,5.2vw,60px)}
+h3{font-family:var(--disp);font-stretch:80%;font-weight:700;font-size:clamp(22px,2.4vw,28px);line-height:1.1;margin:0 0 8px}
+.lede{font-size:17px;max-width:62ch;margin:0;color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chips span{font-size:13px;border:1px solid var(--line);border-radius:999px;padding:5px 11px;color:var(--mut)}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--ink);background:transparent;font-size:15px;text-decoration:none}
+.btn.fill{background:var(--acc);border-color:var(--acc);color:#fff}
+.ctrls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin-top:18px}
+.rb{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card);display:grid;place-items:center;font-size:18px}
+.cap{text-align:center;max-width:720px;margin:14px auto 0;min-height:52px}
+.cap small{display:block;color:var(--mut);font-size:13px}
+.cap strong{font-family:var(--disp);font-stretch:80%;font-size:clamp(20px,2.3vw,26px);font-weight:700;line-height:1.15}
+.wrap{max-width:1240px;margin:0 auto}
+
+/* cards + sketch mode */
+.c{position:relative;overflow:hidden;border-radius:8px;background:var(--soft)}
+.c img{width:100%;height:100%;object-fit:cover;transition:opacity .45s}
+.c::after{content:attr(data-l);position:absolute;inset:0;display:grid;place-items:center;background:var(--p,#C9C3EE);color:#2a2a2a;font:500 13px var(--body);opacity:0;transition:opacity .45s;pointer-events:none;border-radius:inherit}
+body.sketch .c::after{opacity:1}
+body.sketch .c img{opacity:0}
+
+/* hero tunnel */
+.hero{min-height:100svh;display:grid;grid-template-rows:auto 1fr auto;padding-top:76px;padding-bottom:84px}
+.hero h1{font-size:clamp(46px,9vw,128px);font-stretch:66%}
+.hero .sub{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 40px;align-items:end}
+.hero .sub p{margin:0;max-width:46ch;font-size:17px}
+.tunnel{position:relative;perspective:900px;min-height:280px;margin:clamp(16px,3vw,36px) calc(-1*max(5vw,16px))}
+.tunnel .c{position:absolute;left:0;top:0;border-radius:6px;will-change:transform;box-shadow:0 6px 20px rgba(0,0,0,.08)}
+.chap{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;max-width:1240px;margin:0 auto;width:100%}
+.chap a{text-decoration:none;border-top:2px solid var(--ink);padding-top:10px;font-size:14px;line-height:1.3}
+.chap a span{display:block;color:var(--mut);font-size:13px;margin-top:2px}
+
+/* ring */
+#internship{--acc:var(--blue)}
+.ringst{isolation:isolate;position:relative;height:clamp(420px,52vw,640px);max-width:1400px;margin:0 auto;touch-action:pan-y;user-select:none;cursor:grab}
+.ringst .c{position:absolute;left:0;top:0;aspect-ratio:16/9;border-radius:6px;box-shadow:0 8px 26px rgba(0,0,0,.12);cursor:pointer;will-change:transform}
+.ringnum{position:absolute;font-family:var(--disp);font-weight:900;font-stretch:62%;line-height:.85;color:var(--blue);pointer-events:none;text-align:center}
+.ringnum span{display:block;font:500 14px var(--body);color:var(--mut);margin-top:10px}
+.parts{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+
+/* research placeholder */
+#research{--acc:#9d8fe8}
+.wire{position:relative;height:clamp(460px,48vw,600px);max-width:1240px;margin:0 auto;border:1px dashed var(--line);border-radius:16px;overflow:hidden;background:var(--card)}
+.wire .b{position:absolute;border-radius:8px;display:grid;place-items:center;font-size:13px;color:#2a2a2a;animation:fl 7s ease-in-out infinite alternate}
+.wire .mid{position:absolute;left:50%;top:50%;translate:-50% -50%;width:min(440px,84%);background:var(--bg);border-radius:14px;padding:26px;text-align:center;box-shadow:0 16px 40px rgba(0,0,0,.1);z-index:2}
+.wire .mid p{margin:8px 0 0;color:var(--mut)}
+@keyframes fl{from{transform:translateY(-8px) rotate(var(--r,0deg))}to{transform:translateY(10px) rotate(calc(var(--r,0deg)*-1))}}
+
+/* room */
+#styling{--acc:var(--red)}
+.room{position:relative;max-width:1240px;margin:0 auto;aspect-ratio:2.16/1;--wx:22%;--wy:16%;border-radius:14px;overflow:hidden;background:#f6d9d3}
+.room>div{position:absolute;inset:0}
+.room .ceil{clip-path:polygon(0 0,100% 0,calc(100% - var(--wx)) var(--wy),var(--wx) var(--wy));background:linear-gradient(#f9e7e2,#f3cfc7)}
+.room .floor{clip-path:polygon(0 100%,100% 100%,calc(100% - var(--wx)) calc(100% - var(--wy)),var(--wx) calc(100% - var(--wy)));background:linear-gradient(#e8b8ad,#d9958a)}
+.room .lw{clip-path:polygon(0 0,var(--wx) var(--wy),var(--wx) calc(100% - var(--wy)),0 100%)}
+.room .rw{clip-path:polygon(100% 0,calc(100% - var(--wx)) var(--wy),calc(100% - var(--wx)) calc(100% - var(--wy)),100% 100%)}
+.room .lw,.room .rw{border-radius:0;background:var(--red)}
+.room .lw img,.room .rw img{filter:saturate(.6) brightness(.55)}
+.room .wt{position:absolute;top:50%;translate:0 -50%;color:#fff;font-family:var(--disp);font-weight:800;font-stretch:70%;pointer-events:none;z-index:2}
+.room .lw .wt{left:0;width:var(--wx);text-align:center;font-size:clamp(28px,6vw,84px);line-height:.9}
+.room .rw .wt{right:0;width:var(--wx);padding:0 1.4%;font-size:clamp(13px,1.5vw,20px);line-height:1.1}
+.room .front{inset:var(--wy) var(--wx);border-radius:4px;cursor:zoom-in;box-shadow:0 20px 50px rgba(80,10,0,.25)}
+.room .front img{object-fit:contain;background:#fff}
+.thumbs{display:flex;gap:8px;overflow-x:auto;padding:14px 2px 4px;max-width:1240px;margin:0 auto;scrollbar-width:thin}
+.thumbs button{flex:none;width:96px;aspect-ratio:16/9;padding:0;border:2px solid transparent;border-radius:6px;overflow:hidden;background:var(--soft)}
+.thumbs button.on{border-color:var(--red)}
+.thumbs img{width:100%;height:100%;object-fit:cover}
+
+/* brand */
+#brand{--acc:var(--green)}
+.sub3{max-width:1240px;margin:clamp(40px,6vw,72px) auto 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:16px 48px;align-items:end;margin-bottom:22px}
+.sub3 p{margin:0;max-width:60ch}
+.diag{isolation:isolate;position:relative;height:clamp(400px,46vw,600px);max-width:1400px;margin:0 auto;touch-action:pan-y;user-select:none;cursor:grab;overflow:hidden}
+.diag .c{position:absolute;left:0;top:0;aspect-ratio:16/9;border-radius:6px;box-shadow:0 14px 34px rgba(0,0,0,.16);cursor:pointer;will-change:transform}
+.story{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;max-width:1240px;margin:0 auto;perspective:1000px}
+.story button{padding:0;border:0;background:none;text-align:left}
+.story .c{aspect-ratio:16/9;transition:transform .35s;box-shadow:0 6px 20px rgba(0,0,0,.08)}
+.story button:nth-child(1) .c{transform:rotateY(18deg)}.story button:nth-child(2) .c{transform:rotateY(9deg)}
+.story button:nth-child(4) .c{transform:rotateY(-9deg)}.story button:nth-child(5) .c{transform:rotateY(-18deg)}
+.story button:hover .c{transform:translateY(-6px) scale(1.04)}
+.story small{display:block;font-size:13px;color:var(--mut);margin-top:8px}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;max-width:1240px;margin:18px auto 0}
+.facts div{border-top:1px solid var(--line);padding-top:10px;font-size:14px}
+.facts b{display:block;font-family:var(--disp);font-stretch:80%;font-size:20px}
+.jw{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr) minmax(0,1fr);gap:0;max-width:1400px;margin:0 auto;align-items:stretch;min-height:520px}
+.panel{position:relative;padding:28px;display:flex;flex-direction:column;justify-content:center;color:#10261a}
+.panel svg{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+.panel h3{font-size:clamp(26px,3vw,38px)}
+.panel p{margin:0;font-size:15px;max-width:30ch}
+.panel.r{text-align:right;align-items:flex-end;color:#221a3d}
+.panel.l p{margin-right:22%}.panel.r p{margin-left:22%}
+.jwc{background:var(--card);border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.14);display:flex;flex-direction:column;overflow:hidden;margin:18px 0;position:relative;z-index:1}
+.tabs{display:flex;gap:6px;padding:12px;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+.tabs button{border:1px solid var(--line);background:transparent;border-radius:999px;min-height:40px;padding:0 14px;font-size:14px}
+.tabs button.on{background:var(--green);border-color:var(--green);color:#fff}
+.view{position:relative;flex:1;min-height:360px;background:radial-gradient(circle at 50% 40%,light-dark(#ffffff,#2a2a28),light-dark(#e9e7e0,#151514))}
+.view canvas{position:absolute;inset:0;width:100%!important;height:100%!important;cursor:grab}
+.view .msg{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px;color:var(--mut);font-size:14px}
+.view .soon{position:absolute;inset:16%;border:1px dashed #9d8fe8;border-radius:14px;background:#e7e2fb;color:#2a2244;display:grid;place-items:center;text-align:center;padding:20px}
+.jwf{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;border-top:1px solid var(--line);flex-wrap:wrap;font-size:13px;color:var(--mut)}
+.fin{display:flex;gap:6px}
+.fin button{width:32px;height:32px;border-radius:50%;border:2px solid var(--line)}
+.fin button.on{border-color:var(--ink)}
+
+/* scatter */
+#cutting{--acc:var(--pink)}
+.scat{isolation:isolate;position:relative;height:clamp(640px,66vw,820px);max-width:1300px;margin:0 auto;perspective:1200px}
+.scat .s{position:absolute;transform-style:preserve-3d;transition:transform .25s ease-out}
+.scat .c{width:100%;aspect-ratio:3/4;border-radius:10px;box-shadow:0 18px 44px rgba(0,0,0,.18)}
+.scat figcaption{font-size:13px;color:var(--mut);margin-top:8px;line-height:1.35}
+.tc2{background:var(--card);border-radius:12px;padding:20px;box-shadow:0 14px 40px rgba(0,0,0,.1)}
+.tc2.big{background:var(--pink);color:#fff}
+.tc2.big h3{font-size:clamp(34px,4vw,54px);font-stretch:66%;font-weight:900;line-height:.95}
+.tc2.big p{margin:10px 0 16px}
+.tc2.big .btn{border-color:#fff;color:#fff}
+.tc2 q{font-family:var(--disp);font-stretch:80%;font-size:clamp(18px,1.8vw,23px);font-weight:600;line-height:1.2;quotes:none}
+.kw{display:flex;flex-wrap:wrap;gap:8px}
+.kw span{background:#111;color:#fff;border-radius:999px;padding:8px 14px;font-size:14px}
+
+/* overlays */
+.ov{position:fixed;inset:0;z-index:1000;background:rgba(12,12,12,.94);display:none;color:#f2f1ec}
+.ov.open{display:flex}
+#lb{flex-direction:column;align-items:center;justify-content:center;padding:60px 16px 20px}
+#lb img{max-width:min(1400px,100%);max-height:calc(100svh - 170px);object-fit:contain;border-radius:4px;background:#fff}
+#lb .lbc{margin-top:14px;text-align:center;font-size:14px;color:#cfcdc6;max-width:720px}
+#lb .lbc b{display:block;color:#fff;font-size:16px;font-weight:600}
+.x{position:absolute;top:14px;right:16px;width:44px;height:44px;border-radius:50%;border:0;background:#f2f1ec;color:#111;font-size:22px}
+.lbn{position:absolute;top:50%;translate:0 -50%;width:48px;height:48px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:22px}
+.lbn.p{left:12px}.lbn.n{right:12px}
+#rd{overflow-y:auto;background:var(--bg);color:var(--ink);display:none}
+#rd.open{display:block}
+#rd article{max-width:720px;margin:0 auto;padding:80px 20px 100px}
+#rd article h2{font-size:clamp(34px,5vw,52px);margin-bottom:8px}
+#rd article h4{font-family:var(--disp);font-stretch:80%;font-size:22px;margin:32px 0 6px}
+#rd article p{margin:0 0 14px}
+#rd figure{margin:20px 0;display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:center;font-size:14px;color:var(--mut)}
+#rd figure img{border-radius:6px}
+#rd .x{position:fixed;background:var(--ink);color:var(--bg)}
+#idx{flex-direction:column;justify-content:center;padding:40px max(6vw,20px)}
+#idx a{display:flex;justify-content:space-between;gap:20px;align-items:baseline;text-decoration:none;border-top:1px solid #333;padding:16px 0;font-family:var(--disp);font-stretch:70%;font-weight:800;font-size:clamp(30px,6vw,72px);line-height:1}
+#idx a span{font:400 14px var(--body);color:#9c9a93;white-space:nowrap}
+footer{padding:clamp(80px,10vw,140px) max(5vw,16px) 120px;text-align:center}
+footer h2{font-size:clamp(60px,14vw,200px);font-stretch:62%}
+footer p{color:var(--mut);margin:12px 0 0}
+
+@media(max-width:900px){
+ .head,.sub3{grid-template-columns:minmax(0,1fr)}
+ .jw{grid-template-columns:minmax(0,1fr)}
+ .panel{min-height:200px}.panel.l p,.panel.r p{margin:0}
+ .scat{height:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+ .scat .s{position:static;width:auto!important;transform:none!important}
+ .scat .wide{grid-column:1/-1}
+ .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:600px){
+ .chap{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .room{aspect-ratio:1.6/1;--wx:10%;--wy:14%}
+ .room .wt{display:none}
+ .story{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .story .c{transform:none!important}
+ .thumbs button{width:76px}
+ .hero h1{font-size:clamp(44px,15vw,80px)}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-  <div class="blob one"></div>
-  <div class="blob two"></div>
-  <main>
-    <div class="tag">Something new is on the way</div>
-    <h1>Vaishnavi<span>Bhosale</span></h1>
-    <p class="lede">Hello, and welcome. This little corner of the internet is being set up. Check back soon.</p>
-  </main>
-  <footer>
-    <span>vaishnavibhosale.com</span>
-    <span>© <script>document.write(new Date().getFullYear())</script></span>
-  </footer>
+
+<div class="top">
+ <span class="tag">Vaishnavi Bhosale · Jury review</span>
+ <button class="sq" id="menu" aria-label="Open chapter index"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 5h14M2 9h14M2 13h14"/></svg></button>
+</div>
+
+<nav class="pill" aria-label="Chapters">
+ <a href="#internship">Internship</a><a href="#research">Research</a><a href="#styling">Styling</a><a href="#brand">Brand</a><a href="#cutting">Cutting edge</a>
+ <button class="sw" id="sketch" aria-pressed="false">Sketch <i></i></button>
+</nav>
+
+<!-- HERO -->
+<header class="sec hero" id="top">
+ <div class="sub">
+  <h1>Vaishnavi<br>Bhosale</h1>
+  <p>Fashion &amp; Apparel Design, 4th year. Portfolio and jury review in five chapters: an internship, a research project, styling and photography, brand management, and cutting-edge fashion.</p>
+ </div>
+ <div class="tunnel" id="tunnel" aria-hidden="true"></div>
+ <div class="chap">
+  <a href="internship.html">Summer internship<span>Blanco · open project →</span></a>
+  <a href="#research">Fashion design research<span>To be added</span></a>
+  <a href="#styling">Styling &amp; photography<span>Raw Mango · 12 slides</span></a>
+  <a href="#brand">Fashion brand management<span>Raw Mango · 2 decks · 3D</span></a>
+  <a href="#cutting">Cutting-edge fashion<span>Future Ritualism</span></a>
+ </div>
+</header>
+
+<!-- INTERNSHIP: ring -->
+<section class="sec" id="internship">
+ <div class="head">
+  <div><div class="kick"><b></b>Summer internship</div><h2>Two months at Blanco, from bespoke design to the shop floor</h2></div>
+  <div>
+   <p class="lede">Month one inside Blanco Bespoke: a white shirt collection built from years of order books, quick sketches for clients and time with the karigars. Month two in retail: catalogues, visual merchandising, a stock system, store communication and a styling shoot.</p>
+   <div class="chips"><span>Blanco Bespoke</span><span>39 slides</span><span>Offer letter, recommendation and certificate included</span></div>
+  </div>
+ </div>
+ <div class="ringst" id="ring" aria-label="Internship slides in a ring. Drag, or use the buttons."></div>
+ <div class="cap" id="ringcap" aria-live="polite"></div>
+ <div class="ctrls">
+  <button class="rb" id="rp" aria-label="Previous slide">←</button>
+  <div class="parts"><button class="btn" data-go="0">Part I · Bespoke</button><button class="btn" data-go="21">Part II · Retail</button><button class="btn" id="ropen">Open slide</button><a class="btn fill" href="internship.html">Open the full project →</a></div>
+  <button class="rb" id="rn" aria-label="Next slide">→</button>
+ </div>
+</section>
+
+<!-- RESEARCH: placeholder wireframe -->
+<section class="sec" id="research">
+ <div class="head">
+  <div><div class="kick"><b></b>Fashion design research project</div><h2>This chapter is still a wireframe</h2></div>
+  <p class="lede">The research project will sit here. The layout is ready: images, title, text and media will drop into these frames once the work is added.</p>
+ </div>
+ <div class="wire" id="wire">
+  <div class="mid"><h3>Fashion design research project</h3><p>Coming soon</p></div>
+ </div>
+</section>
+
+<!-- STYLING: room -->
+<section class="sec" id="styling">
+ <div class="head">
+  <div><div class="kick"><b></b>Fashion styling &amp; photography</div><h2>Raw Mango: a creative direction</h2></div>
+  <div>
+   <p class="lede">A creative direction for Sanjay Garg's textile label: its essence and Creator archetype, the visual codes of silhouette, colour and material, motif and image-making, storytelling, a customer persona and an identity board, closed with an honest critique.</p>
+   <div class="chips"><span>Raw Mango</span><span>12 slides</span></div>
+  </div>
+ </div>
+ <div class="room" id="room">
+  <div class="ceil"></div><div class="floor"></div>
+  <div class="lw c" data-l="Number"><img alt=""><div class="wt" id="rnum"></div></div>
+  <div class="rw c" data-l="Title"><img alt=""><div class="wt" id="rtit"></div></div>
+  <div class="front c" data-l="Image" id="rfront" role="button" tabindex="0" aria-label="Open this slide"><img alt=""></div>
+ </div>
+ <div class="cap" id="roomcap" aria-live="polite"></div>
+ <div class="ctrls"><button class="rb" id="sp" aria-label="Previous slide">←</button><button class="btn fill" id="sopen">Open slide</button><button class="rb" id="sn" aria-label="Next slide">→</button></div>
+ <div class="thumbs" id="sthumbs"></div>
+</section>
+
+<!-- BRAND -->
+<section class="sec" id="brand">
+ <div class="head">
+  <div><div class="kick"><b></b>Fashion brand management</div><h2>Raw Mango as a commercial system</h2></div>
+  <p class="lede">How does Raw Mango turn its creative identity into a collection calendar, a product hierarchy, a retail experience and a production system? Three outputs: a collection-cycle and merchandising study, a pre-sale Instagram campaign, and jewellery modelled in 3D.</p>
+ </div>
+
+ <div class="sub3"><h3>Collection cycles &amp; merchandising strategies</h3><p>Collection types and launch rhythm, price architecture, the sari's strategic role, product tiers, store design in Lodhi Colony and Chennai, mannequin styling, the website as a second store, and the crafts behind it.</p></div>
+ <div class="diag" id="diag" aria-label="Collection cycles slides. Drag, or use the buttons."></div>
+ <div class="cap" id="diagcap" aria-live="polite"></div>
+ <div class="ctrls"><button class="rb" id="dp" aria-label="Previous slide">←</button><button class="btn fill" id="dopen">Open slide</button><button class="rb" id="dn" aria-label="Next slide">→</button></div>
+
+ <div class="sub3"><h3>Promotional poster: Three Days to Discover</h3><p>An Instagram Story ad that builds anticipation for Raw Mango's Annual Online Sale, proposed before the event: refined imagery, minimal type and a restrained palette.</p></div>
+ <div class="story" id="story"></div>
+ <div class="facts">
+  <div><b>Three Days to Discover</b>Tagline</div>
+  <div><b>Explore the Sale</b>Call to action</div>
+  <div><b>Instagram Story</b>Medium, pre-event stage</div>
+  <div><b>25–45 years</b>Design-conscious shoppers</div>
+ </div>
+
+ <div class="sub3"><h3>Jewellery in 3D</h3><p>A hair comb, a ring and a drop earring for the brand, drawn from Casa Batlló and the Art Nouveau period. Drag to turn a piece, scroll or pinch to zoom.</p></div>
+ <div class="jw">
+  <div class="panel l"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="gl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9fdcb1"/><stop offset=".6" stop-color="#c8ecd2"/><stop offset="1" stop-color="#e9d79a"/></linearGradient></defs><path d="M0 0H72C58 22 100 34 100 50S58 78 72 100H0Z" fill="url(#gl)"/></svg>
+   <h3>Casa Batlló</h3><p>Gaudí's house in Barcelona: bone-like columns, a scaled roof and a facade that moves like water. The ring takes its curves.</p></div>
+  <div class="jwc">
+   <div class="tabs" role="tablist">
+    <button class="on" data-m="comb" role="tab">Ginkgo hair comb</button><button data-m="ring" role="tab">Casa Batlló ring</button><button data-m="ear" role="tab">Drop earring</button>
+   </div>
+   <div class="view c" data-l="Media" id="view"><div class="msg" id="vmsg">Loading model…</div></div>
+   <div class="jwf"><span id="vinfo">110 × 68 mm</span><span class="fin" id="fin"><button style="background:#d4af6a" data-f="gold" class="on" aria-label="Gold finish"></button><button style="background:#d9d9de" data-f="silver" aria-label="Silver finish"></button><button style="background:#f1ece2" data-f="resin" aria-label="Ivory resin finish"></button></span></div>
+  </div>
+  <div class="panel r"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="gr" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b9adf2"/><stop offset=".6" stop-color="#dcd5fb"/><stop offset="1" stop-color="#f5c6d3"/></linearGradient></defs><path d="M100 0H28C42 22 0 34 0 50S42 78 28 100H100Z" fill="url(#gr)"/></svg>
+   <h3>Art Nouveau</h3><p>Around 1890–1910: whiplash lines and ornament taken from plants. The comb is built on the ginkgo leaf.</p></div>
+ </div>
+</section>
+
+<!-- CUTTING EDGE: scatter -->
+<section class="sec" id="cutting">
+ <div class="head">
+  <div><div class="kick"><b></b>Cutting-edge fashion</div><h2>Future Ritualism: ceremonial clothing for imagined societies</h2></div>
+  <p class="lede">A speculative direction that asks how societies that don't exist yet might dress their beliefs, hierarchies and ceremonies, read through three couture collections.</p>
+ </div>
+ <div class="scat" id="scat">
+  <div class="s wide" data-d="10" style="left:30%;top:7%;width:38%"><div class="tc2"><div class="kw"><span>Symbolic ornament</span><span>Futuristic regalia</span><span>Dramatic ritual dressing</span></div></div></div>
+  <figure class="s" data-d="40" style="left:3%;top:3%;width:18%;margin:0"><div class="c" data-l="Image"><img src="img/fr-1.webp" alt="Blue sculptural couture gown"></div><figcaption>Cosmic regalia. Iris van Herpen, Earthrise (2021)</figcaption></figure>
+  <figure class="s" data-d="30" style="left:78%;top:1%;width:17%;margin:0"><div class="c" data-l="Image"><img src="img/fr-2.webp" alt="White feathered couture look"></div><figcaption>Movement and transcendence. Earthrise (2021)</figcaption></figure>
+  <div class="s wide" data-d="0" style="left:29%;top:30%;width:42%"><div class="tc2 big"><h3>Future Ritualism</h3><p>The potential lies not in a futuristic look, but in coherent visual languages that carry the values of imagined cultures.</p><button class="btn" id="read">Read the paper</button></div></div>
+  <figure class="s" data-d="35" style="left:5%;top:56%;width:17%;margin:0"><div class="c" data-l="Image"><img src="img/fr-3.webp" alt="Blue patterned look on a dark runway"></div><figcaption>Transformative surfaces. Anrealage, Invisible (SS24)</figcaption></figure>
+  <figure class="s" data-d="45" style="left:79%;top:52%;width:17%;margin:0"><div class="c" data-l="Image"><img src="img/fr-4.webp" alt="Ivory and gold sculpted gown in a hall"></div><figcaption>Organic regalia. Yuima Nakazato, SILENT (SS26)</figcaption></figure>
+  <div class="s" data-d="20" style="left:26%;top:67%;width:25%"><div class="tc2"><q>What might future societies choose to celebrate, protect, remember and believe in?</q></div></div>
+  <div class="s" data-d="25" style="left:54%;top:72%;width:22%"><div class="tc2" style="font-size:15px">Three case studies, then a critique: symbolism, materials, function, sustainability and cultural responsibility, and a personal design direction.</div></div>
+ </div>
+</section>
+
+<footer><h2>Thank you</h2><p>Vaishnavi Bhosale · Portfolio and jury review, 2026</p></footer>
+
+<!-- overlays -->
+<div class="ov" id="lb" role="dialog" aria-modal="true" aria-label="Slide viewer">
+ <button class="x" data-close aria-label="Close">×</button>
+ <button class="lbn p" aria-label="Previous">←</button><button class="lbn n" aria-label="Next">→</button>
+ <img alt=""><div class="lbc"></div>
+</div>
+<div class="ov" id="idx" role="dialog" aria-modal="true" aria-label="Chapter index">
+ <button class="x" data-close aria-label="Close">×</button>
+ <a href="internship.html">Summer internship <span>Open project →</span></a>
+ <a href="#research">Fashion design research <span>To be added</span></a>
+ <a href="#styling">Styling &amp; photography <span>12 slides</span></a>
+ <a href="#brand">Brand management <span>30 slides · 3D</span></a>
+ <a href="#cutting">Cutting-edge fashion <span>Research paper</span></a>
+</div>
+<div class="ov" id="rd" role="dialog" aria-modal="true" aria-label="Research paper">
+ <button class="x" data-close aria-label="Close">×</button>
+ <article>
+  <div class="kick"><b style="background:var(--pink)"></b>Cutting-edge fashion · research paper</div>
+  <h2>Future Ritualism: Ceremonial Clothing for Imagined Societies</h2>
+  <p style="color:var(--mut)">Symbolic ornament · Futuristic regalia · Dramatic ritual dressing. Vaishnavi Bhosale. 1,498 words.</p>
+  <h4>Abstract</h4>
+  <p>Future Ritualism is a speculative fashion direction that imagines how societies yet to exist might express beliefs, hierarchies and collective identities through ceremonial clothing. This paper examines the direction through three contemporary fashion examples: Iris van Herpen’s Earthrise (2021), Anrealage’s Invisible (Spring/Summer 2024), and Yuima Nakazato’s SILENT (Spring/Summer 2026). It analyses symbolism, material experimentation, functionality, cultural responsibility and sustainability. It argues that the direction’s potential lies not simply in futuristic appearance, but in coherent visual languages that communicate the values of imagined cultures.</p>
+  <h4>1. Introduction to the selected direction</h4>
+  <p>Clothing has historically communicated meanings beyond protection and decoration. Ceremonial garments can signify spiritual beliefs, social status, collective identity and transitions between stages of life. Coronation robes, wedding attire, religious vestments and ritual ornaments demonstrate how dress can transform the body into a visible expression of cultural values.</p>
+  <p>For this research, Future Ritualism is defined as a speculative fashion direction in which designers imagine ceremonial clothing for societies that do not yet exist. It combines the symbolic functions of historical ritual dress with futuristic regalia, sculptural silhouettes, experimental materials and imagined systems of belief. Unlike conventional science-fiction costume, it requires clothing to communicate a coherent cultural narrative rather than merely suggest an advanced technological era.</p>
+  <p>The direction draws on historical ceremonial dress, speculative world-building and experimental fashion technology. Historical dress offers a foundation for understanding how clothing communicates identity; science fiction allows designers to imagine alternative social structures; and experimental couture provides techniques for translating concepts into physical forms. Crane and Bovone (2006) argue that fashion can be studied as material culture through the creation, communication and interpretation of symbolic value. This framework is relevant because a garment’s meaning depends not only on its appearance, but also on the context in which it is designed, presented and worn.</p>
+  <p>Future Ritualism is therefore best treated as a proposed design framework, not a formally established fashion movement. Its relevance lies in asking how people might express belonging, reverence, authority and transformation amid technological change and environmental uncertainty.</p>
+  <h4>2.1 Iris van Herpen: Earthrise (2021)</h4>
+  <p>Dutch designer Iris van Herpen combines couture craftsmanship with scientific research, technology and organic forms. Her Earthrise Haute Couture collection, presented in July 2021, explored humanity’s relationship with Earth through a cosmic perspective. The collection’s narrative considered the planet as an interconnected living system (Iris van Herpen, 2021).</p>
+  <p>A notable garment was created for world-champion skydiver Domitille Kiger. It incorporated thousands of blue spheres arranged in colour gradients, evoking Earth viewed from space. The garment’s movement was revealed during an aerial performance, demonstrating how couture can be developed for an unusual physical environment (Vogue, 2021).</p>
+  <p>Earthrise is relevant to Future Ritualism because its forms can be interpreted as ceremonial expressions of planetary interconnectedness. Spherical ornament evokes celestial bodies, while movement suggests transformation and transcendence. This is a speculative reading: the collection was not presented as the dress of a fictional civilisation. However, it demonstrates how abstract ideas can be translated into material form through silhouette, ornament, colour and performance.</p>
+  <figure><img src="img/fr-1.webp" alt=""><figcaption>Figure 1. Earthrise-inspired cosmic regalia: spherical ornament and layered blue forms. Iris van Herpen, Earthrise (2021).</figcaption></figure>
+  <figure><img src="img/fr-2.webp" alt=""><figcaption>Figure 2. Earthrise-inspired movement and transcendence: a conceptual interpretation of aerial ceremony.</figcaption></figure>
+  <h4>2.2 Anrealage: Invisible (Spring/Summer 2024)</h4>
+  <p>Japanese designer Kunihiko Morinaga founded Anrealage in 2003. The brand investigates clothing, perception and technology. Its Spring/Summer 2024 collection, Invisible, used photochromic PVC that could shift from transparent to colourful under ultraviolet light. The presentation also explored metamerism, where colour perception changes under different light sources (Anrealage, 2023; Fédération de la Haute Couture et de la Mode, 2023).</p>
+  <p>This approach transforms clothing from a static surface into a changing visual experience. Instead of relying solely on embroidery or attached ornament, the garments use environmental conditions to influence their appearance. In a speculative ritual context, a garment might reveal a concealed pattern during a ceremony or distinguish participants at different stages of a communal event. Such an application would make ornament interactive. The collection itself should not be misrepresented as a ritual-fashion project; its relevance is its documented experimentation with light and perception.</p>
+  <figure><img src="img/fr-3.webp" alt=""><figcaption>Figure 3. Invisible-inspired transformative surfaces: transparent forms that become visually prominent under light. Anrealage, Invisible (SS24).</figcaption></figure>
+  <h4>2.3 Yuima Nakazato: SILENT (Spring/Summer 2026)</h4>
+  <p>Japanese couture designer Yuima Nakazato explores nature, material processes and experimental construction. His Spring/Summer 2026 collection, SILENT, developed from observations of Yakushima Island, including ancient cedar trees, river-smoothed stones and landscapes shaped over long periods (Yuima Nakazato, 2026).</p>
+  <p>The collection combined digitally printed textiles with ceramic components created through extensive handwork. Epson also supported experiments using recovered textile material and digital printing. Printing transparent ink onto silk organza reduced fraying at cut edges, suggesting that printing can influence construction rather than simply decorate a surface (Epson, 2026).</p>
+  <p>These processes are relevant to Future Ritualism because materials can carry narratives. Tree rings, geological formations and weathered surfaces could inspire garments that evoke memory, endurance and the relationship between people and the natural environment. For a fictional society that regards geological time as sacred, such forms could become ceremonial regalia. Recovered textiles might also communicate a commitment to resource conservation.</p>
+  <figure><img src="img/fr-4.webp" alt=""><figcaption>Figure 5. SILENT-inspired organic regalia: sculptural layers and nature-derived forms. Yuima Nakazato, SILENT (SS26).</figcaption></figure>
+  <h4>3.1 Design potential and symbolic communication</h4>
+  <p>Future Ritualism’s central design principle is that each visual decision should contribute to the imagined society’s system of meaning. A community organised around celestial observation might use concentric forms and reflective surfaces; a society centred on ecological preservation might favour biomorphic silhouettes and reclaimed materials; and a technologically advanced civilisation might use responsive textiles to distinguish ceremonial roles. World-building gives designers a reason to connect form, ornament and material to a garment’s purpose.</p>
+  <p>Symbolism nevertheless requires research and coherence. Sacred motifs or culturally specific forms should not be treated as interchangeable decoration. Designers must distinguish between studying existing traditions and inventing new symbolic systems.</p>
+  <h4>3.2 Materials, technology and functionality</h4>
+  <p>Three-dimensional printing, digitally printed textiles, photochromic surfaces and sculptural construction expand the possibilities of ceremonial dress. Yet technical novelty does not automatically create meaningful design. Electronic components can require batteries and maintenance; rigid structures may restrict movement; and elaborate embellishment can increase weight, cost and end-of-life complexity. Ceremonial garments must still accommodate walking, dancing or prolonged standing. Technology should contribute to the concept or function rather than act as an unnecessary signifier of futurism.</p>
+  <h4>3.3 Consumer relevance and sustainability</h4>
+  <p>Potential applications include couture, performance costume, film, immersive exhibitions and experimental presentations. Although highly specialised garments may have a limited direct consumer market, their principles could inform modular accessories, transformable clothing and detachable ornaments. Sustainability must be assessed across production, use, repair and disposal. Recovered textile materials offer one possible approach, but no single material choice proves that a whole garment is sustainable. Durable construction, repairable structures, reusable ornaments and disassembly for material recovery would better align dramatic design with environmental responsibility.</p>
+  <h4>3.4 Cultural responsibility</h4>
+  <p>Ceremonial dress can express belonging and belief, but borrowing sacred motifs or religious forms without understanding their significance risks reducing living traditions to aesthetic decoration. Research, attribution and consultation are essential when designers engage with existing cultural practices. A speculative society should ideally develop its own coherent symbolism rather than rely on superficial combinations of recognisable cultural references.</p>
+  <h4>4. My perspective: a personal reflection</h4>
+  <p>I find Future Ritualism compelling because it positions fashion as a tool for constructing worlds rather than simply responding to trends. I would develop a fictional civilisation that considers humans temporary participants in a larger cosmic ecosystem. Its ceremonial garments could combine spine-like structures, shell-inspired surfaces and translucent elements that evoke water or celestial movement. Detachable ornaments could distinguish different ceremonies or stages of social transformation.</p>
+  <p>I would begin by defining the society’s beliefs, environment, social structure and important ceremonies before developing a visual code for colour, silhouette, ornament and material. I would experiment with sculpted textiles, recovered materials and lightweight fabricated components, prioritising movement, repair and reconfiguration. Technology would be used only when it supported the garment’s symbolic or functional purpose.</p>
+  <p>A weakness of this direction is that futuristic fashion can look impressive without developing a convincing conceptual foundation. Metallic surfaces, exaggerated headpieces and dramatic silhouettes may suggest science fiction, but they do not automatically create a meaningful ritual system. Without a clear relationship between form and narrative, the result risks becoming costume without context. I am also concerned that elaborate one-off garments can create waste. Detachable components, reusable ornaments and repairable structures would allow visual complexity without requiring every ceremonial object to be entirely new.</p>
+  <p>Ultimately, I believe Future Ritualism can expand fashion’s role in speculative design and couture. Its value lies not simply in predicting what people might wear in the future, but in asking what future societies might choose to celebrate, protect, remember and believe in.</p>
+  <h4>5. Conclusion</h4>
+  <p>Future Ritualism provides a framework for exploring ceremonial dress, speculative world-building, technological experimentation and symbolic communication. Earthrise, Invisible and SILENT demonstrate relevant possibilities through sculptural couture, transformative surfaces and material innovation. These collections are not a formally established Future Ritualism movement, but they provide credible starting points for developing its visual and conceptual language. Its future potential depends on uniting imaginative aesthetics with coherent symbolism, practical construction, cultural awareness and responsible material choices.</p>
+  <h4>6. References</h4>
+  <p style="font-size:14px">Anrealage (2023). Spring/Summer 2024: Invisible. Official collection presentation and press release.<br>Crane, D. and Bovone, L. (2006). ‘Approaches to material culture: The sociology of fashion and clothing’, Poetics, 34(6), pp. 319–333. doi:10.1016/j.poetic.2006.10.002.<br>Epson (2026). The future of fashion co-created with YUIMA NAKAZATO: Paris Haute Couture Fashion Week Spring/Summer 2026. Corporate case study.<br>Fédération de la Haute Couture et de la Mode (2023). Anrealage: Womenswear Spring/Summer 2024. Official collection page.<br>Iris van Herpen (2021). Earthrise: Haute Couture collection. Official collection and editorial.<br>Vogue (2021). Iris van Herpen Fall 2021 Couture Collection. Vogue Runway, 5 July.<br>Yuima Nakazato (2026). Couture Spring/Summer 2026: SILENT. Official collection and designer’s statement.<br>All accessed 25 October 2026. Images: open-source collection visuals, credited to each house.</p>
+ </article>
+</div>
+
+<script src="js/three.min.js"></script>
+<script src="js/OrbitControls.js"></script>
+<script src="js/RoomEnvironment.js"></script>
+<script>
+{
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const PAST=['#C9C3EE','#F6CDB0','#F6E7A6','#BDE8C1','#BFE0F5','#F5C6D3'];
+const LBL=['Card','Image','Title','Text','Image','Card'];
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const D={
+ si:{name:'Summer internship',t:['Summer internship review: Blanco Bespoke','Month one: inside bespoke','The white shirt collection','The white shirt collection: flats','The white shirt collection: details','The white shirt collection: line-up','From research to design','Details customers ask for','Brand motif mapping','Blanco-inspired motif','Button selection','Fabric and reference board','Technical flats','Shirt detail studies','Quick sketches, clear communication','Craftsmanship made visible: learning from karigars','Understanding the bespoke workflow','Thaan, stock and resourceful material use','Store layout','Store layout: fabric walls','Month one reflection','Part II: retail, merchandising and operations','Month two: from product to retail','Building the garment catalogues','Visual merchandising shapes the product story','Visual merchandising in store','Digital store communication','Casualwear stock arrival','Creating a recognisable stock system','From datasheet to shop floor','Stock datasheet','Datasheet at work','Retail operations and styling shoot','Styling shoot','Festive campaign','Offer letter','Letter of recommendation','Certificate of internship','Final reflection']},
+ cd:{name:'Raw Mango creative direction',t:['Raw Mango: creative direction','Brand overview: handloom, reread as contemporary luxury','Brand essence: tradition that keeps evolving','Brand personality: the Creator','Design aesthetic: silhouette, colour, material','Visual codes: motif, logo, image-making','Storytelling: clothes placed inside a culture','Customer persona: she wears taste, not logos','Brand identity board','Critical analysis: strong identity, honest tensions','Sources and image credits','Thank you']},
+ cc:{name:'Collection cycles & merchandising',t:['Collection cycles & merchandising strategies','Brand overview and research approach','From identity to commercial system','How Raw Mango structures its collections','Collection frequency and launch patterns','Style counts by launch','Product categories and price ranges','Price architecture','Why the sari remains strategically important','Product hierarchy','Retail design: Lodhi Colony, New Delhi','Retail design: Chennai','Store locations analysis','Product displays and grouping','Mannequin styling','Digital merchandising: the website','Website: home page','Website: product grid','Website: product detail page','Website: footer','Crafts: Chanderi, Ikat, Mashru','Crafts: Sooti, Varanasi brocade, tie and dye','Key observations','Research sources','Thank you']},
+ pp:{name:'Promotional poster',t:['Promotional poster: Raw Mango','Campaign theme and concept','Why this campaign','Instagram Story ad: Annual Online Sale','Thank you']}
+};
+const src=(k,i,th)=>`img/${k}-${th?'t':''}${String(i+1).padStart(2,'0')}.webp`;
+const card=(k,i,j,th=true)=>{const d=document.createElement('div');d.className='c';d.dataset.l=LBL[j%6];d.style.setProperty('--p',PAST[j%6]);d.innerHTML=`<img src="${src(k,i,th)}" alt="${D[k].t[i].replace(/"/g,'')}" loading="lazy" draggable="false">`;return d};
+const wrapI=(d,n)=>((d%n)+n+n/2)%n-n/2;
+
+/* lightbox */
+const lb=$('#lb'),lbi=$('img',lb),lbc=$('.lbc',lb);let L={k:'si',i:0};
+function openLB(k,i){L={k,i};showLB();lb.classList.add('open');document.body.style.overflow='hidden';$('.x',lb).focus()}
+function showLB(){const d=D[L.k];lbi.src=src(L.k,L.i);lbi.alt=d.t[L.i];lbc.innerHTML=`<b>${d.t[L.i]}</b>${d.name} · ${L.i+1} / ${d.t.length}`;[1,-1].forEach(s=>{const im=new Image();im.src=src(L.k,(L.i+s+d.t.length)%d.t.length)})}
+function stepLB(s){const n=D[L.k].t.length;L.i=(L.i+s+n)%n;showLB()}
+$('.p',lb).onclick=()=>stepLB(-1);$('.n',lb).onclick=()=>stepLB(1);
+let sx=null;lb.addEventListener('pointerdown',e=>sx=e.clientX);lb.addEventListener('pointerup',e=>{if(sx!==null&&Math.abs(e.clientX-sx)>50)stepLB(e.clientX<sx?1:-1);sx=null});
+function closeAll(){$$('.ov.open').forEach(o=>o.classList.remove('open'));document.body.style.overflow=''}
+$$('[data-close]').forEach(b=>b.onclick=closeAll);
+$('#idx').addEventListener('click',e=>{if(e.target.closest('a'))closeAll()});
+$('#menu').onclick=()=>{$('#idx').classList.add('open');$('#idx .x').focus()};
+$('#read').onclick=()=>{$('#rd').classList.add('open');$('#rd').scrollTop=0;document.body.style.overflow='hidden';$('#rd .x').focus()};
+addEventListener('keydown',e=>{if(e.key==='Escape')closeAll();if(lb.classList.contains('open')){if(e.key==='ArrowRight')stepLB(1);if(e.key==='ArrowLeft')stepLB(-1)}});
+
+/* sketch switch */
+$('#sketch').onclick=e=>{const on=document.body.classList.toggle('sketch');e.currentTarget.setAttribute('aria-pressed',on)};
+
+/* active nav */
+const navIO=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting)$$('.pill a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+en.target.id))}),{rootMargin:'-45% 0px -50% 0px'});
+$$('section.sec').forEach(s=>navIO.observe(s));
+
+/* HERO tunnel */
+const tun=$('#tunnel');
+const TP=[['si',0],['cd',0],['cc',3],['si',9],['pp',3],['cd',4],['si',15],['cc',6],['cd',8],['si',24],['cc',14],['si',33],['cd',5],['cc',20],['si',34],['pp',0],['cd',6],['cc',10],['si',2],['cc',21]];
+const tc=TP.map(([k,i],j)=>{const c=card(k,i,j);tun.appendChild(c);return c});
+let tOff=0,tLast=0,tVis=true;
+function drawTunnel(ts){
+ const W=tun.clientWidth,H=tun.clientHeight,N=tc.length;
+ if(tLast&&!RM)tOff=(tOff+(ts-tLast)/38000)%1;tLast=ts;
+ tc.forEach((c,i)=>{
+  const s=(((i/N+tOff)%1)*2-1);           // -1..1
+  const a=Math.abs(s);
+  const x=W/2+(W/2)*s*(0.32+0.68*s*s);
+  const dx=(0.32+2.04*s*s)*(W/N)*0.95;    // local spacing
+  const w=Math.max(10,dx*0.9),h=H*(0.2+0.8*a*a);
+  c.style.width=w+'px';c.style.height=h+'px';
+  c.style.opacity=a>0.94?Math.max(0,(1-a)/0.06):1;
+  c.style.transform=`translate(${x-w/2}px,${H/2-h/2}px) rotateY(${s*-38}deg)`;
+ });
+ if(tVis&&!RM)requestAnimationFrame(drawTunnel);
+}
+const tunIO=new IntersectionObserver(([e])=>{const was=tVis;tVis=e.isIntersecting;if(tVis&&!was){tLast=0;requestAnimationFrame(drawTunnel)}});
+tunIO.observe(tun);requestAnimationFrame(drawTunnel);
+addEventListener('resize',()=>{if(RM)drawTunnel(0)});
+
+/* generic carousel engine for ring + diagonal */
+function carousel(el,k,layout,capEl,dragDiv){
+ const n=D[k].t.length,cards=D[k].t.map((_,i)=>{const c=card(k,i,i);el.appendChild(c);return c});
+ const S={act:0,cur:0,raf:0,n,cards};
+ const render=()=>{layout(S,el.clientWidth,el.clientHeight);};
+ const tick=()=>{S.cur+=(S.act-S.cur)*(RM?1:0.14);if(Math.abs(S.act-S.cur)<0.001)S.cur=S.act;render();S.raf=S.cur!==S.act?requestAnimationFrame(tick):0};
+ S.go=a=>{S.act=a;const i=((Math.round(a)%n)+n)%n;capEl.innerHTML=`<small>${i+1} / ${n}</small><strong>${D[k].t[i]}</strong>`;if(!S.raf)S.raf=requestAnimationFrame(tick)};
+ S.idx=()=>((Math.round(S.act)%n)+n)%n;
+ let px=null,start=0,moved=false;
+ el.addEventListener('pointerdown',e=>{px=e.clientX;start=S.act;moved=false;el.setPointerCapture(e.pointerId);el.style.cursor='grabbing'});
+ el.addEventListener('pointermove',e=>{if(px===null)return;const dx=e.clientX-px;if(Math.abs(dx)>5)moved=true;if(moved)S.go(start-dx/dragDiv())});
+ el.addEventListener('pointerup',e=>{el.style.cursor='';if(px===null)return;px=null;
+  if(moved){S.go(Math.round(S.act));return}
+  const t=document.elementFromPoint(e.clientX,e.clientY)?.closest('.c');const i=cards.indexOf(t);if(i<0)return;
+  if(i===S.idx())openLB(k,i);else S.go(S.act+wrapI(i-S.act,n));});
+ new ResizeObserver(render).observe(el);
+ S.go(0);return S;
+}
+
+/* ring layout (internship) */
+const ringNum=document.createElement('div');ringNum.className='ringnum';$('#ring').appendChild(ringNum);
+function ringLayout(S,W,H){
+ const mob=W<700,n=S.n,step=Math.PI*2/n;
+ const front=mob?Math.PI/2:0,cx=mob?W/2:W*0.36,cy=mob?H*0.36:H/2;
+ const R=mob?Math.min(W*0.34,H*0.3):Math.min(W*0.27,H*0.38);
+ const wmax=mob?W*0.82:Math.min(W*0.38,600),wmin=mob?26:44;
+ S.cards.forEach((c,i)=>{
+  const d=wrapI(i-S.cur,n),f=1-Math.abs(d)/(n/2),th=front+d*step;
+  const w=wmin+(wmax-wmin)*Math.pow(f,7),h=w*9/16;
+  const x=cx+R*Math.cos(th),y=cy+R*Math.sin(th);
+  c.style.width=w+'px';c.style.zIndex=Math.round(f*100);
+  c.style.transform=`translate(${x-w/2}px,${y-h/2}px)`;
+ });
+ const i=((Math.round(S.cur)%n)+n)%n;
+ ringNum.style.display=mob?'none':'block';
+ ringNum.style.left=(cx-R*0.85)+'px';ringNum.style.top=(cy-R*0.3)+'px';ringNum.style.width=(R*0.85)+'px';
+ ringNum.style.fontSize=(R*0.5)+'px';
+ ringNum.innerHTML=`${String(i+1).padStart(2,'0')}<span>of ${n} slides</span>`;
+}
+const ring=carousel($('#ring'),'si',ringLayout,$('#ringcap'),()=>40);
+$('#rp').onclick=()=>ring.go(Math.round(ring.act)-1);$('#rn').onclick=()=>ring.go(Math.round(ring.act)+1);
+$('#ropen').onclick=()=>openLB('si',ring.idx());
+$$('[data-go]').forEach(b=>b.onclick=()=>{const t=+b.dataset.go;ring.go(ring.act+wrapI(t-ring.act,ring.n))});
+
+/* diagonal layout (collection cycles) */
+function diagLayout(S,W,H){
+ const mob=W<700,wa=mob?W*0.8:Math.min(W*0.46,600);
+ S.cards.forEach((c,i)=>{
+  const d=i-S.cur,a=Math.abs(d);
+  if(a>6){c.style.display='none';return}c.style.display='';
+  const sc=Math.max(0.42,1-Math.min(a,1)*0.36-Math.max(0,a-1)*0.06),w=wa*sc,h=w*9/16;
+  const x=W/2+d*(mob?W*0.2:W*0.14),y=H/2+d*H*(mob?0.11:0.15);
+  const rot=-16*Math.min(1,a)*(d<0?1:1);
+  c.style.width=w+'px';c.style.zIndex=100-Math.round(a*10);
+  c.style.opacity=a>5?Math.max(0,6-a):1;
+  c.style.transform=`translate(${x-w/2}px,${y-h/2}px) rotate(${rot}deg)`;
+ });
+}
+const diag=carousel($('#diag'),'cc',diagLayout,$('#diagcap'),()=>110);
+const clampGo=(S,a)=>S.go(Math.max(0,Math.min(S.n-1,a)));
+$('#dp').onclick=()=>clampGo(diag,Math.round(diag.act)-1);$('#dn').onclick=()=>clampGo(diag,Math.round(diag.act)+1);
+$('#dopen').onclick=()=>openLB('cc',Math.max(0,Math.min(24,Math.round(diag.act))));
+const dGo=diag.go;diag.go=a=>dGo(Math.max(-0.4,Math.min(diag.n-0.6,a)));
+$('#diag').addEventListener('pointerup',()=>{if(diag.act<0||diag.act>diag.n-1)clampGo(diag,Math.round(diag.act))});
+
+/* room (styling) */
+let si=0;const sn=D.cd.t.length;
+const th=$('#sthumbs');D.cd.t.forEach((t,i)=>{const b=document.createElement('button');b.setAttribute('aria-label',t);b.innerHTML=`<img src="${src('cd',i,1)}" alt="" loading="lazy">`;b.onclick=()=>setRoom(i);th.appendChild(b)});
+function setRoom(i){si=(i+sn)%sn;
+ const f=$('#rfront img');f.style.opacity=0;setTimeout(()=>{f.src=src('cd',si);f.alt=D.cd.t[si];f.onload=()=>{if(!document.body.classList.contains('sketch'))f.style.opacity=''}},RM?0:180);
+ $('.lw img').src=src('cd',(si-1+sn)%sn,1);$('.rw img').src=src('cd',(si+1)%sn,1);
+ $('#rnum').textContent=String(si+1).padStart(2,'0');$('#rtit').textContent=D.cd.t[si];
+ $('#roomcap').innerHTML=`<small>${si+1} / ${sn}</small><strong>${D.cd.t[si]}</strong>`;
+ $$('button',th).forEach((b,j)=>b.classList.toggle('on',j===si));
+}
+$$('#room .c').forEach((c,j)=>c.style.setProperty('--p',PAST[(j+1)%6]));
+$('#sp').onclick=()=>setRoom(si-1);$('#sn').onclick=()=>setRoom(si+1);
+$('#sopen').onclick=$('#rfront').onclick=()=>openLB('cd',si);
+$('#rfront').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openLB('cd',si)}};
+let rx=null;$('#room').addEventListener('pointerdown',e=>rx=e.clientX);$('#room').addEventListener('pointerup',e=>{if(rx!==null&&Math.abs(e.clientX-rx)>40)setRoom(si+(e.clientX<rx?1:-1));rx=null});
+setRoom(0);
+
+/* promo story row */
+const st=$('#story');D.pp.t.forEach((t,i)=>{const b=document.createElement('button');b.appendChild(card('pp',i,i+2));b.insertAdjacentHTML('beforeend',`<small>${t}</small>`);b.onclick=()=>openLB('pp',i);st.appendChild(b)});
+
+/* research wireframe boxes */
+const wire=$('#wire');
+[[4,8,20,22,'Image',0,-3],[28,5,16,12,'Title',2,2],[70,7,24,20,'Card',1,4],[6,62,18,26,'Text',3,2],[76,58,18,30,'Image',4,-4],[30,74,22,16,'Media ▶',5,-2],[56,80,14,12,'Text',3,3],[50,8,12,10,'Card',4,0]].forEach(([l,t,w,h,lab,p,r],j)=>{
+ const b=document.createElement('div');b.className='b';b.textContent=lab;
+ Object.assign(b.style,{left:l+'%',top:t+'%',width:w+'%',height:h+'%',background:PAST[p],animationDelay:(-j*1.3)+'s'});b.style.setProperty('--r',r+'deg');wire.appendChild(b)});
+
+/* scatter parallax */
+const scat=$('#scat'),sItems=$$('.s',scat);
+scat.addEventListener('pointermove',e=>{if(RM||innerWidth<=900)return;const r=scat.getBoundingClientRect(),mx=(e.clientX-r.left)/r.width-.5,my=(e.clientY-r.top)/r.height-.5;
+ sItems.forEach(s=>{const d=+s.dataset.d;s.style.transform=`translate3d(${-mx*d}px,${-my*d}px,0) rotateY(${mx*d*0.25}deg) rotateX(${-my*d*0.2}deg)`})});
+scat.addEventListener('pointerleave',()=>sItems.forEach(s=>s.style.transform=''));
+$$('.c',scat).forEach((c,j)=>c.style.setProperty('--p',PAST[j%6]));
+
+/* 3D jewellery */
+const view=$('#view'),vmsg=$('#vmsg'),vinfo=$('#vinfo');
+const MODELS={comb:{f:'models/comb.json',info:'Ginkgo hair comb · 110 × 68 mm',rx:0},ring:{f:'models/ring.json',info:'Casa Batlló ring · Indian size 9.5 · 15.8 mm inner diameter',rx:-Math.PI/2},ear:{info:'Drop earring · model to be added'}};
+const FIN={gold:{color:0xd4af6a,metalness:1,roughness:.26,clearcoat:0},silver:{color:0xdcdce2,metalness:1,roughness:.2,clearcoat:0},resin:{color:0xf1ece2,metalness:0,roughness:.35,clearcoat:1}};
+let R3=null,cur='comb',fin='gold';
+function init3D(){
+ if(R3)return R3;
+ if(typeof THREE==='undefined'){vmsg.textContent='3D viewer could not load.';return null}
+ try{
+  const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.outputEncoding=THREE.sRGBEncoding;renderer.toneMapping=THREE.ACESFilmicToneMapping;
+  view.prepend(renderer.domElement);
+  const scene=new THREE.Scene(),pm=new THREE.PMREMGenerator(renderer);
+  scene.environment=pm.fromScene(new THREE.RoomEnvironment(),0.04).texture;
+  const cam=new THREE.PerspectiveCamera(32,1,0.1,5000);
+  const ctl=new THREE.OrbitControls(cam,renderer.domElement);ctl.enableDamping=true;ctl.autoRotate=!RM;ctl.autoRotateSpeed=1.6;ctl.enablePan=false;
+  const mat=new THREE.MeshPhysicalMaterial(FIN.gold);
+  const group=new THREE.Group();scene.add(group);
+  const cache={};
+  const size=()=>{const w=view.clientWidth,h=view.clientHeight;renderer.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()};
+  new ResizeObserver(size).observe(view);size();
+  let run=false;const loop=()=>{if(!run)return;ctl.update();renderer.render(scene,cam);requestAnimationFrame(loop)};
+  new IntersectionObserver(([e])=>{const was=run;run=e.isIntersecting;if(run&&!was)loop()}).observe(view);
+  R3={renderer,scene,cam,ctl,mat,group,cache};return R3;
+ }catch(err){vmsg.textContent='3D needs WebGL, which this browser has turned off.';return null}
+}
+function show(m){
+ cur=m;vinfo.textContent=MODELS[m].info;
+ $$('.tabs button').forEach(b=>{b.classList.toggle('on',b.dataset.m===m);b.setAttribute('aria-selected',b.dataset.m===m)});
+ $('.soon',view)?.remove();
+ const r=init3D();if(!r)return;
+ r.group.clear();
+ if(m==='ear'){vmsg.textContent='';view.insertAdjacentHTML('beforeend','<div class="soon"><div><h3>Drop earring</h3>The 3D model will be added here.</div></div>');r.renderer.render(r.scene,r.cam);return}
+ const place=g=>{if(cur!==m)return;vmsg.textContent='';const mesh=new THREE.Mesh(g,r.mat);mesh.rotation.x=MODELS[m].rx;r.group.add(mesh);
+  const box=new THREE.Box3().setFromObject(mesh),sph=box.getBoundingSphere(new THREE.Sphere());mesh.position.sub(sph.center);
+  const dist=sph.radius/Math.sin(THREE.MathUtils.degToRad(r.cam.fov/2))*1.08;
+  r.cam.position.set(0,sph.radius*0.25,dist);r.cam.near=dist/100;r.cam.far=dist*10;r.cam.updateProjectionMatrix();r.ctl.target.set(0,0,0);r.ctl.minDistance=dist*0.35;r.ctl.maxDistance=dist*2.5;r.ctl.update()};
+ if(r.cache[m])return place(r.cache[m]);
+ vmsg.textContent='Loading model…';
+ fetch(MODELS[m].f).then(x=>{if(!x.ok)throw 0;return x.json()}).then(j=>{
+  const b64=s=>{const t=atob(s),u=new Uint8Array(t.length);for(let i=0;i<t.length;i++)u[i]=t.charCodeAt(i);return u.buffer};
+  const q=new Uint16Array(b64(j.pos)),idx=new Uint32Array(b64(j.idx)),pos=new Float32Array(q.length);
+  for(let i=0;i<q.length;i++){const a=i%3;pos[i]=j.min[a]+q[i]*j.scale[a]}
+  let g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(pos,3));g.setIndex(new THREE.BufferAttribute(idx,1));
+  g=g.toNonIndexed();g.computeVertexNormals();r.cache[m]=g;place(g)}).catch(()=>{if(cur===m)vmsg.textContent='The model could not be loaded.'});
+}
+$$('.tabs button').forEach(b=>b.onclick=()=>show(b.dataset.m));
+$$('#fin button').forEach(b=>b.onclick=()=>{fin=b.dataset.f;$$('#fin button').forEach(x=>x.classList.toggle('on',x===b));if(R3){const F=FIN[fin];R3.mat.metalness=F.metalness;R3.mat.roughness=F.roughness;R3.mat.clearcoat=F.clearcoat;R3.mat.color.setHex(F.color);R3.mat.needsUpdate=true}});
+new IntersectionObserver(([e],o)=>{if(e.isIntersecting){o.disconnect();show('comb')}},{rootMargin:'400px'}).observe(view);
+}
+</script>
 </body>
 </html>

@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Summer internship — Vaishnavi Bhosale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: a designer's internship told as a story of making, not a slide deck.
+   IDEA: two months as two acts — bespoke, then retail — each told through her own photos, drawings and systems.
+   PICTURE: the Blanco storefront, the shirt line-up on a moving rail, an interactive shirt of customer details, a tunnel of fabric walls.
+   COLOUR and TYPE: off-white paper, ink, one cobalt accent from the portfolio; Archivo condensed titles, Inter Tight text.
+   LAYOUT: full-bleed acts, sticky horizontal rail, scatter and tunnel from the reel; slide-out project menu. */
+:root{color-scheme:light;--bg:#F2F1EC;--ink:#141414;--mut:#66655f;--line:#dcdad2;--card:#fff;--soft:#e8e6df;--acc:#1E5BFF;--disp:"Archivo",Impact,sans-serif;--body:"Inter Tight",system-ui,sans-serif}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--body);overflow-x:clip;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+h1,h2,h3{font-family:var(--disp);font-weight:800;font-stretch:72%;line-height:1;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:clamp(36px,5.4vw,68px)}
+h3{font-size:clamp(22px,2.4vw,30px);font-stretch:80%;font-weight:700}
+p{margin:0}
+.wrap{max-width:1240px;margin:0 auto}
+.sec{padding:clamp(64px,8vw,120px) max(5vw,16px)}
+.kick{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--mut);margin-bottom:14px}
+.kick b{width:10px;height:10px;border-radius:3px;background:var(--acc)}
+.lede{font-size:18px;max-width:58ch}
+.mut{color:var(--mut)}
+.z{cursor:zoom-in}
+
+/* top + drawer */
+.top{position:fixed;inset:14px 16px auto;display:flex;justify-content:space-between;align-items:center;z-index:50;pointer-events:none}
+.top>*{pointer-events:auto}
+.mb{display:flex;align-items:center;gap:10px;height:44px;padding:0 16px 0 12px;border-radius:999px;border:0;background:var(--ink);color:#fff;font-size:14px}
+.mb svg{width:18px;height:18px}
+.home{font-size:14px;text-decoration:none;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(8px);padding:10px 14px;border-radius:999px}
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:60;opacity:0;pointer-events:none;transition:.3s}
+.drawer{position:fixed;left:0;top:0;bottom:0;width:min(380px,88vw);background:var(--ink);color:#f2f1ec;z-index:61;transform:translateX(-102%);transition:transform .35s cubic-bezier(.2,.8,.2,1);padding:24px;display:flex;flex-direction:column;gap:6px;overflow-y:auto}
+body.nav .drawer{transform:none}body.nav .scrim{opacity:1;pointer-events:auto}
+.drawer .x{align-self:flex-end;width:44px;height:44px;border-radius:50%;border:0;background:#2a2a2a;color:#fff;font-size:22px}
+.drawer small{color:#9c9a93;font-size:13px;margin:14px 0 4px}
+.drawer a{text-decoration:none;display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:14px 0;border-top:1px solid #2c2c2c;font-family:var(--disp);font-stretch:72%;font-weight:800;font-size:28px;line-height:1.05}
+.drawer a span{font:400 13px var(--body);color:#9c9a93;white-space:nowrap}
+.drawer a.on{color:#7fa3ff}
+
+/* hero */
+.hero{min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(24px,4vw,56px);align-items:center;padding-top:90px}
+.hero h1{font-size:clamp(56px,9vw,132px);font-stretch:62%;font-weight:900;line-height:.86}
+.hero .ph{position:relative;aspect-ratio:4/5;border-radius:220px 220px 10px 10px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.18)}
+.hero .ph img{width:100%;height:100%;object-fit:cover;object-position:40% 50%}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 24px;margin-top:28px}
+.facts div{border-top:2px solid var(--ink);padding-top:8px;font-size:15px}
+.facts dt{font-size:13px;color:var(--mut)}
+.facts dd{margin:2px 0 0;font-weight:500}
+.tl{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:28px}
+.tl a{text-decoration:none;padding:14px 16px;border-radius:10px;background:var(--card);border:1px solid var(--line);font-size:14px;line-height:1.3}
+.tl a b{display:block;font-family:var(--disp);font-stretch:75%;font-size:22px}
+.tl a:first-child{background:var(--acc);color:#fff;border-color:var(--acc)}
+
+/* act bands */
+.act{background:var(--ink);color:#f2f1ec;padding:clamp(80px,10vw,150px) max(5vw,16px);position:relative;overflow:hidden}
+.act .big{font-family:var(--disp);font-weight:900;font-stretch:62%;font-size:clamp(90px,20vw,300px);line-height:.8;color:var(--acc);margin-bottom:24px}
+.act h2{font-size:clamp(44px,7vw,96px);font-stretch:62%;font-weight:900}
+.act p{max-width:56ch;margin-top:18px;font-size:18px;color:#cfcdc6}
+
+/* research desk */
+.desk{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:start;margin-top:40px}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:28px;position:relative}
+.steps::before{content:"";position:absolute;left:0;right:0;top:15px;height:2px;background:var(--ink)}
+.steps div{position:relative;padding-right:14px}
+.steps i{display:block;width:32px;height:32px;border-radius:50%;background:var(--bg);border:2px solid var(--ink);margin-bottom:12px;position:relative}
+.steps div:last-child i{background:var(--acc);border-color:var(--acc)}
+.steps b{display:block;font-family:var(--disp);font-stretch:75%;font-size:22px}
+.steps span{font-size:14px;color:var(--mut);display:block;margin-top:2px}
+.steps em{font-style:normal;font-size:13px;display:block;margin-top:6px}
+.paper{background:#fff;padding:10px;box-shadow:0 16px 40px rgba(0,0,0,.14);transform:rotate(2.5deg)}
+.gaps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:36px}
+.gap{background:var(--card);border-radius:14px;padding:22px}
+.gap h3{margin-bottom:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chips span{border:1px solid var(--ink);border-radius:999px;padding:7px 13px;font-size:14px}
+.chips.f span{background:var(--ink);color:#fff}
+
+/* shirt hotspots */
+.shirtwrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:center;margin-top:40px}
+.shirt{position:relative;max-width:520px;margin:0 auto;width:100%}
+.shirt svg{width:100%;height:auto}
+.hs{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;border:0;background:transparent;display:grid;place-items:center}
+.hs::before{content:"";width:18px;height:18px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 6px rgba(30,91,255,.18);transition:.2s}
+.hs.on::before{width:24px;height:24px;box-shadow:0 0 0 10px rgba(30,91,255,.22)}
+.dlist{display:flex;flex-direction:column;gap:2px}
+.dlist button{display:flex;justify-content:space-between;align-items:center;gap:12px;text-align:left;border:0;border-top:1px solid var(--line);background:none;padding:16px 4px;min-height:56px;font-family:var(--disp);font-stretch:75%;font-weight:700;font-size:clamp(22px,2.6vw,32px);line-height:1.05;color:var(--mut)}
+.dlist button.on{color:var(--ink)}
+.dlist button.on::after{content:"";width:12px;height:12px;border-radius:50%;background:var(--acc);flex:none}
+
+/* scatter */
+.scat{position:relative;height:clamp(560px,62vw,760px);margin-top:30px;perspective:1200px}
+.scat figure{position:absolute;margin:0;transition:transform .25s ease-out}
+.scat figure img{width:100%;border-radius:6px;box-shadow:0 18px 44px rgba(0,0,0,.16);background:#fff}
+.scat figcaption{font-size:13px;color:var(--mut);margin-top:8px}
+
+/* horizontal rail */
+.rail{position:relative}
+.rail .stick{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+.rail .hd{padding:0 max(5vw,16px);margin-bottom:28px;display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+.track{display:flex;gap:28px;padding:0 max(5vw,16px);will-change:transform;width:max-content}
+.track figure{margin:0;flex:none;height:min(52svh,440px)}
+.track figure img{height:calc(100% - 34px);width:auto;border-radius:6px;background:#FBF6EA;box-shadow:0 14px 34px rgba(0,0,0,.10)}
+.track figcaption{font-size:14px;margin-top:10px;display:flex;gap:10px}
+.track figcaption b{font-weight:600}
+.prog{height:3px;background:var(--line);margin:28px max(5vw,16px) 0;border-radius:2px;overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:var(--acc)}
+
+/* final studies */
+.duo{display:grid;grid-template-columns:minmax(0,.76fr) minmax(0,1fr);gap:18px;margin-top:36px}
+.duo figure{margin:0}
+.duo img{border-radius:8px;width:100%}
+.duo figcaption{display:flex;justify-content:space-between;margin-top:10px;font-size:14px}
+.duo figcaption b{font-family:var(--disp);font-stretch:75%;font-size:24px}
+
+/* craft */
+.craft{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,5vw,72px);align-items:center}
+.craft .kp{position:relative}
+.craft .kp img{border-radius:8px;width:100%}
+.craft .kp .sk{position:absolute;right:-2%;bottom:-8%;width:42%;background:#fff;padding:8px;box-shadow:0 16px 40px rgba(0,0,0,.18);transform:rotate(-4deg)}
+.flow{display:flex;flex-direction:column;margin-top:28px}
+.flow div{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:center;padding:12px 0;position:relative}
+.flow div:not(:last-child)::after{content:"";position:absolute;left:21px;top:56px;bottom:-12px;width:2px;background:var(--ink)}
+.flow i{width:44px;height:44px;border-radius:50%;border:2px solid var(--ink);display:grid;place-items:center;font-style:normal;font-weight:600;background:var(--bg);z-index:1}
+.flow b{font-family:var(--disp);font-stretch:75%;font-size:24px;font-weight:700}
+
+/* material trio */
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:36px}
+.trio figure{margin:0}
+.trio img{aspect-ratio:3/4;object-fit:cover;border-radius:8px;width:100%}
+.trio b{display:block;font-family:var(--disp);font-stretch:75%;font-size:24px;margin-top:12px}
+.trio p{font-size:15px;color:var(--mut);margin-top:4px}
+
+/* tunnel */
+.tunnel{position:relative;height:clamp(300px,36vw,460px);perspective:900px;margin-top:30px}
+.tunnel img{position:absolute;left:0;top:0;object-fit:cover;border-radius:6px;will-change:transform;box-shadow:0 8px 20px rgba(0,0,0,.12)}
+
+/* reflection */
+.refl{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin-top:36px}
+.refl div{background:var(--card);border-radius:14px;padding:20px;font-size:15px}
+.refl b{display:block;font-family:var(--disp);font-stretch:62%;font-weight:900;font-size:56px;line-height:.9;color:var(--acc);margin-bottom:10px}
+
+/* retail */
+.cat{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center;margin-top:36px}
+.cat img{border-radius:8px;box-shadow:0 20px 50px rgba(0,0,0,.14)}
+.flips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--ink);background:transparent;font-size:15px;text-decoration:none}
+.btn.fill{background:var(--acc);border-color:var(--acc);color:#fff}
+.vm{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:clamp(110px,12vw,170px);gap:12px;margin-top:36px}
+.vm img{width:100%;height:100%;object-fit:cover;border-radius:6px}
+.vm .a{grid-column:span 3;grid-row:span 2}.vm .b{grid-column:span 3;grid-row:span 1}.vm .c{grid-column:span 2;grid-row:span 2}.vm .d{grid-column:span 1;grid-row:span 2}
+.badge{display:inline-flex;align-items:center;gap:10px;background:var(--acc);color:#fff;border-radius:999px;padding:10px 16px;font-size:14px;margin-top:20px}
+.phone{width:min(300px,80%);margin:0 auto;border-radius:38px;background:#111;padding:12px;box-shadow:0 30px 60px rgba(0,0,0,.25)}
+.phone img{border-radius:28px;width:100%}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,72px);align-items:center}
+.own{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:30px}
+.own img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:6px}
+.pts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:22px}
+.pts div{border-top:2px solid var(--ink);padding-top:10px;font-size:15px}
+.pts b{display:block;font-family:var(--disp);font-stretch:75%;font-size:22px}
+.wf{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-top:30px;counter-reset:w}
+.wf div{background:var(--card);border-radius:12px;padding:16px;font-size:14px;position:relative}
+.wf div::before{counter-increment:w;content:counter(w);display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;font-size:13px;margin-bottom:10px}
+.wf b{display:block;font-family:var(--disp);font-stretch:75%;font-size:22px}
+.wide{margin-top:20px;border-radius:8px;background:#fff;padding:10px}
+.tabs{display:inline-flex;background:var(--card);border-radius:999px;padding:4px;margin-top:24px;border:1px solid var(--line)}
+.tabs button{border:0;background:transparent;border-radius:999px;min-height:44px;padding:0 18px;font-size:15px}
+.tabs button.on{background:var(--ink);color:#fff}
+.shoot{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:22px}
+.shoot img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:6px}
+.shoot[hidden]{display:none}
+
+/* credentials */
+.docs{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,.8fr) minmax(0,1.3fr);gap:clamp(16px,3vw,40px);align-items:end;margin-top:40px}
+.docs button{border:0;padding:0;background:none;text-align:left}
+.docs img{background:#fff;padding:10px;box-shadow:0 16px 40px rgba(0,0,0,.14);border-radius:2px;transition:transform .3s}
+.docs button:nth-child(1) img{transform:rotate(-3deg)}.docs button:nth-child(2) img{transform:rotate(2deg)}.docs button:nth-child(3) img{transform:rotate(-1deg)}
+.docs button:hover img{transform:rotate(0) translateY(-6px)}
+.docs span{display:block;font-size:14px;margin-top:14px}
+blockquote{margin:56px 0 0;max-width:860px;font-family:var(--disp);font-stretch:80%;font-weight:600;font-size:clamp(24px,3vw,36px);line-height:1.2}
+blockquote footer{font:400 15px var(--body);color:var(--mut);margin-top:14px}
+.close2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:36px}
+.close2 div{background:var(--card);border-radius:16px;padding:26px}
+.next{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-top:56px;padding-top:28px;border-top:2px solid var(--ink)}
+.next a{font-family:var(--disp);font-stretch:70%;font-weight:900;font-size:clamp(32px,5vw,60px);text-decoration:none;line-height:1}
+
+/* lightbox */
+#lb{position:fixed;inset:0;z-index:80;background:rgba(12,12,12,.94);display:none;align-items:center;justify-content:center;padding:60px 16px 30px}
+#lb.open{display:flex}
+#lb img{max-width:min(1400px,100%);max-height:calc(100svh - 100px);object-fit:contain;border-radius:4px;background:#fff}
+#lb button{position:absolute;top:14px;right:16px;width:44px;height:44px;border-radius:50%;border:0;background:#f2f1ec;color:#111;font-size:22px}
+
+@media(max-width:900px){
+ .hero,.desk,.shirtwrap,.craft,.cat,.two{grid-template-columns:minmax(0,1fr)}
+ .hero .ph{max-width:460px;width:100%;margin:0 auto}
+ .refl{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .wf{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .scat{height:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+ .scat figure{position:static;width:auto!important;transform:none!important}
+ .docs{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:700px){
+ .rail .stick{position:static;height:auto;padding:40px 0}
+ .rail{height:auto!important}
+ .track{transform:none!important;overflow-x:auto;width:auto;scroll-snap-type:x mandatory}
+ .track figure{scroll-snap-align:start;height:260px}
+ .prog{display:none}
+}
+@media(max-width:600px){
+ .craft .kp .sk{right:0;width:38%}
+ .steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 0}.steps::before{display:none}
+ .gaps,.trio,.duo,.close2,.pts{grid-template-columns:minmax(0,1fr)}
+ .own,.shoot{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .vm{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:150px}.vm img{grid-area:auto!important}.vm img:first-child{grid-column:span 2!important;grid-row:span 2!important}
+ .docs{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.docs button:nth-child(3){grid-column:span 2}
+ .refl{grid-template-columns:minmax(0,1fr)}
+ .hero h1{font-size:clamp(52px,17vw,90px)}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<div class="top">
+ <button class="mb" id="menu" aria-expanded="false" aria-controls="drawer"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 5h14M2 9h14M2 13h14"/></svg>Projects</button>
+ <a class="home" href="index.html">← All work</a>
+</div>
+<div class="scrim" id="scrim"></div>
+<nav class="drawer" id="drawer" aria-label="Projects">
+ <button class="x" id="close" aria-label="Close menu">×</button>
+ <small>Vaishnavi Bhosale · Portfolio</small>
+ <a href="index.html">Home <span>All work</span></a>
+ <a href="internship.html" class="on" aria-current="page">Summer internship <span>Blanco</span></a>
+ <a href="index.html#research">Fashion design research <span>Soon</span></a>
+ <a href="index.html#styling">Styling &amp; photography <span>Raw Mango</span></a>
+ <a href="index.html#brand">Brand management <span>Raw Mango</span></a>
+ <a href="index.html#cutting">Cutting-edge fashion <span>Future Ritualism</span></a>
+</nav>
+
+<!-- HERO -->
+<header class="sec hero wrap">
+ <div>
+  <div class="kick"><b></b>Summer internship</div>
+  <h1>Two months at Blanco</h1>
+  <p class="lede" style="margin-top:22px">From the cutting table of a bespoke menswear house to its shop floor: how customer preference becomes design, craft and service.</p>
+  <dl class="facts">
+   <div><dt>Where</dt><dd>Blanco, Law College Road, Pune</dd></div>
+   <div><dt>When</dt><dd>June – August 2026</dd></div>
+   <div><dt>Month one</dt><dd>Blanco Bespoke · design</dd></div>
+   <div><dt>Month two</dt><dd>Blanco Retail · operations</dd></div>
+  </dl>
+  <nav class="tl" aria-label="Jump to a month">
+   <a href="#bespoke"><b>Part I</b>Inside bespoke</a>
+   <a href="#retail"><b>Part II</b>From product to retail</a>
+  </nav>
+ </div>
+ <figure class="ph" style="margin:0"><img src="img/in/store.webp" alt="The Blanco store in Pune, with its logo above a tiled roof"></figure>
+</header>
+
+<!-- ACT I -->
+<section class="act" id="bespoke">
+ <div class="wrap">
+  <div class="big">I</div>
+  <h2>Month one: inside bespoke</h2>
+  <p>How design decisions move through a live bespoke environment, from customer preferences and quick communication to tailoring, craftsmanship and material awareness.</p>
+ </div>
+</section>
+
+<!-- research desk -->
+<section class="sec">
+ <div class="wrap">
+  <div class="kick"><b></b>Research → design</div>
+  <h2>Three to four years of order books</h2>
+  <div class="desk">
+   <div>
+    <p class="lede">My internship began with a white shirt collection. I read through Blanco's order books and the custom requests that kept returning became the brief.</p>
+    <div class="steps">
+     <div><i></i><b>Observe</b><span>Order books</span><em>Recurring requests across three to four years.</em></div>
+     <div><i></i><b>Notice</b><span>Customer preferences</span><em>Details that return often enough to guide choices.</em></div>
+     <div><i></i><b>Apply</b><span>White shirt collection</span><em>Research turned into a design direction.</em></div>
+     <div><i></i><b>Iterate</b><span>Design iterations</span><em>My own development work.</em></div>
+    </div>
+   </div>
+   <figure class="paper" style="margin:0;max-width:360px;justify-self:center"><img class="z" src="img/in/order.webp" alt="A Blanco order sheet with measurements and a hand-drawn shirt"></figure>
+  </div>
+  <div class="gaps">
+   <div class="gap"><div class="kick" style="margin:0 0 8px">Gap found</div><h3>The demand for elevated formalwear</h3><p class="mut">Most shirts are either corporate or fashion-trendy. There is nothing in between.</p></div>
+   <div class="gap"><div class="kick" style="margin:0 0 8px">Gap found</div><h3>The “Indian fit” gap</h3><p class="mut">Shirts are cut on Western body blocks: tight on the stomach and huge on the shoulders.</p></div>
+  </div>
+  <div class="gaps">
+   <div><h3>Repeated requests</h3><div class="chips"><span>French cuff</span><span>Statement button</span><span>Yoke alteration</span><span>Long collars</span><span>Piping</span><span>Hand painting</span></div></div>
+   <div><h3>Collection categories</h3><div class="chips f"><span>Classics</span><span>Work wear formal</span><span>Casual</span><span>Creative</span></div></div>
+  </div>
+ </div>
+</section>
+
+<!-- shirt hotspots -->
+<section class="sec" style="background:var(--card)">
+ <div class="wrap">
+  <div class="kick"><b></b>Customer-led detail</div>
+  <h2>Details customers ask for</h2>
+  <div class="shirtwrap">
+   <div class="shirt" id="shirt">
+    <svg viewBox="0 0 400 440" aria-hidden="true" fill="none" stroke="#141414" stroke-width="2" stroke-linejoin="round">
+     <path d="M140 40l60 22 60-22 70 30 50 120-46 22-30-70v270H96V122l-30 70-46-22L70 70z" fill="#fff"/>
+     <path d="M140 40l-6 34 46 22 20-34M260 40l6 34-46 22-20-34" fill="#eef2ff"/>
+     <path d="M200 62v330" stroke-dasharray="0"/><path d="M193 62v330" stroke="#1E5BFF" stroke-width="2.5"/>
+     <circle cx="208" cy="120" r="4"/><circle cx="208" cy="170" r="4"/><circle cx="208" cy="220" r="4"/><circle cx="208" cy="270" r="4"/><circle cx="208" cy="320" r="4"/>
+     <path d="M342 168l-46 22" /><rect x="300" y="160" width="40" height="22" transform="rotate(-24 320 171)" fill="#eef2ff"/>
+     <path d="M126 150h44v40h-44z"/><text x="148" y="176" text-anchor="middle" font-family="Archivo" font-size="14" fill="#1E5BFF" stroke="none" font-weight="700">VB</text>
+    </svg>
+   </div>
+   <div>
+    <p class="lede mut" style="font-size:16px">The recurring preferences that shaped the collection's details. Choose one to find it on the shirt.</p>
+    <div class="dlist" id="dlist"></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- moodboard + motif scatter -->
+<section class="sec">
+ <div class="wrap">
+  <div class="kick"><b></b>Concept</div>
+  <h2>The Butterfly Effect</h2>
+  <p class="lede" style="margin-top:14px">How a minor change can drastically alter everything around it: a small detail changes the whole shirt. The brand's own lettering became a motif, and the motif became buttons and embroidery.</p>
+  <div class="scat" id="scat">
+   <figure data-d="18" style="left:0;top:2%;width:54%"><img class="z" src="img/in/mood.webp" alt="The Butterfly Effect moodboard"><figcaption>Moodboard: grid notes, spirals, butterfly and a Pantone strip</figcaption></figure>
+   <figure data-d="34" style="left:60%;top:0;width:38%"><img class="z" src="img/in/motif.webp" alt="Blanco-inspired b motif developing into a fish-like form"><figcaption>Blanco-inspired motif: the “b” evolves</figcaption></figure>
+   <figure data-d="26" style="left:4%;top:46%;width:40%"><img class="z" src="img/in/buttons.webp" alt="Brass and horn buttons"><figcaption>Button selection</figcaption></figure>
+   <figure data-d="40" style="left:50%;top:40%;width:46%"><img class="z" src="img/in/refboard.webp" alt="Reference board of menswear looks and fabrics"><figcaption>Fabric and reference board</figcaption></figure>
+  </div>
+ </div>
+</section>
+
+<!-- line-up rail -->
+<section class="rail" id="rail">
+ <div class="stick">
+  <div class="hd"><div><div class="kick"><b></b>The white shirt collection</div><h2>From sketch to line-up</h2></div><p class="mut" style="max-width:40ch">Scroll to move along the rail. Tap any drawing to see it full size.</p></div>
+  <div class="track" id="track">
+   <figure><img class="z" src="img/in/lineup.webp" alt="Line-up of initial white shirt sketches"><figcaption><b>Initial sketches</b>the full line</figcaption></figure>
+   <figure><img class="z" src="img/in/det1.webp" alt="Shirt sketches with cut-and-sew, fabric manipulation and box pleat details"><figcaption><b>Details</b>cut-and-sew, fabric manipulation, box pleats</figcaption></figure>
+   <figure><img class="z" src="img/in/det2.webp" alt="Further shirt detail sketches"><figcaption><b>Details</b>embroidery placement and trims</figcaption></figure>
+   <figure><img class="z" src="img/in/flats.webp" alt="Technical flats of shirts in a grid"><figcaption><b>Technical flats</b>for the tailors</figcaption></figure>
+  </div>
+  <div class="prog"><i id="prog"></i></div>
+ </div>
+</section>
+
+<!-- final studies -->
+<section class="sec">
+ <div class="wrap">
+  <div class="kick"><b></b>Shirt studies</div>
+  <h2>Classics and creative</h2>
+  <div class="duo">
+   <figure><img class="z" src="img/in/shirt1.webp" alt="White shirt with pintucks and contrast collar"><figcaption><b>Classics</b><span class="mut">pintucks, contrast collar, monogram</span></figcaption></figure>
+   <figure><img class="z" src="img/in/shirt2.webp" alt="White shirts with blue piping and hand-painted sleeve"><figcaption><b>Creative</b><span class="mut">scale embroidery, painted sleeve, piping</span></figcaption></figure>
+  </div>
+ </div>
+</section>
+
+<!-- craft + workflow -->
+<section class="sec" style="background:var(--card)">
+ <div class="wrap craft">
+  <div class="kp"><img class="z" src="img/in/karigar.webp" alt="A karigar hand-embroidering a motif"><div class="sk"><img class="z" src="img/in/order.webp" alt="Quick sketch on an order sheet"></div></div>
+  <div>
+   <div class="kick"><b></b>Craft &amp; execution</div>
+   <h2>Learning from karigars</h2>
+   <p class="lede" style="margin-top:14px">Talking with karigars and watching them work made the craft visible: a design becomes a garment through skill, material knowledge and careful execution. Quick, clear sketches carry the intent to the masterji.</p>
+   <div class="flow">
+    <div><i>1</i><b>Customer brief</b></div>
+    <div><i>2</i><b>Quick sketch &amp; design</b></div>
+    <div><i>3</i><b>Tailoring &amp; karigar work</b></div>
+    <div><i>4</i><b>Garment progress &amp; delivery</b></div>
+   </div>
+   <p class="mut" style="font-size:14px;margin-top:12px">A learning map from what I observed, not a fixed sequence.</p>
+  </div>
+ </div>
+</section>
+
+<!-- material -->
+<section class="sec">
+ <div class="wrap">
+  <div class="kick"><b></b>Material awareness</div>
+  <h2>Thaan, stock and resourceful use</h2>
+  <div class="trio">
+   <figure><img class="z" src="img/in/p039.webp" alt="Folded thaans of shirting in pastel colours"><b>Thaan data entry</b><p>Fabric information is recorded through thaan entries.</p></figure>
+   <figure><img class="z" src="img/in/p040.webp" alt="Stock spreadsheet open on a computer"><b>Stock movement</b><p>Incoming, outgoing and used stock is entered with reference numbers.</p></figure>
+   <figure><img class="z" src="img/in/p041.webp" alt="Scrap fabrics on a work table"><b>Resourceful reuse</b><p>Scraps become piping and under-collar details.</p></figure>
+  </div>
+  <h3 style="margin-top:64px">The store, wall by wall</h3>
+  <p class="mut" style="margin-top:6px">Where everything sits, and how clients move through it.</p>
+  <div class="tunnel" id="tunnel" aria-hidden="true"></div>
+ </div>
+</section>
+
+<!-- reflection 1 -->
+<section class="sec" style="padding-top:0">
+ <div class="wrap">
+  <div class="kick"><b></b>Month one reflection</div>
+  <h2>What I'm taking forward</h2>
+  <div class="refl">
+   <div><b>1</b>Design from customer preferences without losing a clear point of view.</div>
+   <div><b>2</b>Communicate quickly and clearly in a working environment.</div>
+   <div><b>3</b>Respect the knowledge and craft of karigars.</div>
+   <div><b>4</b>Stay aware of materials, stock and resourceful use.</div>
+   <div><b>5</b>See how bespoke connects design, making and service.</div>
+  </div>
+ </div>
+</section>
+
+<!-- ACT II -->
+<section class="act" id="retail">
+ <div class="wrap">
+  <div class="big">II</div>
+  <h2>Month two: from product to retail</h2>
+  <p>The focus moved from bespoke design to retail organisation, product presentation and customer-facing operations: catalogues, visual merchandising, store communication, stock, billing and styling.</p>
+ </div>
+</section>
+
+<section class="sec">
+ <div class="wrap cat">
+  <img class="z" src="img/in/catalogue.webp" alt="A catalogue spread of made-to-measure suits">
+  <div>
+   <div class="kick"><b></b>Product reference</div>
+   <h2>Building the garment catalogues</h2>
+   <p class="lede" style="margin-top:14px">Garments in store were sorted into categories, giving staff and clients a clearer way to browse.</p>
+   <div class="flips">
+    <a class="btn fill" href="https://flipbook.so/flip/1LynKWx3pmBHk9FCuPIK">Flip through catalogue 1 ↗</a>
+    <a class="btn" href="https://flipbook.so/flip/hrsYMQv8PCgGsw4Reg0U">Catalogue 2 ↗</a>
+    <a class="btn" href="https://flipbook.so/flip/1juYbj1QSJCxIcJeuy7h">Catalogue 3 ↗</a>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="sec" style="background:var(--card)">
+ <div class="wrap">
+  <div class="kick"><b></b>Visual merchandising</div>
+  <h2>The floor changes every other week</h2>
+  <p class="lede" style="margin-top:14px">Rearranging the floor to renew which products lead, and to rethink garments, space and customer attention.</p>
+  <span class="badge">↻ Refresh cycle: every other week</span>
+  <div class="vm">
+   <img class="z" style="grid-area:1/1/3/4" src="img/in/p049.webp" alt="Store floor with a sculptural tree display and rails">
+   <img class="z" style="grid-area:1/4/2/7" src="img/in/p047.webp" alt="Mannequins in white sherwanis by a staircase">
+   <img class="z" style="grid-area:2/4/4/5" src="img/in/p053.webp" alt="Mannequins in a corridor">
+   <img class="z" style="grid-area:2/5/4/7" src="img/in/p051.webp" alt="Rail of bandhgalas next to a mannequin">
+   <img class="z" style="grid-area:3/1/4/3" src="img/in/p048.webp" alt="View across the store's upper floor">
+   <img class="z" style="grid-area:3/3/4/4" src="img/in/p052.webp" alt="Rail of embroidered kurtas">
+  </div>
+ </div>
+</section>
+
+<section class="sec">
+ <div class="wrap two">
+  <div>
+   <div class="kick"><b></b>Store communication</div>
+   <h2>Beyond the shop floor</h2>
+   <p class="lede" style="margin-top:14px">I made Instagram stories for the store now and then, carrying product presentation onto Blanco's social channels.</p>
+  </div>
+  <div class="phone"><img class="z" src="img/in/story.webp" alt="Instagram story: business suits, two days to go"></div>
+ </div>
+</section>
+
+<section class="sec" style="background:var(--card)">
+ <div class="wrap">
+  <div class="kick"><b></b>Stock arrival</div>
+  <h2>I ran the casualwear section</h2>
+  <p class="lede" style="margin-top:14px">Midway through, a large delivery of casualwear arrived. I organised the section and looked after it for the rest of the internship.</p>
+  <div class="own">
+   <img class="z" src="img/in/p057.webp" alt="Rail of casual shirts"><img class="z" src="img/in/p059.webp" alt="Knitwear on hangers"><img class="z" src="img/in/p064.webp" alt="Knit textures close up"><img class="z" src="img/in/p058.webp" alt="Casualwear rail against a wall">
+  </div>
+  <div class="pts">
+   <div><b>Ownership</b>Responsibility for a growing product section.</div>
+   <div><b>Recognition</b>Order, accessibility and clear product identification.</div>
+   <div><b>Practice</b>Real responsibility inside a working store.</div>
+  </div>
+
+  <h3 style="margin-top:72px">From datasheet to shop floor</h3>
+  <p class="mut" style="margin-top:6px;max-width:60ch">I made datasheets for each style, recording its distinctive details and sizes so any staff member could identify a product.</p>
+  <div class="wf">
+   <div><b>Identify</b>Style and distinctive details</div>
+   <div><b>Record</b>Available sizes</div>
+   <div><b>Prepare</b>The datasheet</div>
+   <div><b>Print</b>The price tag</div>
+   <div><b>Tag &amp; organise</b>The garment in the casualwear section</div>
+  </div>
+  <img class="wide z" src="img/in/datasheet.webp" alt="Datasheet listing styles, details and sizes">
+  <div class="own" style="margin-top:12px">
+   <img class="z" src="img/in/p062.webp" alt="Datasheet open on the store computer"><img class="z" src="img/in/p063.webp" alt="Printed price tags"><img class="z" src="img/in/p066.webp" alt="Spreadsheet of stock"><img class="z" src="img/in/p067.webp" alt="Working at the billing desk">
+  </div>
+ </div>
+</section>
+
+<section class="sec">
+ <div class="wrap">
+  <div class="kick"><b></b>Operations &amp; collaboration</div>
+  <h2>Billing, then a styling shoot</h2>
+  <p class="lede" style="margin-top:14px">Billing and the register showed me the operational side of the store. At the end of the internship I worked with Blanco's social media team and styled looks for a shoot, with guidance.</p>
+  <div class="tabs" role="tablist"><button class="on" data-t="bts" role="tab" aria-selected="true">Behind the scenes</button><button data-t="fin" role="tab" aria-selected="false">Final output</button></div>
+  <div class="shoot" id="bts"><img class="z" src="img/in/p070.webp" alt="Photographer shooting in store"><img class="z" src="img/in/p072.webp" alt="Grid of shoot frames"><img class="z" src="img/in/p073.webp" alt="Styling a look on set"><img class="z" src="img/in/p071.webp" alt="Yellow kurta on a mannequin"></div>
+  <div class="shoot" id="fin" hidden><img class="z" src="img/in/p074.webp" alt="Let the Festivities campaign image"><img class="z" src="img/in/p075.webp" alt="Model in an embroidered sherwani"><img class="z" src="img/in/grid.webp" alt="Festive campaign grid" style="grid-column:span 2;aspect-ratio:auto;height:100%"></div>
+ </div>
+</section>
+
+<!-- credentials -->
+<section class="sec" style="background:var(--card)">
+ <div class="wrap">
+  <div class="kick"><b></b>Credentials</div>
+  <h2>On paper</h2>
+  <div class="docs">
+   <button data-src="img/in/offer.webp"><img src="img/in/offer.webp" alt="Offer letter from Blanco Bespoke"><span>Offer letter</span></button>
+   <button data-src="img/in/reco.webp"><img src="img/in/reco.webp" alt="Letter of recommendation from Blanco Bespoke"><span>Letter of recommendation</span></button>
+   <button data-src="img/in/cert.webp"><img src="img/in/cert.webp" alt="Certificate of internship, June to August 2026"><span>Certificate of internship · June – August 2026</span></button>
+  </div>
+  <blockquote>“She approached new challenges with curiosity, professionalism, and a willingness to learn.”<footer>Pranav Bhagwat, Blanco Bespoke · letter of recommendation</footer></blockquote>
+ </div>
+</section>
+
+<!-- close -->
+<section class="sec">
+ <div class="wrap">
+  <div class="kick"><b></b>Final reflection</div>
+  <h2>Design thinking, meeting retail reality</h2>
+  <div class="close2">
+   <div><h3>Design in context</h3><p class="mut" style="margin-top:8px">Customer preferences · clear communication · craft and resourceful use of materials</p></div>
+   <div><h3>Design in operation</h3><p class="mut" style="margin-top:8px">Stock organisation · reference systems · visual merchandising · retail operations · collaborative styling</p></div>
+  </div>
+  <div class="next"><span class="mut">Next project</span><a href="index.html#research">Fashion design research →</a></div>
+ </div>
+</section>
+
+<div id="lb" role="dialog" aria-modal="true" aria-label="Image viewer"><button aria-label="Close">×</button><img alt=""></div>
+
+<script>
+{
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* drawer */
+const setNav=o=>{document.body.classList.toggle('nav',o);$('#menu').setAttribute('aria-expanded',o);if(o)$('#close').focus()};
+$('#menu').onclick=()=>setNav(true);$('#close').onclick=()=>setNav(false);$('#scrim').onclick=()=>setNav(false);
+
+/* lightbox */
+const lb=$('#lb'),lbi=$('img',lb);
+const openLB=(src,alt)=>{lbi.src=src;lbi.alt=alt||'';lb.classList.add('open');$('button',lb).focus()};
+document.addEventListener('click',e=>{const z=e.target.closest('img.z');if(z){openLB(z.src,z.alt)}const d=e.target.closest('.docs button');if(d)openLB(d.dataset.src,$('img',d).alt)});
+$('button',lb).onclick=()=>lb.classList.remove('open');lb.onclick=e=>{if(e.target===lb)lb.classList.remove('open')};
+addEventListener('keydown',e=>{if(e.key==='Escape'){lb.classList.remove('open');setNav(false)}});
+
+/* shirt hotspots */
+const D=[['Piping',190,250],['Contrasting collars',200,82],['Unique buttons',208,170],['Cufflinks',322,172],['Embroidered initials',148,170]];
+const shirt=$('#shirt'),dl=$('#dlist');
+D.forEach(([n,x,y],i)=>{
+ const h=document.createElement('button');h.className='hs';h.style.left=(x/400*100)+'%';h.style.top=(y/440*100)+'%';h.setAttribute('aria-label',n);h.onclick=()=>pick(i);shirt.appendChild(h);
+ const b=document.createElement('button');b.textContent=n;b.onclick=()=>pick(i);dl.appendChild(b);
+});
+function pick(i){$$('.hs',shirt).forEach((h,j)=>h.classList.toggle('on',j===i));$$('button',dl).forEach((b,j)=>{b.classList.toggle('on',j===i);b.setAttribute('aria-pressed',j===i)})}
+pick(0);
+
+/* scatter parallax */
+const scat=$('#scat'),sf=$$('figure',scat);
+scat.addEventListener('pointermove',e=>{if(RM||innerWidth<=900)return;const r=scat.getBoundingClientRect(),mx=(e.clientX-r.left)/r.width-.5,my=(e.clientY-r.top)/r.height-.5;sf.forEach(f=>{const d=+f.dataset.d;f.style.transform=`translate3d(${-mx*d}px,${-my*d}px,0) rotateY(${mx*d*.2}deg) rotateX(${-my*d*.15}deg)`})});
+scat.addEventListener('pointerleave',()=>sf.forEach(f=>f.style.transform=''));
+
+/* horizontal rail */
+const rail=$('#rail'),track=$('#track'),prog=$('#prog');
+function sizeRail(){if(innerWidth<=700){rail.style.height='';return}const extra=Math.max(0,track.scrollWidth-innerWidth);rail.style.height=(innerHeight+extra)+'px'}
+function moveRail(){if(innerWidth<=700)return;const r=rail.getBoundingClientRect(),extra=Math.max(0,track.scrollWidth-innerWidth),p=Math.min(1,Math.max(0,-r.top/Math.max(1,rail.offsetHeight-innerHeight)));track.style.transform=`translateX(${-p*extra}px)`;prog.style.width=(p*100)+'%'}
+$$('img',track).forEach(im=>im.addEventListener('load',()=>{sizeRail();moveRail()}));
+addEventListener('resize',()=>{sizeRail();moveRail()});addEventListener('scroll',moveRail,{passive:true});sizeRail();moveRail();
+
+/* store tunnel */
+const tun=$('#tunnel'),TI=['p042','p043','p044','p045','p049','p050','p047','p048','p052','p051'];
+const tc=TI.concat(TI).map(n=>{const im=document.createElement('img');im.src='img/in/'+n+'.webp';im.alt='';im.loading='lazy';tun.appendChild(im);return im});
+let off=0,last=0,vis=false;
+function drawT(ts){const W=tun.clientWidth,H=tun.clientHeight,N=tc.length;if(last&&!RM)off=(off+(ts-last)/52000)%1;last=ts;
+ tc.forEach((c,i)=>{const s=((i/N+off)%1)*2-1,a=Math.abs(s),x=W/2+(W/2)*s*(.32+.68*s*s),dx=(.32+2.04*s*s)*(W/N)*.95,w=Math.max(8,dx*.9),h=H*(.2+.8*a*a);
+  c.style.width=w+'px';c.style.height=h+'px';c.style.opacity=a>.94?Math.max(0,(1-a)/.06):1;c.style.transform=`translate(${x-w/2}px,${H/2-h/2}px) rotateY(${s*-38}deg)`});
+ if(vis&&!RM)requestAnimationFrame(drawT)}
+new IntersectionObserver(([e])=>{const was=vis;vis=e.isIntersecting;if(vis&&!was){last=0;requestAnimationFrame(drawT)}}).observe(tun);
+drawT(0);
+
+/* shoot tabs */
+$$('.tabs button').forEach(b=>b.onclick=()=>{$$('.tabs button').forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-selected',x===b)});$('#bts').hidden=b.dataset.t!=='bts';$('#fin').hidden=b.dataset.t!=='fin'});
+}
+</script>
+</body>
+</html>
