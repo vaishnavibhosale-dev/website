@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fashion brand management — Vaishnavi Bhosale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: a brand study a jury can play with — clear, analytical, warm.
+   IDEA: Raw Mango read as a system — collections, calendar, products, price, stores, website, craft — then a campaign and jewellery for it.
+   PICTURE: the brand's own photography, set in interactive pieces: collection panels, a launch-rhythm grid, price ranges, store switcher, a browser, craft cards.
+   COLOUR and TYPE: off-white paper, ink, Raw Mango green with a mango accent; Archivo condensed titles, Inter Tight text.
+   LAYOUT: same portfolio system as the internship page; slide-out project menu; each block one idea. */
+:root{color-scheme:light;--bg:#F2F1EC;--ink:#141414;--mut:#66655f;--line:#dcdad2;--card:#fff;--soft:#e8e6df;--acc:#0E5B32;--mango:#E3A92B;--disp:"Archivo",Impact,sans-serif;--body:"Inter Tight",system-ui,sans-serif}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:120px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--body);overflow-x:clip;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+h1,h2,h3{font-family:var(--disp);font-weight:800;font-stretch:72%;line-height:1;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:clamp(36px,5.4vw,68px)}
+h3{font-size:clamp(22px,2.4vw,30px);font-stretch:80%;font-weight:700}
+p{margin:0}
+.wrap{max-width:1240px;margin:0 auto}
+.sec{padding:clamp(64px,8vw,120px) max(5vw,16px)}
+.alt{background:var(--card)}
+.kick{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--mut);margin-bottom:14px}
+.kick b{width:10px;height:10px;border-radius:3px;background:var(--acc)}
+.lede{font-size:18px;max-width:58ch}
+.mut{color:var(--mut)}
+.z{cursor:zoom-in}
+.hd2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 48px;align-items:end;margin-bottom:32px}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--ink);background:transparent;font-size:15px;text-decoration:none}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pills button{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--ink);background:transparent;font-size:14px}
+.pills button[aria-selected=true]{background:var(--acc);border-color:var(--acc);color:#fff}
+
+/* top + drawer */
+.top{position:fixed;inset:14px 16px auto;display:flex;justify-content:space-between;align-items:center;z-index:50;pointer-events:none}
+.top>*{pointer-events:auto}
+.mb{display:flex;align-items:center;gap:10px;height:44px;padding:0 16px 0 12px;border-radius:999px;border:0;background:var(--ink);color:#fff;font-size:14px}
+.mb svg{width:18px;height:18px}
+.home{font-size:14px;text-decoration:none;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(8px);padding:10px 14px;border-radius:999px}
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:60;opacity:0;pointer-events:none;transition:.3s}
+.drawer{position:fixed;left:0;top:0;bottom:0;width:min(380px,88vw);background:var(--ink);color:#f2f1ec;z-index:61;transform:translateX(-102%);transition:transform .35s cubic-bezier(.2,.8,.2,1);padding:24px;display:flex;flex-direction:column;gap:6px;overflow-y:auto}
+body.nav .drawer{transform:none}body.nav .scrim{opacity:1;pointer-events:auto}
+.drawer .x{align-self:flex-end;width:44px;height:44px;border-radius:50%;border:0;background:#2a2a2a;color:#fff;font-size:22px}
+.drawer small{color:#9c9a93;font-size:13px;margin:14px 0 4px}
+.drawer a{text-decoration:none;display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:14px 0;border-top:1px solid #2c2c2c;font-family:var(--disp);font-stretch:72%;font-weight:800;font-size:28px;line-height:1.05}
+.drawer a span{font:400 13px var(--body);color:#9c9a93;white-space:nowrap}
+.drawer a.on{color:#8fd6a8}
+.jump{position:sticky;top:64px;z-index:40;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);display:flex;gap:4px;overflow-x:auto;padding:8px max(5vw,16px);scrollbar-width:none;margin-top:-1px}
+.jump a{flex:none;text-decoration:none;font-size:14px;padding:9px 13px;border-radius:999px;color:var(--mut)}
+.jump a.on{background:var(--ink);color:#fff}
+@media(min-width:901px){.jump{top:0;padding-top:16px;padding-bottom:12px;padding-left:170px;padding-right:140px}}
+
+/* hero */
+.hero{min-height:92svh;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center;padding-top:96px}
+.hero h1{font-size:clamp(52px,7vw,104px);font-stretch:62%;font-weight:900;line-height:.86}
+.hero .ph{position:relative;aspect-ratio:4/5;border-radius:220px 220px 10px 10px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.18)}
+.hero .ph img{width:100%;height:100%;object-fit:cover}
+.q{margin-top:26px;padding:20px 22px;border-left:4px solid var(--mango);background:var(--card);border-radius:0 12px 12px 0;font-family:var(--disp);font-stretch:80%;font-weight:600;font-size:clamp(20px,2vw,25px);line-height:1.2}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 24px;margin:26px 0 0}
+.facts div{border-top:2px solid var(--ink);padding-top:8px;font-size:15px}
+.facts dt{font-size:13px;color:var(--mut)}.facts dd{margin:2px 0 0;font-weight:500}
+.geo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.geo>div{background:var(--card);border-radius:14px;padding:22px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chips span{border:1px solid var(--ink);border-radius:999px;padding:7px 13px;font-size:14px}
+
+/* collection panels */
+.panels{display:flex;gap:10px;height:clamp(440px,60vh,600px)}
+.pnl{position:relative;flex:1;min-width:0;border:0;padding:0;border-radius:14px;overflow:hidden;background:#222;color:#fff;text-align:left;transition:flex .6s cubic-bezier(.2,.8,.2,1)}
+.pnl.on{flex:4.2}
+.pnl img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.pnl::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 35%,rgba(0,0,0,.78))}
+.pnl .t{position:absolute;left:16px;right:16px;bottom:16px;z-index:1}
+.pnl .t b{display:block;font-family:var(--disp);font-stretch:70%;font-weight:900;font-size:clamp(22px,2.4vw,34px);line-height:1}
+.pnl .t span{display:block;font-size:14px;margin-top:8px;opacity:0;max-height:0;transition:opacity .4s .15s,max-height .4s;overflow:hidden;max-width:52ch}
+.pnl.on .t span{opacity:1;max-height:200px}
+.pnl .t em{font-style:normal;display:inline-block;font-size:12px;background:var(--mango);color:#111;border-radius:999px;padding:3px 10px;margin-bottom:10px}
+.pnl:not(.on) .t b{writing-mode:vertical-rl;transform:rotate(180deg);position:absolute;bottom:0;left:0}
+.pnl:not(.on) .t em{display:none}
+
+/* launch grid */
+.band{display:grid;grid-template-columns:52px repeat(12,minmax(0,1fr));gap:0;margin-top:8px}
+.band button{border:0;border-radius:6px;margin:0 2px;min-height:48px;padding:6px;font-size:12px;line-height:1.15;text-align:left;color:#111}
+.band button[aria-pressed=true]{outline:3px solid var(--ink);outline-offset:-3px}
+.lgrid{display:grid;grid-template-columns:52px repeat(12,minmax(0,1fr));margin-top:10px;position:relative}
+.lgrid .mo{font-size:12px;color:var(--mut);text-align:center;padding:4px 0}
+.lrow{display:contents}
+.lrow .yr{font-family:var(--disp);font-stretch:75%;font-weight:700;font-size:18px;display:flex;align-items:center;height:52px}
+.lrow .track{grid-column:2 / 14;position:relative;height:52px;border-top:1px solid var(--line)}
+.dot{position:absolute;top:50%;width:44px;height:44px;margin:-22px 0 0 -22px;border:0;background:transparent;display:grid;place-items:center;padding:0}
+.dot i{width:16px;height:16px;border-radius:50%;box-shadow:0 0 0 3px var(--bg);transition:.2s}
+.dot.dim i{opacity:.2}
+.dot.on i{transform:scale(1.5);box-shadow:0 0 0 3px var(--bg),0 0 0 6px var(--ink)}
+.lcard{margin-top:22px;background:var(--card);border-radius:14px;padding:20px 22px;display:grid;grid-template-columns:auto 1fr;gap:6px 18px;align-items:baseline;min-height:96px}
+.lcard b{font-family:var(--disp);font-stretch:75%;font-size:26px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;margin-top:14px}
+.legend span{display:flex;align-items:center;gap:6px}.legend i{width:12px;height:12px;border-radius:50%}
+.styles{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:clamp(20px,4vw,56px);align-items:center;margin-top:60px}
+.big{font-family:var(--disp);font-weight:900;font-stretch:62%;font-size:clamp(80px,12vw,160px);line-height:.85;color:var(--acc)}
+.rng{display:grid;grid-template-columns:150px 1fr;gap:12px;align-items:center;margin-top:12px;font-size:14px}
+.rng .tr{position:relative;height:30px;background:var(--soft);border-radius:6px}
+.rng .br{position:absolute;top:0;bottom:0;background:var(--acc);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:600}
+.rng .ax{display:flex;justify-content:space-between;font-size:12px;color:var(--mut);grid-column:2}
+
+/* products */
+.cats{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+.cat{border:0;padding:0;background:#111;border-radius:12px;overflow:hidden;text-align:left;color:#fff;position:relative;aspect-ratio:2/3}
+.cat img{width:100%;height:100%;object-fit:cover;transition:transform .5s,opacity .3s}
+.cat span{position:absolute;left:10px;right:10px;bottom:10px;font-family:var(--disp);font-stretch:75%;font-weight:800;font-size:clamp(16px,1.6vw,21px);line-height:1}
+.cat:hover img,.cat.on img{transform:scale(1.05)}
+.cat.on{outline:3px solid var(--mango);outline-offset:3px}
+.pchart{margin-top:30px;display:flex;flex-direction:column;gap:8px}
+.prow{display:grid;grid-template-columns:150px 1fr;gap:12px;align-items:center;font-size:14px;border:0;background:none;padding:0;text-align:left;width:100%}
+.prow .tr{position:relative;height:34px;border-radius:6px;background:var(--soft);margin-right:70px}
+.prow .br{position:absolute;top:0;bottom:0;border-radius:6px;background:#bdbab0;transition:background .3s}
+.prow.on .br{background:var(--acc)}
+.prow .v{position:absolute;top:50%;translate:0 -50%;font-size:13px;font-weight:600;white-space:nowrap}
+.prow .lo{right:calc(100% + 8px)}
+.pax{display:grid;grid-template-columns:150px 1fr;gap:12px;font-size:12px;color:var(--mut)}
+.pax div{position:relative;height:18px;margin-right:70px}
+.pax span{position:absolute;translate:-50% 0;white-space:nowrap}
+.pdesc{margin-top:18px;min-height:48px;font-size:16px}
+.stairs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;align-items:end;margin-top:30px}
+.step{border:0;text-align:left;border-radius:12px 12px 0 0;padding:18px;color:#fff;background:var(--acc);display:flex;flex-direction:column;justify-content:flex-start;gap:6px;transition:filter .2s}
+.step:nth-child(1){height:150px;background:#5d8f6f}.step:nth-child(2){height:210px;background:#3a7a52}.step:nth-child(3){height:270px;background:#1f6a3e}.step:nth-child(4){height:330px;background:#0E5B32}
+.step b{font-family:var(--disp);font-stretch:70%;font-weight:900;font-size:28px;line-height:1}
+.step em{font-style:normal;font-size:14px;opacity:.9}
+.step[aria-pressed=true]{outline:3px solid var(--mango);outline-offset:3px}
+.stdesc{margin-top:16px;background:var(--card);border-radius:12px;padding:18px 20px;min-height:72px}
+.sari{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:clamp(20px,5vw,72px);align-items:center}
+.sari img{border-radius:10px}
+.sari blockquote{margin:0;font-family:var(--disp);font-stretch:80%;font-weight:700;font-size:clamp(26px,3.4vw,44px);line-height:1.1}
+.tiers{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:center;margin-top:30px}
+.pyr{display:flex;flex-direction:column;align-items:center;gap:8px}
+.pyr button{border:0;color:#fff;min-height:84px;padding:14px;font-family:var(--disp);font-stretch:75%;font-weight:800;font-size:clamp(18px,2vw,24px);clip-path:polygon(8% 0,92% 0,100% 100%,0 100%);transition:filter .2s}
+.pyr button:nth-child(1){width:46%;background:#0E5B32}.pyr button:nth-child(2){width:72%;background:#2f7449}.pyr button:nth-child(3){width:98%;background:#5d8f6f}
+.pyr button[aria-pressed=true]{filter:brightness(1.15);box-shadow:inset 0 -6px 0 var(--mango)}
+.tierc{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1fr);gap:18px;align-items:center}
+.tierc img{border-radius:10px;aspect-ratio:3/4;object-fit:cover;width:100%}
+
+/* retail */
+.stores{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:start}
+.sgal{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:10px;height:clamp(380px,46vw,560px)}
+.sgal img{width:100%;height:100%;object-fit:cover;border-radius:10px}
+.sgal img:first-child{grid-row:span 2}
+.cities{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.cities span{font-size:14px;padding:7px 12px;border-radius:999px;background:var(--soft)}
+.cities span.on{background:var(--acc);color:#fff}
+.grp{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:36px}
+.gc{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:3/4;background:#222;color:#fff}
+.gc img{width:100%;height:100%;object-fit:cover;transition:transform .6s,filter .4s}
+.gc .tx{position:absolute;inset:auto 0 0 0;padding:16px;background:linear-gradient(transparent,rgba(0,0,0,.85));font-size:14px}
+.gc .tx b{display:block;font-family:var(--disp);font-stretch:75%;font-size:22px}
+.gc .tx span{display:block;max-height:0;overflow:hidden;transition:max-height .4s;opacity:.9}
+.gc:hover .tx span,.gc:focus-within .tx span{max-height:160px}
+.gc:hover img{transform:scale(1.05);filter:brightness(.8)}
+.mq{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:center}
+.mqph{position:relative;border-radius:12px;overflow:hidden}
+.mqph img{width:100%}
+.hs{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border:0;background:transparent;display:grid;place-items:center;padding:0}
+.hs span{width:16px;height:16px;border-radius:50%;background:#cfccc4;box-shadow:0 0 0 6px rgba(255,255,255,.18);transition:.25s}
+.hs.on span{width:24px;height:24px;background:var(--mango);box-shadow:0 0 0 10px rgba(227,169,43,.3)}
+.dl button{display:block;width:100%;text-align:left;border:0;border-top:1px solid var(--line);background:none;padding:16px 4px;min-height:56px}
+.dl button b{font-family:var(--disp);font-stretch:75%;font-weight:700;font-size:clamp(22px,2.6vw,30px);color:var(--mut)}
+.dl button span{display:none;font-size:15px;margin-top:6px}
+.dl button.on b{color:var(--ink)}.dl button.on span{display:block}
+
+/* browser */
+.browser{border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 30px 70px rgba(0,0,0,.16);border:1px solid var(--line)}
+.bbar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#ebe9e3}
+.bbar i{width:11px;height:11px;border-radius:50%;background:#cfcbc2}
+.bbar span{flex:1;margin-left:10px;background:#fff;border-radius:999px;padding:5px 14px;font-size:13px;color:var(--mut)}
+.bview{position:relative;aspect-ratio:1600/757;background:#fff}
+.bview img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .35s}
+.bnote{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:20px}
+.bnote>div{background:var(--card);border-radius:12px;padding:18px}
+.hover{position:absolute;right:3%;bottom:6%;width:18%;border-radius:8px;box-shadow:0 12px 30px rgba(0,0,0,.3)}
+
+/* craft */
+.crafts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.flip{perspective:1200px;border:0;padding:0;background:none;aspect-ratio:3/4;text-align:left}
+.flip .in{position:relative;width:100%;height:100%;transition:transform .7s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d}
+.flip.on .in{transform:rotateY(180deg)}
+.flip .f,.flip .b{position:absolute;inset:0;border-radius:12px;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.flip .f img{width:100%;height:100%;object-fit:cover}
+.flip .f b{position:absolute;left:16px;bottom:14px;color:#fff;font-family:var(--disp);font-stretch:70%;font-weight:900;font-size:clamp(28px,3vw,40px);text-shadow:0 2px 14px rgba(0,0,0,.5)}
+.flip .f small{position:absolute;right:12px;top:12px;background:rgba(255,255,255,.9);border-radius:999px;padding:4px 10px;font-size:12px}
+.flip .b{transform:rotateY(180deg);background:var(--acc);color:#fff;padding:22px;display:flex;flex-direction:column;gap:10px}
+.flip .b b{font-family:var(--disp);font-stretch:70%;font-weight:900;font-size:clamp(26px,2.6vw,36px)}
+.flip .b p{font-size:15px;line-height:1.5}
+
+/* observations */
+.obs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px;counter-reset:o}
+.obs details{border-top:1px solid var(--line);padding:4px 0}
+.obs summary{list-style:none;display:flex;gap:14px;align-items:baseline;cursor:pointer;padding:12px 0;min-height:44px;font-family:var(--disp);font-stretch:78%;font-weight:700;font-size:21px}
+.obs summary::-webkit-details-marker{display:none}
+.obs summary::before{counter-increment:o;content:counter(o);font-size:14px;color:#fff;background:var(--acc);border-radius:50%;width:28px;height:28px;flex:none;display:grid;place-items:center;font-family:var(--body);font-weight:600}
+.obs details p{padding:0 0 14px 42px;color:#3d3c38}
+.concl{margin-top:44px;background:var(--acc);color:#fff;border-radius:16px;padding:clamp(24px,4vw,44px);font-family:var(--disp);font-stretch:80%;font-weight:600;font-size:clamp(22px,2.6vw,32px);line-height:1.2}
+
+/* campaign */
+.camp{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(24px,5vw,72px);align-items:center}
+.phone{width:min(330px,82%);margin:0 auto;border-radius:42px;background:#111;padding:12px;box-shadow:0 30px 60px rgba(0,0,0,.25);position:relative}
+.phone .scr{position:relative;border-radius:32px;overflow:hidden}
+.phone .scr img{width:100%}
+.bars{position:absolute;left:12px;right:12px;top:10px;display:flex;gap:4px;z-index:2}
+.bars i{flex:1;height:3px;border-radius:2px;background:rgba(0,0,0,.18);overflow:hidden}
+.bars i b{display:block;height:100%;width:0;background:#111}
+.cd{position:absolute;left:50%;top:40px;translate:-50% 0;z-index:2;background:#111;color:#fff;border-radius:999px;padding:6px 14px;font-size:13px;white-space:nowrap}
+.ctabs2{margin-bottom:18px}
+.cpanel{background:var(--card);border-radius:14px;padding:22px;min-height:260px}
+.cpanel h3{margin-bottom:10px}
+.cpanel ul{margin:10px 0 0;padding-left:18px}.cpanel li{margin:6px 0}
+.tag{display:inline-block;font-family:var(--disp);font-stretch:75%;font-weight:800;font-size:clamp(28px,3vw,40px);line-height:1.05;margin:6px 0 10px}
+
+/* jewellery */
+.jw{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr) minmax(0,1fr);max-width:1400px;margin:0 auto;align-items:stretch;min-height:540px}
+.panel{position:relative;padding:28px;display:flex;flex-direction:column;justify-content:center;color:#10261a;isolation:isolate}
+.panel svg{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+.panel h3{font-size:clamp(26px,3vw,38px)}
+.panel p{margin:8px 0 0;font-size:15px;max-width:30ch}
+.panel.r{text-align:right;align-items:flex-end;color:#221a3d}
+.panel.l p{margin-right:22%}.panel.r p{margin-left:22%}
+.jwc{background:var(--card);border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.14);display:flex;flex-direction:column;overflow:hidden;margin:18px 0;position:relative;z-index:1}
+.jtabs{display:flex;gap:6px;padding:12px;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+.jtabs button{border:1px solid var(--line);background:transparent;border-radius:999px;min-height:40px;padding:0 14px;font-size:14px}
+.jtabs button.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.view{position:relative;flex:1;min-height:380px;background:radial-gradient(circle at 50% 40%,#fff,#e9e7e0)}
+.view canvas{position:absolute;inset:0;width:100%!important;height:100%!important;cursor:grab}
+.view .msg{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px;color:var(--mut);font-size:14px}
+.view .soon{position:absolute;inset:16%;border:1px dashed #9d8fe8;border-radius:14px;background:#e7e2fb;color:#2a2244;display:grid;place-items:center;text-align:center;padding:20px}
+.jwf{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;border-top:1px solid var(--line);flex-wrap:wrap;font-size:13px;color:var(--mut)}
+.fin{display:flex;gap:6px}
+.fin button{width:36px;height:36px;border-radius:50%;border:2px solid var(--line)}
+.fin button.on{border-color:var(--ink)}
+
+.src summary{cursor:pointer;font-weight:600;min-height:44px;display:flex;align-items:center}
+.src li{margin:6px 0;font-size:14px;color:#3d3c38;overflow-wrap:anywhere}
+.next{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-top:56px;padding-top:28px;border-top:2px solid var(--ink)}
+.next a{font-family:var(--disp);font-stretch:70%;font-weight:900;font-size:clamp(32px,5vw,60px);text-decoration:none;line-height:1}
+.credit{font-size:13px;color:var(--mut);margin-top:12px}
+
+#lb{position:fixed;inset:0;z-index:80;background:rgba(12,12,12,.94);display:none;align-items:center;justify-content:center;padding:60px 16px 30px}
+#lb.open{display:flex}
+#lb img{max-width:min(1400px,100%);max-height:calc(100svh - 100px);object-fit:contain;border-radius:4px;background:#fff}
+#lb button{position:absolute;top:14px;right:16px;width:44px;height:44px;border-radius:50%;border:0;background:#f2f1ec;color:#111;font-size:22px}
+
+@media(max-width:900px){
+ .hero,.hd2,.styles,.sari,.tiers,.stores,.mq,.camp,.bnote,.geo{grid-template-columns:minmax(0,1fr)}
+ .hero .ph{max-width:460px;width:100%;margin:0 auto}
+ .cats{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .grp{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .crafts{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .obs{grid-template-columns:minmax(0,1fr)}
+ .jw{grid-template-columns:minmax(0,1fr)}.panel{min-height:200px}.panel.l p,.panel.r p{margin:8px 0 0}
+ .panels{flex-direction:column;height:auto}.pnl{min-height:76px}.pnl.on{min-height:420px}
+ .pnl:not(.on) .t b{writing-mode:horizontal-tb;transform:none;position:static}
+}
+@media(max-width:600px){
+ .band,.lgrid{grid-template-columns:34px repeat(12,minmax(0,1fr))}
+ .band button{font-size:0;min-height:30px;margin:0 1px}
+ .lgrid .mo{font-size:10px}
+ .lrow .yr{font-size:13px}
+ .dot{width:30px;height:30px;margin:-15px 0 0 -15px}.dot i{width:11px;height:11px}
+ .stairs{grid-template-columns:repeat(2,minmax(0,1fr))}.step{height:auto!important;min-height:120px}
+ .prow,.pax,.rng{grid-template-columns:minmax(0,1fr)}.pax span:first-child{display:none}
+ .tierc{grid-template-columns:minmax(0,1fr)}
+ .crafts{grid-template-columns:minmax(0,1fr)}
+ .flip{aspect-ratio:4/5}
+ .hero h1{font-size:clamp(50px,16vw,86px)}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<div class="top">
+ <button class="mb" id="menu" aria-expanded="false" aria-controls="drawer"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 5h14M2 9h14M2 13h14"/></svg>Projects</button>
+ <a class="home" href="index.html">← All work</a>
+</div>
+<div class="scrim" id="scrim"></div>
+<nav class="drawer" id="drawer" aria-label="Projects">
+ <button class="x" id="close" aria-label="Close menu">×</button>
+ <small>Vaishnavi Bhosale · Portfolio</small>
+ <a href="index.html">Home <span>All work</span></a>
+ <a href="internship.html">Summer internship <span>Blanco</span></a>
+ <a href="index.html#research">Fashion design research <span>Soon</span></a>
+ <a href="index.html#styling">Styling &amp; photography <span>Raw Mango</span></a>
+ <a href="brand.html" class="on" aria-current="page">Brand management <span>Raw Mango</span></a>
+ <a href="index.html#cutting">Cutting-edge fashion <span>Future Ritualism</span></a>
+</nav>
+
+<header class="sec hero wrap">
+ <div>
+  <div class="kick"><b></b>Fashion brand management</div>
+  <h1>Raw Mango, as a commercial system</h1>
+  <p class="q">How does Raw Mango translate its creative identity into a collection calendar, product hierarchy, retail experience and production system?</p>
+  <dl class="facts">
+   <div><dt>Founder and designer</dt><dd>Sanjay Garg · founded 2008, India</dd></div>
+   <div><dt>Positioning</dt><dd>Premium-to-luxury Indian fashion and textile design</dd></div>
+   <div><dt>Core product</dt><dd>Handwoven saris</dd></div>
+   <div><dt>Expanded offering</dt><dd>Kurtas, blouses, lehengas, odhanis, stoles, jackets</dd></div>
+  </dl>
+ </div>
+ <figure class="ph" style="margin:0"><img src="img/rm/chennai-house.webp" alt="Raw Mango's Chennai store, a white heritage bungalow with a yellow taxi outside"></figure>
+</header>
+
+<nav class="jump" id="jump" aria-label="Sections">
+ <a href="#overview">Overview</a><a href="#collections">Collections</a><a href="#calendar">Calendar</a><a href="#products">Products &amp; price</a><a href="#retail">Retail</a><a href="#digital">Website</a><a href="#craft">Craft</a><a href="#findings">Findings</a><a href="#campaign">Campaign</a><a href="#jewellery">Jewellery</a>
+</nav>
+
+<!-- overview -->
+<section class="sec" id="overview">
+ <div class="wrap">
+  <div class="hd2"><div><div class="kick"><b></b>Brand overview</div><h2>Handloom, made contemporary</h2></div><p class="lede">Indian handloom, textile experimentation, colour, craft and contemporary design form the creative foundation. Production and retail are spread across India.</p></div>
+  <div class="geo">
+   <div><h3>Weaving relationships</h3><div class="chips"><span>Rajasthan</span><span>Madhya Pradesh</span><span>West Bengal</span><span>Andhra Pradesh</span><span>Varanasi</span></div></div>
+   <div><h3>Retail presence</h3><p class="mut" style="margin-top:6px">Physical stores in Indian metro cities, plus direct-to-consumer e-commerce.</p><div class="chips"><span>Bengaluru</span><span>Chennai</span><span>Hyderabad</span><span>Kolkata</span><span>Mumbai</span><span>New Delhi</span><span>Online store</span></div></div>
+  </div>
+ </div>
+</section>
+
+<!-- collections -->
+<section class="sec alt" id="collections">
+ <div class="wrap">
+  <div class="hd2"><div><div class="kick"><b></b>Collection structure</div><h2>Five ways Raw Mango builds a collection</h2></div><p class="lede">Choose a panel to open it.</p></div>
+  <div class="panels" id="panels"></div>
+ </div>
+</section>
+
+<!-- calendar -->
+<section class="sec" id="calendar">
+ <div class="wrap">
+  <div class="hd2"><div><div class="kick"><b></b>Collection frequency and launch patterns</div><h2>Seven years of launches</h2></div><p class="lede">Every dot is a launch. The coloured band is the typical year: choose a stretch of months to see what happens then, or a dot to read about the launch.</p></div>
+  <div class="band" id="band" role="group" aria-label="Typical year"></div>
+  <div class="lgrid" id="lgrid"></div>
+  <div class="legend" id="legend"></div>
+  <div class="lcard" id="lcard" aria-live="polite"></div>
+  <div class="styles">
+   <div><div class="kick"><b></b>Approximate number of styles</div><div class="big">25–50</div><p class="lede" style="margin-top:10px">unique styles per major collection. Rather than flooding the market with fast-fashion volumes, Raw Mango stays a textile-first house.</p></div>
+   <div>
+    <div class="rng"><span>Sari designs</span><div class="tr"><div class="br" style="left:30%;width:10%">15–20</div></div></div>
+    <div class="rng"><span>Stitched separates</span><div class="tr"><div class="br" style="left:20%;width:20%;background:var(--mango);color:#111">10–20</div></div></div>
+    <div class="rng"><span></span><div class="ax"><span>0</span><span>10</span><span>20</span><span>30</span><span>40</span><span>50</span></div></div>
+    <p class="mut" style="margin-top:14px;font-size:14px">Separates include modern kurtas, structural blouses, lehengas and jackets, designed to be layered and re-worn.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- products -->
+<section class="sec alt" id="products">
+ <div class="wrap">
+  <div class="hd2"><div><div class="kick"><b></b>Product categories and merchandising</div><h2>Six categories, one textile language</h2></div><p class="lede">Choose a category to see its price range against the others.</p></div>
+  <div class="cats" id="cats"></div>
+  <div class="pchart" id="pchart"></div>
+  <p class="pdesc" id="pdesc"></p>
+ </div>
+</section>
+
+<section class="sec" style="padding-top:clamp(40px,5vw,72px)">
+ <div class="wrap">
+  <div class="kick"><b></b>Price architecture</div><h2>Four steps into the brand</h2>
+  <div class="stairs" id="stairs"></div>
+  <div class="stdesc" id="stdesc" aria-live="polite"></div>
+ </div>
+</section>
+
+<section class="sec alt">
+ <div class="wrap sari">
+  <img class="z" src="img/rm/sari.webp" alt="A gold handwoven Raw Mango sari">
+  <div>
+   <div class="kick"><b></b>Why the sari remains strategically important</div>
+   <blockquote>The sari is not one category among many. It is where Raw Mango's textile-led identity is most immediately legible.</blockquote>
+   <p class="lede" style="margin-top:18px">Border, weave, colour and drape all become part of the finished garment, which makes the sari a natural vehicle for the brand's strengths in material and colour. Lehengas, kurtas, jackets and separates carry that language to other occasions without leaving the textile foundation.</p>
+  </div>
+ </div>
+</section>
+
+<section class="sec">
+ <div class="wrap">
+  <div class="kick"><b></b>Product hierarchy</div><h2>Three tiers</h2>
+  <div class="tiers">
+   <div class="pyr" id="pyr"></div>
+   <div class="tierc" id="tierc" aria-live="polite"></div>
+  </div>
+ </div>
+</section>
+
+<!-- retail -->
+<section class="sec alt" id="retail">
+ <div class="wrap">
+  <div class="hd2"><div><div class="kick"><b></b>Visual merchandising · physical retail</div><h2>Stores that feel like galleries</h2></div><div class="pills" id="stabs" role="tablist" aria-label="Stores"></div></div>
+  <div class="stores">
+   <div class="sgal" id="sgal"></div>
+   <div><h3 id="stitle"></h3><p class="lede" id="stext" style="margin-top:10px;font-size:16px"></p>
+    <div class="kick" style="margin-top:28px"><b></b>Store locations</div>
+    <div class="cities" id="cities"></div>
+    <p class="mut" style="margin-top:14px;font-size:15px">Across cities the stores share one philosophy: local architecture, contemporary minimal interiors, custom furniture and uncluttered displays that keep the textiles in focus.</p>
+   </div>
+  </div>
+  <h3 style="margin-top:72px">Product displays and grouping</h3>
+  <div class="grp">
+   <div class="gc" tabindex="0"><img src="img/rm/vm-colour.webp" alt="Racks of garments grouped by colour"><div class="tx"><b>Colour blocking</b><span>Grouping similar or contrasting colours turns the merchandise into a visual composition.</span></div></div>
+   <div class="gc" tabindex="0"><img src="img/rm/vm-textile.webp" alt="Shelves of folded textiles"><div class="tx"><b>Textile grouping</b><span>Related weaving traditions together invite customers to compare material, texture and technique.</span></div></div>
+   <div class="gc" tabindex="0"><img src="img/rm/vm-occasion.webp" alt="Rail of coordinated festive garments"><div class="tx"><b>Occasion grouping</b><span>Saris, blouses, lehengas and complementary pieces together help customers picture a complete outfit.</span></div></div>
+   <div class="gc" tabindex="0"><img src="img/rm/vm-hero.webp" alt="Statement garments on mannequins"><div class="tx"><b>Hero-product display</b><span>A distinctive textile or statement garment given prominence to carry the collection's direction.</span></div></div>
+  </div>
+  <div class="mq" style="margin-top:72px">
+   <div class="mqph" id="mqph"><img class="z" src="img/rm/mannequin.webp" alt="Mannequins dressed in saris on a chequered floor"></div>
+   <div>
+    <div class="kick"><b></b>Mannequin styling</div>
+    <h3 style="font-size:clamp(28px,3.4vw,44px)">What a folded fabric can't show</h3>
+    <p class="mut" style="margin:10px 0 16px">Mannequins show the relationship between textile and body. Three details deserve attention:</p>
+    <div class="dl" id="mqlist"></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- digital -->
+<section class="sec" id="digital">
+ <div class="wrap">
+  <div class="hd2"><div><div class="kick"><b></b>Digital visual merchandising</div><h2>The website, a second store</h2></div><p class="lede">The online store has its own hierarchy. Step through the pages.</p></div>
+  <div class="pills" id="wtabs" role="tablist" aria-label="Website pages" style="margin-bottom:16px"></div>
+  <div class="browser"><div class="bbar"><i></i><i></i><i></i><span id="burl">rawmango.com</span></div><div class="bview" id="bview"></div></div>
+  <div class="bnote" id="bnote"></div>
+ </div>
+</section>
+
+<!-- craft -->
+<section class="sec alt" id="craft">
+ <div class="wrap">
+  <div class="hd2"><div><div class="kick"><b></b>Craftsmanship</div><h2>Six crafts behind the collections</h2></div><p class="lede">Turn a card to read how Raw Mango works with each technique.</p></div>
+  <div class="crafts" id="crafts"></div>
+ </div>
+</section>
+
+<!-- findings -->
+<section class="sec" id="findings">
+ <div class="wrap">
+  <div class="hd2"><div><div class="kick"><b></b>Key observations</div><h2>Ten things the research shows</h2></div><p class="lede">Open any observation.</p></div>
+  <div class="obs" id="obs"></div>
+  <div class="concl">Raw Mango's strength lies in building a distinctive luxury identity around Indian textiles rather than following conventional fashion cycles. Product, storytelling and location-specific stores work together, with craftsmanship at the centre.</div>
+ </div>
+</section>
+
+<!-- campaign -->
+<section class="sec alt" id="campaign">
+ <div class="wrap camp">
+  <div class="phone"><div class="scr"><div class="bars"><i><b></b></i><i><b></b></i><i><b></b></i></div><span class="cd" id="cd">3 days to go</span><img class="z" src="img/rm/story-ad.webp" alt="Instagram Story ad: a model in pink on a floral stool, Raw Mango Annual Online Sale, 3 days only, Explore the Sale"></div></div>
+  <div>
+   <div class="kick"><b></b>Promotional poster</div>
+   <h2>Three Days to Discover</h2>
+   <p class="lede" style="margin:14px 0 22px">A pre-event Instagram Story ad for Raw Mango's Annual Online Sale, the only markdown of the year.</p>
+   <div class="pills ctabs2" id="ctabs" role="tablist" aria-label="Campaign"></div>
+   <div class="cpanel" id="cpanel" aria-live="polite"></div>
+  </div>
+ </div>
+</section>
+
+<!-- jewellery -->
+<section class="sec" id="jewellery">
+ <div class="wrap"><div class="hd2"><div><div class="kick"><b></b>Jewellery in 3D</div><h2>Casa Batlló meets Art Nouveau</h2></div><p class="lede">A hair comb, a ring and a drop earring for the brand. Drag to turn a piece, scroll or pinch to zoom.</p></div></div>
+ <div class="jw">
+  <div class="panel l"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="gl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9fdcb1"/><stop offset=".6" stop-color="#c8ecd2"/><stop offset="1" stop-color="#e9d79a"/></linearGradient></defs><path d="M0 0H72C58 22 100 34 100 50S58 78 72 100H0Z" fill="url(#gl)"/></svg>
+   <h3>Casa Batlló</h3><p>Gaudí's house in Barcelona: bone-like columns, a scaled roof and a facade that moves like water. The ring takes its curves.</p></div>
+  <div class="jwc">
+   <div class="jtabs" role="tablist"><button class="on" data-m="comb" role="tab">Ginkgo hair comb</button><button data-m="ring" role="tab">Casa Batlló ring</button><button data-m="ear" role="tab">Drop earring</button></div>
+   <div class="view" id="view"><div class="msg" id="vmsg">Loading model…</div></div>
+   <div class="jwf"><span id="vinfo">110 × 68 mm</span><span class="fin" id="fin"><button style="background:#d4af6a" data-f="gold" class="on" aria-label="Gold finish"></button><button style="background:#d9d9de" data-f="silver" aria-label="Silver finish"></button><button style="background:#f1ece2" data-f="resin" aria-label="Ivory resin finish"></button></span></div>
+  </div>
+  <div class="panel r"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="gr" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b9adf2"/><stop offset=".6" stop-color="#dcd5fb"/><stop offset="1" stop-color="#f5c6d3"/></linearGradient></defs><path d="M100 0H28C42 22 0 34 0 50S42 78 28 100H100Z" fill="url(#gr)"/></svg>
+   <h3>Art Nouveau</h3><p>Around 1890–1910: whiplash lines and ornament taken from plants. The comb is built on the ginkgo leaf.</p></div>
+ </div>
+ <div class="wrap">
+  <details class="src" style="margin-top:64px"><summary>Research sources</summary><ul>
+   <li>Architectural Digest India (2019, Sept 13). Raw Mango's newly opened store in Delhi is as enigmatic as the brand.</li>
+   <li>Fashion Design Council of India (n.d.). Sanjay Garg.</li>
+   <li>Indulge Express (2026, May 22). Sanjay Garg explores the future of summer luxury through Indian cotton and handwoven textiles.</li>
+   <li>Laisram, R. (2022, June 18). Raw Mango now finally has a store in Chennai! Indulge Express.</li>
+   <li>Raw Mango (n.d.). Campaigns; Raw Mango; Saaras. rawmango.com, retrieved October 16, 2026.</li>
+   <li>Squadron14 (2018). Lodhi Colony store. Squadron14 (2022). Raw Mango Chennai.</li>
+   <li>Vogue India (2022, June 24). Raw Mango drops anchor in Chennai.</li>
+   <li>Vogue (2026, Feb 23). India's most directional luxury label just made its London Fashion Week debut.</li>
+  </ul></details>
+  <p class="credit">Photographs of Raw Mango products, stores and website belong to Raw Mango and the publications above, and appear here for academic research.</p>
+  <div class="next"><span class="mut">Next project</span><a href="index.html#cutting">Cutting-edge fashion →</a></div>
+ </div>
+</section>
+
+<div id="lb" role="dialog" aria-modal="true" aria-label="Image viewer"><button aria-label="Close">×</button><img alt=""></div>
+
+<script src="js/three.min.js"></script>
+<script src="js/OrbitControls.js"></script>
+<script src="js/RoomEnvironment.js"></script>
+<script>
+{
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const store={get(k){try{return JSON.parse(localStorage.getItem('vb:'+k))}catch(e){return null}},set(k,v){try{localStorage.setItem('vb:'+k,JSON.stringify(v))}catch(e){}}};
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* drawer + lightbox */
+const setNav=o=>{document.body.classList.toggle('nav',o);$('#menu').setAttribute('aria-expanded',o);if(o)$('#close').focus()};
+$('#menu').onclick=()=>setNav(true);$('#close').onclick=()=>setNav(false);$('#scrim').onclick=()=>setNav(false);
+const lb=$('#lb'),lbi=$('img',lb);
+const openLB=(src,alt)=>{lbi.src=src;lbi.alt=alt||'';lb.classList.add('open');$('button',lb).focus()};
+document.addEventListener('click',e=>{const z=e.target.closest('img.z');if(z)openLB(z.src,z.alt)});
+$('button',lb).onclick=()=>lb.classList.remove('open');lb.onclick=e=>{if(e.target===lb)lb.classList.remove('open')};
+addEventListener('keydown',e=>{if(e.key==='Escape'){lb.classList.remove('open');setNav(false)}});
+
+/* section jump bar */
+const jl=$$('#jump a');
+const jIO=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){jl.forEach(a=>{const on=a.getAttribute('href')==='#'+en.target.id;a.classList.toggle('on',on);if(on)a.scrollIntoView({block:'nearest',inline:'center'})})}}),{rootMargin:'-40% 0px -55% 0px'});
+jl.forEach(a=>{const t=$(a.getAttribute('href'));if(t)jIO.observe(t)});
+
+/* collection panels */
+const C=[
+ {t:'Seasonal',e:'Summer 2026 · The Sun Returns',img:'col-seasonal',d:'Cotton, Chanderi, organza, cotton-silk blends and other light textiles that respond to the Indian summer. Raw Mango has only done summer collections in this format.'},
+ {t:'Concept-led',e:'Once Upon a River · Agama · Children of the Night',img:'col-concept',d:'Cultural, historical or conceptual ideas that establish a distinctive design narrative.'},
+ {t:'Runway',e:'Autumn/Winter 2026 · London Fashion Week',img:'col-runway',d:'A platform for experimental textiles and silhouettes, drawing on flowers, garlands, sculpture and textile engineering.'},
+ {t:'Occasion-based',e:'Festive · Wedding',img:'col-occasion',d:'Products grouped around customer needs and events. Evidence of occasion-led merchandising rather than separate annual festive or bridal production collections.'},
+ {t:'Textile and craft',e:'Chanderi · Ikat · Mashru · Sooti · Varanasi brocade',img:'col-craft',d:'Customers explore the range by textile or craft tradition, which may hold products from different campaigns rather than one new production cycle.'}];
+const pan=$('#panels');
+pan.innerHTML=C.map((c,i)=>`<button class="pnl${i?'':' on'}" aria-expanded="${!i}"><img src="img/rm/${c.img}.webp" alt="" loading="lazy"><div class="t"><em>${esc(c.e)}</em><b>${c.t}</b><span>${esc(c.d)}</span></div></button>`).join('');
+$$('.pnl',pan).forEach(p=>{const go=()=>$$('.pnl',pan).forEach(q=>{q.classList.toggle('on',q===p);q.setAttribute('aria-expanded',q===p)});p.onclick=go;p.onmouseenter=()=>{if(matchMedia('(hover:hover)').matches&&innerWidth>900)go()}});
+
+/* calendar */
+const MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const TY={s:['Summer','#E3A92B'],f:['Festive','#C2185B'],c:['Concept & runway','#0E5B32'],x:['Capsule & collaboration','#3f6fd8']};
+const LA=[
+ [2026,2.45,'s','Spring/Summer 2026','Launched 15 March 2026.'],
+ [2026,1.75,'c','It’s Not About The Flower (Fall/Winter 2026)','Premiered at London Fashion Week, 24 February 2026.'],
+ [2026,8.95,'c','It’s Not About The Flower in stores','Rolled out to flagship boutiques, 29 September 2026.'],
+ [2025,1.65,'c','Agama 2025','Debuted 20 February 2025.'],
+ [2025,2.45,'s','Summer 2025','Launched 15 March 2025.'],
+ [2025,5.8,'x','Laheriya 2025','A Rajasthani tie-dye capsule, launched 25 June 2025.'],
+ [2024,1.9,'s','Spring 2024 (Botanicals)','Released 28 February 2024.'],
+ [2024,7.0,'c','Children of the Night','The 15th-anniversary collection, in flagships 1 August 2024.'],
+ [2024,8.5,'f','Garland (Festive 2024)','Rolled out mid-September 2024.'],
+ [2023,3.0,'s','Soirée (Summer 2023)','Released across stores 1 April 2023.'],
+ [2023,8.3,'f','Suzegad (Festive 2023)','In stores and online 10 September 2023.'],
+ [2022,4.2,'s','Chorus (Summer 2022)','Debuted in stores 7 May 2022.'],
+ [2022,9.25,'f','Peacock Country (Festive 2022)','Unveiled across flagships 8 October 2022.'],
+ [2022,10.87,'x','A Thousand Flowers','Good Earth collaboration, released 27 November 2022.'],
+ [2021,2.45,'s','Other (Spring/Summer 2021)','A modernist, Jamini Roy-inspired range, in stores 15 March 2021.'],
+ [2021,10.8,'f','Festive 2021 / Fall/Winter','Trunk previews from 25 November 2021.'],
+ [2020,6.25,'s','Between (Spring/Summer 2020)','Delayed by global lockdowns to 8–10 July 2020; launched alongside the brand’s e-commerce platform.'],
+ [2020,9.67,'f','Moomal (Festive 2020)','Shown at Lakmé Fashion Week, in boutiques 21 October 2020.']];
+const YB=[[0,2,'Global runway / sneak previews','Fall/Winter high-fashion concepts unveiled, such as London Fashion Week debuts.','#d9e7dd'],[2,3,'Spring/Summer launch','Retail launch of the main S/S collection across flagships and the online store.','#f6dfa6'],[3,5,'Midsummer edits','Soft drops of lighter separates and linen edits for peak summer.','#f9ecc9'],[5,7,'Monsoon craft capsules','Drops highlighting regional artisan clusters, such as Laheriya or texturised handlooms.','#d6e1f6'],[7,8,'Annual brand sale','An exclusive 3-day online sale: the only markdowns offered all year.','#E3A92B'],[8,10,'The grand festive drop','The flagship festive and wedding collection, with silk and brocade saris.','#f2c3d6'],[10,12,'Winter curations and collaborations','Winter wedding curations, outerwear or design-house collaborations.','#e3dcf3']];
+const band=$('#band'),lg=$('#lgrid'),lc=$('#lcard');
+band.innerHTML='<span></span>'+YB.map((b,i)=>`<button aria-pressed="false" style="grid-column:${b[0]+2} / ${b[1]+2};background:${b[4]}" data-i="${i}">${esc(b[2])}</button>`).join('');
+lg.innerHTML='<span></span>'+MO.map(m=>`<span class="mo">${m}</span>`).join('')+[2026,2025,2024,2023,2022,2021,2020].map(y=>`<div class="lrow"><span class="yr">${y}</span><div class="track">${LA.map((l,i)=>l[0]===y?`<button class="dot" data-i="${i}" style="left:${l[1]/12*100}%" aria-label="${esc(l[3])}"><i style="background:${TY[l[2]][1]}"></i></button>`:'').join('')}</div></div>`).join('');
+$('#legend').innerHTML=Object.values(TY).map(t=>`<span><i style="background:${t[1]}"></i>${t[0]}</span>`).join('');
+function pickLaunch(i){const l=LA[i];$$('.dot',lg).forEach(d=>{d.classList.toggle('on',+d.dataset.i===i);d.classList.remove('dim')});$$('button',band).forEach(b=>b.setAttribute('aria-pressed','false'));
+ lc.innerHTML=`<b>${l[0]}</b><span><strong>${esc(l[3])}</strong> · <span class="mut">${TY[l[2]][0]}</span><br>${esc(l[4])}</span>`}
+function pickBand(i){const b=YB[i];$$('button',band).forEach((x,j)=>x.setAttribute('aria-pressed',j===i));
+ $$('.dot',lg).forEach(d=>{const m=LA[+d.dataset.i][1];d.classList.remove('on');d.classList.toggle('dim',!(m>=b[0]&&m<b[1]))});
+ const n=LA.filter(l=>l[1]>=b[0]&&l[1]<b[1]).length;
+ lc.innerHTML=`<b>${MO[b[0]]}${b[1]-b[0]>1?'–'+MO[b[1]-1]:''}</b><span><strong>${esc(b[2])}</strong><br>${esc(b[3])} <span class="mut">${n} launch${n===1?'':'es'} from 2020–2026 fall here.</span></span>`}
+band.addEventListener('click',e=>{const b=e.target.closest('button');if(b)pickBand(+b.dataset.i)});
+lg.addEventListener('click',e=>{const d=e.target.closest('.dot');if(d)pickLaunch(+d.dataset.i)});
+pickBand(1);
+
+/* products + price */
+const P=[
+ {n:'Saris',img:'cat-sari',lo:8500,hi:539800,d:'The clearest expression of Raw Mango’s textile-led design identity.'},
+ {n:'Blouses',img:'cat-blouse',lo:7800,hi:64000,d:'Support the sari and allow styling combinations.'},
+ {n:'Lehengas',img:'cat-lehenga',lo:60000,hi:350000,plus:1,d:'Serve customers seeking more structured festive and wedding dressing.'},
+ {n:'Kurtas',img:'cat-kurta',lo:18000,hi:75000,d:'A garment category with traditional and contemporary uses.'},
+ {n:'Jackets',img:'cat-jacket',lo:23000,hi:90000,plus:1,d:'Extend the visual language beyond traditional draped garments.'},
+ {n:'Odhanis & stoles',img:'cat-odhani',lo:3800,hi:150000,d:'Additional ways to engage with the brand’s fabrics and craft.'}];
+const L0=Math.log10(3000),L1=Math.log10(600000),px=v=>(Math.log10(v)-L0)/(L1-L0)*100;
+const inr=v=>'₹'+v.toLocaleString('en-IN');
+$('#cats').innerHTML=P.map((p,i)=>`<button class="cat" data-i="${i}" aria-pressed="false"><img src="img/rm/${p.img}.webp" alt="" loading="lazy"><span>${p.n}</span></button>`).join('');
+$('#pchart').innerHTML=P.map((p,i)=>`<button class="prow" data-i="${i}"><span>${p.n}</span><div class="tr"><div class="br" style="left:${px(p.lo)}%;width:${px(p.hi)-px(p.lo)}%"><span class="v lo">${inr(p.lo)}</span><span class="v" style="left:calc(100% + 8px)">${inr(p.hi)}${p.plus?'+':''}</span></div></div></button>`).join('')+
+ `<div class="pax"><span></span><div>${[5000,10000,50000,100000,500000].map(v=>`<span style="left:${px(v)}%">${v>=100000?'₹'+v/100000+'L':'₹'+v/1000+'k'}</span>`).join('')}</div></div>`;
+function pickCat(i){$$('.cat').forEach(c=>{c.classList.toggle('on',+c.dataset.i===i);c.setAttribute('aria-pressed',+c.dataset.i===i)});$$('.prow').forEach(r=>r.classList.toggle('on',+r.dataset.i===i));
+ const p=P[i];$('#pdesc').innerHTML=`<strong>${p.n}</strong> · ${inr(p.lo)} – ${inr(p.hi)}${p.plus?'+':''}. ${esc(p.d)}`}
+$('#cats').addEventListener('click',e=>{const c=e.target.closest('.cat');if(c)pickCat(+c.dataset.i)});
+$('#pchart').addEventListener('click',e=>{const c=e.target.closest('.prow');if(c)pickCat(+c.dataset.i)});
+pickCat(0);
+const ST=[['Entry','from ₹7,800','Entry-level access: selected saris and smaller apparel pieces that give a more accessible route into the brand.'],['Core','from ₹24,000','Core premium assortment: saris and garments across the range of textiles, so customers can explore every garment type.'],['High','from ₹83,300','High-value products: exclusive and high-end saris and lehengas, and a range of premium odhanis.'],['Top','from ₹98,000, up to ₹5,39,800','Premium products: a premium selection of saris and lehengas, including the wedding edit.']];
+$('#stairs').innerHTML=ST.map((s,i)=>`<button class="step" data-i="${i}" aria-pressed="false"><b>${s[0]}</b><em>${s[1]}</em></button>`).join('');
+function pickStep(i){$$('.step').forEach((b,j)=>b.setAttribute('aria-pressed',j===i));$('#stdesc').innerHTML=`<strong>${ST[i][0]} · ${ST[i][1]}</strong><br>${esc(ST[i][2])}`}
+$('#stairs').addEventListener('click',e=>{const b=e.target.closest('.step');if(b)pickStep(+b.dataset.i)});pickStep(0);
+const TI=[['Tier 1 · Signature','tier1','Saris and distinctive handwoven textiles. They establish the core design identity and are the clearest expression of the brand’s textile expertise.'],['Tier 2 · Occasion','tier2','Lehengas, brocades and visually distinctive garments. They serve important occasions and carry more material complexity or elaborate construction.'],['Tier 3 · Additional','tier3','Blouses, kurtas, odhanis, stoles and jackets. They help customers build coordinated outfits or enter the brand through a different garment.']];
+$('#pyr').innerHTML=TI.map((t,i)=>`<button data-i="${i}" aria-pressed="false">${t[0]}</button>`).join('');
+function pickTier(i){$$('#pyr button').forEach((b,j)=>b.setAttribute('aria-pressed',j===i));const t=TI[i];$('#tierc').innerHTML=`<img class="z" src="img/rm/${t[1]}.webp" alt="${esc(t[0])} example"><div><h3>${t[0]}</h3><p class="mut" style="margin-top:8px">${esc(t[2])}</p></div>`}
+$('#pyr').addEventListener('click',e=>{const b=e.target.closest('button');if(b)pickTier(+b.dataset.i)});pickTier(0);
+
+/* stores */
+const SR=[{n:'Lodhi Colony, New Delhi',k:'New Delhi',imgs:['lodhi1','lodhi2','lodhi3'],t:'Old residential architecture with modern, minimal interiors. Custom furniture, display platforms, a sculptural staircase and a large metal table give the space character, while simple colours and uncluttered displays keep the focus on the handwoven garments: a calm, gallery-like shopping experience.'},
+ {n:'Chennai',k:'Chennai',imgs:['chennai1','chennai2','chennai3'],t:'An old residential bungalow combining Tamil architectural details with Art Deco elements and modern design. Original floors, wooden doors and window grills are kept; carved ceilings, antique objects and custom cupboards add character. Across two floors, separate rooms hold different collections, displayed like pieces of art.'}];
+$('#stabs').innerHTML=SR.map((s,i)=>`<button role="tab" data-i="${i}">${s.n}</button>`).join('');
+$('#cities').innerHTML=['Bengaluru','Chennai','Hyderabad','Kolkata','Mumbai','New Delhi'].map(c=>`<span data-c="${c}">${c}</span>`).join('');
+function pickStore(i){const s=SR[i];$$('#stabs button').forEach((b,j)=>b.setAttribute('aria-selected',j===i));
+ $('#sgal').innerHTML=s.imgs.map(n=>`<img class="z" src="img/rm/${n}.webp" alt="${esc(s.n)} store">`).join('');
+ $('#stitle').textContent=s.n;$('#stext').textContent=s.t;$$('#cities span').forEach(c=>c.classList.toggle('on',c.dataset.c===s.k))}
+$('#stabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b)pickStore(+b.dataset.i)});pickStore(0);
+const MQ=[['Drape','How the sari falls and where the border sits, since the border is often the main brand signature.',20,52],['Coordination','How blouse, sari and jewellery mix and match, and how different garments come together.',47,46],['Silhouette','How the garment’s volume, folds and proportions appear when worn.',78,52]];
+$('#mqlist').innerHTML=MQ.map((m,i)=>`<button data-i="${i}"><b>${m[0]}</b><span>${esc(m[1])}</span></button>`).join('');
+$('#mqph').insertAdjacentHTML('beforeend',MQ.map((m,i)=>`<button class="hs" data-i="${i}" style="left:${m[2]}%;top:${m[3]}%" aria-label="${m[0]}"><span></span></button>`).join(''));
+function pickMq(i){$$('#mqlist button').forEach((b,j)=>{b.classList.toggle('on',j===i);b.setAttribute('aria-pressed',j===i)});$$('#mqph .hs').forEach((b,j)=>b.classList.toggle('on',j===i))}
+$('#mqlist').addEventListener('click',e=>{const b=e.target.closest('button');if(b)pickMq(+b.dataset.i)});$('#mqph').addEventListener('click',e=>{const b=e.target.closest('.hs');if(b){e.stopPropagation();pickMq(+b.dataset.i)}});pickMq(0);
+
+/* website browser */
+const WB=[{n:'Campaign banner',u:'rawmango.com',img:'web-banner',a:'Homepage and campaign banners promote selected collections and edits, directing attention to particular stories at a given time.',b:'Here, the Diwali edit with a “Shop now” call to action.'},
+ {n:'Home page',u:'rawmango.com',img:'web-home',a:'Collection promotion leads the page.',b:'A clear call to action moves visitors from story to product.'},
+ {n:'Product grid',u:'rawmango.com/collections',img:'web-grid',a:'Thumbnails let customers compare colour, price and appearance quickly.',b:'Consistent, clear images make browsing easy, and the grid size can be changed.'},
+ {n:'Product page',u:'rawmango.com/products/apreta',img:'web-pdp',a:'Textile descriptions, close-ups, price, availability and garment information communicate value that customers cannot touch online.',b:'Example: Apreta, a charcoal Varanasi silk brocade sari, ₹83,300.'},
+ {n:'Footer',u:'rawmango.com',img:'web-footer',a:'Every store location appears in the footer and shows the city name on hover.',b:'Social media links sit alongside.',hover:1}];
+$('#wtabs').innerHTML=WB.map((w,i)=>`<button role="tab" data-i="${i}">${w.n}</button>`).join('');
+function pickWeb(i){const w=WB[i];$$('#wtabs button').forEach((b,j)=>b.setAttribute('aria-selected',j===i));$('#burl').textContent=w.u;
+ $('#bview').innerHTML=`<img class="z" src="img/rm/${w.img}.webp" alt="Raw Mango website: ${esc(w.n)}">${w.hover?'<img class="hover" src="img/rm/web-hover.webp" alt="Footer store image showing the city name Kolkata on hover">':''}`;
+ $('#bnote').innerHTML=`<div><strong>What it does</strong><p class="mut" style="margin-top:6px">${esc(w.a)}</p></div><div><strong>Observed</strong><p class="mut" style="margin-top:6px">${esc(w.b)}</p></div>`}
+$('#wtabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b)pickWeb(+b.dataset.i)});pickWeb(0);
+
+/* crafts */
+const CR=[['Chanderi','craft-chanderi','Contemporary Chanderi saris and dupattas with simplified borders and motifs like cows, parrots and florals, in colours such as yellow, lime green and midnight blue.'],
+ ['Ikat','craft-ikat','Mashru Ikat explored on 45” looms instead of 28”, creating 45” wide saris, a first for the technique, with Kantha stitches added for texture and pattern.'],
+ ['Mashru','craft-mashru','With Benaras weavers, the first mashru sari, widening the loom from 28” to 46”. Traditionally a men’s fabric; in 2023 came the first Mashru Ikat sari with Deccan weavers.'],
+ ['Sooti','craft-sooti','A key summer textile woven year-round in Bengal: soft, restrained in ornament, made for all-day wear. ‘Maadi’ strengthens the warp while weaving and is washed out for a soft finish.'],
+ ['Varanasi brocade','craft-brocade','By 2025, bunai (weaving) and kadhai (embroidery) united into lightweight, ornate textiles carrying centuries of artisanal skill.'],
+ ['Tie & dye','craft-tiedye','Bandhej on silk in conjunction with embroidery, an uncommon use of plain silk today. Bandhej run-offs become garments.']];
+$('#crafts').innerHTML=CR.map((c,i)=>`<button class="flip" aria-pressed="false" aria-label="${c[0]}: turn card"><div class="in"><div class="f"><img src="img/rm/${c[1]}.webp" alt="" loading="lazy"><b>${c[0]}</b><small>Turn ↻</small></div><div class="b"><b>${c[0]}</b><p>${esc(c[2])}</p></div></div></button>`).join('');
+$$('.flip').forEach(f=>f.onclick=()=>{const on=f.classList.toggle('on');f.setAttribute('aria-pressed',on)});
+
+/* observations */
+const OB=[['Textile-led brand identity','Identity built on Indian handwoven textiles and traditional craft, made relevant to modern luxury through contemporary design.'],
+ ['Saris as the core product','Saris stay central, while lehengas, kurtas, blouses, jackets and separates widen the range for different occasions.'],
+ ['Craft over conventional fashion cycles','Research, experimentation and textile development come before rigid seasonal deadlines, so releases don’t follow a fixed annual calendar.'],
+ ['Storytelling through collections','Once Upon a River, Sooti and Children of the Night each carry distinct ideas through textile, colour, silhouette and cultural reference.'],
+ ['Premium pricing and exclusivity','Pricing places the brand in premium-to-luxury; specialised textiles and craftsmanship separate it from mass-market fashion.'],
+ ['Localised retail design','Stores adapt to their architecture while keeping one identity: custom furniture, thoughtful displays, uncluttered gallery-like interiors.'],
+ ['Craft-focused production','Work with weaving communities across India, with a stated emphasis on minimal intervention, less waste and no mass production.'],
+ ['Product merchandising','The assortment reaches beyond signature saris to occasion wear, contemporary garments and accessories, with textiles as the common thread.'],
+ ['Tradition balanced with innovation','Not reproduction: experiments with material, weaving, embroidery and modern silhouettes reinterpret Indian craft.'],
+ ['Limited transparency in operations','Public sources cover collections, products, prices and philosophy, but not exact production volumes, full style counts or a fixed launch calendar.']];
+$('#obs').innerHTML=OB.map((o,i)=>`<details${i<2?' open':''}><summary>${o[0]}</summary><p>${esc(o[1])}</p></details>`).join('');
+
+/* campaign */
+const CP=[['Story','<span class="tag">“Three Days to Discover.”</span><p>Builds anticipation for Raw Mango’s upcoming Annual Online Sale. The three-day window is the central idea: a limited time to explore a considered selection of saris, kurtas, lehengas and more.</p><p class="mut" style="margin-top:10px">Since the sale hasn’t happened yet, this is a pre-event concept: how Raw Mango could announce it, build interest and send customers to the online store.</p>'],
+ ['Concept','<h3>An Instagram Story ad</h3><p>A model in pink against a floral backdrop: a striking image that keeps the garment central while carrying a clear promotional message. Refined imagery, minimal type and a restrained palette keep the brand’s craft-led, contemporary identity.</p>'],
+ ['Audience','<h3>Design-conscious shoppers</h3><ul><li><strong>Primary:</strong> affluent shoppers interested in saris and contemporary clothing</li><li><strong>Secondary:</strong> occasionwear shoppers and new customers</li><li><strong>Age:</strong> 25–45 years</li><li><strong>Interests:</strong> handloom textiles and luxury fashion</li></ul>'],
+ ['Message','<h3>Tagline, message, action</h3><ul><li><strong>Tagline:</strong> “Three Days to Discover.”</li><li><strong>Message:</strong> “Raw Mango Sale — 3 Days Only.”</li><li><strong>Call to action:</strong> “Explore the Sale.”</li></ul><p class="mut">The tagline creates anticipation, the message announces the sale, and the call directs viewers to the store.</p>'],
+ ['Why this','<h3>An event that hasn’t happened yet</h3><p>Promoting the sale in advance, rather than recreating a past campaign. The short duration gives a clear direction: anticipation, a strong announcement and urgency. Stories carry it quickly while keeping Raw Mango’s visual sophistication.</p><p class="mut" style="margin-top:10px">Medium: Instagram Story · digital promotional ad · pre-event stage.</p>'],
+ ['Visibility','<h3>How it strengthens the brand</h3><ul><li>Pre-event awareness of the sale</li><li>Anticipation through teaser and announcement content</li><li>Product discovery beyond a single category</li><li>Brand consistency through refined, restrained design</li><li>Traffic to the official online store</li><li>A memorable, time-sensitive hook</li></ul>']];
+$('#ctabs').innerHTML=CP.map((c,i)=>`<button role="tab" data-i="${i}">${c[0]}</button>`).join('');
+function pickCp(i){$$('#ctabs button').forEach((b,j)=>b.setAttribute('aria-selected',j===i));$('#cpanel').innerHTML=CP[i][1]}
+$('#ctabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b)pickCp(+b.dataset.i)});pickCp(0);
+/* story bars count down 3 → 2 → 1 days */
+const bars=$$('.bars i b'),cd=$('#cd');let si=0,st=0,run=false;
+function storyTick(t){if(!run)return;if(!st)st=t;const p=Math.min(1,(t-st)/2600);bars.forEach((b,j)=>b.style.width=(j<si?100:j===si?p*100:0)+'%');cd.textContent=['3 days to go','2 days to go','Last day · Explore the Sale'][si];
+ if(p>=1){si=(si+1)%3;st=t;if(si===0)bars.forEach(b=>b.style.width='0%')}requestAnimationFrame(storyTick)}
+new IntersectionObserver(([e])=>{const was=run;run=e.isIntersecting&&!RM;if(run&&!was){st=0;requestAnimationFrame(storyTick)}}).observe($('.phone'));
+if(RM)bars.forEach(b=>b.style.width='100%');
+
+/* 3D jewellery */
+const view=$('#view'),vmsg=$('#vmsg'),vinfo=$('#vinfo');
+const MODELS={comb:{f:'models/comb.json',info:'Ginkgo hair comb · 110 × 68 mm',rx:0},ring:{f:'models/ring.json',info:'Casa Batlló ring · Indian size 9.5 · 15.8 mm inner diameter',rx:-Math.PI/2},ear:{info:'Drop earring · model to be added'}};
+const FIN={gold:{color:0xd4af6a,metalness:1,roughness:.26,clearcoat:0},silver:{color:0xdcdce2,metalness:1,roughness:.2,clearcoat:0},resin:{color:0xf1ece2,metalness:0,roughness:.35,clearcoat:1}};
+let R3=null,cur='comb';
+function init3D(){if(R3)return R3;if(typeof THREE==='undefined'){vmsg.textContent='3D viewer could not load.';return null}
+ try{const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.outputEncoding=THREE.sRGBEncoding;renderer.toneMapping=THREE.ACESFilmicToneMapping;view.prepend(renderer.domElement);
+  const scene=new THREE.Scene(),pm=new THREE.PMREMGenerator(renderer);scene.environment=pm.fromScene(new THREE.RoomEnvironment(),0.04).texture;
+  const cam=new THREE.PerspectiveCamera(32,1,0.1,5000);const ctl=new THREE.OrbitControls(cam,renderer.domElement);ctl.enableDamping=true;ctl.autoRotate=!RM;ctl.autoRotateSpeed=1.6;ctl.enablePan=false;
+  const mat=new THREE.MeshPhysicalMaterial(FIN.gold),group=new THREE.Group();scene.add(group);
+  const size=()=>{const w=view.clientWidth,h=view.clientHeight;renderer.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()};new ResizeObserver(size).observe(view);size();
+  let run3=false;const loop=()=>{if(!run3)return;ctl.update();renderer.render(scene,cam);requestAnimationFrame(loop)};
+  new IntersectionObserver(([e])=>{const was=run3;run3=e.isIntersecting;if(run3&&!was)loop()}).observe(view);
+  R3={renderer,scene,cam,ctl,mat,group,cache:{}};return R3}catch(err){vmsg.textContent='3D needs WebGL, which this browser has turned off.';return null}}
+function show(m){cur=m;vinfo.textContent=MODELS[m].info;$$('.jtabs button').forEach(b=>{b.classList.toggle('on',b.dataset.m===m);b.setAttribute('aria-selected',b.dataset.m===m)});$('.soon',view)?.remove();
+ const r=init3D();if(!r)return;r.group.clear();
+ if(m==='ear'){vmsg.textContent='';view.insertAdjacentHTML('beforeend','<div class="soon"><div><h3>Drop earring</h3>The 3D model will be added here.</div></div>');return}
+ const place=g=>{if(cur!==m)return;vmsg.textContent='';const mesh=new THREE.Mesh(g,r.mat);mesh.rotation.x=MODELS[m].rx;r.group.add(mesh);
+  const box=new THREE.Box3().setFromObject(mesh),sph=box.getBoundingSphere(new THREE.Sphere());mesh.position.sub(sph.center);
+  const dist=sph.radius/Math.sin(THREE.MathUtils.degToRad(r.cam.fov/2))*1.08;r.cam.position.set(0,sph.radius*.25,dist);r.cam.near=dist/100;r.cam.far=dist*10;r.cam.updateProjectionMatrix();r.ctl.target.set(0,0,0);r.ctl.minDistance=dist*.35;r.ctl.maxDistance=dist*2.5;r.ctl.update()};
+ if(r.cache[m])return place(r.cache[m]);vmsg.textContent='Loading model…';
+ fetch(MODELS[m].f).then(x=>{if(!x.ok)throw 0;return x.json()}).then(j=>{const b64=s=>{const t=atob(s),u=new Uint8Array(t.length);for(let i=0;i<t.length;i++)u[i]=t.charCodeAt(i);return u.buffer};
+  const q=new Uint16Array(b64(j.pos)),idx=new Uint32Array(b64(j.idx)),pos=new Float32Array(q.length);for(let i=0;i<q.length;i++){const a=i%3;pos[i]=j.min[a]+q[i]*j.scale[a]}
+  let g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(pos,3));g.setIndex(new THREE.BufferAttribute(idx,1));g=g.toNonIndexed();g.computeVertexNormals();r.cache[m]=g;place(g)}).catch(()=>{if(cur===m)vmsg.textContent='The model could not be loaded.'})}
+$$('.jtabs button').forEach(b=>b.onclick=()=>show(b.dataset.m));
+$$('#fin button').forEach(b=>b.onclick=()=>{$$('#fin button').forEach(x=>x.classList.toggle('on',x===b));if(R3){const F=FIN[b.dataset.f];R3.mat.metalness=F.metalness;R3.mat.roughness=F.roughness;R3.mat.clearcoat=F.clearcoat;R3.mat.color.setHex(F.color);R3.mat.needsUpdate=true}});
+new IntersectionObserver(([e],o)=>{if(e.isIntersecting){o.disconnect();show('comb')}},{rootMargin:'400px'}).observe(view);
+}
+</script>
+</body>
+</html>
