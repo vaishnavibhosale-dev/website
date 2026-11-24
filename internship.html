@@ -575,7 +575,7 @@ blockquote footer{font:400 15px var(--body);color:var(--mut);margin-top:14px}
   </div>
   <div class="resume" id="cres" hidden></div>
   <div class="book" id="book"><div class="bookmsg">Loading catalogue…</div></div>
-  <div class="bookft"><span class="mut" id="bookct">Use the arrows inside the book, or swipe on a phone.</span><a class="btn" id="bookout" href="https://flipbook.so/flip/1LynKWx3pmBHk9FCuPIK" target="_blank" rel="noopener">Open full screen ↗</a></div>
+  <div class="bookft"><span class="mut" id="bookct">Swipe sideways or use the arrows to turn pages.</span><a class="btn" id="bookout" href="https://flipbook.so/flip/1LynKWx3pmBHk9FCuPIK" target="_blank" rel="noopener">Open full screen ↗</a></div>
  </div>
 </section>
 
@@ -738,7 +738,7 @@ function showCat(k,user){
  const b=tabs.find(t=>t.dataset.k===k)||tabs[0];
  tabs.forEach(t=>t.setAttribute('aria-selected',t===b));
  const url='https://flipbook.so/flip/'+b.dataset.id;out.href=url;
- book.innerHTML='<div class="bookmsg">Loading catalogue…</div><iframe title="'+b.textContent.replace('Viewed','').trim()+' catalogue" src="'+url+'" allow="fullscreen" allowfullscreen loading="lazy"></iframe>';
+ book.innerHTML='<div class="bookmsg">Loading catalogue…</div><iframe title="'+b.textContent.replace('Viewed','').trim()+' catalogue" src="https://flipbook.so/embed/'+b.dataset.id+'" allow="fullscreen" allowfullscreen loading="lazy"></iframe>';
  cat.last=b.dataset.k;cat.seen[b.dataset.k]=Date.now();store.set('cat',cat);
  b.classList.add('seen');
 }
