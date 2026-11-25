@@ -134,7 +134,7 @@ body.sketch .c img{opacity:0}
 .pvbar .btn{white-space:nowrap;flex:none}
 .pvth{contain:inline-size;display:flex;gap:10px;overflow-x:auto;padding:4px 2px 12px;scroll-snap-type:x proximity}
 .pvth button{flex:0 0 auto;width:132px;padding:0;border:2px solid transparent;border-radius:5px;overflow:hidden;background:#fff;opacity:.6;transition:opacity .2s,border-color .2s;scroll-snap-align:center}
-.pvth button img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+.pvth button img,.pvth .spr{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
 .pvth button[aria-current=true]{opacity:1;border-color:var(--ink,#111)}
 .pvth button:hover{opacity:1}
 @media (max-width:700px){.pvth button{width:96px}.pvst .rb{display:none}}
@@ -473,7 +473,7 @@ const D={
  cr:{name:'Casa Reimagined',t:['Cover','Synopsis · 01 Introduction','Project brief · Problem statement','Target audience · Objectives','Methodology · 02 Research','Art Nouveau · Gaudí','Marine references · Inside the house','The five elements · Skull balconies','Bone columns · Roof scales','Oak doors · Stained glass','Handles · Handrail','The signature blue · Ceilings','Market study · Gaudí in fashion','Trends · Positioning','Insights · How might we','03 Ideation · Moodboard','Colour palette · Silhouettes','Surface development · Materials','Material library · Embroidery','Design explorations','Explorations · Inspiration map','Inspiration map, continued','Inspiration map · 04 Design execution','Shortlist · Garment 01','Garment 02 · Prototypes','USP & business · 05 Conclusion','Look closer.']},sl:{name:'The Living Architecture',t:['The Living Architecture: concept','Photography direction','Accessory direction','Hair direction','Make-up direction','Styling and pose references','Space design and palette','Final images: stained-glass light','Final images: stained-glass interior','Final images: bronze studio','Final image: bronze studio','Final image: underwater light','Final images: blue light']},
  pp:{name:'Promotional poster',t:['Promotional poster: Raw Mango','Campaign theme and concept','Why this campaign','Instagram Story ad: Annual Online Sale','Thank you']}
 };
-const src=(k,i,th)=>`img/${k}-${th?'t':''}${String(i+1).padStart(2,'0')}.webp`;
+const NT={pp:1,cd:1};const src=(k,i,th)=>`img/${k}-${th&&!NT[k]?'t':''}${String(i+1).padStart(2,'0')}.webp`;
 const card=(k,i,j,th=true)=>{const d=document.createElement('div');d.className='c';d.dataset.l=LBL[j%6];d.style.setProperty('--p',PAST[j%6]);d.innerHTML=`<img src="${src(k,i,th)}" alt="${D[k].t[i].replace(/"/g,'')}" loading="lazy" draggable="false">`;return d};
 const wrapI=(d,n)=>((d%n)+n+n/2)%n-n/2;
 
@@ -615,7 +615,7 @@ $('#dopen').onclick=()=>openLB('cc',diag.idx());
 
 /* slide deck viewers (assortment plan, Living Architecture) */
 function deckViewer(root,k){const store={get:k=>{try{return localStorage.getItem('vb:'+k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem('vb:'+k,v)}catch(e){}}};const q=c=>root.querySelector(c);const n=D[k].t.length,img=q('.pvst img'),th=q('.pvth');let i=+(store.get(k)||0)||0;if(i>=n)i=0;
- D[k].t.forEach((t,j)=>{const b=document.createElement('button');b.setAttribute('aria-label',`Slide ${j+1}: ${t}`);b.innerHTML=`<img src="${src(k,j,1)}" alt="" loading="lazy">`;b.onclick=()=>go(j);th.appendChild(b)});
+ D[k].t.forEach((t,j)=>{const b=document.createElement('button');b.setAttribute('aria-label',`Slide ${j+1}: ${t}`);b.innerHTML=`<span class="spr" style="background-image:url(img/${k}-sprite.webp);background-size:${n*100}% 100%;background-position:${n>1?j/(n-1)*100:0}% 0"></span>`;b.onclick=()=>go(j);th.appendChild(b)});
  function go(j,first){j=(j+n)%n;const d=j>i?1:-1;const set=()=>{img.src=src(k,j);img.alt=D[k].t[j];img.classList.remove('out')};
   if(first||RM){set()}else{img.style.setProperty('--dx',(d*-24)+'px');img.classList.add('out');setTimeout(set,180)}
   i=j;store.set(k,j);q('.pvn').textContent=`${j+1} / ${n}`;q('.cap').innerHTML=`<b>${D[k].t[j]}</b>`;
