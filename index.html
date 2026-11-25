@@ -252,7 +252,7 @@ footer p{color:var(--mut);margin:12px 0 0}
  <div class="tunnel" id="tunnel" aria-hidden="true"></div>
  <div class="chap">
   <a href="internship.html">Summer internship<span>Blanco · open project →</span></a>
-  <a href="#research">Fashion design research<span>To be added · extended in styling</span></a>
+  <a href="#research">Fashion design research<span>Casa Reimagined · extended in styling</span></a>
   <a href="styling.html">Styling &amp; photography<span>The Living Architecture · open project →</span></a>
   <a href="brand.html">Fashion brand management<span>Raw Mango · open project →</span></a>
   <a href="cutting.html">Cutting-edge fashion<span>Future Ritualism · 3D jewellery · open project →</span></a>
@@ -278,15 +278,22 @@ footer p{color:var(--mut);margin:12px 0 0}
  <p class="khint">Swipe or drag the arc, or use the ← → keys</p>
 </section>
 
-<!-- RESEARCH: placeholder wireframe -->
+<!-- RESEARCH -->
 <section class="sec" id="research">
  <div class="head">
-  <div><div class="kick"><b></b>Fashion design research project</div><h2>This chapter is still a wireframe</h2></div>
-  <p class="lede">The research project will sit here. The layout is ready: images, title, text and media will drop into these frames once the work is added.</p>
+  <div><div class="kick"><b></b>Fashion design research project</div><h2>Casa Reimagined</h2></div>
+  <div>
+   <p class="lede">Casa Batlló reimagined through fashion. Most visitors look up at the façade; this project looks closer, at the balconies, bone columns, roof scales, oak doors and stained glass, read for how they are built. Fourteen weeks of research, sampling and eleven explorations led to two sculptural, soft-structured womenswear garments.</p>
+   <div class="chips"><span>Casa Batlló</span><span>Research report</span><span>2 garments</span></div>
+  </div>
  </div>
- <div class="wire" id="wire">
-  <div class="mid"><h3>Fashion design research project</h3><p>Coming soon</p></div>
+ <div class="pv" id="pvr">
+  <div class="pvst" aria-label="Casa Reimagined report. Swipe, or use the arrows."><img alt="" draggable="false"><span class="pvn"></span>
+   <button class="rb pvp" aria-label="Previous spread">←</button><button class="rb pvx" aria-label="Next spread">→</button></div>
+  <div class="pvbar"><div class="cap" aria-live="polite"></div><button class="btn pvo">Full screen</button></div>
+  <div class="pvth"></div>
  </div>
+ <a class="btn fill" href="research.html" style="margin-top:20px">Open the full project →</a>
 </section>
 
 <!-- STYLING: room -->
@@ -395,7 +402,7 @@ footer p{color:var(--mut);margin:12px 0 0}
 <div class="ov" id="idx" role="dialog" aria-modal="true" aria-label="Chapter index">
  <button class="x" data-close aria-label="Close">×</button>
  <a href="internship.html">Summer internship <span>Open project →</span></a>
- <a href="#research">Fashion design research <span>To be added</span></a>
+ <a href="research.html">Fashion design research <span>Open project →</span></a>
  <a href="styling.html">Styling &amp; photography <span>Open project →</span></a>
  <a href="brand.html">Brand management <span>Open project →</span></a>
  <a href="cutting.html">Cutting-edge fashion <span>Open project →</span></a>
@@ -463,7 +470,7 @@ const D={
  cd:{name:'Raw Mango creative direction',t:['Raw Mango: creative direction','Brand overview: handloom, reread as contemporary luxury','Brand essence: tradition that keeps evolving','Brand personality: the Creator','Design aesthetic: silhouette, colour, material','Visual codes: motif, logo, image-making','Storytelling: clothes placed inside a culture','Customer persona: she wears taste, not logos','Brand identity board','Critical analysis: strong identity, honest tensions','Sources and image credits','Thank you']},
  cc:{name:'Collection cycles & merchandising',t:['Collection cycles & merchandising strategies','Brand overview and research approach','From identity to commercial system','How Raw Mango structures its collections','Collection frequency and launch patterns','Style counts by launch','Product categories and price ranges','Price architecture','Why the sari remains strategically important','Product hierarchy','Retail design: Lodhi Colony, New Delhi','Retail design: Chennai','Store locations analysis','Product displays and grouping','Mannequin styling','Digital merchandising: the website','Website: home page','Website: product grid','Website: product detail page','Website: footer','Crafts: Chanderi, Ikat, Mashru','Crafts: Sooti, Varanasi brocade, tie and dye','Key observations','Research sources','Thank you']},
  sp:{name:'Summer 2026 assortment plan',t:['Summer 2026 merchandise assortment plan','Brand overview: Raw Mango','Collection overview: The Sun Returns','Moodboard: colour, material, motif','Style distribution: 30 proposed styles','Merchandise roles in the assortment','Planning sheet: saris','Planning sheet: kurtas and blouses','Planning sheet: occasionwear and odhanis','Pricing strategy: four tiers','Visual collection assortment board','Coordinated looks and merchandising justification','Colour, material and pricing range','Commercial opportunities and summary','Conclusion: 30 styles, 10 saris, 5 looks']},
- sl:{name:'The Living Architecture',t:['The Living Architecture: concept','Photography direction','Accessory direction','Hair direction','Make-up direction','Styling and pose references','Space design and palette','Final images: stained-glass light','Final images: stained-glass interior','Final images: bronze studio','Final image: bronze studio','Final image: underwater light','Final images: blue light']},
+ cr:{name:'Casa Reimagined',t:['Cover','Synopsis · 01 Introduction','Project brief · Problem statement','Target audience · Objectives','Methodology · 02 Research','Art Nouveau · Gaudí','Marine references · Inside the house','The five elements · Skull balconies','Bone columns · Roof scales','Oak doors · Stained glass','Handles · Handrail','The signature blue · Ceilings','Market study · Gaudí in fashion','Trends · Positioning','Insights · How might we','03 Ideation · Moodboard','Colour palette · Silhouettes','Surface development · Materials','Material library · Embroidery','Design explorations','Explorations · Inspiration map','Inspiration map, continued','Inspiration map · 04 Design execution','Shortlist · Garment 01','Garment 02 · Prototypes','USP & business · 05 Conclusion','Look closer.']},sl:{name:'The Living Architecture',t:['The Living Architecture: concept','Photography direction','Accessory direction','Hair direction','Make-up direction','Styling and pose references','Space design and palette','Final images: stained-glass light','Final images: stained-glass interior','Final images: bronze studio','Final image: bronze studio','Final image: underwater light','Final images: blue light']},
  pp:{name:'Promotional poster',t:['Promotional poster: Raw Mango','Campaign theme and concept','Why this campaign','Instagram Story ad: Annual Online Sale','Thank you']}
 };
 const src=(k,i,th)=>`img/${k}-${th?'t':''}${String(i+1).padStart(2,'0')}.webp`;
@@ -619,7 +626,7 @@ function deckViewer(root,k){const store={get:k=>{try{return localStorage.getItem
  st.addEventListener('pointerup',e=>{if(x0==null)return;const dx=e.clientX-x0;x0=null;if(Math.abs(dx)>40){moved=true;go(i+(dx<0?1:-1))}});
  st.addEventListener('click',e=>{if(!moved&&!e.target.closest('button'))openLB(k,i)});
  KB.push({el:st,prev:()=>go(i-1),next:()=>go(i+1)});go(i,true)}
-deckViewer($('#pv'),'sp');deckViewer($('#pvl'),'sl');
+deckViewer($('#pv'),'sp');deckViewer($('#pvl'),'sl');deckViewer($('#pvr'),'cr');
 
 /* room (styling) */
 let si=0;const sn=D.cd.t.length;
@@ -642,11 +649,6 @@ KB.push({el:$('#room'),prev:()=>setRoom(si-1),next:()=>setRoom(si+1)});
 /* promo story row */
 const st=$('#story');D.pp.t.forEach((t,i)=>{const b=document.createElement('button');b.appendChild(card('pp',i,i+2));b.insertAdjacentHTML('beforeend',`<small>${t}</small>`);b.onclick=()=>openLB('pp',i);st.appendChild(b)});
 
-/* research wireframe boxes */
-const wire=$('#wire');
-[[4,8,20,22,'Image',0,-3],[28,5,16,12,'Title',2,2],[70,7,24,20,'Card',1,4],[6,62,18,26,'Text',3,2],[76,58,18,30,'Image',4,-4],[30,74,22,16,'Media ▶',5,-2],[56,80,14,12,'Text',3,3],[50,8,12,10,'Card',4,0]].forEach(([l,t,w,h,lab,p,r],j)=>{
- const b=document.createElement('div');b.className='b';b.textContent=lab;
- Object.assign(b.style,{left:l+'%',top:t+'%',width:w+'%',height:h+'%',background:PAST[p],animationDelay:(-j*1.3)+'s'});b.style.setProperty('--r',r+'deg');wire.appendChild(b)});
 
 /* scatter parallax */
 const scat=$('#scat'),sItems=$$('.s',scat);

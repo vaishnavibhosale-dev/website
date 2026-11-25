@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Casa Reimagined — Fashion design research — Vaishnavi Bhosale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: the project's own rule: look closer. Every section moves the reader one step from the façade to the garment.
+   COLOUR: Casa Batlló's lightwell, cobalt graded to pearl grey, with oak and balcony gold as accents.
+   LAYOUT: the portfolio system, with full-bleed scroll chapters for the moments that matter. */
+:root{color-scheme:light;--bg:#F2F1EC;--ink:#141414;--mut:#66655f;--line:#dcdad2;--card:#fff;--soft:#e8e6df;--acc:#0047AB;--mango:#D4A83A;--deep:#1F3F8F;--mid:#3F6FB5;--pale:#9DB8DC;--pearl:#E6EAEE;--oak:#6B4226;--gold:#D4A83A;--night:#0B1A44;--disp:"Archivo",Impact,sans-serif;--body:"Inter Tight",system-ui,sans-serif}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:120px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--body);overflow-x:clip;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+h1,h2,h3{font-family:var(--disp);font-weight:800;font-stretch:72%;line-height:1;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:clamp(36px,5.4vw,68px)}
+h3{font-size:clamp(22px,2.4vw,30px);font-stretch:80%;font-weight:700}
+p{margin:0}
+.wrap{max-width:1240px;margin:0 auto}
+.sec{padding:clamp(64px,8vw,120px) max(5vw,16px)}
+.alt{background:var(--card)}
+.kick{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--mut);margin-bottom:14px}
+.kick b{width:10px;height:10px;border-radius:3px;background:var(--acc)}
+.lede{font-size:18px;max-width:58ch}
+.mut{color:var(--mut)}
+.z{cursor:zoom-in}
+.hd2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 48px;align-items:end;margin-bottom:32px}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--ink);background:transparent;font-size:15px;text-decoration:none}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pills button{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--ink);background:transparent;font-size:14px}
+.pills button[aria-selected=true]{background:var(--acc);border-color:var(--acc);color:#fff}
+
+/* top + drawer */
+.top{position:fixed;inset:14px 16px auto;display:flex;justify-content:space-between;align-items:center;z-index:50;pointer-events:none}
+.top>*{pointer-events:auto}
+.mb{display:flex;align-items:center;gap:10px;height:44px;padding:0 16px 0 12px;border-radius:999px;border:0;background:var(--ink);color:#fff;font-size:14px}
+.mb svg{width:18px;height:18px}
+.home{font-size:14px;text-decoration:none;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(8px);padding:10px 14px;border-radius:999px}
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:60;opacity:0;pointer-events:none;transition:.3s}
+.drawer{position:fixed;left:0;top:0;bottom:0;width:min(380px,88vw);background:var(--ink);color:#f2f1ec;z-index:61;transform:translateX(-102%);transition:transform .35s cubic-bezier(.2,.8,.2,1);padding:24px;display:flex;flex-direction:column;gap:6px;overflow-y:auto}
+body.nav .drawer{transform:none}body.nav .scrim{opacity:1;pointer-events:auto}
+.drawer .x{align-self:flex-end;width:44px;height:44px;border-radius:50%;border:0;background:#2a2a2a;color:#fff;font-size:22px}
+.drawer small{color:#9c9a93;font-size:13px;margin:14px 0 4px}
+.drawer a{text-decoration:none;display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:14px 0;border-top:1px solid #2c2c2c;font-family:var(--disp);font-stretch:72%;font-weight:800;font-size:28px;line-height:1.05}
+.drawer a span{font:400 13px var(--body);color:#9c9a93;white-space:nowrap}
+.drawer a.on{color:#9DB8DC}
+.jump{position:sticky;top:64px;z-index:40;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);display:flex;gap:4px;overflow-x:auto;padding:8px max(5vw,16px);scrollbar-width:none;margin-top:-1px}
+.jump a{flex:none;text-decoration:none;font-size:14px;padding:9px 13px;border-radius:999px;color:var(--mut)}
+.jump a.on{background:var(--ink);color:#fff}
+@media(min-width:901px){.jump{top:0;padding-top:16px;padding-bottom:12px;padding-left:170px;padding-right:140px}}
+
+/* hero */
+.hero{min-height:92svh;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center;padding-top:96px}
+.hero h1{font-size:clamp(52px,7vw,104px);font-stretch:62%;font-weight:900;line-height:.86}
+.hero .ph{position:relative;aspect-ratio:4/5;border-radius:220px 220px 10px 10px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.18)}
+.hero .ph img{width:100%;height:100%;object-fit:cover}
+.q{margin-top:26px;padding:20px 22px;border-left:4px solid var(--mango);background:var(--card);border-radius:0 12px 12px 0;font-family:var(--disp);font-stretch:80%;font-weight:600;font-size:clamp(20px,2vw,25px);line-height:1.2}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 24px;margin:26px 0 0}
+.facts div{border-top:2px solid var(--ink);padding-top:8px;font-size:15px}
+.facts dt{font-size:13px;color:var(--mut)}.facts dd{margin:2px 0 0;font-weight:500}
+.geo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.geo>div{background:var(--card);border-radius:14px;padding:22px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chips span{border:1px solid var(--ink);border-radius:999px;padding:7px 13px;font-size:14px}
+
+.src summary{cursor:pointer;font-weight:600;min-height:44px;display:flex;align-items:center}
+.src li{margin:6px 0;font-size:14px;color:#3d3c38;overflow-wrap:anywhere}
+.src summary{cursor:pointer;font-weight:600;min-height:44px;display:flex;align-items:center}
+.src li{margin:6px 0;font-size:14px;color:#3d3c38;overflow-wrap:anywhere}
+.next{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-top:56px;padding-top:28px;border-top:2px solid var(--ink)}
+.next a{font-family:var(--disp);font-stretch:70%;font-weight:900;font-size:clamp(32px,5vw,60px);text-decoration:none;line-height:1}
+.credit{font-size:13px;color:var(--mut);margin-top:12px}
+
+#lb{position:fixed;inset:0;z-index:80;background:rgba(12,12,12,.94);display:none;align-items:center;justify-content:center;padding:60px 16px 30px}
+#lb.open{display:flex}
+#lb img{max-width:min(1400px,100%);max-height:calc(100svh - 100px);object-fit:contain;border-radius:4px;background:#fff}
+#lb button{position:absolute;top:14px;right:16px;width:44px;height:44px;border-radius:50%;border:0;background:#f2f1ec;color:#111;font-size:22px}
+
+
+
+/* ---------- research page ---------- */
+body{overflow-x:clip}
+.pbar{position:fixed;left:0;top:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--deep),var(--acc),var(--pale));z-index:70}
+[data-rv]{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
+[data-rv].in{opacity:1;transform:none}
+[data-rv="2"]{transition-delay:.12s}[data-rv="3"]{transition-delay:.24s}[data-rv="4"]{transition-delay:.36s}
+.chap{display:flex;align-items:baseline;gap:14px;margin-bottom:18px;color:var(--acc)}
+.chap b{font-family:var(--disp);font-stretch:62%;font-weight:900;font-size:clamp(56px,8vw,110px);line-height:.8}
+.chap span{font-size:14px;letter-spacing:.12em;text-transform:uppercase}
+/* intro */
+.intro{position:relative;height:260vh;background:var(--night)}
+.intro .stk{position:sticky;top:0;height:100svh;overflow:hidden;color:#fff}
+.intro .bgimg{position:absolute;inset:-4%;background:url(img/cr/hero.webp) center/cover;transform:scale(1.05);will-change:transform,filter}
+.intro .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,26,68,.15),rgba(11,26,68,.75));will-change:opacity}
+.intro .tt{position:absolute;left:max(5vw,16px);right:max(5vw,16px);bottom:12vh;will-change:transform,opacity}
+.intro .tt small{display:block;font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:#cfe0ff;margin-bottom:14px}
+.intro h1{font-family:var(--disp);font-stretch:62%;font-weight:900;font-size:clamp(68px,13vw,210px);line-height:.8;letter-spacing:-.01em}
+.intro h1 span{display:inline-block;transform:translateY(110%);opacity:0;animation:up 1.1s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes up{to{transform:none;opacity:1}}
+.intro .sub{margin-top:18px;font-size:clamp(16px,1.6vw,20px);max-width:44ch;color:#e5edff}
+.intro .lines{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:0 8vw;pointer-events:none}
+.intro .lines p{position:absolute;font-family:var(--disp);font-stretch:72%;font-weight:700;font-size:clamp(28px,4.4vw,64px);line-height:1.05;max-width:20ch;opacity:0;transform:translateY(30px);transition:opacity .6s,transform .6s}
+.intro .lines p.on{opacity:1;transform:none}
+.intro .lines p.big{font-size:clamp(60px,11vw,170px);font-stretch:62%;font-weight:900;color:var(--pale)}
+.intro .cue{position:absolute;left:50%;bottom:22px;translate:-50% 0;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#cfe0ff;display:flex;flex-direction:column;align-items:center;gap:8px}
+.intro .cue i{width:1px;height:40px;background:linear-gradient(#cfe0ff,transparent);animation:cue 1.8s infinite}
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.brief{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.brief div{border-top:2px solid var(--ink);padding-top:10px;font-size:15px}
+.brief dt{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em}.brief dd{margin:4px 0 0}
+.syn{font-family:var(--disp);font-stretch:78%;font-weight:600;font-size:clamp(24px,2.8vw,38px);line-height:1.18;max-width:34ch;margin-top:56px}
+.syn em{font-style:normal;color:var(--acc)}
+/* before/after */
+.ba{position:relative;aspect-ratio:16/10;border-radius:16px;overflow:hidden;user-select:none;touch-action:pan-y;background:#111;cursor:ew-resize}
+.ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ba .top{clip-path:inset(0 0 0 var(--x,50%))}
+.ba .hand{position:absolute;top:0;bottom:0;left:var(--x,50%);width:2px;background:#fff;transform:translateX(-1px)}
+.ba .hand b{position:absolute;top:50%;left:50%;width:50px;height:50px;border-radius:50%;background:#fff;transform:translate(-50%,-50%);display:grid;place-items:center;font-size:18px;box-shadow:0 6px 20px rgba(0,0,0,.3)}
+.ba .lb{position:absolute;top:14px;background:rgba(0,0,0,.6);color:#fff;font-size:13px;padding:7px 12px;border-radius:999px}
+.ba .lb.l{left:14px}.ba .lb.r{right:14px}
+.ba input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:ew-resize;margin:0}
+.bigq{font-family:var(--disp);font-stretch:74%;font-weight:700;font-size:clamp(26px,3.2vw,44px);line-height:1.1;margin-top:40px;padding-left:22px;border-left:6px solid var(--acc);max-width:36ch}
+/* method */
+.stages{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;position:relative;margin-top:8px}
+.stages::before{content:"";position:absolute;left:0;right:0;top:27px;height:2px;background:var(--line)}
+.stages::after{content:"";position:absolute;left:0;top:27px;height:2px;width:calc(var(--sp,0)*100%);background:var(--acc);transition:width 1.6s cubic-bezier(.2,.8,.2,1)}
+.stage{position:relative;z-index:1}
+.stage i{display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:var(--bg);border:2px solid var(--acc);font-style:normal;font-family:var(--disp);font-weight:900;font-stretch:70%;font-size:22px;color:var(--acc)}
+.stage b{display:block;font-family:var(--disp);font-stretch:75%;font-weight:800;font-size:26px;margin:14px 0 6px}
+.stage p{font-size:15px;color:var(--mut)}
+.gantt{margin-top:48px;background:var(--card);border-radius:16px;padding:22px}
+.grow{display:grid;grid-template-columns:200px minmax(0,1fr);gap:12px;align-items:center;height:38px}
+.grow span{font-size:14px}
+.gtrack{position:relative;height:16px;background:repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px calc(100%/14))}
+.gbar{position:absolute;top:0;bottom:0;border-radius:8px;background:var(--acc);transform-origin:left;transform:scaleX(0);transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+.gantt.in .gbar{transform:scaleX(1)}
+.gweeks{display:grid;grid-template-columns:200px minmax(0,1fr);gap:12px;font-size:11px;color:var(--mut);margin-top:6px}
+.gweeks div{display:grid;grid-template-columns:repeat(14,1fr);text-align:center}
+.rule{margin-top:28px;font-size:18px}.rule b{color:var(--acc)}
+/* walk through the house */
+.walk{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,64px)}
+.walk .vis{position:sticky;top:120px;height:calc(100svh - 160px);display:grid;place-items:center}
+.walk .frame{position:relative;width:100%;height:100%;border-radius:18px;overflow:hidden;background:var(--night)}
+.walk .frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity .8s,transform 1.6s cubic-bezier(.2,.8,.2,1)}
+.walk .frame img.on{opacity:1;transform:none}
+.walk .floor{position:absolute;right:16px;top:16px;bottom:16px;width:44px;border-radius:999px;background:rgba(255,255,255,.12);display:flex;flex-direction:column;justify-content:space-between;padding:10px 0;align-items:center}
+.walk .floor i{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.35);transition:all .4s}
+.walk .floor i.on{background:#fff;transform:scale(1.6);box-shadow:0 0 0 6px rgba(157,184,220,.35)}
+.walk .name{position:absolute;left:18px;bottom:16px;color:#fff;font-family:var(--disp);font-stretch:70%;font-weight:900;font-size:clamp(30px,3.4vw,48px);text-shadow:0 4px 20px rgba(0,0,0,.5)}
+.stop{min-height:70svh;display:flex;flex-direction:column;justify-content:center;padding:20px 0;opacity:.35;transition:opacity .5s}
+.stop.on{opacity:1}
+.stop small{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--acc)}
+.stop h3{font-size:clamp(32px,3.6vw,52px);margin:6px 0 12px}
+.stop p{font-size:17px;max-width:46ch}
+.stop .tag{display:inline-flex;margin-top:14px;font-size:13px;border-radius:999px;padding:6px 12px;background:var(--pale);color:var(--night)}
+/* elements: horizontal pinned scroll */
+.hz{position:relative;height:calc(var(--n,8)*85vh);background:var(--night);color:#eaf0ff}
+.hz .stk{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+.hz .hd{padding:0 max(5vw,16px);margin-bottom:22px;display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+.hz .hd h2{color:#fff}
+.hz .hd .kick{color:#b9c8f0}.hz .hd .kick b{background:var(--pale)}
+.hz .cnt{font-family:var(--disp);font-stretch:70%;font-weight:900;font-size:28px;color:var(--pale)}
+.hz .row{display:flex;gap:24px;padding:0 max(5vw,16px);will-change:transform}
+.el{flex:none;width:min(1080px,86vw);height:min(66svh,620px);display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:24px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:18px}
+.el .col{display:grid;grid-template-columns:1.3fr 1fr;grid-template-rows:1fr 1fr;gap:10px;min-height:0}
+.el .col img{width:100%;height:100%;object-fit:cover;border-radius:12px;min-height:0}
+.el .col img:first-child{grid-row:1/3}
+.el .tx{display:flex;flex-direction:column;min-height:0;overflow:auto;padding-right:6px}
+.el small{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--pale)}
+.el h3{color:#fff;font-size:clamp(30px,3.2vw,46px);margin:6px 0 4px}
+.el .sub{color:#b9c8f0;font-style:italic;font-size:15px;margin-bottom:12px}
+.el p{font-size:15px;color:#dbe4ff}
+.el .cue2{margin-top:auto;padding:14px;border-radius:12px;background:rgba(157,184,220,.14);border-left:3px solid var(--gold);font-size:14px;color:#fff}
+.el .cue2 b{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.el.sup{width:min(760px,80vw)}
+/* blue */
+.blue{position:relative;color:#fff;overflow:hidden;transition:background-color .2s}
+.blue .grad{display:grid;grid-template-columns:repeat(5,1fr);border-radius:16px;overflow:hidden;margin-top:28px;height:180px}
+.blue .grad button{border:0;color:#fff;text-align:left;padding:14px;display:flex;flex-direction:column;justify-content:flex-end;font-size:13px;transition:flex .4s}
+.blue .grad button b{font-family:var(--disp);font-stretch:75%;font-size:20px}
+.blue .grad button.lt{color:var(--night)}
+.bluegrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,.8fr);gap:20px;margin-top:36px;align-items:stretch}
+.bluegrid img{width:100%;height:100%;object-fit:cover;border-radius:14px;max-height:520px}
+.bluegrid .why{background:rgba(255,255,255,.1);border-radius:14px;padding:20px;font-size:15px}
+.bluegrid .why b{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#fff;opacity:.8;margin-bottom:8px}
+.gdress{display:flex;justify-content:center;align-items:center}
+.gdress svg{width:100%;max-width:240px;height:auto}
+.gdress .sc{transform-box:fill-box;transform-origin:center top;transform:scale(0);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.gdress.in .sc{transform:scale(1)}
+/* gap map */
+.map{position:relative;aspect-ratio:1.5;background:var(--card);border-radius:18px;overflow:hidden}
+.map::before,.map::after{content:"";position:absolute;background:var(--line)}
+.map::before{left:50%;top:6%;bottom:6%;width:1px}.map::after{top:50%;left:4%;right:4%;height:1px}
+.map .ax{position:absolute;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+.map .q4{position:absolute;right:4%;top:6%;width:44%;height:42%;border-radius:14px;background:repeating-linear-gradient(45deg,rgba(0,71,171,.06) 0 10px,transparent 10px 20px);border:1px dashed var(--acc)}
+.map .dot{position:absolute;transform:translate(-50%,-50%);border:0;background:none;padding:0;display:flex;align-items:center;gap:8px;font-size:13px;white-space:nowrap}
+.map .dot i{width:14px;height:14px;border-radius:50%;background:var(--mut);flex:none;transition:transform .3s}
+.map .dot:hover i,.map .dot[aria-pressed=true] i{transform:scale(1.5)}
+.map .dot.me i{width:22px;height:22px;background:var(--acc);box-shadow:0 0 0 0 rgba(0,71,171,.5);animation:pulse 2s infinite}
+.map .dot.me{font-weight:700;color:var(--acc)}
+@keyframes pulse{70%{box-shadow:0 0 0 18px rgba(0,71,171,0)}100%{box-shadow:0 0 0 0 rgba(0,71,171,0)}}
+.mapnote{margin-top:14px;min-height:56px;font-size:15px;background:var(--card);border-radius:12px;padding:14px 16px}
+/* insights */
+.ins{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.in1{background:var(--card);border-radius:16px;padding:22px;position:relative;overflow:hidden}
+.in1 i{font-style:normal;font-family:var(--disp);font-stretch:62%;font-weight:900;font-size:64px;line-height:.8;color:var(--pale)}
+.in1 b{display:block;font-family:var(--disp);font-stretch:75%;font-weight:800;font-size:24px;margin:12px 0 8px}
+.in1 p{font-size:15px;color:var(--mut)}
+.hmw{margin-top:44px;background:var(--night);color:#fff;border-radius:18px;padding:clamp(22px,4vw,44px);min-height:220px;position:relative}
+.hmw small{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--pale)}
+.hmw p{font-family:var(--disp);font-stretch:74%;font-weight:700;font-size:clamp(24px,3vw,42px);line-height:1.1;margin-top:12px;max-width:30ch;transition:opacity .5s,transform .5s}
+.hmw p.out{opacity:0;transform:translateY(12px)}
+.hmw .dots{display:flex;gap:6px;margin-top:22px}.hmw .dots button{width:30px;height:4px;border:0;border-radius:2px;background:rgba(255,255,255,.3);padding:0}.hmw .dots button[aria-current=true]{background:#fff}
+/* ideation */
+.idea{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(20px,4vw,56px);align-items:start}
+.idea .moodb img{width:100%;border-radius:14px;box-shadow:0 20px 40px rgba(0,0,0,.12)}
+.kw{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+.kw span{border:1px solid var(--acc);color:var(--acc);border-radius:999px;padding:7px 13px;font-size:14px}
+.pant{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:16px}
+.pant div{border-radius:10px;overflow:hidden;background:var(--card);font-size:12px;transition:transform .3s}
+.pant div:hover{transform:translateY(-4px)}
+.pant i{display:block;height:58px}
+.pant span{display:block;padding:8px 10px}
+.pant b{display:block;font-size:13px}
+.forms{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-top:40px}
+.forms div{background:var(--card);border-radius:14px;padding:16px;text-align:center;font-size:14px}
+.forms svg{width:64px;height:96px;display:block;margin:0 auto 10px;stroke:var(--acc);fill:none;stroke-width:2.2;stroke-linecap:round}
+.forms svg path{stroke-dasharray:400;stroke-dashoffset:400;transition:stroke-dashoffset 1.6s ease}
+.forms.in svg path{stroke-dashoffset:0}
+.forms b{display:block;font-family:var(--disp);font-stretch:75%;font-size:20px}
+/* library */
+.lib{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.smp{border:0;padding:0;background:none;text-align:left;aspect-ratio:1;perspective:1000px;position:relative}
+.smp .in{position:absolute;inset:0;transition:transform .8s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d}
+.smp[aria-pressed=true] .in{transform:rotateY(180deg)}
+.smp .f,.smp .b{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;overflow:hidden}
+.smp img{width:100%;height:100%;object-fit:cover}
+.smp .f span{position:absolute;left:10px;right:10px;bottom:10px;background:rgba(255,255,255,.94);border-radius:10px;padding:10px 12px;font-size:13px}
+.smp .f span b{display:block;font-size:16px}
+.smp .b{transform:rotateY(180deg)}
+.smp .b span{position:absolute;left:10px;right:10px;bottom:10px;background:var(--night);color:#fff;border-radius:10px;padding:10px 12px;font-size:13px}
+.smp .b span b{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--pale)}
+.emb{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:40px}
+.emb figure{margin:0;position:relative;border-radius:16px;overflow:hidden}
+.emb img{width:100%;height:100%;object-fit:cover;max-height:560px;transition:transform 1.2s}
+.emb figure:hover img{transform:scale(1.04)}
+.emb figcaption{position:absolute;left:12px;right:12px;bottom:12px;background:rgba(255,255,255,.94);border-radius:10px;padding:10px 12px;font-size:14px}
+/* sketches */
+.sk{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(20px,4vw,56px);align-items:start}
+.sk .big{position:relative;background:#fff;border-radius:18px;aspect-ratio:4/5;display:grid;place-items:center;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.08)}
+.sk .big img{max-width:92%;max-height:94%;object-fit:contain;transition:opacity .35s,transform .5s}
+.sk .big .badge{position:absolute;top:14px;left:14px;background:var(--acc);color:#fff;border-radius:999px;font-size:12px;padding:6px 12px}
+.strip{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 12px;scroll-snap-type:x proximity}
+.strip button{flex:none;width:78px;aspect-ratio:3/4;border-radius:10px;border:2px solid transparent;background:#fff;padding:3px;position:relative;scroll-snap-align:center;opacity:.65;transition:opacity .2s,border-color .2s}
+.strip button img{width:100%;height:100%;object-fit:contain}
+.strip button[aria-current=true]{border-color:var(--acc);opacity:1}
+.strip button.sl::after{content:"★";position:absolute;top:2px;right:4px;color:var(--gold);font-size:14px}
+.sk h3{font-size:clamp(28px,3vw,42px);margin:16px 0 8px}
+.imap{display:grid;gap:10px;margin-top:16px}
+.imap div{display:grid;grid-template-columns:64px 1fr;gap:12px;align-items:center;background:var(--card);border-radius:12px;padding:8px}
+.imap img{width:64px;height:64px;object-fit:cover;border-radius:8px}
+.imap p{font-size:14px}.imap p b{color:var(--acc)}
+/* shortlist */
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.gm2{background:var(--card);border-radius:20px;padding:20px;display:flex;flex-direction:column}
+.gm2 .ev{position:relative;aspect-ratio:4/5;background:#fff;border-radius:14px;overflow:hidden}
+.gm2 .ev img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .8s}
+.gm2 .ev .fin{clip-path:inset(0 0 0 var(--x,100%))}
+.gm2 .ev .hand{position:absolute;top:0;bottom:0;left:var(--x,100%);width:2px;background:var(--acc)}
+.gm2 .ev input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.gm2 .ev .tg{position:absolute;top:10px;font-size:12px;border-radius:999px;padding:5px 10px;background:rgba(11,26,68,.8);color:#fff}
+.gm2 .ev .tg.l{left:10px}.gm2 .ev .tg.r{right:10px}
+.gm2 small{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin-top:16px}
+.gm2 h3{font-size:clamp(28px,3vw,42px);margin:4px 0 10px}
+.gm2 .sw{display:flex;height:34px;border-radius:8px;overflow:hidden;margin-bottom:12px}.gm2 .sw i{flex:1}
+.gm2 table{width:100%;border-collapse:collapse;font-size:14px}
+.gm2 td{padding:8px 6px;border-top:1px solid var(--line);vertical-align:top}
+.gm2 td:first-child{font-weight:600;width:38%}.gm2 td:nth-child(2){color:var(--acc);width:22%}
+.srcs{display:flex;gap:8px;margin-top:12px}.srcs img{width:33%;aspect-ratio:1;object-fit:cover;border-radius:10px}
+/* making */
+.mk{position:relative;height:calc(var(--n,7)*70vh)}
+.mk .stk{position:sticky;top:0;height:100svh;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(20px,4vw,56px);align-items:center;padding:90px max(5vw,16px) 30px;max-width:1440px;margin:0 auto}
+.mk .imgs{position:relative;height:min(74svh,760px)}
+.mk .imgs img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transform:scale(.94) rotate(-1.5deg);transition:opacity .7s,transform 1s cubic-bezier(.2,.8,.2,1);border-radius:14px}
+.mk .imgs img.on{opacity:1;transform:none}
+.mk .steps2{list-style:none;margin:20px 0 0;padding:0}
+.mk .steps2 li{display:grid;grid-template-columns:40px 1fr;gap:10px;padding:10px 0;border-top:1px solid var(--line);opacity:.35;transition:opacity .4s}
+.mk .steps2 li.on{opacity:1}
+.mk .steps2 i{font-style:normal;font-family:var(--disp);font-stretch:70%;font-weight:900;font-size:22px;color:var(--acc)}
+.mk .steps2 b{display:block;font-size:16px}.mk .steps2 span{font-size:14px;color:var(--mut)}
+/* final */
+.fin2{background:#0b0b10;color:#eee}
+.fin2 .kick{color:#bbb}.fin2 .kick b{background:var(--gold)}.fin2 h2{color:#fff}.fin2 .lede{color:#ccc}
+.fl{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:start}
+.fhs{position:relative;border-radius:16px;overflow:hidden}
+.fhs img{width:100%;display:block}
+.fhs .pt{position:absolute;width:36px;height:36px;margin:-18px 0 0 -18px;border-radius:50%;border:2px solid #fff;background:rgba(0,71,171,.85);color:#fff;font-weight:700;font-size:13px;display:grid;place-items:center;box-shadow:0 4px 14px rgba(0,0,0,.4)}
+.fhs .pt[aria-pressed=true]{background:var(--gold);color:#111;transform:scale(1.15)}
+.trace{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:18px;display:grid;grid-template-columns:150px 1fr;gap:16px;align-items:center;min-height:190px}
+.trace img{width:150px;height:150px;object-fit:cover;border-radius:12px;transition:opacity .3s}
+.trace small{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.trace h4{margin:4px 0 6px;font-family:var(--disp);font-stretch:75%;font-size:26px;color:#fff}
+.trace p{font-size:14px;color:#ccc}
+.tlist{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.tlist button{border:1px solid rgba(255,255,255,.3);background:transparent;color:#eee;border-radius:999px;min-height:38px;padding:0 12px;font-size:13px}
+.tlist button[aria-pressed=true]{background:#fff;color:#111}
+.film{display:flex;gap:12px;overflow-x:auto;padding:30px 0 10px;scroll-snap-type:x mandatory}
+.film img{flex:none;height:min(56svh,520px);width:auto;border-radius:12px;scroll-snap-align:center;transition:transform .5s}
+.film img:hover{transform:scale(1.02)}
+.g1note{margin-top:28px;display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center;background:rgba(255,255,255,.05);border-radius:14px;padding:14px}
+.g1note img{width:120px;border-radius:10px;background:#fff}
+/* business + future */
+.biz{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.biz div{background:var(--card);border-radius:16px;padding:22px;transition:transform .3s,box-shadow .3s}
+.biz div:hover{transform:translateY(-4px);box-shadow:0 16px 30px rgba(0,0,0,.08)}
+.biz small{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--acc);margin-bottom:8px}
+.biz p{font-size:15px}
+.usp{font-family:var(--disp);font-stretch:74%;font-weight:700;font-size:clamp(24px,2.8vw,38px);line-height:1.12;max-width:34ch;margin-bottom:30px}
+.fut{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.fut li{border-top:3px solid var(--acc);padding-top:12px;font-size:14px}
+.fut b{display:block;font-size:17px;margin-bottom:4px}
+.outro{position:relative;height:200vh;background:var(--night)}
+.outro .stk{position:sticky;top:0;height:100svh;overflow:hidden;display:grid;place-items:center}
+.outro .bgimg{position:absolute;inset:0;background:url(img/cr/end.webp) center/cover;will-change:transform}
+.outro .veil{position:absolute;inset:0;background:radial-gradient(60% 60% at 50% 50%,rgba(11,26,68,.2),rgba(11,26,68,.85))}
+.outro h2{position:relative;color:#fff;text-align:center;font-size:clamp(46px,13vw,210px);font-stretch:62%;font-weight:900;will-change:transform,opacity}
+.outro p{position:relative;color:#dbe4ff;text-align:center;margin-top:12px}
+.credit2{font-size:13px;color:var(--mut);max-width:80ch}
+@media(max-width:1000px){.brief{grid-template-columns:repeat(2,minmax(0,1fr))}.stages,.forms,.fut{grid-template-columns:repeat(2,minmax(0,1fr))}.stages::before,.stages::after{display:none}.ins,.biz,.lib{grid-template-columns:repeat(2,minmax(0,1fr))}.bluegrid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.bluegrid .why{grid-column:1/-1}}
+@media(max-width:900px){.hd2,.walk,.idea,.sk,.two,.fl,.mk .stk{grid-template-columns:minmax(0,1fr)}
+ .walk .vis{top:100px;height:44svh;z-index:2}.stop{min-height:56svh}
+ .hz{height:auto}.hz .stk{position:relative;height:auto;padding:70px 0}.hz .row{flex-direction:column;transform:none!important}.el,.el.sup{width:auto;height:auto;grid-template-columns:minmax(0,1fr)}.el .col{height:300px}
+ .mk .stk{padding-top:80px;align-content:start;gap:10px}.mk .imgs{height:46svh}.mk .steps2 span{display:none}.mk .steps2 li{padding:6px 0}
+ .grow{grid-template-columns:120px minmax(0,1fr)}.gweeks{grid-template-columns:120px minmax(0,1fr)}
+ .map{aspect-ratio:1}.map .dot span{display:none}.map .dot.me span{display:inline}
+ .trace{grid-template-columns:100px 1fr}.trace img{width:100px;height:100px}}
+@media(max-width:600px){.ins,.biz,.lib,.pant,.fut,.forms{grid-template-columns:minmax(0,1fr)}.forms{grid-template-columns:repeat(2,minmax(0,1fr))}.pant{grid-template-columns:repeat(2,minmax(0,1fr))}.emb{grid-template-columns:minmax(0,1fr)}.blue .grad{height:auto;grid-template-columns:minmax(0,1fr)}.blue .grad button{min-height:56px}.bluegrid{grid-template-columns:minmax(0,1fr)}.brief{grid-template-columns:minmax(0,1fr)}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}[data-rv]{opacity:1;transform:none}
+ .intro,.outro,.mk{height:auto}.intro .stk,.outro .stk,.mk .stk{position:relative;height:auto;min-height:100svh}
+ .intro .lines{position:relative;display:block;padding:20px 8vw 60px}.intro .lines p{position:relative;opacity:1;transform:none;margin:20px auto}
+ .hz{height:auto}.hz .stk{position:relative;height:auto}.hz .row{flex-wrap:wrap;transform:none!important}
+ .mk .imgs img{position:relative;opacity:1;transform:none;height:auto;margin-bottom:10px}.mk .imgs{height:auto}}
+
+</style>
+</head>
+<body>
+<div class="pbar" id="pbar" aria-hidden="true"></div>
+
+<div class="top">
+ <button class="mb" id="menu" aria-expanded="false" aria-controls="drawer"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 5h14M2 9h14M2 13h14"/></svg>Projects</button>
+ <a class="home" href="index.html">← All work</a>
+</div>
+<div class="scrim" id="scrim"></div>
+<nav class="drawer" id="drawer" aria-label="Projects">
+ <button class="x" id="close" aria-label="Close menu">×</button>
+ <small>Vaishnavi Bhosale · Portfolio</small>
+ <a href="index.html">Home <span>All work</span></a>
+ <a href="internship.html">Summer internship <span>Blanco</span></a>
+ <a href="research.html" class="on" aria-current="page">Fashion design research <span>Casa Reimagined</span></a>
+ <a href="styling.html">Styling &amp; photography <span>Living Architecture</span></a>
+ <a href="brand.html">Brand management <span>Raw Mango</span></a>
+ <a href="cutting.html">Cutting-edge fashion <span>Future Ritualism</span></a>
+</nav>
+
+<!-- 0 · intro -->
+<section class="intro" id="intro" aria-label="Casa Reimagined">
+ <div class="stk">
+  <div class="bgimg" id="ibg"></div><div class="veil" id="iveil"></div>
+  <div class="tt" id="itt">
+   <small>Fashion design research project · B.Des. Fashion &amp; Apparel Design</small>
+   <h1 aria-label="Casa Reimagined"><span style="animation-delay:.1s">Casa</span> <span style="animation-delay:.3s">Reimagined</span></h1>
+   <p class="sub">Casa Batlló, reimagined through fashion: two sculptural, soft-structured womenswear looks built from the details most visitors walk past.</p>
+  </div>
+  <div class="lines" id="ilines" aria-hidden="true">
+   <p>Most people who visit Casa Batlló look up.</p>
+   <p>They photograph the dragon roof, the mask balconies, the glittering façade.</p>
+   <p>Far fewer look at what they touch on the way in.</p>
+   <p class="big">Look closer.</p>
+  </div>
+  <div class="cue" id="icue">Scroll<i></i></div>
+ </div>
+</section>
+
+<nav class="jump" id="jump" aria-label="Chapters">
+ <a href="#brief">Introduction</a><a href="#house">The house</a><a href="#elements">Five elements</a><a href="#blue">The blue</a><a href="#gap">The gap</a><a href="#ideation">Ideation</a><a href="#library">Sampling</a><a href="#sketches">Sketches</a><a href="#shortlist">Two garments</a><a href="#making">Making</a><a href="#final">The garment</a><a href="#future">Next</a>
+</nav>
+
+<!-- 1 · introduction -->
+<section class="sec" id="brief">
+ <div class="wrap">
+  <div class="chap" data-rv><b>01</b><span>Introduction</span></div>
+  <dl class="brief" data-rv="2">
+   <div><dt>Project</dt><dd>Casa Reimagined: Casa Batlló reimagined through fashion</dd></div>
+   <div><dt>Domain</dt><dd>Architectural translation in fashion</dd></div>
+   <div><dt>Outcome</dt><dd>Two sculptural, soft-structured womenswear garments</dd></div>
+   <div><dt>Mentor</dt><dd>Asst. Prof. Rashmi Sridhara, MIT-WPU School of Design</dd></div>
+   <div><dt>Duration</dt><dd>14 weeks · 6 credits · Semester VII</dd></div>
+  </dl>
+  <p class="syn" data-rv>The textile industrialist Josep Batlló paid for the house with cloth. <em>Here it returns to cloth.</em></p>
+ </div>
+</section>
+
+<section class="sec alt" id="problem">
+ <div class="wrap">
+  <div class="hd2"><div data-rv><div class="kick"><b></b>Problem statement</div><h2>The façade has been used up</h2></div><p class="lede" data-rv="2">Souvenirs, prints, editorials and collections keep reusing the same few images: the trencadís façade, the mask balconies, the dragon roof. Translated literally, a building becomes a costume. Drag across the photo to move from what everyone sees to what they pass by.</p></div>
+  <div class="ba" id="ba" data-rv>
+   <img src="img/cr/facade.webp" alt="Casa Batlló façade with balconies and roof">
+   <img class="top" src="img/cr/door.webp" alt="A carved oak door and the staircase rail on a landing">
+   <span class="lb l">What everyone sees</span><span class="lb r">What most people pass by</span>
+   <div class="hand"><b aria-hidden="true">⇆</b></div>
+   <input type="range" min="0" max="100" value="50" aria-label="Compare the façade with the interior detail">
+  </div>
+  <p class="bigq" data-rv>How can Casa Batlló's balconies, columns, roof scales, doors and stained glass, read for how they are built rather than how they are photographed, become a contemporary fashion language without copying the building?</p>
+ </div>
+</section>
+
+<section class="sec" id="method">
+ <div class="wrap">
+  <div class="hd2"><div data-rv><div class="kick"><b></b>Proposed design methodology</div><h2>Four stages, fourteen weeks</h2></div><p class="lede" data-rv="2">Each stage ended in a graded review, and one rule ran through all four.</p></div>
+  <div class="stages" id="stages">
+   <div class="stage" data-rv><i>01</i><b>Discover</b><p>Group research on Gaudí, Art Nouveau, Catalan Modernisme and Casa Batlló; choosing an individual focus.</p></div>
+   <div class="stage" data-rv="2"><i>02</i><b>Look closer</b><p>A detail inventory of the interior, reading each element for form, function, material and natural reference.</p></div>
+   <div class="stage" data-rv="3"><i>03</i><b>Translate</b><p>Principle-led translation of each detail into silhouette, construction and surface; sampling.</p></div>
+   <div class="stage" data-rv="4"><i>04</i><b>Realise</b><p>Toiles, prototypes, fittings and refinements; final looks, styling and documentation.</p></div>
+  </div>
+  <div class="gantt" id="gantt" data-rv>
+   <div id="grows"></div>
+   <div class="gweeks"><span></span><div><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span></div></div>
+  </div>
+  <p class="rule" data-rv><b>Translate principles, not pictures.</b> A detail enters the collection only through what it does: how it meets a hand, filters light, carries load or moves air.</p>
+ </div>
+</section>
+
+<!-- 2 · walk through the house -->
+<section class="sec alt" id="house">
+ <div class="wrap">
+  <div class="chap" data-rv><b>02</b><span>Research · looking past the façade</span></div>
+  <div class="hd2"><div data-rv><div class="kick"><b></b>Secondary research: inside the house</div><h2>Follow a visitor's route</h2></div><p class="lede" data-rv="2">Gaudí remodelled an ordinary house between 1904 and 1906, working with the best craftsmen in iron, wood, glass, ceramic and stone, so almost nothing inside is standard. Scroll to climb from the entrance to the roof.</p></div>
+  <div class="walk">
+   <div class="vis"><div class="frame" id="wframe"><div class="floor" id="wfloor"></div><span class="name" id="wname"></span></div></div>
+   <div id="wstops"></div>
+  </div>
+ </div>
+</section>
+
+<!-- elements: horizontal -->
+<section class="hz" id="elements" style="--n:9">
+ <div class="stk">
+  <div class="hd"><div><div class="kick"><b></b>The five elements behind the final garments</div><h2>Read for how they are built</h2></div><span class="cnt" id="hzc">01 / 08</span></div>
+  <div class="row" id="hzrow"></div>
+ </div>
+</section>
+
+<!-- blue -->
+<section class="sec blue" id="blue" style="background:#1F3F8F">
+ <div class="wrap">
+  <div class="kick" style="color:#cfe0ff"><b style="background:#fff"></b>2.6 · The signature blue</div>
+  <h2 style="color:#fff">Cobalt to pearl grey</h2>
+  <p class="lede" style="color:#e6edff;margin-top:14px">Gaudí lined the lightwell with blue tiles, darker at the top and lighter at the bottom, and made the windows smaller at the top and larger lower down, so daylight reaches every floor evenly. Scroll, and this section pales with it.</p>
+  <div class="grad" id="grad"></div>
+  <div class="bluegrid">
+   <img class="z" src="img/cr/bl1.webp" alt="The lightwell: blue tiles deepening towards the skylight" loading="lazy">
+   <img class="z" src="img/cr/lw2.webp" alt="Looking up the lightwell" loading="lazy">
+   <div class="why"><b>Why the garment grades dark to light</b>Garment 01 follows the same rule: deep cobalt at the shoulders fading to pearl grey at the hem, with the roof-inspired scales growing larger towards the hem. The colour grading is documented in the building; growing the scales is my own extension of the window grading.
+    <div class="gdress" id="gdress"></div></div>
+  </div>
+ </div>
+</section>
+
+<!-- gap -->
+<section class="sec" id="gap">
+ <div class="wrap">
+  <div class="hd2"><div data-rv><div class="kick"><b></b>Market study · existing interventions</div><h2>Everyone works with the surface</h2></div><p class="lede" data-rv="2">Architecture-inspired fashion responds almost entirely to the exterior: façade, dome, skyline, plan. Every documented Gaudí precedent works with mosaic colour and organic drape. Select a dot to read it.</p></div>
+  <div class="map" id="map" data-rv>
+   <span class="ax" style="left:4%;top:51%">Exterior</span><span class="ax" style="right:4%;top:51%">Interior</span>
+   <span class="ax" style="left:51%;top:3%">Structure</span><span class="ax" style="left:51%;bottom:3%">Surface</span>
+   <div class="q4"></div>
+  </div>
+  <p class="mapnote" id="mapnote" aria-live="polite"></p>
+  <p class="credit2">Placement is my reading of the precedents studied in the report, not a measured scale.</p>
+ </div>
+</section>
+
+<!-- insights -->
+<section class="sec alt" id="insights">
+ <div class="wrap">
+  <div class="hd2"><div data-rv><div class="kick"><b></b>Data synthesis</div><h2>Seven insights</h2></div><p class="lede" data-rv="2">What the research pointed to, before a single sketch.</p></div>
+  <div class="ins" id="ins"></div>
+  <div class="hmw" id="hmw"><small>How might we…</small><p id="hmwp"></p><div class="dots" id="hmwd"></div></div>
+ </div>
+</section>
+
+<!-- 3 · ideation -->
+<section class="sec" id="ideation">
+ <div class="wrap">
+  <div class="chap" data-rv><b>03</b><span>Ideation · from details to design language</span></div>
+  <div class="idea">
+   <div class="moodb" data-rv><img class="z" src="img/cr/mood.webp" alt="Moodboard: shells, stained glass, blue tiles and soft sculptural shapes" loading="lazy"></div>
+   <div data-rv="2">
+    <div class="kick"><b></b>Moodboard &amp; colour palette</div>
+    <h2>Soft structure</h2>
+    <p class="lede" style="margin-top:12px">Garments that hold a sculpted shape but follow the body, as Gaudí's rails and columns do: flowing water, delicate shells and underwater light, with curved ceilings, sculptural furniture and stained glass as anchors.</p>
+    <div class="kw"><span>Whimsical</span><span>Organic</span><span>Biomimicry</span><span>Marine fantasy</span><span>Skeletal anatomy</span><span>Touch</span><span>Filtered light</span></div>
+    <p style="font-size:15px">Curves never meet at a right angle; structure is visible; light passes through layers; detail rewards a second look.</p>
+    <div class="pant" id="pant"></div>
+   </div>
+  </div>
+  <div class="forms" id="forms" data-rv>
+   <div><svg viewBox="0 0 64 96"><path d="M24 6v84M40 6v84M24 30h16M24 60h16"/></svg><b>Column</b>Long, narrow, vertically seamed</div>
+   <div><svg viewBox="0 0 64 96"><path d="M10 10C60 20 4 40 54 50S10 80 50 90"/></svg><b>Rail</b>A spiral line wrapping the body</div>
+   <div><svg viewBox="0 0 64 96"><path d="M14 90V30C14 10 50 10 50 30v60M14 50h36"/></svg><b>Door</b>Panelled, soft-cornered bodice</div>
+   <div><svg viewBox="0 0 64 96"><path d="M8 90C8 30 56 30 56 90M18 90C18 46 46 46 46 90M28 90c0-20 8-20 8 0"/></svg><b>Arch</b>Arched boning, cage-like volume</div>
+   <div><svg viewBox="0 0 64 96"><path d="M32 48C32 20 60 30 52 50S20 70 14 44 40 10 56 30"/></svg><b>Ceiling</b>Volume radiating from one point</div>
+  </div>
+ </div>
+</section>
+
+<!-- library -->
+<section class="sec alt" id="library">
+ <div class="wrap">
+  <div class="hd2"><div data-rv><div class="kick"><b></b>Surface sampling · the material library</div><h2>Every technique has a source</h2></div><p class="lede" data-rv="2">Sampled on the real base fabrics, all within the cobalt-to-pearl palette. Turn a sample over to see the part of the house it comes from.</p></div>
+  <div class="lib" id="lib"></div>
+  <div class="emb">
+   <figure data-rv><img class="z" src="img/cr/em1.webp" alt="Mirror discs and baroque pearls linked by bugle beads on cobalt silk" loading="lazy"><figcaption><b>Mirror and pearl lattice.</b> Round mirrors and pearls joined by bugle beads, like the glass roundels held in their lead lines.</figcaption></figure>
+   <figure data-rv="2"><img class="z" src="img/cr/em2.webp" alt="Samples in progress: organza flower with pearl strands, beaded roundels and a pearl-outlined scale motif" loading="lazy"><figcaption><b>Samples in progress.</b> Organza flower with pearl strands, beaded roundels and a pearl-outlined scale: one roof scale at hand scale.</figcaption></figure>
+  </div>
+ </div>
+</section>
+
+<!-- sketches -->
+<section class="sec" id="sketches">
+ <div class="wrap">
+  <div class="hd2"><div data-rv><div class="kick"><b></b>Design explorations · inspiration map</div><h2>Eleven explorations</h2></div><p class="lede" data-rv="2">Each sketch, and the part of Casa Batlló behind each of its details. Stars mark the two that led to the final garments. Use the strip, or the arrow keys.</p></div>
+  <div class="sk">
+   <div><div class="big" id="skbig"><img id="skimg" alt=""><span class="badge" id="skbadge" hidden>Led to a final garment</span></div></div>
+   <div><div class="strip" id="skstrip" role="tablist" aria-label="Explorations"></div><small class="mut" id="skn"></small><h3 id="skh"></h3><p id="skd"></p><div class="imap" id="skmap"></div></div>
+  </div>
+ </div>
+</section>
+
+<!-- 4 · shortlist -->
+<section class="sec alt" id="shortlist">
+ <div class="wrap">
+  <div class="chap" data-rv><b>04</b><span>Design execution · realising the collection</span></div>
+  <div class="hd2"><div data-rv><div class="kick"><b></b>Development of the shortlisted idea</div><h2>Two garments, one blue</h2></div><p class="lede" data-rv="2">The five primary elements were divided between two final garments. Drag across each to watch the exploration become the final design.</p></div>
+  <div class="two" id="two"></div>
+ </div>
+</section>
+
+<!-- making -->
+<section class="mk" id="making" style="--n:7">
+ <div class="stk">
+  <div>
+   <div class="kick"><b></b>Content development &amp; prototype design</div>
+   <h2>From toile to garment</h2>
+   <ol class="steps2" id="mksteps"></ol>
+  </div>
+  <div class="imgs" id="mkimgs"></div>
+ </div>
+</section>
+
+<!-- final -->
+<section class="sec fin2" id="final">
+ <div class="wrap">
+  <div class="hd2"><div data-rv><div class="kick"><b></b>Final design solution</div><h2>House of Masks and Bones</h2></div><p class="lede" data-rv="2">Garment 02, finished and photographed for The Living Architecture editorial. Select a point to trace each detail back to the house.</p></div>
+  <div class="fl">
+   <div class="fhs" id="fhs" data-rv><img class="z" src="img/st/f01.webp" alt="Garment 02: chocolate corset with shell-like eye cups and a scalloped skirt shading from ochre to indigo, beside stained glass"></div>
+   <div data-rv="2"><div class="trace" id="trace"></div><div class="tlist" id="tlist"></div>
+    <div class="g1note"><img src="img/cr/g01.webp" alt="Garment 01 final illustration"><p style="font-size:14px;color:#ccc"><b style="color:#fff">Garment 01, The Dragon's Back</b>, is shown on this page as its final illustration: overlapping roof scales in the lightwell's cobalt-to-pearl gradient.</p></div>
+    <a class="btn" href="styling.html" style="margin-top:18px;color:#fff;border-color:#fff">See the full editorial →</a>
+   </div>
+  </div>
+  <div class="film" id="film"></div>
+ </div>
+</section>
+
+<!-- business -->
+<section class="sec" id="business">
+ <div class="wrap">
+  <div class="kick" data-rv><b></b>USP &amp; business considerations</div>
+  <p class="usp" data-rv>The only Casa Batlló collection built from the details people overlook: every piece carries the story of a door, a handle, a rail or a pane of glass the wearer can feel.</p>
+  <div class="biz" id="biz"></div>
+ </div>
+</section>
+
+<!-- future -->
+<section class="sec alt" id="future">
+ <div class="wrap">
+  <div class="chap" data-rv><b>05</b><span>Conclusion · looking back, looking closer</span></div>
+  <div class="hd2"><div data-rv><div class="kick"><b></b>Future directions</div><h2>A method that travels</h2></div><p class="lede" data-rv="2">The detail-to-garment matrix can be reused for any building: a transferable tool for architecture-led design.</p></div>
+  <ul class="fut">
+   <li data-rv><b>Hardware line</b>Develop the hand-moulded closures into buttons, clasps and jewellery.</li>
+   <li data-rv="2"><b>Material innovation</b>Bio-based or recycled sheers and resins for the glass and handle elements.</li>
+   <li data-rv="3"><b>Wider interior study</b>Furniture, lamps, floors and the upper apartments, then Casa Milà and Casa Calvet.</li>
+   <li data-rv="4"><b>Collaboration</b>A capsule with a heritage institution or museum store.</li>
+   <li data-rv="4"><b>Method</b>The matrix as a reusable tool for any building.</li>
+  </ul>
+ </div>
+</section>
+
+<section class="outro" id="outro" aria-label="Look closer">
+ <div class="stk"><div class="bgimg" id="obg"></div><div class="veil"></div><div><h2 id="oh">Look closer.</h2><p>Casa Reimagined · Vaishnavi Bhosale · 2026</p></div></div>
+</section>
+
+<section class="sec" id="credits">
+ <div class="wrap">
+  <p class="credit2">Group research foundation with Anah Busheri, Riya Bagani, Vishakha Motwani and Vrunda Patel; the two garments and the interior study are my individual project. Photographs of Casa Batlló come from the group research boards and the sources credited in the report (© Casa Batlló where marked; Carlos Giordano Rodríguez &amp; Nicolás Palmisano). Used for academic, non-commercial purposes.</p>
+  <div class="next"><span class="mut">Next project</span><a href="styling.html">Styling &amp; photography: The Living Architecture →</a></div>
+ </div>
+</section>
+
+<div id="lb" role="dialog" aria-modal="true" aria-label="Image viewer"><button aria-label="Close">×</button><img alt=""></div>
+
+<script>
+{
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const store={get(k){try{return JSON.parse(localStorage.getItem('vb:'+k))}catch(e){return null}},set(k,v){try{localStorage.setItem('vb:'+k,JSON.stringify(v))}catch(e){}}};
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* drawer + lightbox */
+const setNav=o=>{document.body.classList.toggle('nav',o);$('#menu').setAttribute('aria-expanded',o);if(o)$('#close').focus()};
+$('#menu').onclick=()=>setNav(true);$('#close').onclick=()=>setNav(false);$('#scrim').onclick=()=>setNav(false);
+const lb=$('#lb'),lbi=$('img',lb);
+const openLB=(src,alt)=>{lbi.src=src;lbi.alt=alt||'';lb.classList.add('open');$('button',lb).focus()};
+document.addEventListener('click',e=>{const z=e.target.closest('img.z');if(z)openLB(z.src,z.alt)});
+$('button',lb).onclick=()=>lb.classList.remove('open');lb.onclick=e=>{if(e.target===lb)lb.classList.remove('open')};
+addEventListener('keydown',e=>{if(e.key==='Escape'){lb.classList.remove('open');setNav(false)}});
+
+/* section jump bar */
+const jl=$$('#jump a');
+const jIO=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){jl.forEach(a=>{const on=a.getAttribute('href')==='#'+en.target.id;a.classList.toggle('on',on);if(on){const j=$('#jump');j.scrollTo({left:a.offsetLeft-j.clientWidth/2+a.offsetWidth/2,behavior:'auto'})}})}}),{rootMargin:'-40% 0px -55% 0px'});
+jl.forEach(a=>{const t=$(a.getAttribute('href'));if(t)jIO.observe(t)});
+
+
+
+
+const cl=t=>Math.max(0,Math.min(1,t)),lerp=(a,b,t)=>a+(b-a)*t;
+/* reveal on scroll */
+const rv=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rv.unobserve(e.target)}}),{threshold:.15});
+$$('[data-rv],#gantt,#forms,#gdress').forEach(el=>rv.observe(el));
+new IntersectionObserver(([e],o)=>{if(e.isIntersecting){$('#stages').style.setProperty('--sp',1);o.disconnect()}},{threshold:.4}).observe($('#stages'));
+
+/* gantt */
+const GT=[['Pitch & proposal',1,2],['Research & detail study',2,5],['Synthesis & brief',5,7],['Ideation & sampling',7,10],['Prototypes & fittings',10,13],['Final looks, shoot, report',12,15]];
+$('#grows').innerHTML=GT.map(([n,a,b],i)=>`<div class="grow"><span>${n}</span><div class="gtrack"><i class="gbar" style="left:${(a-1)/14*100}%;width:${(b-a)/14*100}%;transition-delay:${i*.15}s;background:${['#1F3F8F','#0047AB','#3F6FB5','#5B86C4','#7FA1D2','#9DB8DC'][i]}"></i></div></div>`).join('');
+
+/* before / after */
+{const ba=$('#ba'),r=$('input',ba);const set=()=>ba.style.setProperty('--x',r.value+'%');r.addEventListener('input',set);set();
+ if(!RM){let done=false;new IntersectionObserver(([e])=>{if(e.isIntersecting&&!done){done=true;let t0=null;const f=t=>{if(!t0)t0=t;const k=Math.min(1,(t-t0)/1600);r.value=50+Math.sin(k*Math.PI*2)*22*(1-k);set();if(k<1)requestAnimationFrame(f)};requestAnimationFrame(f)}},{threshold:.5}).observe(ba)}}
+
+/* walk through the house */
+const WK=[['Entrance hall','stair1','Vaulted, curving walls and skylights like tortoise shells. The wooden staircase begins here.','Ceilings & arches'],
+['Main staircase','hr2','A carved hardwood handrail that reads as the spine of a large animal, twisting and thickening as it climbs to the Noble floor.','Handrail → a spine line'],
+['Noble floor','door2','Batlló\'s study with a mushroom-shaped fireplace, the salon with its whirlpool ceiling, oak doors with coloured glass, and the great window framed by bone-like columns.','Oak doors · bone columns · stained glass'],
+['Lightwell','bl1','Graded blue tiles, windows that grow larger lower down, wooden ventilation slats, and landing glass that turns the tiles into ripples.','The signature blue'],
+['Attic','ce2','A sequence of white catenary arches that recall a ribcage.','Arched boning'],
+['Roof','sc1','The dragon\'s scales: glazed tiles with a metallic sheen along a curved spine.','Garment 01\'s silhouette']];
+$('#wstops').innerHTML=WK.map((w,i)=>`<div class="stop" data-i="${i}"><small>Stop ${i+1} of ${WK.length}</small><h3>${w[0]}</h3><p>${w[2]}</p><span class="tag">For the garments: ${w[3]}</span></div>`).join('');
+$('#wframe').insertAdjacentHTML('afterbegin',WK.map((w,i)=>`<img src="img/cr/${w[1]}.webp" alt="${w[0]}" ${i?'loading="lazy"':''}>`).join(''));
+$('#wfloor').innerHTML=WK.map(()=>'<i></i>').reverse().join('');
+function wk(i){$$('#wframe img').forEach((m,k)=>m.classList.toggle('on',k===i));$$('#wstops .stop').forEach((s,k)=>s.classList.toggle('on',k===i));const fl=$$('#wfloor i');fl.forEach((d,k)=>d.classList.toggle('on',k===fl.length-1-i));$('#wname').textContent=WK[i][0]}
+const wio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)wk(+e.target.dataset.i)}),{rootMargin:'-45% 0px -45% 0px'});$$('#wstops .stop').forEach(s=>wio.observe(s));wk(0);
+
+/* elements horizontal */
+const EL=[['Primary element 01','Skull (mask) balconies','"The house of masks": cast in one piece, hung from two points.',['bal1','bal2','bal3'],'Cast iron in a single piece from Gaudí\'s own plaster models, fixed by only two anchor points so it seems to float. Two eye openings closed with golden corrugated plates; the balconies shrink towards the top.','One moulded mask form repeated as a series; a bodice suspended from two shoulder points; eye cut-outs backed with golden pleats; motifs that shrink from hem to neckline.'],
+['Primary element 02','Bone columns','Structure that looks like ornament, and really carries the load.',['col2','col1','col3'],'Carved Montjüic sandstone columns that genuinely carry the gallery. A magnetometer survey found an iron structure hidden inside: soft-looking stone over a rigid core, the same principle as couture boning.','Exoskeletal boning that shapes and decorates; moulded rib channels; tonal floral embroidery along structural seams.'],
+['Primary element 03','Roof scales','The dragon\'s back: overlapping, glazed, shimmering.',['sc3','sc1','sc2'],'Large ceramic scales with a metallic sheen and a row of ceramic spheres along the ridge. The roof is not only blue: it runs from green through blue and violet to pink.','Garment 01\'s base silhouette: overlapping scale units, a curved spine at centre back, a sheened surface, scales growing towards the hem.'],
+['Primary element 04','Oak doors','Organic panels, coloured glass and no right angles.',['door1','door2','door3'],'Oak doors by the Casas i Bardés workshop, with coloured glass set into the wood, and a folding door opening to one side of the salon. Apartment doors carry a modernist letter framed in blue ceramic.','Soft-cornered curved panelling; solid fabric with sheer "glass" insets; folding, concertina construction; a monogram from the floor letters.'],
+['Primary element 05','Stained-glass windows','Stained (leaded) glass set with circular coloured-glass pieces.',['gl1','gl3','gl2'],'The museum quotes Gaudí: "architecture is the ordering of light". The roundels filter and soften daylight; the gallery windows still rise and fall on their original counterweights.','Translucent insets, roundel appliqué and beaded "leading" lines.'],
+['Supporting detail 06','Handles & fittings','The smallest point of contact, modelled by hand.',['hd1','hd2','door4'],'Gaudí squeezed clay with his hands and cast the impressions in brass, so handles sit naturally in the grip. Slotted window frames ventilate without opening the window.','Hand-moulded closures, buttons and toggles cast in brass or resin, placed where the hand naturally falls.'],
+['Supporting detail 07','Handrail & staircase','A spine you hold on to.',['hr2','hr1','hr3'],'The carved hardwood handrail twists and thickens as it climbs, shaped to the grip; slimmer rails run in waves along the landings.','A continuous spine line at centre back, shared with the roof\'s dragon spine; spiral seams and twisted bias piping.'],
+['Supporting detail 08','Ceilings, arches & fireplace','Shells, waves and a ribcage overhead.',['ce1','ce2','vl1'],'The salon ceiling swirls around a central lamp like a whirlpool; the attic is built from white catenary arches that recall a ribcage.','Spiral draping from one point; graduated arched boning echoing the ribcage and the columns.']];
+$('#hzrow').innerHTML=EL.map((e,i)=>`<article class="el${i>4?' sup':''}"><div class="col">${e[3].map(f=>`<img class="z" src="img/cr/${f}.webp" alt="" loading="lazy">`).join('')}</div><div class="tx"><small>${e[0]}</small><h3>${e[1]}</h3><p class="sub">${e[2]}</p><p>${e[4]}</p><div class="cue2"><b>Translation cue</b>${e[5]}</div></div></article>`).join('');
+function hz(){const s=$('#elements');if(innerWidth<901||RM){$('#hzrow').style.transform='';return}const r=s.getBoundingClientRect(),span=s.offsetHeight-innerHeight,p=cl(-r.top/span),row=$('#hzrow'),max=row.scrollWidth-innerWidth+40;row.style.transform=`translate3d(${-p*max}px,0,0)`;$('#hzc').textContent=String(Math.min(EL.length,Math.floor(p*EL.length)+1)).padStart(2,'0')+' / 0'+EL.length}
+
+/* blue */
+const BL=[['Deep cobalt','#1F3F8F'],['Cobalt blue','#0047AB'],['Medium blue','#3F6FB5'],['Pale blue','#9DB8DC'],['Pearl grey','#E6EAEE']];
+$('#grad').innerHTML=BL.map((b,i)=>`<button class="${i>2?'lt':''}" style="background:${b[1]}" data-i="${i}"><b>${b[0]}</b>≈ ${b[1]}</button>`).join('');
+$$('#grad button').forEach(b=>b.onclick=()=>{$('#blue').style.backgroundColor=BL[+b.dataset.i][1];$('#blue').dataset.lock=1});
+{let sv='<svg viewBox="0 0 200 420" aria-hidden="true"><path d="M70 10h60l8 70-10 30H72L62 80z" fill="#1F3F8F"/>';const cols=['#1F3F8F','#0047AB','#3F6FB5','#7FA1D2','#9DB8DC','#C9D6E6','#E6EAEE'];let k=0;
+ for(let r=0;r<7;r++){const y=112+r*42,w=70+r*14,n=Math.max(3,Math.round(w/(14+r*3))),sz=w/n;for(let c=0;c<n;c++){const x=100-w/2+c*sz;sv+=`<path class="sc" style="transition-delay:${(k++)*0.015}s" d="M${x} ${y}q${sz/2} ${sz*1.2} ${sz} 0z" fill="${cols[r]}" stroke="#fff" stroke-opacity=".4"/>`}}
+ $('#gdress').innerHTML=sv+'</svg><p style="font-size:12px;opacity:.8;text-align:center">Scales grow and pale towards the hem</p>'}
+const hex=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
+function blue(){const s=$('#blue');if(s.dataset.lock)return;const r=s.getBoundingClientRect(),p=cl((innerHeight-r.top)/(innerHeight+r.height)),stops=BL.map(b=>hex(b[1])),f=p*(stops.length-1),i=Math.min(stops.length-2,Math.floor(f)),t=f-i,c=stops[i].map((v,k)=>Math.round(lerp(v,stops[i+1][k],t)));
+ s.style.backgroundColor=`rgb(${c})`;const dark=p<.62;s.style.color=dark?'#fff':'#0B1A44';$$('#blue h2,#blue .lede,#blue .kick').forEach(e=>e.style.color=dark?'':'#0B1A44')}
+
+/* gap map */
+const GP=[['Schiaparelli FW 2026–27, "The Call of the Void"',22,56,'Daniel Roseberry after visiting Gaudí\'s buildings: organic forms and a skirt recalling trencadís and fish scales, but no blue, and no balconies, columns or doors.'],
+['Louis Vuitton Cruise 2025, Park Güell',10,46,'Gaudí as a runway setting and silhouette reference: draped volumes echoing his curves.'],
+['Max Azria / Hervé Léger AW 2015',12,80,'Credited by Casa Batlló with colours reminiscent of its mosaics: a colour-led reading.'],
+['YSL "Sardine" dress, 1983',34,88,'Lesage embroidery: overlapping sequins in blue, grey and silver. The closest technique precedent for Garment 01\'s scales.'],
+['Dolce & Gabbana AW 2013',30,72,'Monreale Cathedral mosaics pieced into garments with gems: precedent for glass and mosaic.'],
+['Alexander McQueen AW 2010',8,64,'Byzantine and Old Master art woven into jacquards: architecture turned into cloth.'],
+['Balenciaga SS 2008 · Guggenheim Bilbao',18,34,'Architectural volume and silhouette from a building\'s exterior form.'],
+['Casa Reimagined',76,24,'Interior details, read for how they are built: cast-iron balconies, load-bearing columns, doors and the lightwell gradient as structure, not surface.',1]];
+$('#map').insertAdjacentHTML('beforeend',GP.map((g,i)=>`<button class="dot${g[4]?' me':''}" style="left:${g[1]}%;top:${g[2]}%" data-i="${i}" aria-pressed="false" aria-label="${g[0]}"><i></i><span>${g[0].split(',')[0].split(' · ')[0]}</span></button>`).join(''));
+const gp=i=>{$$('#map .dot').forEach(d=>d.setAttribute('aria-pressed',+d.dataset.i===i));$('#mapnote').innerHTML=`<b>${GP[i][0]}.</b> ${GP[i][3]}`};
+$$('#map .dot').forEach(d=>{d.onclick=d.onmouseenter=d.onfocus=()=>gp(+d.dataset.i)});gp(7);
+
+/* insights */
+const IN=[['The body is already inside the building','Handles moulded by the hand, a rail carved to the grip, bone columns and a ribcage of arches.'],['Function is the ornament','Graded tiles, larger lower windows and ventilation slats are practical systems that happen to be beautiful.'],['Light is a material','Coloured glass, rippled landing glass and graded tiles: a cue for sheers, translucency and ombré.'],['Mechanism beats meaning','Gaudí never explained the symbolism; how things are made is documented, and a stronger basis for design.'],['Blue has a reason','The gradient shares daylight evenly; grading a garment the same way carries the logic, not just the colour.'],['Structure is where originality lives','Gaudí-inspired fashion has been decorative; balconies, columns and doors are unused as structure.'],['Touch matters to the client','The creative professional values craftsmanship she can feel: hardware, finishing, hand-work.']];
+$('#ins').innerHTML=IN.map((x,i)=>`<div class="in1" data-rv="${i%3+1}"><i>0${i+1}</i><b>${x[0]}</b><p>${x[1]}</p></div>`).join('');$$('#ins [data-rv]').forEach(el=>rv.observe(el));
+const HM=['…make the wearer feel the care of a hand-moulded handle in the way a garment fastens?','…use layered sheers to filter light on the body the way the landing glass filters the lightwell?','…show structure on the outside of a garment, as the bone columns do, while keeping it soft?','…create one continuous line that travels around the body like the staircase rail?','…grade colour and density across a garment so it feels balanced, as the lightwell does?'];
+let hi=0,ht;$('#hmwd').innerHTML=HM.map((_,i)=>`<button aria-label="Question ${i+1}"></button>`).join('');
+function hm(i){hi=(i+HM.length)%HM.length;const p=$('#hmwp');p.classList.add('out');setTimeout(()=>{p.textContent=HM[hi];p.classList.remove('out')},RM?0:300);$$('#hmwd button').forEach((b,k)=>b.setAttribute('aria-current',k===hi))}
+$$('#hmwd button').forEach((b,k)=>b.onclick=()=>{hm(k);clearInterval(ht)});hm(0);if(!RM){ht=setInterval(()=>hm(hi+1),4200);$('#hmw').onmouseenter=()=>clearInterval(ht)}
+
+/* palette */
+const PT=[['Navy Peony','19-4029 TCX','#223A5E'],['Deep Water','18-4032 TCX','#266691'],['Scuba Blue','16-4725 TCX','#00ABC0'],['Sea Angel','14-4315 TCX','#98BFCA'],['Lavender','15-3615 TCX','#AFA4CE'],['Tillandsia Purple','19-3638 TCX','#563474'],['Baby\'s Breath','11-0202 TCX','#E9E3D5'],['Moonbeam','13-0000 TCX','#CDC6BD'],['Golden Egg','20-0034 TPM','#D4A83A'],['Juniper','18-6330 TCX','#3D7245'],['Burgundy','PMS 7421 C','#651D32'],['Coffee Bean','19-0915 TCX','#40312F']];
+$('#pant').innerHTML=PT.map(p=>`<div><i style="background:${p[2]}"></i><span><b>${p[0]}</b>${p[1]}</span></div>`).join('');
+
+/* library */
+const LB=[['s1','Bugle-bead lattice on navy silk','Diamond grid of silver bugle beads.','Lightwell tiles · glass leading','bl2'],['s2','Dyed roundel with bead stars','Blue dye bloom on ivory.','Stained-glass roundels','gl1'],['s3','Beaded spirals','Turquoise seed beads coiled into whorls.','Salon ceiling whirlpool','ce1'],['s4','Diamond pleats','Ivory fabric folded into diamonds.','Roof scales · attic arches','sc2'],['mat3','Pearls and shells','Baroque pearls, pearl strings, cowrie and scallop shells.','Ridge spheres · marine theme','sc3'],['lib','The whole library','All samples, fabrics and bead stock together.','Signature blue gradation','bl1']];
+$('#lib').innerHTML=LB.map((l,i)=>`<button class="smp" aria-pressed="false" data-rv="${i%3+1}" aria-label="${l[1]}: turn to see its source"><span class="in"><span class="f"><img src="img/cr/${l[0]}.webp" alt="" loading="lazy"><span><b>${l[1]}</b>${l[2]}</span></span><span class="b"><img src="img/cr/${l[4]}.webp" alt="" loading="lazy"><span><b>From the house</b>${l[3]}</span></span></span></button>`).join('');
+$$('.smp').forEach(b=>{rv.observe(b);b.onclick=()=>b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')!=='true')});
+
+/* sketches */
+const SK=[['Halter & Sashiko Midi','White satin halter with sequinned cross straps; blue skirt with a star-and-diamond running-stitch grid; sheer lace side panels.',[['gl1','Stained glass','the stitch grid reads as lead lines holding glass'],['lwwin','Lightwell windows','crossed straps echo the frames'],['bl1','Lightwell blue','the skirt\'s mid-blue']]],
+['Lattice Camisole & Panel Skirt','Blue chiffon babydoll with lattice straps and scalloped hem; ivory skirt with a beaded side panel of spirals.',[['bal1','Balcony eyes','almond shapes in the side panel'],['ce1','Salon ceiling','beaded spirals in each shape'],['sc1','Roof scales','the scalloped hem']]],
+['Mask Corset & Fringed Scale Tiers','Brown mask-shaped bodice with slatted eye openings; fan-pleated panels; scalloped tiers in blues edged with bugle-bead fringe.',[['bal1','Skull balconies','mask bodice; slats echo the eye plates'],['sc1','Roof scales','scalloped tiers with bead fringe'],['door2','Oak doors','brown and earth tones']],1],
+['One-Shoulder Scale Ruffle','Ivory sheath with coral and blue bead scatter; layered scale-petal skirt in blues; beaded lattice cuff.',[['sc2','Roof scales','scale-petal skirt'],['fac','Trencadís façade','coral and blue bead scatter'],['col2','Sandstone columns','the ivory body']]],
+['Scale Bustier & Carved Waist','Earth-tone scale bustier; blue cut-out waistband with a carved motif; cobalt gradient circle skirt.',[['sc3','Roof scales','the bustier in greens and ochres'],['col1','Bone columns','the carved waist motif'],['bl1','Lightwell gradient','skirt deepening to navy']]],
+['Corset & Cocoon Scale Skirt','Light blue corset with gold-swirl cups; cocoon skirt with diamond lattice and droplets, bound in gold.',[['sc2','Roof scales','diamond lattice'],['bal2','Golden balcony plates','gold binding and cups'],['lwup','Water and light','droplets over the scales']]],
+['Olive Corset & Tiered Ruffles','Brown cowl over an olive corset with orange radial medallions; quilted scale hip band; ruffle tiers light to deep blue.',[['gl1','Glass roundels','orange radial medallions'],['sc1','Roof scales','quilted scale hip band'],['bl1','Lightwell gradient','tiers stepping to deep blue']]],
+['Lattice Bodice & Gradient A-line','Sheer lattice bodice with spiral-beaded cups; pleated A-line skirt graded to deep navy; beaded choker and gauntlets.',[['hd2','Window frames','the sheer lattice bodice'],['ce1','Salon ceiling','spiral beading on the cups'],['bl1','Lightwell gradient','skirt grading to navy']]],
+['Harlequin Peplum & Crystal Strands','Diamond-check cobalt bodice with domed peplum; strands of crystals and pearls over a nude fishtail.',[['sc3','Carnival reading','the roof as a harlequin hat'],['sc2','Ridge spheres','pearls in the strands'],['gl3','Coloured glass','faceted cobalt crystals']]],
+['Navy Bodice & Radiating Skirt','Navy strapless with coral and blue sequin scatter; shell at the hip; skirt panels radiating in glass colours.',[['ce1','Salon ceiling vortex','panels radiating from one point'],['gl1','Stained-glass colours','violet, sky, sand and navy'],['fac','Trencadís','coral and blue scatter']]],
+['Navy Peplum & Scale Mini','Navy strapless peplum over a scale-patterned mini skirt.',[['sc1','Roof scales','the scale-patterned skirt'],['bl1','Signature blue','deep navy bodice and peplum'],['vl2','Curved forms','the flared peplum']],1]];
+let si=+(store.get('crsk')||2);if(si>10)si=2;
+$('#skstrip').innerHTML=SK.map((s,i)=>`<button role="tab" class="${s[3]?'sl':''}" aria-current="false" aria-label="Exploration ${i+1}: ${s[0]}"><img src="img/cr/e${String(i+1).padStart(2,'0')}.webp" alt="" loading="lazy"></button>`).join('');
+function sk(i){si=(i+SK.length)%SK.length;const s=SK[si],im=$('#skimg');im.style.opacity=0;setTimeout(()=>{im.src=`img/cr/e${String(si+1).padStart(2,'0')}.webp`;im.alt=`Exploration ${si+1}: ${s[0]}`;im.onload=()=>im.style.opacity=1},RM?0:160);
+ $$('#skstrip button').forEach((b,k)=>b.setAttribute('aria-current',k===si));$('#skbadge').hidden=!s[3];$('#skn').textContent=`Exploration ${String(si+1).padStart(2,'0')} of 11`;$('#skh').textContent=s[0];$('#skd').textContent=s[1];
+ $('#skmap').innerHTML=s[2].map(m=>`<div><img src="img/cr/${m[0]}.webp" alt="" loading="lazy"><p><b>${m[1]} →</b> ${m[2]}</p></div>`).join('');store.set('crsk',si);
+ const b=$$('#skstrip button')[si];$('#skstrip').scrollTo({left:b.offsetLeft-$('#skstrip').clientWidth/2+b.offsetWidth/2,behavior:RM?'auto':'smooth'})}
+$$('#skstrip button').forEach((b,k)=>b.onclick=()=>sk(k));sk(si);
+addEventListener('keydown',e=>{if(lb.classList.contains('open')||!['ArrowLeft','ArrowRight'].includes(e.key))return;const r=$('#sketches').getBoundingClientRect();if(r.top<innerHeight*.5&&r.bottom>innerHeight*.5){e.preventDefault();sk(si+(e.key==='ArrowRight'?1:-1))}});
+
+/* shortlist */
+const G2=[['Garment 01','The Dragon\'s Back','e11','g01',['#151B3C','#1F2A6B','#3F6FB5','#E3D2A0','#E5B54A'],[['Base silhouette from overlapping scale units','Roof scales','The roof\'s large scales simulate the back of a dragon.'],['Gradient blue skirt','Lightwell','Mixing the exterior scales with the interior\'s signature blue.'],['Why blue, when the roof is multicoloured?','Form + colour','Form from the roof, colour from the building\'s signature blue, deliberately combined.']],['sc3','sc1','bl1'],'Closest technique precedent: YSL\'s 1983 "Sardine" dress.'],
+ ['Garment 02','House of Masks and Bones','e03','g02',['#40312F','#A87542','#75806A','#17677A','#292C70'],[['Moulded mask bodice, repeated as one form','Skull balconies','Each railing is cast iron in one piece from Gaudí\'s plaster models: one mould, repeated.'],['Exposed moulded structure','Bone columns','Ornament over a rigid core, like boning.'],['Corset panelling','Oak doors','Organic door panels; a folding door opens to one side of the salon.'],['Beaded crystal lace','Stained glass + doors','"Architecture is the ordering of light."']],['bal1','col2','door1'],'Realised: photographed in The Living Architecture editorial.']];
+$('#two').innerHTML=G2.map((g,i)=>`<article class="gm2" data-rv="${i+1}"><div class="ev" style="--x:100%"><img src="img/cr/${g[2]}.webp" alt="${g[0]}: the exploration it grew from"><img class="fin" src="img/cr/${g[3]}.webp" alt="${g[0]}: final illustration"><div class="hand"></div><span class="tg l">Exploration</span><span class="tg r">Final design</span><input type="range" min="0" max="100" value="100" aria-label="${g[0]}: compare exploration and final design"></div>
+ <small>${g[0]}</small><h3>${g[1]}</h3><div class="sw">${g[4].map(c=>`<i style="background:${c}"></i>`).join('')}</div>
+ <table><tbody>${g[5].map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')}</tbody></table>
+ <div class="srcs">${g[6].map(f=>`<img class="z" src="img/cr/${f}.webp" alt="" loading="lazy">`).join('')}</div><p class="mut" style="font-size:13px;margin-top:10px">${g[7]}</p></article>`).join('');
+$$('.gm2').forEach(a=>{rv.observe(a);const ev=$('.ev',a),r=$('input',ev);const set=()=>ev.style.setProperty('--x',r.value+'%');r.addEventListener('input',set);
+ if(!RM)new IntersectionObserver(([e],o)=>{if(e.isIntersecting){o.disconnect();let t0=null;const f=t=>{if(!t0)t0=t;const k=Math.min(1,(t-t0)/1800);r.value=100-k*100*(k<1?1:1);r.value=Math.round(100-100*(1-Math.pow(1-k,3)));set();if(k<1)requestAnimationFrame(f)};setTimeout(()=>requestAnimationFrame(f),400)}},{threshold:.5}).observe(ev);else{r.value=0;set()}});
+
+/* making */
+const MK=[['p1','Pattern development','Bodice and scale pieces cut and laid out on fabric.'],['p2','Scallops in teal','The skirt\'s scale tiers taking shape in fabric.'],['p3','The corset on the form','The brown bodice built on the dress form.'],['p4','Mask eyes added','Ochre cups set into the corset: the balcony\'s two eyes.'],['p5','First fitting','The bodice on the body: checking the cups and the line.'],['p6','The full toile','Corset and scalloped tiers together, ochre to green to blue.'],['../st/f01','Final garment','Finished in chocolate, ochre and teal to indigo, and photographed.']];
+$('#mksteps').innerHTML=MK.map((m,i)=>`<li><i>0${i+1}</i><div><b>${m[1]}</b><span>${m[2]}</span></div></li>`).join('');
+$('#mkimgs').innerHTML=MK.map((m,i)=>`<img src="img/${m[0].startsWith('..')?m[0].slice(3):'cr/'+m[0]}.webp" alt="${m[1]}" loading="lazy">`).join('');
+function mk(){const s=$('#making'),r=s.getBoundingClientRect(),span=s.offsetHeight-innerHeight,p=cl(-r.top/span),i=Math.min(MK.length-1,Math.floor(p*MK.length));$$('#mkimgs img').forEach((m,k)=>m.classList.toggle('on',k===i));$$('#mksteps li').forEach((l,k)=>l.classList.toggle('on',k===i))}
+
+/* final: trace hotspots */
+const TR=[[47,43,'Wave neckline','Handrail & ceilings','hr2','The corset edge curves like the staircase rail and the salon ceiling: no straight line.'],
+[42,53,'Mask eyes','Skull balconies','bal1','Two shell-like cups set into the bodice: the balcony\'s eye openings, backed in gold-ochre.'],
+[50,58,'Corset panelling','Oak doors','door2','Soft-cornered panels in oak brown, after the organic doors of the Noble floor.'],
+[53,63,'Fan-pleated panel','Ceiling whirlpool','ce1','A pleated fan radiating from one point, like the salon ceiling.'],
+[64,74,'Beaded trim','Stained glass','gl1','Bead fringe at every scallop edge: the "leading" between glass roundels.'],
+[60,88,'Scale tiers','Roof scales + lightwell','sc1','Scalloped tiers shade from ochre and moss through teal to indigo, like light sinking into water.']];
+$('#fhs').insertAdjacentHTML('beforeend',TR.map((t,i)=>`<button class="pt" style="left:${t[0]}%;top:${t[1]}%" aria-pressed="false" data-i="${i}" aria-label="${t[2]}">${i+1}</button>`).join(''));
+$('#tlist').innerHTML=TR.map((t,i)=>`<button aria-pressed="false" data-i="${i}">${i+1} · ${t[2]}</button>`).join('');
+function tr(i){const t=TR[i];$$('#fhs .pt,#tlist button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.i===i));$('#trace').innerHTML=`<img src="img/cr/${t[4]}.webp" alt="${t[3]} at Casa Batlló"><div><small>From the house: ${t[3]}</small><h4>${t[2]}</h4><p>${t[5]}</p></div>`}
+$$('#fhs .pt,#tlist button').forEach(b=>b.onclick=e=>{e.stopPropagation();tr(+b.dataset.i)});tr(1);
+$('#film').innerHTML=['f02','f04','f05','f06','f09','f10','f11','f13'].map(f=>`<img class="z" src="img/st/${f}.webp" alt="Garment 02 in The Living Architecture editorial" loading="lazy">`).join('');
+
+/* business */
+const BZ=[['Product','Small-batch statement pieces and made-to-order couture; detachable collars and closures as accessible entry products.'],['Price positioning','Premium designer and couture, reflecting hand-work and cast hardware.'],['Channels','Exhibition-led launches, concept stores, design and architecture events, museum collaborations, direct online sales.'],['Communication','"Look closer": campaign imagery pairs each garment with the interior detail behind it, not the façade.'],['Sustainability','Made to order; deadstock and natural fibres where possible; durable cast closures that outlast trends.'],['Client','The creative professional, 28–45: architects, interior designers, fashion designers and art directors who notice the door handle.']];
+$('#biz').innerHTML=BZ.map((b,i)=>`<div data-rv="${i%3+1}"><small>${b[0]}</small><p>${b[1]}</p></div>`).join('');$$('#biz [data-rv]').forEach(el=>rv.observe(el));
+
+/* scroll scenes */
+const LN=$$('#ilines p');
+function scenes(){const y=scrollY,h=innerHeight;
+ $('#pbar').style.transform=`scaleX(${cl(y/(document.documentElement.scrollHeight-h))})`;
+ if(!RM){const it=$('#intro'),r=it.getBoundingClientRect(),p=cl(-r.top/(it.offsetHeight-h));
+  $('#ibg').style.transform=`scale(${1.05+p*.45}) translateY(${p*-4}%)`;$('#iveil').style.opacity=.6+p*.4;
+  $('#itt').style.opacity=1-cl(p/.2);$('#itt').style.transform=`translateY(${-p*120}px)`;$('#icue').style.opacity=1-cl(p/.1);
+  LN.forEach((l,k)=>{const a=.18+k*.2;l.classList.toggle('on',p>a&&(p<a+.2||k===LN.length-1))});
+  const o=$('#outro'),ro=o.getBoundingClientRect(),po=cl(-ro.top/(o.offsetHeight-h));$('#obg').style.transform=`scale(${1+po*.6})`;$('#oh').style.transform=`scale(${.7+po*.3})`;$('#oh').style.opacity=cl(po*2.5);
+  hz();mk()}
+ blue()}
+addEventListener('scroll',()=>requestAnimationFrame(scenes),{passive:true});addEventListener('resize',scenes);scenes();
+
+}
+</script>
+</body>
+</html>
